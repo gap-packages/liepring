@@ -1,0 +1,5 @@
+//(3p+1)/2 algebras
+<a,b,c|ca-bab,cb,pa-bab,pb-wbaa,pc-xbaaa,class=4>(all x, x~-x)
+<a,b,c|ca-bab,cb,pa-bab,pb-wbaa-xbaaa,pc-ybaaa,class=4>(If 2 is not a square mod p and y^2=2w^3, x ne 0, x~-x, y~-y)
+<a,b,c|ca-bab,cb,pa-wbab,pb-wbaa,pc-xbaaa,class=4>(all x, x~-x)
+<a,b,c|ca-bab,cb,pa-wbab,pb-wbaa-xbaaa,pc-ybaaa,class=4>(If 2 is a square mod p and y^2=2w^2, x ne 0, x~-x, y~-y)

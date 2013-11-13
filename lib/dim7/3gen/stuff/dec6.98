@@ -1,0 +1,14 @@
+//(5p + 1)/2 algebras
+<a,b,c|baa,caa,cb,pb-ba,pc-ca,class=3>
+<a,b,c|baa,caa,cb-p^2a,pb-ba,pc-ca,class=3>
+<a,b,c|baa,p^2a,cb,pb-ba,pc-ca,class=3>
+<a,b,c|baa,p^2a,cb,pb-ba-caa,pc-ca,class=3>
+<a,b,c|baa,caa,cb,pb-ba,pc-xca,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,caa,cb-p^2a,pb-ba,pc-xca,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,p^2a,cb,pb-ba,pc-xca,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|caa,p^2a,cb,pb-ba,pc-xca,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|caa-baa,p^2a,cb,pb-ba,pc-xca,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,caa,cb,pb-ba,pc+ca,class=3>
+<a,b,c|baa,caa,cb-p^2a,pb-ba,pc+ca,class=3>
+<a,b,c|baa,p^2a,cb,pb-ba,pc+ca,class=3>
+<a,b,c|caa-baa,p^2a,cb,pb-ba,pc+ca,class=3>

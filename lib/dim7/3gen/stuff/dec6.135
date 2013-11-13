@@ -1,0 +1,20 @@
+//p^2 + 2p + 3 + gcd(p-1,3) + gcd(p-1,4) + gcd(p-1,5) algebras
+<a,b,c|ca-bab,cb,pa,pb-bab,pc,class=4>
+<a,b,c|ca-bab,cb,pa,pb-bab-baaa,pc,class=4>
+<a,b,c|ca-bab,cb,pa,pb-bab-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|ca-bab,cb,pa,pb-bab-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|ca-bab,cb,pa-baaa,pb-bab-xbaaa,pc,class=4>(all x)
+<a,b,c|ca-bab,cb-baaa,pa,pb-bab,pc,class=4>
+<a,b,c|ca-bab,cb-zbaaa,pa,pb-bab,pc,class=4>(z=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|ca-bab,cb-baaa,pa,pb-bab-xbaaa,pc,class=4>(x ne 0, x~x' if x^5=x'^5 mod p)
+<a,b,c|ca-bab,cb-zbaaa,pa,pb-bab-xbaaa,pc,class=4>(z=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)
+<a,b,c|ca-bab,cb-baaa,pa-xbaaa,pb-bab-ybaaa,pc,class=4>(x ne 0, x~x' if x^5=x'^5 mod p, all y)
+<a,b,c|ca-bab,cb-zbaaa,pa-xbaaa,pb-bab-ybaaa,pc,class=4>(z=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p, all y)(p=1 mod 5)
+<a,b,c|ca-bab,cb-xbaaa,pa,pb-bab,pc-baaa,class=4>(all x, x~x' if x^4=x'^4 mod p)
+<a,b,c|ca-bab,cb-xbaaa,pa,pb-bab,pc-wbaaa,class=4>(all x, x~x' if x^4=x'^4 mod p)
+<a,b,c|ca-bab,cb-xbaaa,pa,pb-bab,pc-w^2baaa,class=4>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|ca-bab,cb-xbaaa,pa,pb-bab,pc-w^3baaa,class=4>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|ca-bab,cb,pa+baa,pb-bab,pc,class=4>
+<a,b,c|ca-bab,cb,pa+baa,pb-bab-baab,pc,class=4>
+<a,b,c|ca-bab,cb,pa+baa,pb-bab,pc-baab,class=4>
+<a,b,c|ca-bab,cb,pa+baa,pb-bab,pc-wbaab,class=4>

@@ -1,0 +1,20 @@
+The rings of order p^6 are bundled into 42 descendant
+files gapdec3.1, gapdec4.1 etc, named for the parents
+3.1, 4.1 etc. There is also one file gap6.1 for the
+elementary abelian Lie ring of order p^6.
+
+No other Lie rings of order less than p^6 have immediate
+descendants of order p^6.
+
+The only slight confusion possible over parentage
+is in the descendants of 5.42. Algebra 5.42 is a
+one parameter family of Lie rings of order p^5,
+but these Lie rings are all terminal except for 
+one particular value of the parameter.  So if you
+strip off the last class in the algebras in gapdec5.42
+you get a presentation with no parameters, whereas
+5.42 has a parameter.
+
+There are three notes on the awkward cases in
+restrictions on parameters.
+

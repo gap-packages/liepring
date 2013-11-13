@@ -1,0 +1,31 @@
+//2p + 15 + 3gcd(p-1,3) + gcd(p-1,4) algebras
+<a,b,c|caa,cac,cb,pa,pc-ba,class=3>
+<a,b,c|caa,cac,cb-p^2b,pa,pc-ba,class=3>
+<a,b,c|caa,p^2b,cb,pa,pc-ba,class=3>
+<a,b,c|caa,p^2b,cb,pa-cac,pc-ba,class=3>
+<a,b,c|caa,p^2b,cb,pa-wcac,pc-ba,class=3>
+<a,b,c|caa,p^2b,cb,pa,pc-ba-cac,class=3>
+<a,b,c|caa,p^2b,cb,pa-cac,pc-ba-cac,class=3>
+<a,b,c|caa,p^2b,cb,pa-wcac,pc-ba-cac,class=3>
+<a,b,c|caa,p^2b-cac,cb,pa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb,pa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb,pa-caa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb-caa,pa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb-caa,pa-caa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb-caa,pa-wcaa,pc-ba,class=3>
+<a,b,c|cac,p^2b,cb-caa,pa-w^2caa,pc-ba,class=3>(p=1 mod 4)
+<a,b,c|cac,p^2b,cb-caa,pa-w^3caa,pc-ba,class=3>(p=1 mod 4)
+<a,b,c|cac,p^2b-caa,cb,pa,pc-ba,class=3>
+<a,b,c|cac,p^2b-wcaa,cb,pa,pc-ba,class=3>(p=1 mod 3)
+<a,b,c|cac,p^2b-w^2caa,cb,pa,pc-ba,class=3>(p=1 mod 3)
+<a,b,c|cac,p^2b-caa,cb-caa,pa,pc-ba,class=3>
+<a,b,c|cac,p^2b-wcaa,cb-caa,pa,pc-ba,class=3>(p=1 mod 3)
+<a,b,c|cac,p^2b-w^2caa,cb-caa,pa,pc-ba,class=3>(p=1 mod 3)
+<a,b,c|cac-caa,p^2b,cb,pa,pc-ba,class=3>
+<a,b,c|cac-caa,p^2b,cb,pa,pc-ba-caa,class=3>
+<a,b,c|cac-caa,p^2b,cb,pa,pc-ba-wcaa,class=3>
+<a,b,c|cac-caa,p^2b,cb,pa-caa,pc-ba-xcaa,class=3>(all x)
+<a,b,c|cac-caa,p^2b,cb,pa-wcaa,pc-ba-xcaa,class=3>(all x)
+<a,b,c|cac-caa,p^2b-caa,cb,pa,pc-ba,class=3>
+<a,b,c|cac-caa,p^2b-wcaa,cb,pa,pc-ba,class=3>(p=1 mod 3)
+<a,b,c|cac-caa,p^2b-w^2caa,cb,pa,pc-ba,class=3>(p=1 mod 3)

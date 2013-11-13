@@ -1,0 +1,13 @@
+//2p+2+(p+1)/2+gcd(p-1,3)+gcd(p-1,4)/2 algebras
+<a,b|baaa,p^2a,pb-wbaa,class=4>
+<a,b|baaa,p^2a,pb-wbaa-babb,class=4>
+<a,b|baaa,p^2a,pb-wbaa-wbabb,class=4>(p=1 mod 4)
+<a,b|baaa,p^2a-babb,pb-wbaa,class=4>
+<a,b|baaa,p^2a-wbabb,pb-wbaa,class=4>(p=1 mod 3)
+<a,b|baaa,p^2a-w^2babb,pb-wbaa,class=4>(p=1 mod 3)
+<a,b|babb,p^2a,pb-wbaa-xbaaa,class=4>(all x, x~-x)
+<a,b|babb,p^2a-baaa,pb-wbaa,class=4>
+<a,b|babb-baaa,p^2a,pb-wbaa-xbaaa,class=4>(all x, x~-x)
+<a,b|babb-baaa,p^2a-xbaaa,pb-wbaa,class=4>(x ne 0, x~-x)
+<a,b|babb-wbaaa,p^2a,pb-wbaa-xbaaa,class=4>(all x, x~-x)
+<a,b|babb-wbaaa,p^2a-xbaaa,pb-wbaa,class=4>(x ne 0, x~-x)

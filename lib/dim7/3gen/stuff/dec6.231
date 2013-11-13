@@ -1,0 +1,93 @@
+//p^2+5p+14+(p+17)gcd(p-1,3)+2gcd(p-1,4)+gcd(p-1,7)+gcd(p-1,8) algebras
+<a,b,c|cb,baa,bac,caa,cac,pa,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac,pa-babb,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac,pa-babb,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac,pa-wbabb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-babb,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-babb,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-wbabb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa-babb,cac,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb-babb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb-wbabb,pc-babb,class=4>(p=1 mod 4)
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb,pc-wbabb,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb-babb,pc-wbabb,class=4>
+<a,b,c|cb,baa,bac,caa-babb,cac,pa,pb-wbabb,pc-wbabb,class=4>(p=1 mod 4)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa,pb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-babb,pb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-babb,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-wbabb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-babb,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-wbabb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa,cac,pa-w^2babb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa-babb,pb-xbabb,pc,class=4>(all x)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa-wbabb,pb-xbabb,pc,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa-w^2babb,pb-xbabb,pc,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb-wbabb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb-w^2babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb-xbabb,pc-babb,class=4>(all x, x~-x)
+<a,b,c|cb,baa,bac-babb,caa-babb,cac,pa,pb-xbabb,pc-wbabb,class=4>(all x, x~-x)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb,pc,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb-wbabb,pc,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb-w^2babb,pc,class=4>(p=1 mod 4)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb-w^3babb,pc,class=4>(p=1 mod 4)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-babb,pb,pc,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-babb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-wbabb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa-w^2babb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|cb,baa-babb,bac,caa,cac,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa,pb-babb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-babb,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-wbabb,pb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^3babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^4babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^5babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-babb,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-wbabb,pb,pc-babb,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^2babb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^3babb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^4babb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^5babb,pb,pc-babb,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-babb,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-wbabb,pb-babb,pc,class=4>
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^3babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^4babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^5babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-babb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-wbabb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^2babb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^3babb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^4babb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)(p=1 mod 3)
+<a,b,c|cb,baa,bac,caa,cac-babb,pa-w^5babb,pb-babb,pc-xbabb,class=4>(x ne 0, x~x' if x^6=x'^6 mod p)(p=1 mod 3)
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa,pb,pc,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa,pb,pc-babb,class=4>
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa,pb,pc-xbabb,class=4>(x=w^i, i=1,2,3,4,5,6)(p=1 mod 7)
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa,pb-xbabb,pc,class=4>(x=w^i, 0 le i lt gcd[p-1,8])
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa,pb-xbabb,pc-ybabb,class=4>(x=w^i, 0 le i lt gcd[p-1,8], y ne 0, y~y' if y^8=y'^8 mod p)
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa-xbabb,pb,pc,class=4>(x=w^i, 0 le i lt 2gcd[p-1,3])
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa-xbabb,pb,pc-ybabb,class=4>(x=w^i, 0 le i lt 2gcd[p-1,3], y ne 0, y~y' if y^6=y'^6 mod p)
+<a,b,c|cb,baa-babb,bac,caa,cac-babb,pa-xbabb,pb-ybabb,pc-zbabb,class=4>(x=w^i, 0 le i lt 2gcd[p-1,3], y ne 0, y~y' if y^3=y'^3 mod p, all z, z~-z)

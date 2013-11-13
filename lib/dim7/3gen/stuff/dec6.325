@@ -1,0 +1,53 @@
+//19 + 5gcd(p-1,3) + 6gcd(p-1,4) algebras
+<a,b,c|baaaa,bab,ca,cb,pa,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa-baaab,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa-wbaaab,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa-baaab,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa-wbaaab,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca,cb,pa-w^2baaab,pb-baaab,pc,class=5>(p=1 mod 4)
+<a,b,c|baaaa,bab,ca,cb,pa-w^3baaab,pb-baaab,pc,class=5>(p=1 mod 4)
+<a,b,c|baaaa,bab,ca,cb,pa,pb,pc-baaab,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-baaab,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-wbaaab,pb,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-baaab,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-wbaaab,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-w^2baaab,pb-baaab,pc,class=5>(p=1 mod 4)
+<a,b,c|baaaa,bab,ca-baaab,cb,pa-w^3baaab,pb-baaab,pc,class=5>(p=1 mod 4)
+<a,b,c|baaaa,bab,ca-baaab,cb,pa,pb,pc-baaab,class=5>
+<a,b,c|baaab,bab,ca,cb,pa,pb,pc,class=5>
+<a,b,c|baaab,bab,ca,cb,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab,ca,cb,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab,ca,cb,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab,ca,cb,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab,ca,cb,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab,ca,cb,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb,pc,class=5>
+<a,b,c|baaab,bab,ca,cb-baaaa,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab,ca,cb-baaaa,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa-wbaaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa-xbaaaa,pb,pc,class=5>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaaa,ca,cb,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa-wbaaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa-xbaaaa,pb,pc,class=5>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb,pc-wbaaaa,class=5>(p=1 mod 3)
+<a,b,c|baaab,bab-baaaa,ca,cb-baaaa,pa,pb,pc-w^2baaaa,class=5>(p=1 mod 3)

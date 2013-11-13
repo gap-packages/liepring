@@ -1,0 +1,73 @@
+//p^3+9p^2+20p+18+gcd(p-1,3)+gcd(p-1,4) algebras
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb-ba,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb-ba,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb-ba,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-xcac,pb-ba-cac,pc,pd,class=3>(all x)
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-xcac,pb-ba-wcac,pc,pd,class=3>(all x)
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb-ba,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba+cac,pb-ba,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba+(1-w)cac,pb-ba,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb-ba,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb-ba,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb-ba,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-xcac,pb-ba-cac,pc-cac,pd,class=3>(all x)
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-xcac,pb-ba-wcac,pc-cac,pd,class=3>(all x)
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-xcac,pb-ba,pc-cac,pd-cac,class=3>(all x)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-cac,class=3>(all x,y, y~-y)(p=3 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-wcac,class=3>(all x,y, y~-y)(p=3 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-cac,class=3>(x ne 0, x~-x, all y, y~-y)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-wcac,class=3>(x ne 1-w, x~-x+2[1-w], all y, y~-y)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-w^2cac,class=3>(x ne 1-w^2, x~-x+2[1-w^2], all y, y~-y)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-xcac,pb-ba,pc-ycac,pd-w^3cac,class=3>(x ne 1-w^3, x~-x+2[1-w^3], all y, y~-y)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba,pb-ba,pc-ycac,pd-cac,class=3>(all y, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-(1-w)cac,pb-ba,pc-ycac,pd-wcac,class=3>(all y, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-(1-w^2)cac,pb-ba,pc-ycac,pd-w^2cac,class=3>(all y, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-(1-w^3)cac,pb-ba,pc-ycac,pd-w^3cac,class=3>(all y, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-cac,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-cac,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-cac,pc-wcac,pd,class=3>(p=1 mod 3)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-cac,pc-w^2cac,pd,class=3>(p=1 mod 3)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-2cac,pc-xcac,pd,class=3>(all x, x~-x)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-cac,pb-ba-(1+w)cac,pc-xcac,pd,class=3>(all x, x~-x)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-2cac,pb-ba-xcac,pc-ycac,pd,class=3>(all x, all y, y~-y)
+<a,b,c,d|caa,cb,da,db-ba-cac,dc,pa-ba-(1+w)cac,pb-ba-xcac,pc-ycac,pd,class=3>(all x, all y, y~-y)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc-zcac,pd-cac,class=3>(all x,y,z, z~-z)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc,pd,class=3>(all x,y)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc-cac,pd,class=3>(all x,y)
+<a,b,c,d|caa,cb,da-wcac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc-zcac,pd-cac,class=3>(all x,y,z, z~-z)
+<a,b,c,d|caa,cb,da-wcac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc,pd,class=3>(all x,y)
+<a,b,c,d|caa,cb,da-wcac,db-ba,dc,pa-ba-xcac,pb-ba-ycac,pc-cac,pd,class=3>(all x,y)
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba-caa,pb-ba-xcaa,pc,pd,class=3>(all x)
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc,pd-caa,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba+caa,pb-ba,pc,pd-caa,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba-caa,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba-caa,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc-caa,pd-caa,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-ba,pc-wcaa,pd-caa,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-ba,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-ba-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba-caa,pb-ba-xcaa,pc,pd,class=3>(all x)
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-ba,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-ba-caa,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba-xcaa,pb-ba,pc,pd-caa,class=3>(all x)
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-ba,pc-xcaa,pd-caa,class=3>(x ne 0)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba,pb-ba,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba,pb-ba-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba-caa,pb-ba-xcaa,pc,pd,class=3>(all x)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba,pb-ba,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba,pb-ba-caa,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba-ycaa,pb-ba-xcaa,pc,pd-caa,class=3>(x ne 0, x~-x, all y)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba-ycaa,pb-ba,pc,pd-caa,class=3>(all y, y~-y-2)
+<a,b,c,d|cac,cb,da,db-ba,dc-caa,pa-ba,pb-ba-ycaa,pc-xcaa,pd-caa,class=3>(x ne 0, all y, y~-y)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba,pb-ba,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba,pb-ba-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba-caa,pb-ba-xcaa,pc,pd,class=3>(all x)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba,pb-ba,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba,pb-ba-caa,pc-xcaa,pd,class=3>(x ne 0)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba-ycaa,pb-ba-xcaa,pc,pd-caa,class=3>(x ne 0, x~-x, all y)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba-ycaa,pb-ba,pc,pd-caa,class=3>(all y, y~-y-2)
+<a,b,c,d|cac,cb,da,db-ba,dc-wcaa,pa-ba,pb-ba-ycaa,pc-xcaa,pd-caa,class=3>(x ne 0, all y, y~-y)

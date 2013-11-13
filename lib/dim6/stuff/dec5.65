@@ -1,0 +1,33 @@
+p+2gcd(p-1,3)+gcd(p-1,4)+2gcd(p-1,5) algebras
+<a,b|bab-baaa,baaaa,pa,pb,class=5>6.494
+<a,b|bab-baaa,baaaa,pa,pb-baaab,class=5>6.495
+<a,b|bab-baaa,baaaa,pa,pb-wbaaab,class=5>(p=1 mod 5)6.496
+<a,b|bab-baaa,baaaa,pa,pb-w^2baaab,class=5>(p=1 mod 5)6.497
+<a,b|bab-baaa,baaaa,pa,pb-w^3baaab,class=5>(p=1 mod 5)6.498
+<a,b|bab-baaa,baaaa,pa,pb-w^4baaab,class=5>(p=1 mod 5)6.499
+<a,b|bab-baaa,baaaa,pa-baaab,pb,class=5>6.500
+<a,b|bab-baaa,baaaa,pa-wbaaab,pb,class=5>6.501
+<a,b|bab-baaa,baaaa,pa-w^2baaab,pb,class=5>(p=1 mod 3)6.502
+<a,b|bab-baaa,baaaa,pa-w^3baaab,pb,class=5>(p=1 mod 3)6.503
+<a,b|bab-baaa,baaaa,pa-w^4baaab,pb,class=5>(p=1 mod 3)6.504
+<a,b|bab-baaa,baaaa,pa-w^5baaab,pb,class=5>(p=1 mod 3)6.505
+<a,b|bab-baaa,baaaa,pa-xbaaab,pb-baaab,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)6.506
+<a,b|bab-baaa,baaaa,pa-xbaaab,pb-wbaaab,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.506A
+<a,b|bab-baaa,baaaa,pa-xbaaab,pb-w^2baaab,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.506A
+<a,b|bab-baaa,baaaa,pa-xbaaab,pb-w^3baaab,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.506A
+<a,b|bab-baaa,baaaa,pa-xbaaab,pb-w^4baaab,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.506A
+<a,b|bab-baaa,baaab,pa,pb,class=5>6.507
+<a,b|bab-baaa,baaab,pa,pb-baaaa,class=5>6.508
+<a,b|bab-baaa,baaab,pa,pb-wbaaaa,class=5>6.509
+<a,b|bab-baaa,baaab,pa,pb-w^2baaaa,class=5>(p=1 mod 4)6.510
+<a,b|bab-baaa,baaab,pa,pb-w^3baaaa,class=5>(p=1 mod 4)6.511
+<a,b|bab-baaa,baaab,pa-baaaa,pb,class=5>6.512
+<a,b|bab-baaa,baaab,pa-wbaaaa,pb,class=5>(p=1 mod 5)6.513
+<a,b|bab-baaa,baaab,pa-w^2baaaa,pb,class=5>(p=1 mod 5)6.514
+<a,b|bab-baaa,baaab,pa-w^3baaaa,pb,class=5>(p=1 mod 5)6.515
+<a,b|bab-baaa,baaab,pa-w^4baaaa,pb,class=5>(p=1 mod 5)6.516
+<a,b|bab-baaa,baaab,pa-baaaa,pb-xbaaaa,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)6.517
+<a,b|bab-baaa,baaab,pa-wbaaaa,pb-xbaaaa,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.517A
+<a,b|bab-baaa,baaab,pa-w^2baaaa,pb-xbaaaa,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.517A
+<a,b|bab-baaa,baaab,pa-w^3baaaa,pb-xbaaaa,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.517A
+<a,b|bab-baaa,baaab,pa-w^4baaaa,pb-xbaaaa,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)6.517A

@@ -1,0 +1,24 @@
+//p + 2 + (2p+3)gcd(p-1,3) + gcd(p-1,5) algebras
+<a,b,c|cb,cac,pa-ba,pb,pc,class=4>
+<a,b,c|cb,cac,pa-ba,pb,pc-caaa,class=4>
+<a,b,c|cb,cac,pa-ba,pb,pc-wcaaa,class=4>(p=1 mod 3)
+<a,b,c|cb,cac,pa-ba,pb,pc-w^2caaa,class=4>(p=1 mod 3)
+<a,b,c|cb,cac-caaa,pa-ba,pb,pc,class=4>
+<a,b,c|cb,cac-caaa,pa-ba,pb,pc-caaa,class=4>
+<a,b,c|cb,cac-caaa,pa-ba,pb,pc-wcaaa,class=4>(p=1 mod 3)
+<a,b,c|cb,cac-caaa,pa-ba,pb,pc-w^2caaa,class=4>(p=1 mod 3)
+<a,b,c|cb-caaa,cac,pa-ba,pb,pc-xcaaa,class=4>(all x)
+<a,b,c|cb-wcaaa,cac,pa-ba,pb,pc-xcaaa,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb-w^2caaa,cac,pa-ba,pb,pc-xcaaa,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb-caaa,cac-caaa,pa-ba,pb,pc-xcaaa,class=4>(all x)
+<a,b,c|cb-wcaaa,cac-caaa,pa-ba,pb,pc-xcaaa,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb-w^2caaa,cac-caaa,pa-ba,pb,pc-xcaaa,class=4>(all x)(p=1 mod 3)
+<a,b,c|cb,cac,pa-ba,pb-caaa,pc,class=4>
+<a,b,c|cb-caaa,cac,pa-ba,pb-caaa,pc,class=4>
+<a,b,c|cb-wcaaa,cac,pa-ba,pb-caaa,pc,class=4>(p=1 mod 3)
+<a,b,c|cb-w^2caaa,cac,pa-ba,pb-caaa,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,cac-caaa,pa-ba,pb-caaa,pc,class=4>
+<a,b,c|cb,cac-caaa,pa-ba,pb-xcaaa,pc,class=4>(x=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|cb-caaa,cac-caaa,pa-ba,pb-xcaaa,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)
+<a,b,c|cb-wcaaa,cac-caaa,pa-ba,pb-xcaaa,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|cb-w^2caaa,cac-caaa,pa-ba,pb-xcaaa,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)

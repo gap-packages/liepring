@@ -1,0 +1,5 @@
+//p+2 algebras
+<a,b,c|ca,cb,pa-baa,pb+bab,pc,class=4>
+<a,b,c|ca,cb,pa-baa,pb+bab,pc-baab,class=4>
+<a,b,c|ca,cb,pa-baa,pb+bab-baab,pc,class=4>
+<a,b,c|ca,cb,pa-baa-baab,pb+bab-xbaab,pc,class=4>(x ne 0)

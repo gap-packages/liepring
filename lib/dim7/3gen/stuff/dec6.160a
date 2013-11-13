@@ -1,0 +1,3 @@
+//(p+3)/2 algebras
+<a,b,c|ca-baa,cb,pa-baa,pb+bab,pc-xbaab,class=4>(all x, x~-x)
+<a,b,c|ca-baa,cb,pa-baa-baab,pb+bab,pc-baab,class=4>

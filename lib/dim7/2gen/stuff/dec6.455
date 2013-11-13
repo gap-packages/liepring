@@ -1,0 +1,5 @@
+//4 algebras
+<a,b|baa,p^2a,pb-babb,class=5>
+<a,b|baa,p^2a-babba,pb-babb,class=5>
+<a,b|baa,p^2a,pb-babb-babba,class=5>
+<a,b|baa,p^2a,pb-babb-wbabba,class=5>

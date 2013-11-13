@@ -1,0 +1,6 @@
+//p+4 algebras
+<a,b,c|baa,caa,cb,pb-ba-ca,pc-ca,class=3>
+<a,b,c|baa,caa,cb-p^2a,pb-ba-ca,pc-ca,class=3>
+<a,b,c|baa,caa,cb-wp^2a,pb-ba-ca,pc-ca,class=3>
+<a,b,c|baa,p^2a,cb,pb-ba-ca,pc-ca,class=3>
+<a,b,c|caa,p^2a,cb,pb-ba-ca,pc-ca-xbaa,class=3>(all x)

@@ -1,0 +1,28 @@
+//8+2gcd(p-1,3)+4gcd(p-1,4) algebras
+<a,b|babba,baa,p^2a,pb,class=5>
+<a,b|babba,baa,p^2a,pb-babbb,class=5>
+<a,b|babba,baa-babbb,p^2a,pb,class=5>
+<a,b|babba,baa-babbb,p^2a,pb-babbb,class=5>
+<a,b|babba,baa-babbb,p^2a,pb-wbabbb,class=5>
+<a,b|babba,baa-babbb,p^2a,pb-xbabbb,class=5>(x=w^2,w^3,w^4,w^5)(p=1 mod 3)
+<a,b|babba,baa,p^2a-babbb,pb,class=5>
+<a,b|babba,baa,p^2a-wbabbb,pb,class=5>
+<a,b|babba,baa,p^2a-w^2babbb,pb,class=5>(p=1 mod 4)
+<a,b|babba,baa,p^2a-w^3babbb,pb,class=5>(p=1 mod 4)
+<a,b|babba,baa-babbb,p^2a-babbb,pb,class=5>
+<a,b|babba,baa-babbb,p^2a-wbabbb,pb,class=5>
+<a,b|babba,baa-babbb,p^2a-w^2babbb,pb,class=5>(p=1 mod 4)
+<a,b|babba,baa-babbb,p^2a-w^3babbb,pb,class=5>(p=1 mod 4)
+<a,b|babbb,baa,p^2a,pb,class=5>
+<a,b|babbb,baa,p^2a-babba,pb,class=5>
+<a,b|babbb,baa,p^2a,pb-babba,class=5>
+<a,b|babbb,baa,p^2a,pb-wbabba,class=5>
+<a,b|babbb-babba,baa,p^2a,pb,class=5>
+<a,b|babbb-babba,baa,p^2a-babba,pb,class=5>
+<a,b|babbb-babba,baa,p^2a-wbabba,pb,class=5>
+<a,b|babbb-babba,baa,p^2a-w^2babba,pb,class=5>(p=1 mod 4)
+<a,b|babbb-babba,baa,p^2a-w^3babba,pb,class=5>(p=1 mod 4)
+<a,b|babbb-babba,baa,p^2a,pb-babba,class=5>
+<a,b|babbb-babba,baa,p^2a,pb-wbabba,class=5>
+<a,b|babbb-babba,baa,p^2a,pb-w^2babba,class=5>(p=1 mod 4)
+<a,b|babbb-babba,baa,p^2a,pb-w^3babba,class=5>(p=1 mod 4)

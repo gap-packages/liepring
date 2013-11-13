@@ -1,0 +1,4 @@
+//p+1 algebras
+<a,b|pa+bab,pb+wbaa-xbaaa,baaab,class=5>(all x, x~-x)
+<a,b|pa+bab-x*ybaaa,pb+wbaa-xbaaa,baaab-w*ybaaaa,class=5>(x ne 0, x~-x, y FIXED such that 1-wy^2 is not a square mod p)
+<a,b|pa+bab,pb+wbaa,baaab+w*ybaaaa,class=5>(y FIXED such that 1-wy^2 is not a square mod p)

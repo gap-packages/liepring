@@ -1,0 +1,8 @@
+//p+6 algebras
+<a,b,c|p^2b,p^2c,ca,cb,pa-ba,class=3>
+<a,b,c|bab,p^2c,ca,cb,pa-ba,class=3>
+<a,b,c|bab,p^2c,ca,cb-p^2b,pa-ba,class=3>
+<a,b,c|bab,p^2c,ca-p^2b,cb,pa-ba,class=3>
+<a,b,c|bab,p^2b,ca,cb-xp^2c,pa-ba,class=3>(all x)
+<a,b,c|bab,p^2b,ca-p^2c,cb,pa-ba,class=3>
+<a,b,c|p^2b,p^2c-bab,ca,cb,pa-ba,class=3>

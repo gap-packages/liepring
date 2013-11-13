@@ -1,0 +1,4 @@
+#3p + 3 + (p^2+2p+3)gcd(p-1,3)/2 algebras
+Append( LIE_DATA[7], [
+[7,3,4,"<a,b,c|baab-ubaaa,babb-vbaaa,ca-bab,cb-wbaa,pa-ybaaa,pb-zbaaa,pc-tbaaa,class=4>",[[7,y],[4,1],[7,z],[6,1],[5,w],[7,t],[5,1],[6,1],[7,v - w],[],[7,1],[7,u],[],[],[],[7,u],[7,v]],"See Notes6.173",,"7.1777"]
+]);

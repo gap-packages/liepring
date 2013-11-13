@@ -1,0 +1,27 @@
+//26 algebras
+<a,b,c|baa,bab,p^2b,ca,cb,pa,class=3>
+<a,b,c|baa,bab,p^2b,ca,cb-p^2c,pa,class=3>
+<a,b,c|baa,bab,p^2b,ca-p^2c,cb,pa,class=3>
+<a,b,c|baa,bab,p^2c,ca,cb,pa,class=3>
+<a,b,c|baa,bab,p^2c,ca,cb-p^2b,pa,class=3>
+<a,b,c|baa,bab,p^2c,ca-p^2b,cb,pa,class=3>
+<a,b,c|baa,p^2b,p^2c,ca,cb,pa,class=3>
+<a,b,c|baa,p^2b,p^2c,ca-bab,cb,pa,class=3>
+<a,b,c|baa,p^2b,p^2c,ca,cb,pa-bab,class=3>
+<a,b,c|baa,p^2b,p^2c,ca-bab,cb,pa-bab,class=3>
+<a,b,c|baa,p^2b,p^2c,ca,cb,pa-wbab,class=3>
+<a,b,c|baa,p^2b,p^2c,ca-bab,cb,pa-wbab,class=3>
+<a,b,c|baa,p^2b,p^2c-bab,ca,cb,pa,class=3>
+<a,b,c|baa,p^2b,p^2c-bab,ca-bab,cb,pa,class=3>
+<a,b,c|baa,p^2b-bab,p^2c,ca,cb,pa,class=3>
+<a,b,c|baa,p^2b-bab,p^2c,ca-bab,cb,pa,class=3>
+<a,b,c|bab,p^2b,p^2c,ca,cb,pa,class=3>
+<a,b,c|bab,p^2b,p^2c,ca,cb,pa-baa,class=3>
+<a,b,c|bab,p^2b,p^2c,ca,cb-baa,pa,class=3>
+<a,b,c|bab,p^2b,p^2c,ca,cb-baa,pa-baa,class=3>
+<a,b,c|bab,p^2b,p^2c-baa,ca,cb,pa,class=3>
+<a,b,c|bab,p^2b,p^2c-baa,ca,cb-baa,pa,class=3>
+<a,b,c|bab,p^2b-baa,p^2c,ca,cb,pa,class=3>
+<a,b,c|bab,p^2b-baa,p^2c,ca,cb-baa,pa,class=3>
+<a,b,c|bab,p^2b-wbaa,p^2c,ca,cb,pa,class=3>
+<a,b,c|bab,p^2b-wbaa,p^2c,ca,cb-baa,pa,class=3>

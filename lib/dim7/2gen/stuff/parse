@@ -1,0 +1,410 @@
+/*
+Q:=RationalField();
+P<w,x,y,z,t,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,
+x15,x16,x17,x18,x19,x20,x21,x22,x23,x24,x25,x26,x27,
+x28,x29,x30,x31,x32,x33,x34,x35,x36,x37,x38,x39,x40,
+x41,x42>
+:=PolynomialRing(Q,47);
+*/
+
+P<t,u,v,w,x,y,z>:=RationalFunctionField(Integers(),7);
+
+trim:=function(t)
+//remove any leading or trailing blanks
+s:=t;
+n:=#s;
+while s[1] eq " " do
+  s:=Substring(s,2,n-1);
+  n:=n-1;
+end while;
+while s[n] eq " " do
+  s:=Substring(s,1,n-1);
+  n:=n-1;
+end while;
+return s;
+end function;
+
+split:=function(s)
+S:={"a","b","c","d","e","f","g","p","^",
+"0","1","2","3","4","5","6","7","8","9"};
+T:={"0","1","2","3","4","5","6","7","8","9","u","v","w","x","y","z","t",
+"(",")","+","-","*","/","^"};
+U:={"0","1","2","3","4","5","6","7","8","9"};
+n:=#s;
+s1:="";
+if n eq 0 then
+  return [s1,s1,s1,s1];
+end if;
+i:=0;
+while (i+1 le n) and (s[i+1] in T) do
+  s1:=s1*s[i+1];
+  i:=i+1;
+end while;
+s2:="0";
+if (i+1 le n) and (s[i+1] eq "p") then
+  s2:="1";
+  i:=i+1;
+  if s[i+1] eq "^" then
+    i:=i+1;
+    s2:="";
+    while (i+1 le n) and (s[i+1] in U) do
+      s2:=s2*s[i+1];
+      i:=i+1;
+    end while;
+  end if;
+end if;
+s3:="";
+while (i+1 le n) and (s[i+1] in S) do
+  s3:=s3*s[i+1];
+  i:=i+1;
+end while;
+s4:="";
+if i+1 le n then
+  s4:=Substring(s,i+1,n-i);
+end if;
+return [s1,s2,s3,s4];
+end function;
+
+
+match:=function(s,i)
+n:=#s;
+if (i le 0) or (i ge n) or (s[i] ne "(") then
+  return 0;
+end if;
+count:=1;
+for j in [i+1..n] do
+  if s[j] eq "(" then
+    count:=count+1;
+  end if;
+  if s[j] eq ")" then
+    count:=count-1;
+  end if;
+  if count eq 0 then
+    return j;
+  end if;
+end for;
+return 0;
+end function;
+
+right:=function(s,t)
+spot:=0;
+n:=#s;
+i:=0;
+while i lt n do
+  i:=i+1;
+  if s[i] eq t then
+    spot:=i;
+  end if;
+  if s[i] eq "(" then
+    i:=match(s,i);
+    if i eq 0 then
+      return 0;
+    end if;
+  end if;
+end while;
+return spot;
+end function;
+
+
+getpol:=function(P,s)
+
+if (s eq "") or (s eq "1") or (s eq "+") or (s eq "+1") then
+  return P!1;
+end if;
+
+if (s eq "-") then
+  return P!(-1);
+end if;
+
+n:=#s;
+
+//strip initial +
+if s[1] eq "+" then
+  s:=Substring(s,2,n-1);
+  return $$(P,s);
+end if;
+
+//strip trailing *
+if s[n] eq "*" then
+  s:=Substring(s,1,n-1);
+  return $$(P,s);
+end if;
+
+//Check for s = (t)
+if s[1] eq "(" and match(s,1) eq n then
+  s:=Substring(s,2,n-2);
+  return $$(P,s);
+end if;
+
+//look for +
+spot:=right(s,"+");
+if spot gt 0 then
+  s1:=Substring(s,1,spot-1);
+  s2:=Substring(s,spot+1,n-spot);
+  return $$(P,s1)+$$(P,s2);
+end if;
+
+//look for -
+spot:=right(s,"-");
+if spot eq 1 then
+  s1:=Substring(s,2,n-1);
+  return -$$(P,s1);
+end if;
+if spot gt 1 then  s1:=Substring(s,1,spot-1);
+  s2:=Substring(s,spot+1,n-spot);
+  return $$(P,s1)-$$(P,s2);
+end if;
+
+//look for /
+spot:=right(s,"/");
+//can only divide by an integer
+if spot gt 0 then
+  s1:=Substring(s,1,spot-1);
+  s2:=Substring(s,spot+1,n-spot);
+  a:=StringToInteger(s2);
+  a:=P!a;
+  a:=a^-1;
+  return a*$$(P,s1);
+end if;
+
+//look for *
+spot:=right(s,"*");
+if spot gt 0 then
+  s1:=Substring(s,1,spot-1);
+  s2:=Substring(s,spot+1,n-spot);
+  return $$(P,s1)*$$(P,s2);
+end if;
+
+//look for ^
+spot:=right(s,"^");
+//can only raise by an integer exponent
+if spot gt 0 then
+  s1:=Substring(s,1,spot-1);
+  s2:=Substring(s,spot+1,n-spot);
+  a:=StringToInteger(s2);
+  return $$(P,s1)^a;
+end if;
+
+//s should be an integer or one of w,x,y,z,t!!!
+if s eq "t" then
+  return P.1;
+end if;
+if s eq "u" then
+  return P.2;
+end if;
+if s eq "v" then
+  return P.3;
+end if;
+if s eq "w" then
+  return P.4;
+end if;
+if s eq "x" then
+  return P.5;
+end if;
+if s eq "y" then
+  return P.6;
+end if;
+if s eq "z" then
+  return P.7;
+end if;
+return StringToInteger(s);
+
+end function;
+
+strtogen:=function(defns,clend,ndgen,cc,s)
+if s eq "" or #s gt cc then
+  return 0;
+end if;
+if #s eq 1 then
+  i:=StringToCode(s)-96;
+  if i gt 0 and i le ndgen then
+    return i;
+  else;
+    return 0;
+  end if;
+end if;
+i:=StringToCode(s[1])-96;
+if i le 0 or i gt ndgen then
+  return 0;
+end if;
+for j in [2..#s] do
+  k:=StringToCode(s[j])-96;
+  if k le 0 or k gt ndgen then
+    return 0;
+  end if;
+  m:=0;
+  for n in [clend[j-1]+1..clend[j]] do
+    if defns[n] eq [i,k] then
+      m:=n;
+      break;
+    end if;
+  end for;
+  if m eq 0 then
+    return 0;
+  end if;
+  i:=m;
+end for;
+return i;
+end function;
+
+gentostr:=function(defns,ndgen,lastg,i)
+s:="";
+if i le 0 or i gt lastg then
+  return s;
+end if;
+//See if i is defined as a power
+exp:=0;
+while i gt ndgen and defns[i,1] eq 0 do
+  i:=defns[i,2];
+  exp:=exp+1;
+end while;
+
+while i gt ndgen do
+  s:=CodeToString(defns[i,2]+96)*s;
+  i:=defns[i,1];
+end while;
+s:=CodeToString(i+96)*s;
+
+if exp eq 0 then
+  return s;
+end if;
+if exp eq 1 then
+  return "p"*s;
+end if;
+if exp gt 1 then
+  return "p^"*IntegerToString(exp)*s;
+end if;
+
+end function;
+
+poltostr:=function(P,a);
+s:="";
+if TotalDegree(a) gt 5 or a eq 0 then
+  return s;
+end if;
+b:=Coefficients(a);
+c:=Monomials(a);
+n:=#c;
+brack:=0;
+for i in [1..n] do
+  d:=b[i];
+  e:=c[i];
+  deg:=TotalDegree(e);
+  if d gt 0 and i gt 1 then
+    s:=s*"+";
+  end if;
+  if d eq 1 or d eq -1 then
+    if e eq 1 then
+      s:=s*IntegerToString(Numerator(d));
+    else;
+      if d eq -1 then
+        s:=s*"-";
+      end if;
+    end if;
+  else;
+    if e ne 1 then
+       brack:=1;
+    end if;
+    s:=s*IntegerToString(Numerator(d));
+    if Denominator(d) gt 1 then
+      brack:=1;
+      s:=s*"/"*IntegerToString(Denominator(d));
+    end if;
+    if e ne 1 then
+      s:=s*"*";
+    end if;
+  end if;
+
+  j:=Degree(e,w);
+  if j eq 1 then
+    s:=s*"w";
+  end if;
+  if j gt 1 then
+    s:=s*"w"*"^"*(IntegerToString(j));
+  end if;
+  deg:=deg-j;
+  if deg gt 0 and j gt 0 then
+    brack:=1;
+    s:=s*"*";
+  end if;
+  
+  j:=Degree(e,x);
+  if j eq 1 then
+    s:=s*"x";
+  end if;
+  if j gt 1 then
+    s:=s*"x"*"^"*(IntegerToString(j));
+  end if;
+  deg:=deg-j;
+  if deg gt 0 and j gt 0 then
+    brack:=1;
+    s:=s*"*";
+  end if;
+
+  j:=Degree(e,y);
+  if j eq 1 then
+    s:=s*"y";
+  end if;
+  if j gt 1 then
+    s:=s*"y"*"^"*(IntegerToString(j));
+  end if;
+  deg:=deg-j;
+  if deg gt 0 and j gt 0 then
+    brack:=1;
+    s:=s*"*";
+  end if;
+
+  j:=Degree(e,z);
+  if j eq 1 then
+    s:=s*"z";
+  end if;
+  if j gt 1 then
+    s:=s*"z"*"^"*(IntegerToString(j));
+  end if;
+  deg:=deg-j;
+  if deg gt 0 and j gt 0 then
+    brack:=1;
+    s:=s*"*";
+  end if;
+
+  j:=Degree(e,t);
+  if j eq 1 then
+    s:=s*"t";
+  end if;
+  if j gt 1 then
+    s:=s*"t"*"^"*(IntegerToString(j));
+  end if;
+  deg:=deg-j;
+  if deg gt 0 then
+    print "Arghhhh!!!!!";
+  end if;
+
+end for;
+if n gt 1 or brack eq 1 then
+  s:="("*s*")";
+end if;
+return s;
+end function;
+
+lietogrp:=function(s);
+a:=split(s);
+s:=a[3];
+n:=#s;
+if n eq 1 then
+  t:=s;
+else;
+  t:="(";
+  for i in [1..n-1] do
+    t:=t*s[i]*",";
+  end for;
+  t:=t*s[n]*")";
+end if;
+u:="";
+if a[2] eq "1" then
+  u:="p";
+end if;
+if a[2] ne "0" and a[2] ne "1" then
+  u:="p^"*a[2];
+end if; 
+return [t,u];
+end function;

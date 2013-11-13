@@ -1,0 +1,8 @@
+//(p+1)/2+gcd(p-1,3)+gcd(p-1,4)/2 algebras
+<a,b|p^2a-bab,pb,class=4>
+<a,b|p^2a-bab,pb-baaa,class=4>
+<a,b|p^2a-bab,pb-wbaaa,class=4>(p=1 mod 3)
+<a,b|p^2a-bab,pb-w^2baaa,class=4>(p=1 mod 3)
+<a,b|p^2a-bab-baaa,pb-xbaaa,class=4>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|p^2a-bab-wbaaa,pb-xbaaa,class=4>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|p^2a-bab-baaa,pb-xbaaa,class=4>(all x, x~-x)(p=3 mod 4)

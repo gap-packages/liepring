@@ -1,0 +1,5 @@
+//(p^3 + p^2 + p + 1)/4 algebras
+<a,b,c|ca-bab,cb-wbaa,pa-wbab-ybaaa,pb,pc-xbaaa,class=4>(x ne 0, all y, x~-x, y~-y)
+<a,b,c|ca-bab,cb-wbaa,pa-wbab,pb-ybaaa,pc,class=4>(all y, y~-y)
+<a,b,c|ca-bab,cb-wbaa,pa-zbaa-wbab-ybaaa,pb,pc-xbaaa,class=4>(x,z ne 0, all y, y~-y, z~-z)
+<a,b,c|ca-bab,cb-wbaa,pa-zbaa-wbab,pb-ybaaa,pc,class=4>(all y, z ne 0, y~-y, z~-z)

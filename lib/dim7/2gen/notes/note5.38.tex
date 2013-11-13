@@ -1,0 +1,157 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Thursday, June 27, 2013 17:23:01}
+%TCIDATA{LastRevised=Sunday, August 04, 2013 16:00:12}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$A=\left( 
+%\begin{array}{cc}
+%t & x \\ 
+%y & z%
+%\end{array}%
+%\right) $
+%$P=\left( 
+%\begin{array}{ll}
+%-1 & 0 \\ 
+%0 & 1%
+%\end{array}%
+%\right) $
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 5.38}
+\author{Michael Vaughan-Lee}
+\date{June 2013}
+\maketitle
+
+Algebra 5.38 has$\allowbreak $ $\gcd (p-1,3)(p^{2}+3p+10)+p+6$ immediate
+descendants of order $p^{7}$. Of these $\frac{1}{2}((p^{2}+3p+11)\gcd
+(p-1,3)+1)$ come from one 4 parameter family of algebras, and $\frac{1}{2}%
+(\gcd (p-1,3)(p^{2}+p+1)+5)$ come from another four parameter family. In
+both cases we take the four parameters as entries in a $2\times 2$ matrix%
+\[
+A=\left( 
+\begin{array}{cc}
+x & y \\ 
+z & t%
+\end{array}%
+\right) , 
+\]%
+and in both cases we consider the orbits of matrices $A$ of this form over GF%
+$(p)$ under an action of the subgroup of GL$(2,p)$ consisting of
+non-singular matrices of the form%
+\[
+\left( 
+\begin{array}{ll}
+\alpha & \beta \\ 
+\beta & \alpha%
+\end{array}%
+\right) \text{ or }\left( 
+\begin{array}{ll}
+\alpha & \beta \\ 
+-\beta & -\alpha%
+\end{array}%
+\right) . 
+\]
+
+In the first case two matrices $A$ and $B$ give isomorphic Lie rings if and
+only if%
+\[
+B=\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+\beta  & \alpha 
+\end{array}%
+\right) A\left( 
+\begin{array}{ll}
+(\alpha ^{4}-\beta ^{4}) & 2\alpha \beta (\alpha ^{2}-\beta ^{2}) \\ 
+2\alpha \beta (\alpha ^{2}-\beta ^{2}) & \alpha ^{4}-\beta ^{4}%
+\end{array}%
+\right) ^{-1}
+\]%
+or 
+\[
+B=\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+-\beta  & -\alpha 
+\end{array}%
+\right) A\left( 
+\begin{array}{ll}
+-(\alpha ^{4}-\beta ^{4}) & -2\alpha \beta (\alpha ^{2}-\beta ^{2}) \\ 
+2\alpha \beta (\alpha ^{2}-\beta ^{2}) & \alpha ^{4}-\beta ^{4}%
+\end{array}%
+\right) ^{-1}
+\]%
+for some $\alpha ,\beta $. In the second case, two matrices $A$ and $B$ give
+isomorphic Lie rings if and only if%
+\[
+B=\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+\omega \beta  & \alpha 
+\end{array}%
+\right) A\left( 
+\begin{array}{ll}
+\alpha ^{4}-\omega ^{2}\beta ^{4} & 2\alpha \beta (\alpha ^{2}-\omega \beta
+^{2}) \\ 
+2\omega \alpha \beta (\alpha ^{2}-\omega \beta ^{2}) & \alpha ^{4}-\omega
+^{2}\beta ^{4}%
+\end{array}%
+\right) ^{-1}
+\]%
+or 
+\[
+B=\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+-\omega \beta  & -\alpha 
+\end{array}%
+\right) A\left( 
+\begin{array}{ll}
+-(\alpha ^{4}-\omega ^{2}\beta ^{4}) & -2\alpha \beta (\alpha ^{2}-\omega
+\beta ^{2}) \\ 
+2\omega \alpha \beta (\alpha ^{2}-\omega \beta ^{2}) & \alpha ^{4}-\omega
+^{2}\beta ^{4}%
+\end{array}%
+\right) ^{-1}
+\]%
+for some $\alpha ,\beta $.
+
+A simple loop over all possible $A$ and all possible $\alpha ,\beta $ can
+find representatives for the orbits. You can shorten the search slightly by
+noting that in both cases if we take $\alpha =-1$, $\beta =0$ then $B=-A$.
+
+\end{document}

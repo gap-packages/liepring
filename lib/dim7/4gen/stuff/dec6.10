@@ -1,0 +1,9 @@
+//8 algebras
+<a,b,c,d|ca,cb,da,db,dc,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca,cb,da,db-p^2d,dc,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca,cb,da,db,dc-p^2d,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca,cb,da,db-p^2d,dc-p^2d,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca-p^2d,cb,da,db,dc,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca-p^2d,cb,da,db-p^2d,dc,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca-p^2d,cb,da,db,dc-p^2d,pa,pb,pc-ba,class=3>
+<a,b,c,d|ca-p^2d,cb,da,db-p^2d,dc-p^2d,pa,pb,pc-ba,class=3>

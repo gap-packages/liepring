@@ -1,0 +1,7 @@
+//p+5+(p-1)/2 algebras
+<a,b|baaa,bab,pb-baa,class=4>
+<a,b|baaa,bab-p^3a,pb-baa,class=4>
+<a,b|baaa,bab-wp^3a,pb-baa,class=4>
+<a,b|p^3a,bab,pb-baa-xbaaa,class=4>(all x, x~-x)
+<a,b|p^3a,bab-baaa,pb-baa,class=4>
+<a,b|p^3a-baaa,bab-xbaaa,pb-baa,class=4>(all x)

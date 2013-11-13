@@ -1,0 +1,5 @@
+//4 algebras
+<a,b,c|ba,ca,cb,p^2b,pc,class=4>
+<a,b,c|ba,ca,cb-p^3a,p^2b,pc,class=4>
+<a,b,c|ba,ca-p^3a,cb,p^2b,pc,class=4>
+<a,b,c|ba-p^3a,ca,cb,p^2b,pc,class=4>

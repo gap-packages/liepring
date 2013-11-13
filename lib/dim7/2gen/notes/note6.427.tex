@@ -1,0 +1,78 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Thursday, June 27, 2013 17:23:01}
+%TCIDATA{LastRevised=Monday, July 01, 2013 08:19:55}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$A=\left( 
+%\begin{array}{cc}
+%t & x \\ 
+%y & z%
+%\end{array}%
+%\right) $
+%$P=\left( 
+%\begin{array}{ll}
+%-1 & 0 \\ 
+%0 & 1%
+%\end{array}%
+%\right) $
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 6.427}
+\author{Michael Vaughan-Lee}
+\date{June 2013}
+\maketitle
+
+Algebra 6.427 is a family of $p$ algebras of order $p^{6}$ which are
+immediate descendants of algebra 5.45. This family has $p+1$ descendants of
+order $p^{7}$ given by a two parameter family with parameters $x,y$, with
+the isomorphism type depending on the value of $y^{2}-\omega x^{2}$ (Here,
+as elsewhere, $\omega $ is a primitive element modulo $p$.)
+
+This is essentially the same as in the descendants of 5.45. First we need
+representative pairs $(x,y)$ giving the $(p-1)$ \emph{non-zero} values of $%
+y^{2}-\omega x^{2}$. We get the $\frac{p-1}{2}$ distinct non-zero squares
+modulo $p$ with parameters $(x,0)$ with $0<x\leq \frac{p-1}{2}$. To obtain
+the non-squares, find $a$ such that $a^{2}-\omega $ is not a square modulo $p
+$, and take parameters $(ay,y)$ for $0<y\leq \frac{p-1}{2}$. In the case $p=1%
+\func{mod}4$, $a=0$ will do. I don't think the search for $a$ is linear in $p
+$ for $p=3\func{mod}4$, but since $a^{2}-\omega $ is not a square modulo $p$
+for half of the possible values of $a$, you would have to be unlucky not to
+find a suitable $a$ quickly. We also need to find a single pair $(x,y)$ with 
+$y^{2}-\omega x^{2}=\omega $, and we can find such a pair by evaluating $%
+y^{2}-\omega (ay)^{2}$ for $0<y\leq \frac{p-1}{2}$.
+
+\end{document}

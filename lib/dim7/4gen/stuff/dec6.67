@@ -1,0 +1,55 @@
+//18+8gcd(p-1,3)+3gcd(p-1,4) algebras
+<a,b,c,d|bab,ca,cb,da,db,dc,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa-wbaaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa-w^2baaa,pb,pc,pd,class=4>(p=1 mod 4)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc,pa-w^3baaa,pb,pc,pd,class=4>(p=1 mod 4)
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb,pc,pd-baaa,class=4>
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb-baaa,da,db,dc,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb,pc,pd-baaa,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb,pc-wbaaa,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa-wbaaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa-w^2baaa,pb,pc,pd,class=4>(p=1 mod 4)
+<a,b,c,d|bab-baaa,ca,cb-baaa,da,db,dc,pa-w^3baaa,pb,pc,pd,class=4>(p=1 mod 4)
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-baaa,pc-baaa,pd,class=4>
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-wbaaa,pc-baaa,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa,pb-w^2baaa,pc-baaa,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab,ca,cb,da,db,dc-baaa,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb,pc-baaa,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-baaa,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-baaa,pc-baaa,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-wbaaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-wbaaa,pc-baaa,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-w^2baaa,pc,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa,pb-w^2baaa,pc-baaa,pd,class=4>(p=1 mod 3)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa-baaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa-wbaaa,pb,pc,pd,class=4>
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa-w^2baaa,pb,pc,pd,class=4>(p=1 mod 4)
+<a,b,c,d|bab-baaa,ca,cb,da,db,dc-baaa,pa-w^3baaa,pb,pc,pd,class=4>(p=1 mod 4)

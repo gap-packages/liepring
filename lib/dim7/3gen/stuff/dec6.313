@@ -1,0 +1,10 @@
+//p + gcd(p-1,4) + gcd(p-1,5) algebras
+<a,b,c|cb-baa,bab,pa,pb-ca,pc,class=4>
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-baaa,class=4>
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-wbaaa,class=4>
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-w^2baaa,class=4>(p=1 mod 4)
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-w^3baaa,class=4>(p=1 mod 4)
+<a,b,c|cb-baa,bab,pa-baaa,pb-ca,pc,class=4>
+<a,b,c|cb-baa,bab,pa-ybaaa,pb-ca,pc,class=4>(y=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|cb-baa,bab,pa-baaa,pb-ca,pc-xbaaa,class=4>(x ne 0, x~x' if x^5=x'^5 mod p)
+<a,b,c|cb-baa,bab,pa-ybaaa,pb-ca,pc-xbaaa,class=4>(y=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)

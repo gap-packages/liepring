@@ -1,0 +1,56 @@
+//5p+38+2gcd(p-1,4) algebras
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb-cac,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb-cac,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb-cac,pc,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba,pb-cac,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-cac,pb-cac,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da,db-ba,dc,pa-ba-wcac,pb-cac,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-cac,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-wcac,pb,pc,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba,pb,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba+cac,pb,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba+(1-w)cac,pb,pc,pd-cac,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-cac,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-wcac,pb,pc-cac,pd,class=3>
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb,pc-cac,pd-cac,class=3>(all x)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-cac,pc,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-cac,pc-cac,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-wcac,pc,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-wcac,pc-cac,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-cac,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-cac,pc-cac,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-wcac,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-wcac,pc-cac,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-w^2cac,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-w^2cac,pc-cac,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-w^3cac,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|caa,cb,da-cac,db-ba,dc,pa-ba-xcac,pb-w^3cac,pc-cac,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-caa,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba,pb-caa,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba-caa,pb,pc,pd,class=3>
+<a,b,c,d|cac,cb,da,db-ba,dc,pa-ba-caa,pb-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba-caa,pb,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba-caa,pb-caa,pc,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-caa,pc-caa,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb-caa,pc-wcaa,pd,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc,pd-caa,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba+caa,pb,pc,pd-caa,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba+(1-w)caa,pb,pc,pd-caa,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc-caa,pd-caa,class=3>
+<a,b,c,d|cac,cb-caa,da,db-ba,dc,pa-ba,pb,pc-wcaa,pd-caa,class=3>

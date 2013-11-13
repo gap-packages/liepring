@@ -1,0 +1,3 @@
+//p algebras
+<a,b|p^2a-bab,pb-baa-xbaaa,class=4>(all x, x~-x)
+<a,b|p^2a-bab-xbaaa,pb-baa,class=4>(x ne 0, x~-x)

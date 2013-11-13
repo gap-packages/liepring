@@ -1,0 +1,5 @@
+//p+3 algebras
+<a,b,c|baa,cb-xp^2b,pa-ca,pc-ba,class=3>(all x)
+<a,b,c|p^2b,cb,pa-ca,pc-ba,class=3>
+<a,b,c|p^2b-baa,cb,pa-ca,pc-ba,class=3>
+<a,b,c|p^2b-wbaa,cb,pa-ca,pc-ba,class=3>

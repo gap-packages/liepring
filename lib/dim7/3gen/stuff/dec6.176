@@ -1,0 +1,9 @@
+//p(p-1) + pgcd(p-1,4)/2 algebras
+<a,b,c|ca-bab,cb-wbaa,pa-baa,pb,pc-xbabb,class=4>(all x)
+<a,b,c|ca-bab,cb-wbaa,pa-baa,pb-ybabb,pc-xbabb,class=4>(all x, y ne 0, y~y' if y^4=y'^4 mod p)
+<a,b,c|ca-bab,cb-wbaa,pa-baa-ybabb,pb,pc-babb,class=4>(y ne 0, y~y' if y^4=y'^4 mod p)
+<a,b,c|ca-bab,cb-wbaa,pa-baa-zbabb,pb-ybabb,pc-babb,class=4>(y,z ne 0, y~y' if y^4=y'^4 mod p)
+<a,b,c|ca-bab,cb-wbaa,pa-wbaa,pb,pc-xbabb,class=4>(all x)(p=1 mod 4)
+<a,b,c|ca-bab,cb-wbaa,pa-wbaa,pb-ybabb,pc-xbabb,class=4>(all x, y ne 0, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c|ca-bab,cb-wbaa,pa-wbaa-ybabb,pb,pc-wbabb,class=4>(y ne 0, y~y' if y^4=y'^4 mod p)(p=1 mod 4)
+<a,b,c|ca-bab,cb-wbaa,pa-wbaa-zbabb,pb-ybabb,pc-wbabb,class=4>(y,z ne 0, y~y' if y^4=y'^4 mod p)(p=1 mod 4)

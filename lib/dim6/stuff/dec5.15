@@ -1,0 +1,16 @@
+//2p+13 algebras
+<a,b,c|cb,caa,pa-ba,pb-cac,pc,class=3>6.266
+<a,b,c|cb,caa,pa-ba,pb,pc,class=3>6.267
+<a,b,c|cb,caa,pa-ba,pb,pc-cac,class=3>6.268
+<a,b,c|cb,caa,pa-ba-cac,pb,pc,class=3>6.269
+<a,b,c|cb,caa,pa-ba-cac,pb,pc-cac,class=3>6.270
+<a,b,c|cb,caa,pa-ba-wcac,pb,pc,class=3>6.271
+<a,b,c|cb,caa,pa-ba-wcac,pb,pc-cac,class=3>6.272
+<a,b,c|cb,cac,pa-ba,pb-caa,pc,class=3>6.273
+<a,b,c|cb,cac,pa-ba,pb,pc,class=3>6.274
+<a,b,c|cb,cac,pa-ba,pb,pc-caa,class=3>6.275
+<a,b,c|cb,cac,pa-ba,pb,pc-wcaa,class=3>6.276
+<a,b,c|cb-caa,cac,pa-ba,pb-caa,pc,class=3>6.277
+<a,b,c|cb-caa,cac,pa-ba,pb,pc-xcaa,class=3>(all x)6.278
+<a,b,c|cb-wcaa,cac,pa-ba,pb-caa,pc,class=3>6.279
+<a,b,c|cb-wcaa,cac,pa-ba,pb,pc-xcaa,class=3>(all x)6.280

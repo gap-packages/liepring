@@ -1,0 +1,9 @@
+//p-1+(1/2)(p+1)gcd(p-1,4) algebras
+<a,b|baaaa,pa-bab-baaa,pb-xbaaab,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baaaa,pa-bab-wbaaa,pb-xbaaab,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baaaa,pa-bab-baaa,pb-xbaaab,class=5>(all x, x~-x)(p=3 mod 4)
+<a,b|baaab,pa-bab-baaa,pb-xbaaaa,class=5>(all x)
+<a,b|baaab,pa-bab-wbaaa,pb-xbaaaa,class=5>(all x)(p=1 mod 4)
+<a,b|baaab,pa-bab-baaa-xbaaaa,pb+2baaaa,class=5>(x ne 0,  x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baaab,pa-bab-wbaaa-xbaaaa,pb+(2*w^2)baaaa,class=5>(x ne 0,  x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baaab,pa-bab-baaa-xbaaaa,pb+2baaaa,class=5>(x ne 0, x~-x)(p=3 mod 4)

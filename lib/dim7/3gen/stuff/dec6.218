@@ -1,0 +1,32 @@
+//11 + 4gcd(p-1,3) + 2gcd(p-1,4) algebras
+<a,b,c|bab,ca,cb,pa,pb,p^2c,class=4>
+<a,b,c|bab,ca,cb,pa,pb,p^2c-baaa,class=4>
+<a,b,c|bab-baaa,ca,cb,pa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb,pa,pb,p^2c-baaa,class=4>
+<a,b,c|bab,ca,cb-baaa,pa,pb,p^2c,class=4>
+<a,b,c|bab,ca,cb-baaa,pa,pb,p^2c-baaa,class=4>
+<a,b,c|bab-baaa,ca,cb-baaa,pa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb-baaa,pa,pb,p^2c-baaa,class=4>
+<a,b,c|bab-baaa,ca,cb-wbaaa,pa,pb,p^2c-baaa,class=4>
+<a,b,c|bab,ca,cb,pa,pb-baaa,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb,pa,pb-baaa,p^2c,class=4>
+<a,b,c|bab,ca,cb-baaa,pa,pb-baaa,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb-baaa,pa,pb-baaa,p^2c,class=4>
+<a,b,c|bab,ca,cb,pa,pb-wbaaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab-baaa,ca,cb,pa,pb-wbaaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb-baaa,pa,pb-wbaaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab-baaa,ca,cb-baaa,pa,pb-wbaaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb,pa,pb-w^2baaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab-baaa,ca,cb,pa,pb-w^2baaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb-baaa,pa,pb-w^2baaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab-baaa,ca,cb-baaa,pa,pb-w^2baaa,p^2c,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb,pa-baaa,pb,p^2c,class=4>
+<a,b,c|bab,ca,cb-baaa,pa-baaa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb,pa-baaa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb-baaa,pa-baaa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb,pa-wbaaa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb-baaa,pa-wbaaa,pb,p^2c,class=4>
+<a,b,c|bab-baaa,ca,cb,pa-w^2baaa,pb,p^2c,class=4>(p=1 mod 4)
+<a,b,c|bab-baaa,ca,cb-baaa,pa-w^2baaa,pb,p^2c,class=4>(p=1 mod 4)
+<a,b,c|bab-baaa,ca,cb,pa-w^3baaa,pb,p^2c,class=4>(p=1 mod 4)
+<a,b,c|bab-baaa,ca,cb-baaa,pa-w^3baaa,pb,p^2c,class=4>(p=1 mod 4)

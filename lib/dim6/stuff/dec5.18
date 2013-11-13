@@ -1,0 +1,29 @@
+//2p+13+3gcd(p-1,3)+gcd(p-1,4) algebras
+<a,b,c|cb,baa,pa,pb-ca,pc-bab,class=3>6.293
+<a,b,c|cb,baa,pa,pb-ca,pc,class=3>6.294
+<a,b,c|cb,baa,pa-bab,pb-ca,pc,class=3>6.295
+<a,b,c|cb,baa,pa-wbab,pb-ca,pc,class=3>6.296
+<a,b,c|cb,baa,pa,pb-ca-bab,pc,class=3>6.297
+<a,b,c|cb,baa,pa-bab,pb-ca-bab,pc,class=3>6.298
+<a,b,c|cb,baa,pa-wbab,pb-ca-bab,pc,class=3>6.299
+<a,b,c|cb,bab-baa,pa,pb-ca,pc-baa,class=3>6.300
+<a,b,c|cb,bab-baa,pa,pb-ca,pc-wbaa,class=3>(p=1 mod 3)6.301
+<a,b,c|cb,bab-baa,pa,pb-ca,pc-w^2baa,class=3>(p=1 mod 3)6.302
+<a,b,c|cb,bab-baa,pa,pb-ca,pc,class=3>6.303
+<a,b,c|cb,bab-baa,pa,pb-ca-baa,pc,class=3>6.304
+<a,b,c|cb,bab-baa,pa,pb-ca-wbaa,pc,class=3>6.305
+<a,b,c|cb,bab-baa,pa-baa,pb-ca-xbaa,pc,class=3>(all x)6.305B
+<a,b,c|cb,bab-baa,pa-wbaa,pb-ca-xbaa,pc,class=3>(all x)6.305C
+<a,b,c|cb,bab,pa,pb-ca,pc-baa,class=3>6.306
+<a,b,c|cb,bab,pa,pb-ca,pc-wbaa,class=3>(p=1 mod 3)6.307
+<a,b,c|cb,bab,pa,pb-ca,pc-w^2baa,class=3>(p=1 mod 3)6.308
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-baa,class=3>6.309
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-wbaa,class=3>(p=1 mod 3)6.310
+<a,b,c|cb-baa,bab,pa,pb-ca,pc-w^2baa,class=3>(p=1 mod 3)6.311
+<a,b,c|cb,bab,pa,pb-ca,pc,class=3>6.312
+<a,b,c|cb-baa,bab,pa,pb-ca,pc,class=3>6.313
+<a,b,c|cb,bab,pa-baa,pb-ca,pc,class=3>6.314
+<a,b,c|cb-baa,bab,pa-baa,pb-ca,pc,class=3>6.315
+<a,b,c|cb-wbaa,bab,pa-baa,pb-ca,pc,class=3>6.316
+<a,b,c|cb-w^2baa,bab,pa-baa,pb-ca,pc,class=3>(p=1 mod 4)6.317
+<a,b,c|cb-w^3baa,bab,pa-baa,pb-ca,pc,class=3>(p=1 mod 4)6.318

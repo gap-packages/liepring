@@ -1,0 +1,10 @@
+//p+8 algebras
+<a,b|baa,bab,p^2a,p^2b,class=3>6.385
+<a,b|baa,bab,pba,p^2b,class=3>6.386
+<a,b|baa,bab,p^2a-pba,p^2b,class=3>6.387
+<a,b|bab,pba,p^2a,p^2b,class=3>6.388
+<a,b|bab,pba,p^2a-baa,p^2b,class=3>6.389
+<a,b|bab,pba,p^2a,p^2b-baa,class=3>6.390
+<a,b|bab,pba,p^2a,p^2b-wbaa,class=3>6.391
+<a,b|bab,pba-baa,p^2a,p^2b-xbaa,class=3>(all x)6.392
+<a,b|bab,pba-baa,p^2a-baa,p^2b,class=3>6.393

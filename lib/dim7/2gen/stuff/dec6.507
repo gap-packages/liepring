@@ -1,0 +1,9 @@
+//2p^2+p+2pgcd(p-1,3)+pgcd(p-1,5) algebras
+<a,b|bab-baaa,baaab-xbaaaaa,pa,pb,class=6>(all x)
+<a,b|bab-baaa,baaab-xbaaaaa,pa-baaaaa,pb,class=6>(all x)
+<a,b|bab-baaa,baaab-xbaaaaa,pa-wbaaaaa,pb,class=6>(all x)
+<a,b|bab-baaa,baaab-xbaaaaa,pa-ybaaaaa,pb,class=6>(all x, y=w^2,w^3,w^4,w^5)(p=1 mod 3)
+<a,b|bab-baaa,baaab-xbaaaaa,pa-ybaaaaa,pb-baaaaa,class=6>(all x,y)(p ne 1 mod 5)
+<a,b|bab-baaa,baaab-xbaaaaa,pa-ybaaaaa,pb-zbaaaaa,class=6>(all x,y, z=1,w,w^2,w^3,w^4, y~y' if y^5=y'^5 mod p)(p=1 mod 5)
+<a,b|bab-baaa-baaaaa,baaab-baaaaa,pa-xbaaaaa,pb-ybaaaaa,class=6>(all x,y, y~-y)
+<a,b|bab-baaa-wbaaaaa,baaab-baaaaa,pa-xbaaaaa,pb-ybaaaaa,class=6>(all x,y, y~-y)

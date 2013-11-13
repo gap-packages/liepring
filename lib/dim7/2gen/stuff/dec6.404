@@ -1,0 +1,13 @@
+//(p^3+p^2+2p+2+(p+1)gcd(p-1,4)+gcd(p-1,8))/2 algebras
+<a,b|baaab,baab,babb+wbaaa,pa,pb,class=5>
+<a,b|baaab,baab,babb+wbaaa,pa-baaaa,pb,class=5>
+<a,b|baaab,baab,babb+wbaaa,pa-wbaaaa,pb,class=5>(p=1 mod 4)
+<a,b|baaab,baab,babb+wbaaa,pa-w^2baaaa,pb,class=5>(p=1 mod 8)
+<a,b|baaab,baab,babb+wbaaa,pa-w^3baaaa,pb,class=5>(p=1 mod 8)
+<a,b|baaab,baab,babb+wbaaa,pa-xbaaaa,pb-baaaa,class=5>(all x, x~-x)
+<a,b|baaab,baab,babb+wbaaa,pa-xbaaaa,pb-wbaaaa,class=5>(all x, x~-x)
+<a,b|baaab,baab,babb+wbaaa,pa-xbaaaa,pb-w^2baaaa,class=5>(all x, x~-x)(p=1 mod 4)
+<a,b|baaab,baab,babb+wbaaa,pa-xbaaaa,pb-w^3baaaa,class=5>(all x, x~-x)(p=1 mod 4)
+<a,b|baaab,baab-baaaa,babb+wbaaa,pa-xbaaaa,pb-ybaaaa,class=5>(all x,y, x~-x)
+<a,b|baaab,baab,babb+wbaaa-baaaa,pa-xbaaaa,pb-ybaaaa,class=5>(all x,y, x~-x)
+<a,b|baaab,baab-xbaaaa,babb+wbaaa-baaaa,pa-ybaaaa,pb-zbaaaa,class=5>(x ne 0, all y,z, x~-x)

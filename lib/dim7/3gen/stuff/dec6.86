@@ -1,0 +1,19 @@
+//p+17 algebras
+<a,b,c|baa,bab,p^2a,p^2b,ca,cb,pc,class=3>
+<a,b,c|baa,bab,pba,p^2a,ca,cb,pc,class=3>
+<a,b,c|baa,bab,pba,p^2a,ca,cb-p^2b,pc,class=3>
+<a,b,c|baa,bab,pba,p^2a,ca-p^2b,cb,pc,class=3>
+<a,b,c|baa,bab,p^2a,p^2b-pba,ca,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a,p^2b,ca,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a,p^2b,ca,cb,pc-bab,class=3>
+<a,b,c|baa,pba,p^2a,p^2b,ca-bab,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a,p^2b,ca-bab,cb,pc-bab,class=3>
+<a,b,c|baa,pba,p^2a,p^2b-bab,ca,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a,p^2b-bab,ca-bab,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a-bab,p^2b,ca,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a-bab,p^2b,ca-bab,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a-wbab,p^2b,ca,cb,pc,class=3>
+<a,b,c|baa,pba,p^2a-wbab,p^2b,ca-bab,cb,pc,class=3>
+<a,b,c|baa,pba-bab,p^2a-xbab,p^2b,ca,cb,pc,class=3>(all x)
+<a,b,c|baa,pba-bab,p^2a+bab,p^2b,ca,cb,pc-bab,class=3>
+<a,b,c|baa,pba-bab,p^2a,p^2b-bab,ca,cb,pc,class=3>

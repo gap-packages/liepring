@@ -1,0 +1,28 @@
+//9+6gcd(p-1,3) algebras
+<a,b|baaa,baab,p^2a,pb,class=4>
+<a,b|baaa,baab,p^2a,pb-babb,class=4>
+<a,b|baaa,baab,p^2a-babb,pb,class=4>
+<a,b|baaa,baab,p^2a-wbabb,pb,class=4>(p=1 mod 3)
+<a,b|baaa,baab,p^2a-w^2babb,pb,class=4>(p=1 mod 3)
+<a,b|baab,babb-baaa,p^2a,pb,class=4>
+<a,b|baab,babb-baaa,p^2a,pb-baaa,class=4>
+<a,b|baab,babb-baaa,p^2a,pb-wbaaa,class=4>(p=1 mod 3)
+<a,b|baab,babb-baaa,p^2a,pb-w^2baaa,class=4>(p=1 mod 3)
+<a,b|baab,babb-baaa,p^2a-baaa,pb,class=4>
+<a,b|baab,babb-baaa,p^2a-wbaaa,pb,class=4>(p=1 mod 3)
+<a,b|baab,babb-baaa,p^2a-w^2baaa,pb,class=4>(p=1 mod 3)
+<a,b|baab,babb-wbaaa,p^2a,pb,class=4>
+<a,b|baab,babb-wbaaa,p^2a,pb-baaa,class=4>
+<a,b|baab,babb-wbaaa,p^2a,pb-wbaaa,class=4>(p=1 mod 3)
+<a,b|baab,babb-wbaaa,p^2a,pb-w^2baaa,class=4>(p=1 mod 3)
+<a,b|baab,babb-wbaaa,p^2a-baaa,pb,class=4>
+<a,b|baab,babb-wbaaa,p^2a-wbaaa,pb,class=4>(p=1 mod 3)
+<a,b|baab,babb-wbaaa,p^2a-w^2baaa,pb,class=4>(p=1 mod 3)
+<a,b|baaa,babb,p^2a,pb,class=4>
+<a,b|baaa,babb,p^2a,pb-baab,class=4>
+<a,b|baaa,babb,p^2a-baab,pb,class=4>
+<a,b|baab,babb,p^2a,pb,class=4>
+<a,b|baab,babb,p^2a,pb-baaa,class=4>
+<a,b|baab,babb,p^2a,pb-wbaaa,class=4>(p=1 mod 3)
+<a,b|baab,babb,p^2a,pb-w^2baaa,class=4>(p=1 mod 3)
+<a,b|baab,babb,p^2a-baaa,pb,class=4>

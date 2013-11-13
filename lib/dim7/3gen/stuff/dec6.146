@@ -1,0 +1,11 @@
+//2p^2 + 3p algebras
+<a,b,c|ca-bab,cb,pa,pb-xbaaa,pc-bab,class=4>(all x)
+<a,b,c|ca-bab,cb,pa,pb-xbaaa,pc-bab-baaa,class=4>(all x)
+<a,b,c|ca-bab,cb,pa-baaa,pb,pc-bab,class=4>
+<a,b,c|ca-bab,cb,pa-xbaaa,pb,pc-bab-baaa,class=4>(x ne 0)
+<a,b,c|ca-bab,cb-baaa,pa,pb-xbaaa,pc-bab-ybaaa,class=4>(all x,y, y~-y)
+<a,b,c|ca-bab,cb-baaa,pa-zbaaa,pb,pc-bab,class=4>(z ne 0, z~-z)
+<a,b,c|ca-bab,cb-baaa,pa-zbaaa,pb,pc-bab-ybaaa,class=4>(y,z ne 0, y~-y)
+<a,b,c|ca-bab,cb-wbaaa,pa,pb-xbaaa,pc-bab-ybaaa,class=4>(all x,y, y~-y)
+<a,b,c|ca-bab,cb-wbaaa,pa-zbaaa,pb,pc-bab,class=4>(z ne 0, z~-z)
+<a,b,c|ca-bab,cb-wbaaa,pa-zbaaa,pb,pc-bab-ybaaa,class=4>(y,z ne 0, y~-y)

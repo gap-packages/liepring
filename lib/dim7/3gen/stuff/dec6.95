@@ -1,0 +1,17 @@
+//5p + 10 algebras
+<a,b,c|baa,bab,cb,pa,pc-ca,class=3>
+<a,b,c|baa,bab,cb-p^2b,pa,pc-ca,class=3>
+<a,b,c|baa,p^2b,cb,pa,pc-ca,class=3>
+<a,b,c|baa,p^2b,cb,pa-bab,pc-ca,class=3>
+<a,b,c|baa,p^2b,cb,pa-wbab,pc-ca,class=3>
+<a,b,c|baa,p^2b,cb,pa,pc-ca-bab,class=3>
+<a,b,c|baa,p^2b,cb,pa-bab,pc-ca-bab,class=3>
+<a,b,c|baa,p^2b,cb,pa-wbab,pc-ca-bab,class=3>
+<a,b,c|baa,p^2b-bab,cb,pa,pc-ca,class=3>
+<a,b,c|bab,p^2b-xbaa,cb,pa,pc-ca,class=3>(all x)
+<a,b,c|bab,p^2b-xbaa,cb-baa,pa,pc-ca,class=3>(all x)
+<a,b,c|bab,p^2b,cb,pa-baa,pc-ca,class=3>
+<a,b,c|bab,p^2b,cb-baa,pa-baa,pc-ca,class=3>
+<a,b,c|bab-baa,p^2b-xbaa,cb,pa,pc-ca,class=3>(x ne 0)
+<a,b,c|bab-baa,p^2b,cb,pa-xbaa,pc-ca,class=3>(all x)
+<a,b,c|bab-baa,p^2b,cb,pa-xbaa,pc-ca-baa,class=3>(all x)

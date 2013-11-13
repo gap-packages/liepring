@@ -1,0 +1,22 @@
+//pQuotient algorithm for p-groups
+
+clend:=[];
+defns:=[];
+comms:=[];
+rels:=[];
+powers:=[];
+automs:=[];
+wt:=[];
+lastg:=1;
+class:=1;
+cc:=1;
+
+
+gens:=["a","b","c","d","e","f","g"];
+bchc:="ba+1/2baa+1/2bab+1/6baaa+1/4baab+1/6babb";
+bchc:=bchc*"+1/24baaaa+1/12baaab+1/12babba+1/24babbb";
+bchp:="a+b-1/2ba+1/12baa-1/12bab";
+load parse;
+
+
+load "pmenu3";

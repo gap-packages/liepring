@@ -1,0 +1,52 @@
+//15 + (p+10)gcd(p-1,3) + gcd(p-1,4) + gcd(p-1,7) algebras
+<a,b,c|baaa,baab,ca-bab,cb,pa,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa,pb,pc-babb,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa,pb-babb,pc,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa,pb-babb,pc-babb,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa-babb,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-bab,cb,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-bab,cb,pa-babb,pb-babb,pc,class=4>
+<a,b,c|baaa,baab,ca-bab,cb,pa-wbabb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-bab,cb,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb,ca-bab,cb,pa,pb,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb,pa-baaa,pb,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb,pa,pb-baaa,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb,pa,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb,ca-bab,cb,pa,pb-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb,ca-bab,cb,pa,pb,pc-baaa,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa-baaa,pb,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa-xbaaa,pb,pc,class=4>(x=w^i, i=1,2,3,4,5,6)(p=1 mod 7)
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb-baaa,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb-wbaaa,pc,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb-xbaaa,pc,class=4>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb,pc-baaa,class=4>
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb,pc-wbaaa,class=4>(p=1 mod 3)
+<a,b,c|baab,babb,ca-bab,cb-baaa,pa,pb,pc-w^2baaa,class=4>(p=1 mod 3)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb,pc,class=4>
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb-baaa,pc,class=4>
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa-baaa,pb-xbaaa,pc,class=4>(all x, x~-x)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa-wbaaa,pb-xbaaa,pc,class=4>(all x, x~-x)(p=1 mod 3)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa-w^2baaa,pb-xbaaa,pc,class=4>(all x, x~-x)(p=1 mod 3)
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb,pc-baaa,class=4>
+<a,b,c|baab,babb-baaa,ca-bab,cb,pa,pb,pc-wbaaa,class=4>(p=1 mod 4)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb,pc,class=4>
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb-baaa,pc,class=4>
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa-baaa,pb-xbaaa,pc,class=4>(all x, x~-x)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa-wbaaa,pb-xbaaa,pc,class=4>(all x, x~-x)(p=1 mod 3)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa-w^2baaa,pb-xbaaa,pc,class=4>(all x, x~-x)(p=1 mod 3)
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb,pc-baaa,class=4>
+<a,b,c|baab,babb-wbaaa,ca-bab,cb,pa,pb,pc-wbaaa,class=4>(p=1 mod 4)
+<a,b,c|baaa,babb,ca-bab,cb,pa,pb,pc,class=4>
+<a,b,c|baaa,babb,ca-bab,cb,pa,pb-baab,pc,class=4>
+<a,b,c|baaa,babb,ca-bab,cb,pa-baab,pb,pc,class=4>
+<a,b,c|baaa,babb,ca-bab,cb,pa-baab,pb-baab,pc,class=4>
+<a,b,c|baaa,babb,ca-bab,cb,pa-baab,pb-wbaab,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,babb,ca-bab,cb,pa-baab,pb-w^2baab,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,babb,ca-bab,cb,pa,pb,pc-baab,class=4>
+<a,b,c|baaa,babb,ca-bab,cb,pa,pb,pc-wbaab,class=4>

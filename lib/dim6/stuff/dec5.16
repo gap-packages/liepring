@@ -1,0 +1,13 @@
+//4p+8 algebras
+<a,b,c|cb,caa,pa,pb-ba,pc,class=3>6.281
+<a,b,c|cb,caa,pa,pb-ba-cac,pc,class=3>6.282
+<a,b,c|cb,caa,pa-cac,pb-ba,pc,class=3>6.283
+<a,b,c|cb,caa,pa-cac,pb-ba-cac,pc,class=3>6.284
+<a,b,c|cb,caa,pa-wcac,pb-ba,pc,class=3>6.285
+<a,b,c|cb,caa,pa-wcac,pb-ba-cac,pc,class=3>6.286
+<a,b,c|cb,caa,pa-xcac,pb-ba,pc-cac,class=3>(all x)6.287
+<a,b,c|cb,caa,pa-xcac,pb-ba-cac,pc-cac,class=3>(all x)6.288
+<a,b,c|cb,cac,pa,pb-ba,pc-xcaa,class=3>(all x)6.289
+<a,b,c|cb-caa,cac,pa,pb-ba,pc-xcaa,class=3>(all x)6.290
+<a,b,c|cb,cac,pa-caa,pb-ba,pc,class=3>6.291
+<a,b,c|cb-caa,cac,pa-caa,pb-ba,pc,class=3>6.292

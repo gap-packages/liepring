@@ -1,0 +1,27 @@
+#2p^5+7p^4+19p^3+49p^2+128p+256+(p^2+7p+29)gcd(p-1,3)+(p^2+7p+24)gcd(p-1,4)+(p+3)gcd(p-1,5) algebras
+Append( LIE_DATA[7], [
+[7,3,3,"<a,b,c|cb,caa,cab,cac,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1]],"See Notes5.14, Case 1",,"7.757"],
+[7,3,3,"<a,b,c|cb-baa,caa,cab,cac,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[7,1]],"See Notes5.14, Case 2",,"7.758"],
+[7,3,3,"<a,b,c|cb,bab,bac,cab,cac,pa-tbaa-ucaa,pb-vbaa-xcaa,pc-ybaa-zcaa,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[],[],[],[7,1]],"See Notes5.14, Case 3",,"7.759"],
+[7,3,3,"<a,b,c|cb-baa,bab,bac,cab,cac,pa-tbaa-ucaa,pb-vbaa-xcaa,pc-ybaa-zcaa,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[],[],[],[7,1]],"See Notes5.14, Case 4",,"7.760"],
+[7,3,3,"<a,b,c|cb,bac,caa-bab,cac,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[7,1]],"See Notes5.14, Case 5",,"7.761"],
+[7,3,3,"<a,b,c|cb-baa,bac,caa-bab,cac,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[7,1],[],[],[7,1]],"See Notes5.14, Case 6",,"7.762"],
+[7,3,3,"<a,b,c|cb,baa,bac,cac,pa-tbab-ucaa,pb-vbab-xcaa,pc-ybab-zcaa,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[],[],[7,1]],"See Notes5.14, Case 7",,"7.763"],
+[7,3,3,"<a,b,c|cb-caa,baa,bac,cac,pa-tbab-ucaa,pb-vbab-xcaa,pc-ybab-zcaa,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[7,1],[6,y,7,z],[],[6,1],[],[],[7,1]],"See Notes5.14, Case 8",,"7.764"],
+[7,3,3,"<a,b,c|cb,bac,caa,cac-bab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[],[],[7,1]],"See Notes5.14, Case 9",,"7.765"],
+[7,3,3,"<a,b,c|cb,bac,caa,cac-wbab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[],[],[7,w]],"See Notes5.14, Case 10",,"7.766"],
+[7,3,3,"<a,b,c|cb-baa,bac,caa,cac-bab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[7,1],[],[],[],[],[7,1]],"See Notes5.14, Case 11",,"7.767"],
+[7,3,3,"<a,b,c|cb-baa,bac,caa,cac-wbab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[7,1],[],[],[],[],[7,w]],"See Notes5.14, Case 12",,"7.768"],
+[7,3,3,"<a,b,c|cb,bac,caa-baa,cac+bab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[6,1],[],[7,-1]],"See Notes5.14, Case 13",,"7.769"],
+[7,3,3,"<a,b,c|cb-baa,bac,caa-baa,cac+bab,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[6,1],[6,y,7,z],[6,1],[7,1],[],[],[6,1],[],[7,-1]],"See Notes5.14, Case 14",,"7.770"],
+[7,3,3,"<a,b,c|cb,baa,bac,caa,pa-tbab-ucac,pb-vbab-xcac,pc-ybab-zcac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[],[],[],[],[7,1]],"See Notes5.14, Case 15",,"7.771"],
+[7,3,3,"<a,b,c|cb,bac,caa,cac-baa,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[],[],[6,1]],"See Notes5.14, Case 16",,"7.772"],
+[7,3,3,"<a,b,c|cb,bac,caa-bab,cac-baa,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[7,1],[],[6,1]],"See Notes5.14, Case 17",,"7.773"],
+[7,3,3,"<a,b,c|cb,bac,caa-wbab,cac-baa,pa-tbaa-ubab,pb-vbaa-xbab,pc-ybaa-zbab,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[7,1],[],[],[7,w],[],[6,1]],"See Notes5.14, Case 18","p=1 mod 3","7.774"],
+[7,3,3,"<a,b,c|cb,baa,caa,cac,pa-tbab-ubac,pb-vbab-xbac,pc-ybab-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[7,1],[],[],[7,1]],"See Notes5.14, Case 19",,"7.775"],
+[7,3,3,"<a,b,c|cb,baa,caa-bab,cac,pa-tbab-ubac,pb-vbab-xbac,pc-ybab-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[7,1],[],[6,1],[7,1]],"See Notes5.14, Case 20",,"7.776"],
+[7,3,3,"<a,b,c|cb,bab-baa,caa,cac,pa-tbaa-ubac,pb-vbaa-xbac,pc-ybaa-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[6,1],[6,1],[7,1],[],[],[7,1]],"See Notes5.14, Case 21",,"7.777"],
+[7,3,3,"<a,b,c|cb,baa,caa,cac-wbab,pa-tbab-ubac,pb-vbab-xbac,pc-ybab-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[7,1],[],[],[7,1],[6,w]],"See Notes5.14, Case 22",,"7.778"],
+[7,3,3,"<a,b,c|cb,baa,caa-bac,cac-wbab,pa-tbab-ubac,pb-vbab-xbac,pc-ybab-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[7,1],[],[7,1],[7,1],[6,w]],"See Notes5.14, Case 23",,"7.779"],
+[7,3,3,"<a,b,c|cb,baa,caa-sbab-bac,cac-wbab,pa-tbab-ubac,pb-vbab-xbac,pc-ybab-zbac,class=3>",[[6,t,7,u],[4,1],[6,v,7,x],[5,1],[],[6,y,7,z],[],[6,1],[7,1],[],[6,s,7,1],[7,1],[6,w]], "See Notes5.14, Case 24","p=2 mod 3","7.780"]
+]);

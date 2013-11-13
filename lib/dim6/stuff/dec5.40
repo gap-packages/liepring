@@ -1,0 +1,7 @@
+//1+gcd(p-1,3)+(1/2)gcd(p-1,4) algebras
+<a,b|pa-wbab,pb-baaa,class=4>6.408
+<a,b|pa-wbab,pb-wbaaa,class=4>(p=1 mod 3)6.409
+<a,b|pa-wbab,pb-w^2baaa,class=4>(p=1 mod 3)6.410
+<a,b|pa-wbab,pb,class=4>6.411
+<a,b|pa-wbab-baaa,pb,class=4>6.412
+<a,b|pa-wbab-wbaaa,pb,class=4>(p=1 mod 4)6.413

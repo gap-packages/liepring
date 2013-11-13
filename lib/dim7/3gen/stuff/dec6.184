@@ -1,0 +1,10 @@
+//9 algebras
+<a,b,c|baa,bab,ca,cb,pb,pc,class=4>
+<a,b,c|baa,bab,ca-p^3a,cb,pb,pc,class=4>
+<a,b,c|baa,bab,ca,cb-p^3a,pb,pc,class=4>
+<a,b,c|baa-p^3a,bab,ca,cb,pb,pc,class=4>
+<a,b,c|baa-p^3a,bab,ca,cb-p^3a,pb,pc,class=4>
+<a,b,c|baa,bab-p^3a,ca,cb,pb,pc,class=4>
+<a,b,c|baa,bab-p^3a,ca-p^3a,cb,pb,pc,class=4>
+<a,b,c|baa,bab-wp^3a,ca,cb,pb,pc,class=4>
+<a,b,c|baa,bab-wp^3a,ca-p^3a,cb,pb,pc,class=4>

@@ -1,0 +1,9 @@
+//3p+5 algebras
+<a,b,c,d|ca,cb,da-xp^2a,db,dc-ba,pb,pc-ba,pd,class=3>(all x)
+<a,b,c,d|ca-p^2a,cb,da,db,dc-ba,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da,db,dc-ba-p^2a,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da,db-p^2a,dc-ba,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca-p^2a,cb,da,db-p^2a,dc-ba,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca-wp^2a,cb,da,db-p^2a,dc-ba,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da-xp^2a,db,dc-ba,pb,pc-ba,pd,class=3>(all x)
+<a,b,c,d|ca,cb-wp^2a,da-xp^2a,db,dc-ba,pb,pc-ba,pd,class=3>(all x)

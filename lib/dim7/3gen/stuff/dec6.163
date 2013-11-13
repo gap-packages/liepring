@@ -1,0 +1,3 @@
+//(p^3 + 4p^2 - 10p + 1 + pgcd(p-1,4))/2 algebras
+<a,b,c|ca-baa,cb,pa-baa-ubab-ybaaa,pb+xbaa+bab-zbaaa,pc-tbaaa,class=4>(See Notes6.163)
+<a,b,c|ca-baa,cb,pa-baa-ubab-ybaaa,pb+xbaa+(u*x)bab-zbaaa,pc-tbaaa,class=4>(See Notes6.163) 

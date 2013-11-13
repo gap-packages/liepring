@@ -1,0 +1,15 @@
+//5+3gcd(p-1,3) algebras
+<a,b|baab,babb,pa,pb,class=4>6.394
+<a,b|baab,babb,pa-baaa,pb,class=4>6.395
+<a,b|baab,babb,pa,pb-baaa,class=4>6.396
+<a,b|baab,babb,pa,pb-wbaaa,class=4>(p=1 mod 3)6.397
+<a,b|baab,babb,pa,pb-w^2baaa,class=4>(p=1 mod 3)6.398
+<a,b|baab,babb+baaa,pa,pb,class=4>6.399
+<a,b|baab,babb+baaa,pa-baaa,pb,class=4>6.400
+<a,b|baab,babb+baaa,pa-wbaaa,pb,class=4>(p=1 mod 3)6.401
+<a,b|baab,babb+baaa,pa-w^2baaa,pb,class=4>(p=1 mod 3)6.402
+<a,b|baab,babb+baaa,pa-baaa,pb-baaa,class=4>6.403
+<a,b|baab,babb+wbaaa,pa,pb,class=4>6.404
+<a,b|baab,babb+wbaaa,pa-baaa,pb,class=4>6.405
+<a,b|baab,babb+wbaaa,pa-wbaaa,pb,class=4>(p=1 mod 3)6.406
+<a,b|baab,babb+wbaaa,pa-w^2baaa,pb,class=4>(p=1 mod 3)6.407

@@ -1,0 +1,5 @@
+//4 algebras
+<a,b|baa,bab,pb,class=5>
+<a,b|baa,bab-p^4a,pb,class=5>
+<a,b|baa,bab-wp^4a,pb,class=5>
+<a,b|baa-p^4a,bab,pb,class=5>

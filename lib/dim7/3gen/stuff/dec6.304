@@ -1,0 +1,3 @@
+//p(p+1)/2 algebras
+<a,b,c|cb,bab-baa,pa,pb-ca-baa-ybaaa,pc-xbaaa,class=4>(x ne 0, all y, y~-y)
+<a,b,c|cb,bab-baa,pa-ybaaa,pb-ca-baa,pc,class=4>(all y, y~-y)

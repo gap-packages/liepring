@@ -1,0 +1,9 @@
+//2p+6 algebras
+<a,b,c,d|ca,cb-xp^2c,da,db,dc,pa-ba,pb,pd,class=3>(all x)
+<a,b,c,d|ca-p^2c,cb,da,db,dc,pa-ba,pb,pd,class=3>
+<a,b,c,d|ca,cb-xp^2c,da-p^2c,db,dc,pa-ba,pb,pd,class=3>(all x)
+<a,b,c,d|ca,cb,da,db-p^2c,dc,pa-ba,pb,pd,class=3>
+<a,b,c,d|ca-p^2c,cb,da,db-p^2c,dc,pa-ba,pb,pd,class=3>
+<a,b,c,d|ca,cb,da,db,dc-p^2c,pa-ba,pb,pd,class=3>
+<a,b,c,d|ca,cb,da-p^2c,db,dc-p^2c,pa-ba,pb,pd,class=3>
+<a,b,c,d|ca,cb,da,db-p^2c,dc-p^2c,pa-ba,pb,pd,class=3>

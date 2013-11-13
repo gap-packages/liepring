@@ -1,0 +1,54 @@
+//3p^2 + 12p + 14 + (p+2)gcd(p-1,4) algebras
+<a,b,c|cb,pa-ba,pb,pc,class=3>
+<a,b,c|cb,pa-ba-caa,pb,pc,class=3>
+<a,b,c|cb,pa-ba-cac,pb,pc,class=3>
+<a,b,c|cb,pa-ba-wcac,pb,pc,class=3>
+<a,b,c|cb,pa-ba,pb,pc-caa,class=3>
+<a,b,c|cb,pa-ba-cac,pb,pc-caa,class=3>
+<a,b,c|cb,pa-ba-wcac,pb,pc-caa,class=3>
+<a,b,c|cb,pa-ba-caa-xcac,pb,pc-caa,class=3>(all x)
+<a,b,c|cb,pa-ba,pb,pc-wcaa,class=3>
+<a,b,c|cb,pa-ba-cac,pb,pc-wcaa,class=3>
+<a,b,c|cb,pa-ba-wcac,pb,pc-wcaa,class=3>
+<a,b,c|cb,pa-ba-caa-xcac,pb,pc-wcaa,class=3>(all x)
+<a,b,c|cb,pa-ba-xcaa,pb,pc-cac,class=3>(all x)
+<a,b,c|cb,pa-ba-caa-cac,pb,pc-cac,class=3>
+<a,b,c|cb,pa-ba-caa-wcac,pb,pc-cac,class=3>
+<a,b,c|cb,pa-ba,pb-caa,pc,class=3>
+<a,b,c|cb,pa-ba-cac,pb-caa,pc,class=3>
+<a,b,c|cb,pa-ba-wcac,pb-caa,pc,class=3>
+<a,b,c|cb,pa-ba-w^2cac,pb-caa,pc,class=3>(p=1 mod 4)
+<a,b,c|cb,pa-ba-w^3cac,pb-caa,pc,class=3>(p=1 mod 4)
+<a,b,c|cb,pa-ba-xcac,pb-caa,pc-cac,class=3>(all x)
+<a,b,c|cb,pa-ba,pb-cac,pc,class=3>
+<a,b,c|cb,pa-ba-caa,pb-cac,pc,class=3>
+<a,b,c|cb,pa-ba,pb-cac,pc-caa,class=3>
+<a,b,c|cb,pa-ba,pb-cac,pc-wcaa,class=3>
+<a,b,c|cb,pa-ba,pb-cac,pc-w^2caa,class=3>(p=1 mod 4)
+<a,b,c|cb,pa-ba,pb-cac,pc-w^3caa,class=3>(p=1 mod 4)
+<a,b,c|cb-caa,pa-ba,pb,pc,class=3>
+<a,b,c|cb-caa,pa-ba-cac,pb,pc,class=3>
+<a,b,c|cb-caa,pa-ba-wcac,pb,pc,class=3>
+<a,b,c|cb-caa,pa-ba,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-caa,pa-ba-cac,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-caa,pa-ba-wcac,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-caa,pa-ba-caa-ycac,pb,pc-xcaa,class=3>(x ne 0, all y)
+<a,b,c|cb-caa,pa-ba-xcac,pb,pc-cac,class=3>(all x)
+<a,b,c|cb-caa,pa-ba-ycac,pb-caa,pc-xcac,class=3>(all x,y, x~-x)
+<a,b,c|cb-caa,pa-ba,pb-cac,pc-xcaa,class=3>(all x)
+<a,b,c|cb-caa,pa-ba-xcaa,pb-cac,pc+2caa,class=3>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|cb-caa,pa-ba,pb-wcac,pc-xcaa,class=3>(all x)(p=1 mod 4)
+<a,b,c|cb-caa,pa-ba-xcaa,pb-wcac,pc+2caa,class=3>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|cb-wcaa,pa-ba,pb,pc,class=3>
+<a,b,c|cb-wcaa,pa-ba-cac,pb,pc,class=3>
+<a,b,c|cb-wcaa,pa-ba-wcac,pb,pc,class=3>
+<a,b,c|cb-wcaa,pa-ba,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-wcaa,pa-ba-cac,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-wcaa,pa-ba-wcac,pb,pc-xcaa,class=3>(x ne 0)
+<a,b,c|cb-wcaa,pa-ba-caa-ycac,pb,pc-xcaa,class=3>(x ne 0, all y)
+<a,b,c|cb-wcaa,pa-ba-xcac,pb,pc-cac,class=3>(all x)
+<a,b,c|cb-wcaa,pa-ba-ycac,pb-caa,pc-xcac,class=3>(all x,y, x~-x)
+<a,b,c|cb-wcaa,pa-ba,pb-cac,pc-xcaa,class=3>(all x)
+<a,b,c|cb-wcaa,pa-ba-xcaa,pb-cac,pc+(2*w)caa,class=3>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|cb-wcaa,pa-ba,pb-wcac,pc-xcaa,class=3>(all x)(p=1 mod 4)
+<a,b,c|cb-wcaa,pa-ba-xcaa,pb-wcac,pc+(2*w)caa,class=3>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)

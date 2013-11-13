@@ -1,0 +1,6 @@
+//5 algebras
+<a,b,c,d|cb,da,db,dc,pa-ba,pb-ca,pc,pd-bab,class=3>
+<a,b,c,d|cb,da,db,dc,pa-ba,pb-ca,pc,pd,class=3>
+<a,b,c,d|cb,da,db,dc,pa-ba,pb-ca,pc-bab,pd,class=3>
+<a,b,c,d|cb,da,db,dc,pa-ba,pb-ca,pc-wbab,pd,class=3>
+<a,b,c,d|cb,da,db,dc-bab,pa-ba,pb-ca,pc,pd,class=3>

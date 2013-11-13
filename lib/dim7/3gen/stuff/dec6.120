@@ -1,0 +1,14 @@
+//(p-1)/2 + 3 + 2gcd(p-1,3) + gcd(p-1,4) algebras
+<a,b,c|ca,cb,pa-wbab,pb,pc,class=4>
+<a,b,c|ca,cb,pa-wbab-baaa,pb,pc,class=4>
+<a,b,c|ca,cb,pa-wbab-wbaaa,pb,pc,class=4>(p=1 mod 4)
+<a,b,c|ca,cb,pa-wbab,pb-baaa,pc,class=4>
+<a,b,c|ca,cb,pa-wbab,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|ca,cb,pa-wbab,pb-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|ca,cb,pa-wbab,pb,pc-baaa,class=4>
+<a,b,c|ca,cb-baaa,pa-wbab,pb,pc-xbaaa,class=4>(all x, x~-x)
+<a,b,c|ca,cb-baaa,pa-wbab-baaa,pb,pc,class=4>
+<a,b,c|ca,cb-baaa,pa-wbab-wbaaa,pb,pc,class=4>(p=1 mod 4)
+<a,b,c|ca,cb-baaa,pa-wbab,pb-baaa,pc,class=4>
+<a,b,c|ca,cb-baaa,pa-wbab,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|ca,cb-baaa,pa-wbab,pb-w^2baaa,pc,class=4>(p=1 mod 3)

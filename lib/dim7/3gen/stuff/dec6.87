@@ -1,0 +1,6 @@
+//5 algebras
+<a,b,c|p^2a,p^2b,ca,cb,pc-ba,class=3>
+<a,b,c|p^2a,pba,ca,cb,pc-ba,class=3>
+<a,b,c|p^2a,pba,ca,cb-p^2b,pc-ba,class=3>
+<a,b,c|p^2a,pba,ca-p^2b,cb,pc-ba,class=3>
+<a,b,c|p^2a,pba,ca-w*p^2b,cb,pc-ba,class=3>

@@ -1,0 +1,16 @@
+//5+2gcd(p-1,3)+gcd(p-1,4) algebras
+<a,b|p^3a,baa,pb,class=4>
+<a,b|p^3a,baa,pb-babb,class=4>
+<a,b|p^3a,baa-babb,pb,class=4>
+<a,b|p^3a,baa-babb,pb-babb,class=4>
+<a,b|p^3a,baa-babb,pb-wbabb,class=4>
+<a,b|p^3a,baa-babb,pb-w^2babb,class=4>(p=1 mod 4)
+<a,b|p^3a,baa-babb,pb-w^3babb,class=4>(p=1 mod 4)
+<a,b|babb,baa,pb,class=4>
+<a,b|babb,baa-p^3a,pb,class=4>
+<a,b|p^3a-babb,baa,pb,class=4>
+<a,b|p^3a-babb,baa-babb,pb,class=4>
+<a,b|p^3a-wbabb,baa,pb,class=4>(p=1 mod 3)
+<a,b|p^3a-wbabb,baa-babb,pb,class=4>(p=1 mod 3)
+<a,b|p^3a-w^2babb,baa,pb,class=4>(p=1 mod 3)
+<a,b|p^3a-w^2babb,baa-babb,pb,class=4>(p=1 mod 3)

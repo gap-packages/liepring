@@ -1,0 +1,51 @@
+//p^2 + 10p + 32 + gcd(p-1,3) + gcd(p-1,4) algebras
+<a,b,c|caa,cab,cac,cbc,pa-ba,pb,pc-xcbb,class=3>(all x)
+<a,b,c|caa,cab,cac,cbc,pa-ba,pb-cbb,pc-xcbb,class=3>(all x)
+<a,b,c|caa,cab,cbb-cac,cbc,pa-ba,pb,pc-xcac,class=3>(all x)
+<a,b,c|caa,cab,cbb-cac,cbc,pa-ba,pb-cac,pc-xcac,class=3>(all x)
+<a,b,c|cab,cac,cbb-caa,cbc,pa-ba,pb,pc-xcaa,class=3>(all x)
+<a,b,c|cab,cac,cbb-caa,cbc,pa-ba,pb-caa,pc-xcaa,class=3>(all x)
+<a,b,c|cab,cac,cbb-wcaa,cbc,pa-ba,pb,pc-xcaa,class=3>(all x)
+<a,b,c|cab,cac,cbb-wcaa,cbc,pa-ba,pb-caa,pc-xcaa,class=3>(all x)
+<a,b,c|cab,cac-caa,cbb-caa,cbc,pa-ba,pb-ycaa,pc-xcaa,class=3>(all x,y, y~-y)
+<a,b,c|cab,cac-caa,cbb-wcaa,cbc,pa-ba,pb-ycaa,pc-xcaa,class=3>(all x,y, y~-y)
+<a,b,c|caa,cac,cbb,cbc,pa-ba,pb,pc,class=3>
+<a,b,c|caa,cac,cbb,cbc,pa-ba,pb,pc-cab,class=3>
+<a,b,c|caa,cac,cbb,cbc,pa-ba,pb-cab,pc,class=3>
+<a,b,c|caa,cac,cbb,cbc,pa-ba,pb-cab,pc-cab,class=3>
+<a,b,c|caa,cac,cbb,cbc-cab,pa-ba,pb,pc,class=3>
+<a,b,c|caa,cac,cbb,cbc-cab,pa-ba,pb-cab,pc,class=3>
+<a,b,c|caa,cac,cbb,cbc-cab,pa-ba,pb-wcab,pc,class=3>
+<a,b,c|caa,cac,cbb,cbc-cab,pa-ba,pb-xcab,pc-cab,class=3>(all x)
+<a,b,c|caa,cab,cac,cbb,pa-ba,pb,pc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba,pb,pc-cbc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba,pb-cbc,pc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba,pb-wcbc,pc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba-cbc,pb,pc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba-cbc,pb,pc-cbc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba-cbc,pb-cbc,pc,class=3>
+<a,b,c|caa,cab,cac,cbb,pa-ba-cbc,pb-wcbc,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb,pc-caa,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb,pc-wcaa,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb-caa,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb-wcaa,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb-w^2caa,pc,class=3>(p=1 mod 4)
+<a,b,c|cab,cac,cbb,cbc-caa,pa-ba,pb-w^3caa,pc,class=3>(p=1 mod 4)
+<a,b,c|caa,cab,cbb,cbc,pa-ba,pb,pc,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba-cac,pb,pc,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba-wcac,pb,pc,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba,pb,pc-cac,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba-cac,pb,pc-cac,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba-wcac,pb,pc-cac,class=3>
+<a,b,c|caa,cab,cbb,cbc,pa-ba,pb-cac,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc,pa-ba,pb,pc,class=3>
+<a,b,c|cab,cac,cbb,cbc,pa-ba,pb,pc-caa,class=3>
+<a,b,c|cab,cac,cbb,cbc,pa-ba,pb,pc-wcaa,class=3>
+<a,b,c|cab,cac,cbb,cbc,pa-ba,pb-caa,pc,class=3>
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb,pc,class=3>
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb,pc-caa,class=3>
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb,pc-wcaa,class=3>
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb-caa,pc,class=3>
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb-wcaa,pc,class=3>(p=1 mod 3)
+<a,b,c|cab,cac-caa,cbb,cbc,pa-ba,pb-w^2caa,pc,class=3>(p=1 mod 3)

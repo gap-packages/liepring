@@ -1,0 +1,7 @@
+#(p^3 + p^2 + p + 1)/4 algebras
+Append( LIE_DATA[7], [
+[7,3,4,"<a,b,c|ca-bab,cb-wbaa,pa-bab-ybaaa,pb,pc-xbaaa,class=4>",[[6,1,7,y],[4,1],[],[6,1],[5,w],[7,x],[5,1],[6,1],[7,-w],[],[7,1]],"x ne 0, all y, x~-x, y~-y",,"7.1778"],
+[7,3,4,"<a,b,c|ca-bab,cb-wbaa,pa-bab,pb-ybaaa,pc,class=4>",[[6,1],[4,1],[7,y],[6,1],[5,w],[],[5,1],[6,1],[7,-w],[],[7,1]],"all y, y~-y",,"7.1779"],
+[7,3,4,"<a,b,c|ca-bab,cb-wbaa,pa-zbaa-bab-ybaaa,pb,pc-xbaaa,class=4>",[[5,z,6,1,7,y],[4,1],[],[6,1],[5,w],[7,x],[5,1],[6,1],[7,-w + z^2],[],[7,1],[7,-z],[],[],[],[7,-z],[7,z^2]],"x,z ne 0, all y, y~-y, z~-z",,"7.1780"],
+[7,3,4,"<a,b,c|ca-bab,cb-wbaa,pa-zbaa-bab,pb-ybaaa,pc,class=4>",[[5,z,6,1],[4,1],[7,y],[6,1],[5,w],[],[5,1],[6,1],[7,-w + z^2],[],[7,1],[7,-z],[],[],[],[7,-z],[7,z^2]],"all y, z ne 0, y~-y, z~-z",,"7.1781"]
+]);

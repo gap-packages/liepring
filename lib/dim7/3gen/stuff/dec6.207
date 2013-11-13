@@ -1,0 +1,6 @@
+//5 algebras
+<a,b,c|baa,ca,cb,pb-ba,pc,class=4>
+<a,b,c|baa,ca,cb-p^3a,pb-ba,pc,class=4>
+<a,b,c|baa-p^3a,ca,cb,pb-ba,pc,class=4>
+<a,b,c|baa-p^3a,ca,cb-p^3a,pb-ba,pc,class=4>
+<a,b,c|baa,ca-p^3a,cb,pb-ba,pc,class=4>

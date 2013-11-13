@@ -1,0 +1,115 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Monday, July 01, 2013 14:26:16}
+%TCIDATA{LastRevised=Tuesday, July 02, 2013 14:53:38}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$\varepsilon =1$
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Descendants of algebra 5.12 of order $p^{7}$}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+We have two four parameter families of descendants of algebra 5.12 of order $%
+p^{7}$. The parameters are $x,y,z,t$ in both cases.
+
+\section{Note 1}
+
+We put the parameters $x,y,z,t$ in a matrix $\left( 
+\begin{array}{ll}
+x & y \\ 
+z & t%
+\end{array}%
+\right) $, and the distinct algebras correspond to orbits of matrices $%
+A=\left( 
+\begin{array}{ll}
+x & y \\ 
+z & t%
+\end{array}%
+\right) $ with entries in GF$(p)$ under the action%
+\[
+A\rightarrow \frac{1}{\det P}PAP^{-1}
+\]%
+where $P$ is the subgroup of GL$(2,p)$ consisting of non-singular matrices $%
+\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+\beta  & \alpha 
+\end{array}%
+\right) $ or $\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+-\beta  & -\alpha 
+\end{array}%
+\right) $. So we want to pick out a set of orbit representatives.
+Notes5.12.m is a \textsc{Magma} program which outputs a matrix mats1 with
+suitable $[x,y,z,t]$ as rows.
+
+\section{Note 2}
+
+We put the parameters $x,y,z,t$ in a matrix $\left( 
+\begin{array}{ll}
+x & y \\ 
+z & t%
+\end{array}%
+\right) $, and the distinct algebras correspond to orbits of matrices $%
+A=\left( 
+\begin{array}{ll}
+x & y \\ 
+z & t%
+\end{array}%
+\right) $ with entries in GF$(p)$ under the action%
+\[
+A\rightarrow \frac{1}{\det P}PAP^{-1}
+\]%
+where $P$ is the subgroup of GL$(2,p)$ consisting of non-singular matrices $%
+\left( 
+\begin{array}{ll}
+\alpha  & \omega \beta  \\ 
+\beta  & \alpha 
+\end{array}%
+\right) $ or $\left( 
+\begin{array}{ll}
+\alpha  & \omega \beta  \\ 
+-\beta  & -\alpha 
+\end{array}%
+\right) $. So we want to pick out a set of orbit representatives.
+Notes5.12.m is a \textsc{Magma} program which outputs a matrix mats2 with
+suitable $[x,y,z,t]$ as rows.
+
+\end{document}

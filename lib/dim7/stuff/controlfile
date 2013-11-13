@@ -1,0 +1,6 @@
+count:=-1;
+alg:="dec6.0";
+load automenu;
+alg:="7.1";
+load automenu;
+

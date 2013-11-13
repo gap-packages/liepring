@@ -1,0 +1,4 @@
+//3 algebras
+<a,b,c|bac,cac,pa-ba,pb-ca,pc-cb,class=3>
+<a,b,c|bac,cac-bab,pa-ba,pb-ca,pc-cb,class=3>
+<a,b,c|bac,cac-wbab,pa-ba,pb-ca,pc-cb,class=3>

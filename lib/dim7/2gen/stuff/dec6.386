@@ -1,0 +1,7 @@
+//p+5 algebras
+<a,b|baa,bab,pba,p^2b,class=4>
+<a,b|baa-p^3a,bab,pba,p^2b,class=4>
+<a,b|baa,bab-p^3a,pba,p^2b,class=4>
+<a,b|baa,bab-wp^3a,pba,p^2b,class=4>
+<a,b|baa,bab-xp^3a,pba-p^3a,p^2b,class=4>(all x)
+<a,b|baa-p^3a,bab,pba-p^3a,p^2b,class=4>

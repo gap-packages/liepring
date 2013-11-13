@@ -1,0 +1,10 @@
+//3 + 2gcd(p-1,3) algebras
+<a,b,c|bab,ca,cb-baa,p^2a-baaa,pb,pc,class=4>
+<a,b,c|bab,ca,cb-baa,p^2a,pb,pc,class=4>
+<a,b,c|bab,ca,cb-baa,p^2a,pb-baaa,pc,class=4>
+<a,b,c|bab,ca,cb-baa,p^2a,pb-wbaaa,pc,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb-baa,p^2a,pb-w^2baaa,pc,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb-baa,p^2a,pb,pc-baaa,class=4>
+<a,b,c|bab,ca,cb-baa,p^2a,pb-baaa,pc-baaa,class=4>
+<a,b,c|bab,ca,cb-baa,p^2a,pb-wbaaa,pc-baaa,class=4>(p=1 mod 3)
+<a,b,c|bab,ca,cb-baa,p^2a,pb-w^2baaa,pc-baaa,class=4>(p=1 mod 3)

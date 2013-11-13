@@ -1,0 +1,4 @@
+#(p^4+p^2)/2 algebras
+Append( LIE_DATA[7], [
+[7,3,4,"<a,b,c|ca-bab,cb-wbaa-xbaaa,pa-ybaaa,pb-zbaaa,pc-bab-tbaaa,class=4>",[[7,y],[4,1],[7,z],[6,1],[5,w,7,x],[6,1,7,t],[5,1],[6,1],[7,-w],[],[7,1]],"all x,y,z,t, y~-y, if y=0 then t~-t",,"7.1800"]
+]);

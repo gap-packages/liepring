@@ -1,0 +1,112 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Thursday, June 27, 2013 16:28:19}
+%TCIDATA{LastRevised=Sunday, July 28, 2013 17:11:05}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Descendants of 5.1 of order $p^{7}$}
+\author{Michael Vaughan-Lee}
+\date{June 2013}
+\maketitle
+
+This is the same calculation as is needed in the calculation of \ algebra
+6.62. See note6.62 in the $p^{6}$ directory. We have two parameters $x,y$,
+where $x,y$ are integers with $y\neq 0\func{mod}p$. Parameter pairs $(x,y)$
+and $(z,t)$ give isomorphic algebras if and only if%
+\[
+\left( 
+\begin{array}{ll}
+1 & 0 \\ 
+z & t%
+\end{array}%
+\right) =\left( 
+\begin{array}{ll}
+\mu  & \nu  \\ 
+\omega \nu  & \mu 
+\end{array}%
+\right) \left( 
+\begin{array}{ll}
+1 & 0 \\ 
+x & y%
+\end{array}%
+\right) \left( 
+\begin{array}{ll}
+\mu +\nu x & \nu y \\ 
+\omega \nu y & \mu +\nu x%
+\end{array}%
+\right) ^{-1}\func{mod}p
+\]%
+for some matrix $\left( 
+\begin{array}{ll}
+\mu  & \nu  \\ 
+\omega \nu  & \mu 
+\end{array}%
+\right) $ with determinant coprime to $p$. (Here, as elsewhere, $\omega $ is
+a primitive element modulo $p$.) So we need to compute representatives for
+the orbits of non-singular matrices $\left( 
+\begin{array}{ll}
+1 & 0 \\ 
+x & y%
+\end{array}%
+\right) \in \,$GL$(2,p)$ under the action of the group of non-singular
+matrices $\left( 
+\begin{array}{ll}
+\mu  & \nu  \\ 
+\omega \nu  & \mu 
+\end{array}%
+\right) \in \,$GL$(2,p)$ given above. There are $p$ orbits.
+
+It is easy enough to generate the $p$ orbit representatives with a simple
+loop over all non-singular matrices $\left( 
+\begin{array}{ll}
+\mu & \nu \\ 
+\omega \nu & \mu%
+\end{array}%
+\right) $ and $\left( 
+\begin{array}{ll}
+1 & 0 \\ 
+x & y%
+\end{array}%
+\right) $. However this method has complexity $p^{4}$ for output of size $p$%
+, which is not very satisfactory! Can we do better? Multiplying $\left( 
+\begin{array}{ll}
+\mu & \nu \\ 
+\omega \nu & \mu%
+\end{array}%
+\right) $ through by a non-zero constant has no effect on the action, so we
+can assume that $\mu =0,1$, and that if $\mu =0$ then $\nu =1$. This reduces
+the complexity to $p^{3}$.
+
+\end{document}

@@ -1,0 +1,8 @@
+//(p-1)(4 + gcd(p-1,3))/2 algebras
+<a,b,c|baa,bab,pa-xcb,pb-ca-cb,pc,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb,pc,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb-bab,pc,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb-wbab,pc,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb,pc-bab,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb,pc-wbab,class=3>(all x, 1+4x not a square mod p)(p=1 mod 3)
+<a,b,c|baa,bac,pa-xcb,pb-ca-cb,pc-w^2bab,class=3>(all x, 1+4x not a square mod p)(p=1 mod 3)

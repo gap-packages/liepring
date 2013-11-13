@@ -1,0 +1,13 @@
+//12 algebras
+<a,b,c|baa,bab,ca,cb,pa,pb,class=3>6.216
+<a,b,c|baa,bab,ca-p^2c,cb,pa,pb,class=3>6.217
+<a,b,c|bab,ca,cb,pa,pb,p^2c,class=3>6.218
+<a,b,c|bab,ca,cb,pa-baa,pb,p^2c,class=3>6.219
+<a,b,c|bab,ca,cb,pa,pb-baa,p^2c,class=3>6.220
+<a,b,c|bab,ca,cb,pa,pb-wbaa,p^2c,class=3>6.221
+<a,b,c|bab,ca,cb-baa,pa,pb,p^2c,class=3>6.222
+<a,b,c|bab,ca,cb-baa,pa-baa,pb,p^2c,class=3>6.223
+<a,b,c|bab,ca,cb-baa,pa,pb-baa,p^2c,class=3>6.224
+<a,b,c|bab,ca,cb-baa,pa,pb-wbaa,p^2c,class=3>6.225
+<a,b,c|bab,ca,cb,pa,pb,p^2c-baa,class=3>6.226
+<a,b,c|bab,ca,cb-baa,pa,pb,p^2c-baa,class=3>6.227

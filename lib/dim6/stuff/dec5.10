@@ -1,0 +1,6 @@
+//5 algebras
+<a,b,c|baa,ca,cb,pb-ba,pc,class=3>6.207
+<a,b,c|baa,ca-p^2a,cb,pb-ba,pc,class=3>6.208
+<a,b,c|baa,ca,cb-p^2a,pb-ba,pc,class=3>6.209
+<a,b,c|ca,cb,p^2a,pb-ba,pc,class=3>6.210
+<a,b,c|ca,cb,p^2a,pb-ba,pc-baa,class=3>6.211

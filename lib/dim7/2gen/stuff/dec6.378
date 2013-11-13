@@ -1,0 +1,6 @@
+//p+1+gcd(p-1,3) algebras
+<a,b|p^2a-baa,pb,class=4>
+<a,b|p^2a-baa-babb,pb,class=4>
+<a,b|p^2a-baa-wbabb,pb,class=4>(p=1 mod 3)
+<a,b|p^2a-baa-w^2babb,pb,class=4>(p=1 mod 3)
+<a,b|p^2a-baa-xbabb,pb-babb,class=4>(all x)

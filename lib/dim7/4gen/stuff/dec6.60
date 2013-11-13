@@ -1,0 +1,11 @@
+//7+gcd(p-1,3) algebras
+<a,b,c,d|bab,bac,bad,cb,da,db-ca,dc-wba,pa,pb,pc,pd,class=3>
+<a,b,c,d|bab,bac,bad,cb,da,db-ca,dc-wba,pa,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,bac,bad,cb,da,db-ca,dc-wba,pa,pb-baa,pc-xbaa,pd,class=3>(x FIXED with x^2-w not a square mod p)
+<a,b,c,d|bab,bac,bad,cb,da,db-ca,dc-wba,pa,pb,pc,pd-baa,class=3>
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb,pc,pd,class=3>
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb-baa,pc-xbaa,pd,class=3>(x FIXED with x^2-w not a square mod p)
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb,pc,pd-baa,class=3>
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb,pc,pd-wbaa,class=3>(p=1 mod 3)
+<a,b,c,d|bab,bac,bad,cb-baa,da,db-ca,dc-wba,pa,pb,pc,pd-w^2baa,class=3>(p=1 mod 3)

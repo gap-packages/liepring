@@ -1,0 +1,25 @@
+//p + 4 + 5gcd(p-1,3) + gcd(p-1,4) algebras
+<a,b,c|cb,baa,pa,pb-ca,pc-babb,class=4>
+<a,b,c|cb,baa,pa,pb-ca,pc-wbabb,class=4>
+<a,b,c|cb,baa,pa,pb-ca,pc,class=4>
+<a,b,c|cb,baa,pa-babb,pb-ca,pc,class=4>
+<a,b,c|cb,baa,pa-wbabb,pb-ca,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,pa-w^2babb,pb-ca,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,pa,pb-ca-babb,pc,class=4>
+<a,b,c|cb,baa,pa-babb,pb-ca-babb,pc,class=4>
+<a,b,c|cb,baa,pa-wbabb,pb-ca-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa,pa-w^2babb,pb-ca-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa-babb,pa,pb-ca,pc-babb,class=4>
+<a,b,c|cb,baa-babb,pa,pb-ca,pc-wbabb,class=4>
+<a,b,c|cb,baa-babb,pa,pb-ca,pc-xbabb,class=4>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|cb,baa-babb,pa,pb-ca,pc,class=4>
+<a,b,c|cb,baa-babb,pa,pb-ca-babb,pc,class=4>
+<a,b,c|cb,baa-babb,pa,pb-ca-wbabb,pc,class=4>
+<a,b,c|cb,baa-babb,pa,pb-ca-w^2babb,pc,class=4>(p=1 mod 4)
+<a,b,c|cb,baa-babb,pa,pb-ca-w^3babb,pc,class=4>(p=1 mod 4)
+<a,b,c|cb,baa-babb,pa-babb,pb-ca,pc,class=4>
+<a,b,c|cb,baa-babb,pa-wbabb,pb-ca,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa-babb,pa-w^2babb,pb-ca,pc,class=4>(p=1 mod 3)
+<a,b,c|cb,baa-babb,pa-babb,pb-ca-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)
+<a,b,c|cb,baa-babb,pa-wbabb,pb-ca-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|cb,baa-babb,pa-w^2babb,pb-ca-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)

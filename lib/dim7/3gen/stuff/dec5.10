@@ -1,0 +1,10 @@
+//2p+7 algebras
+<a,b,c|ca,cb,pb-ba,pc,class=3>
+<a,b,c|ca-baa,cb,pb-ba,pc,class=3>
+<a,b,c|ca-p^2a,cb,pb-ba,pc,class=3>
+<a,b,c|ca-xp^2a,cb-baa,pb-ba,pc,class=3>(all x)
+<a,b,c|ca-baa-p^2a,cb-baa,pb-ba,pc,class=3>
+<a,b,c|ca-xbaa-p^2a,cb-p^2a,pb-ba,pc,class=3>(all x)
+<a,b,c|ca,cb-p^2a,pb-ba,pc,class=3>
+<a,b,c|ca-baa,cb-p^2a,pb-ba,pc,class=3>
+<a,b,c|ca-wbaa,cb-p^2a,pb-ba,pc,class=3>

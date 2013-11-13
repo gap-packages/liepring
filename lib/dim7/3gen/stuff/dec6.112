@@ -1,0 +1,15 @@
+//p^2 + 4p + 3 + 2gcd(p-1,3) algebras
+<a,b,c|bab,cbb,pa-ba,pb-ca,pc,class=3>
+<a,b,c|bab,cbb,pa-ba-cbc,pb-ca,pc,class=3>
+<a,b,c|bab,cbb,pa-ba-wcbc,pb-ca,pc,class=3>(p=1 mod 3)
+<a,b,c|bab,cbb,pa-ba-w^2cbc,pb-ca,pc,class=3>(p=1 mod 3)
+<a,b,c|bab,cbb,pa-ba-xcbc,pb-ca,pc-cbc,class=3>(all x)
+<a,b,c|bab,cbc,pa-ba,pb-ca,pc-xcbb,class=3>(all x)
+<a,b,c|bab,cbc,pa-ba,pb-ca-cbb,pc-xcbb,class=3>(all x)
+<a,b,c|bab,cbc-cbb,pa-ba,pb-ca-xcbb,pc-ycbb,class=3>(all x,y)
+<a,b,c|cbb,cbc,pa-ba,pb-ca,pc,class=3>
+<a,b,c|cbb,cbc-bab,pa-ba,pb-ca,pc,class=3>
+<a,b,c|cbb,cbc-wbab,pa-ba,pb-ca,pc,class=3>(p=1 mod 3)
+<a,b,c|cbb,cbc-w^2bab,pa-ba,pb-ca,pc,class=3>(p=1 mod 3)
+<a,b,c|cbb-bab,cbc-xbab,pa-ba,pb-ca,pc,class=3>(all x, x~-x)
+<a,b,c|cbb-wbab,cbc-xbab,pa-ba,pb-ca,pc,class=3>(all x, x~-x)

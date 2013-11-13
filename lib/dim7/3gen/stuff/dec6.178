@@ -1,0 +1,7 @@
+//(3p^2-1)/2 algebras
+<a,b,c|ca-bab,cb-wbaa,pa-bab,pb-wbaa,pc-xbaaa,class=4>(all x, x~-x)
+<a,b,c|ca-bab,cb-wbaa,pa-baa,pb+bab,pc-xbaab,class=4>(all x, x~-x)(p=1 mod 4)
+<a,b,c|ca-bab,cb-wbaa,pa-bab,pb+wbaa,pc-xbaaa,class=4>(all x, x~-x)
+<a,b,c|ca-bab,cb-wbaa,pa-baa-ybab,pb+(w*y)baa+bab,pc-xbaaa,class=4>(See Notes6.178)
+<a,b,c|ca-bab,cb-wbaa,pa-ybab-tbaaa,pb-zbaa-ubaaa,pc-vbaaa,class=4>(See Notes6.178)
+<a,b,c|ca-bab,cb-wbaa,pa-baa-ybab-tbaab,pb-zbaa+bab-ubaab,pc-vbaab,class=4>(See Notes6.178)

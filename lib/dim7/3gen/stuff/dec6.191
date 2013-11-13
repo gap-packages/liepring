@@ -1,0 +1,7 @@
+//(5p + 7)/2 algebras
+<a,b,c|bab,ca,cb,p^2a,pb-wbaa-xbaaa,pc,class=4>(all x, x~-x)
+<a,b,c|bab,ca,cb,p^2a-baaa,pb-wbaa,pc,class=4>
+<a,b,c|bab-baaa,ca,cb,p^2a-xbaaa,pb-wbaa,pc,class=4>(all x)
+<a,b,c|bab,ca,cb,p^2a,pb-wbaa,pc-baaa,class=4>
+<a,b,c|bab,ca,cb,p^2a-baaa,pb-wbaa,pc-baaa,class=4>
+<a,b,c|bab-baaa,ca,cb,p^2a-xbaaa,pb-wbaa,pc-baaa,class=4>(all x)

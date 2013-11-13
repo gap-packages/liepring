@@ -1,0 +1,12 @@
+//11 algebras
+<a,b,c,d|ca,cb,da,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca-p^2a,cb,da,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb-wp^2a,da,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da-p^2a,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da-p^2a,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb-wp^2a,da-p^2a,db,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da,db-p^2a,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca-p^2a,cb,da,db-p^2a,dc,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da,db,dc-p^2a,pb,pc-ba,pd,class=3>
+<a,b,c,d|ca,cb,da,db-p^2a,dc-p^2a,pb,pc-ba,pd,class=3>

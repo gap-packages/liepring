@@ -1,0 +1,4 @@
+//2p-1 algebras
+<a,b,c|ca-baa,cb,pa-baa-wbab,pb+bab,pc-xbaaa,class=4>(all x)
+<a,b,c|ca-baa,cb,pa-baa-wbab,pb+bab-xbaaa,pc+ybaaa,class=4>(x ne 0, x~-x, y=w^-1)
+<a,b,c|ca-baa,cb,pa-baa-wbab,pb+bab-xbaaa,pc-(2*y)baaa,class=4>(x ne 0, x~-x, y=w^-1)

@@ -1,0 +1,26 @@
+//7+2gcd(p-1,3)+3gcd(p-1,4)
+<a,b|bab,baaab,pa,pb,class=5>6.469
+<a,b|bab,baaab,pa-baaaa,pb,class=5>6.470
+<a,b|bab,baaab,pa,pb-baaaa,class=5>6.471
+<a,b|bab,baaab,pa,pb-wbaaaa,class=5>6.472
+<a,b|bab,baaab,pa,pb-w^2baaaa,class=5>(p=1 mod 4)6.473
+<a,b|bab,baaab,pa,pb-w^3baaaa,class=5>(p=1 mod 4)6.474
+<a,b|bab-baaaa,baaab,pa,pb,class=5>6.475
+<a,b|bab-baaaa,baaab,pa-baaaa,pb,class=5>6.476
+<a,b|bab-baaaa,baaab,pa-wbaaaa,pb,class=5>6.477
+<a,b|bab-baaaa,baaab,pa-w^2baaaa,pb,class=5>(p=1 mod 3)6.478
+<a,b|bab-baaaa,baaab,pa-w^3baaaa,pb,class=5>(p=1 mod 3)6.479
+<a,b|bab-baaaa,baaab,pa-w^4baaaa,pb,class=5>(p=1 mod 3)6.480
+<a,b|bab-baaaa,baaab,pa-w^5baaaa,pb,class=5>(p=1 mod 3)6.481
+<a,b|bab-baaaa,baaab,pa,pb-baaaa,class=5>6.482
+<a,b|bab-baaaa,baaab,pa,pb-wbaaaa,class=5>6.483
+<a,b|bab-baaaa,baaab,pa,pb-w^2baaaa,class=5>(p=1 mod 4)6.484
+<a,b|bab-baaaa,baaab,pa,pb-w^3baaaa,class=5>(p=1 mod 4)6.485
+<a,b|bab,baaaa,pa,pb,class=5>6.486
+<a,b|bab,baaaa,pa-baaab,pb,class=5>6.487
+<a,b|bab,baaaa,pa-wbaaab,pb,class=5>6.488
+<a,b|bab,baaaa,pa,pb-baaab,class=5>6.489
+<a,b|bab,baaaa,pa-baaab,pb-baaab,class=5>6.490
+<a,b|bab,baaaa,pa-wbaaab,pb-baaab,class=5>6.491
+<a,b|bab,baaaa,pa-w^2baaab,pb-baaab,class=5>(p=1 mod 4)6.492
+<a,b|bab,baaaa,pa-w^3baaab,pb-baaab,class=5>(p=1 mod 4)6.493

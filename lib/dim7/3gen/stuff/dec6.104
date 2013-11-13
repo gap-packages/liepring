@@ -1,0 +1,40 @@
+//5p + 24 + 3gcd(p-1,3) algebras
+<a,b,c|bab,bac,caa,cab,cac,cbb,cbc,pa-baa,pb,pc,class=3>
+<a,b,c|baa,bab,caa,cab+bac,cac,cbb,cbc,pa-bac,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+bab,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+wbab,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac,cbb,cbc,pa-wbab,pb,pc,class=3>
+<a,b,c|baa,bac,caa-bab,cab,cac,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa-bab,cab,cac,cbb,cbc,pa-wbab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab-bab,cac-xbab,cbb,cbc,pa-bab,pb,pc,class=3>(x ne -2)
+<a,b,c|baa,bac,caa,cab-bab,cac-xbab,cbb,cbc,pa-wbab,pb,pc,class=3>(x=1/4)
+<a,b,c|baa,bac,caa,cab-bab,cac+2bab,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa-bab,cab-bab,cac+2bab,cbb,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bab,bac,caa,cab,cac,cbc,pa-cbb,pb,pc,class=3>
+<a,b,c|bab,bac,caa,cab,cac,cbb-baa,cbc,pa-baa,pb,pc,class=3>
+<a,b,c|baa,bab,bac,cab,cac,cbb-caa,cbc,pa-caa,pb,pc,class=3>
+<a,b,c|baa,bab,bac,cab,cac,cbb-wcaa,cbc,pa-caa,pb,pc,class=3>
+<a,b,c|baa,bab,caa-xbac,cab,cac,cbb-bac,cbc,pa-bac,pb,pc,class=3>(all x)
+<a,b,c|bab,bac-baa,caa+2baa,cab,cac,cbb-baa,cbc,pa-baa,pb,pc,class=3>
+<a,b,c|bab,bac-baa,caa+2baa,cab,cac,cbb-baa,cbc,pa-wbaa,pb,pc,class=3>
+<a,b,c|baa,bab,bac,caa,cab,cbb-cac,cbc,pa-cac,pb,pc,class=3>
+<a,b,c|baa,bab,bac,caa,cab,cbb-cac,cbc,pa-wcac,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+bab,cbb+bab,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+bab,cbb+bab,cbc,pa-wbab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+wbab,cbb+wbab,cbc,pa-bab,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac+wbab,cbb+wbab,cbc,pa-wbab,pb,pc,class=3>
+<a,b,c|bab-xbaa,bac,caa,cab,cac-baa,cbb-baa,cbc,pa-baa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)
+<a,b,c|bab-xbaa,bac,caa,cab,cac-wbaa,cbb-wbaa,cbc,pa-baa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab-xbaa,bac,caa,cab,cac-w^2baa,cbb-w^2baa,cbc,pa-baa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab-xbaa,bac,caa,cab,cac-baa,cbb-baa,cbc,pa-wbaa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)
+<a,b,c|bab-xbaa,bac,caa,cab,cac-wbaa,cbb-wbaa,cbc,pa-wbaa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab-xbaa,bac,caa,cab,cac-w^2baa,cbb-w^2baa,cbc,pa-wbaa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab,bac,caa,cab,cac,cbb,cbc,pa,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac-bab,cbb,cbc,pa,pb,pc,class=3>
+<a,b,c|baa,bac,caa,cab,cac-wbab,cbb,cbc,pa,pb,pc,class=3>
+<a,b,c|baa,bac,caa-bab,cab,cac,cbb,cbc,pa,pb,pc,class=3>
+<a,b,c|bab,bac,caa,cab,cac-baa,cbb-baa,cbc-xbaa,pa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)
+<a,b,c|bab,bac,caa,cab,cac-baa,cbb-wbaa,cbc-xbaa,pa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab,bac,caa,cab,cac-baa,cbb-w^2baa,cbc-xbaa,pa,pb,pc,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|bab-baa,bac,caa-baa,cab,cac+baa,cbb+baa,cbc-baa,pa,pb,pc,class=3>

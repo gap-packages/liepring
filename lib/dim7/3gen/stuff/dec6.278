@@ -1,0 +1,9 @@
+//(5p + 3)/2 algebras
+<a,b,c|cb-caa,cac,pa-ba,pb,pc-xcaa,class=4>(x ne 0,-1,2,1/2)
+<a,b,c|cb-caa,cac,pa-ba,pb,pc-xcaaa,class=4>(all x, x~-x)
+<a,b,c|cb-caa,cac,pa-ba,pb-caaa,pc-xcaaa,class=4>(all x, x~-x)
+<a,b,c|cb-caa,cac,pa-ba,pb,pc+caa,class=4>
+<a,b,c|cb-caa,cac,pa-ba,pb-caaa,pc+caa,class=4>
+<a,b,c|cb-caa,cac,pa-ba,pb,pc-2caa-xcaaa,class=4>(all x, x~-x)
+<a,b,c|cb-caa,cac,pa-ba,pb,pc-xcaa,class=4>(x=1/2)
+<a,b,c|cb-caa,cac-caaa,pa-ba,pb,pc-xcaa,class=4>(x=1/2)

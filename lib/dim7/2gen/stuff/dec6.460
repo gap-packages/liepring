@@ -1,0 +1,13 @@
+//3p-3+gcd(p-1,4) algebras
+<a,b|baa-babb,p^2a-xbabba,pb-babb,class=5>(all x, x~-x)(p=3 mod 4)
+<a,b|baa-babb,p^2a-xbabba,pb-wbabb,class=5>(all x, x~-x)(p=3 mod 4)
+<a,b|baa-babb,p^2a,pb-babb-xbabba,class=5>(x ne 0)(p=3 mod 4)
+<a,b|baa-babb,p^2a,pb-wbabb-xbabba,class=5>(x ne 0)(p=3 mod 4)
+<a,b|baa-babb,p^2a-xbabba,pb-babb,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baa-babb,p^2a,pb-babb-xbabba,class=5>(x ne 0, x~-x)(p=1 mod 4)
+<a,b|baa-babb,p^2a-xbabba,pb-wbabb,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baa-babb,p^2a,pb-wbabb-xbabba,class=5>(x ne 0, x~-x)(p=1 mod 4)
+<a,b|baa-babb,p^2a-xbabba,pb-w^2babb,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baa-babb,p^2a,pb-w^2babb-xbabba,class=5>(x ne 0, x~-x)(p=1 mod 4)
+<a,b|baa-babb,p^2a-xbabba,pb-w^3babb,class=5>(all x, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b|baa-babb,p^2a,pb-w^3babb-xbabba,class=5>(x ne 0, x~-x)(p=1 mod 4)

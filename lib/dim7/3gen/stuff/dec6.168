@@ -1,0 +1,11 @@
+//p^3 + 2p^2 + 2p + 2 + gcd(p-1,3) algebras
+<a,b,c|ca-baa,cb,pa,pb,pc-baa,class=4>
+<a,b,c|ca-baa,cb,pa-babb,pb,pc-baa,class=4>
+<a,b,c|ca-baa,cb,pa-wbabb,pb,pc-baa,class=4>(p=1 mod 3)
+<a,b,c|ca-baa,cb,pa-w^2babb,pb,pc-baa,class=4>(p=1 mod 3)
+<a,b,c|ca-baa,cb,pa-xbabb,pb,pc-baa-babb,class=4>(all x, x~-x)
+<a,b,c|ca-baa,cb,pa-xbabb,pb,pc-baa-wbabb,class=4>(all x, x~-x)
+<a,b,c|ca-baa,cb,pa-ybabb,pb-babb,pc-baa-xbabb,class=4>(all x,y, y~-y)
+<a,b,c|ca-baa,cb,pa-ybabb,pb-wbabb,pc-baa-xbabb,class=4>(all x,y, y~-y)
+<a,b,c|ca-baa-babb,cb,pa-zbabb,pb-xbabb,pc-baa-ybabb,class=4>(all x,y,z, z~-z)
+<a,b,c|ca-baa-wbabb,cb,pa-zbabb,pb-xbabb,pc-baa-ybabb,class=4>(all x,y,z, z~-z)

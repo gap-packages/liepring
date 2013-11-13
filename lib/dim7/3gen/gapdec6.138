@@ -1,0 +1,4 @@
+#p(p+1)/2 algebras
+Append( LIE_DATA[7], [
+[7,3,4,"<a,b,c|ca-bab,cb,pa-baa-ybabb,pb-baa,pc-xbabb,class=4>",[[5,1,7,y],[4,1],[5,1],[6,1],[],[7,x],[5,1],[6,1],[7,1],[],[],[],[],[],[],[],[7,1]],"all x,y, y~-y",,"7.1608"]
+]);

@@ -1,0 +1,25 @@
+//3p + 18 + gcd(p-1,3) algebras
+<a,b,c|baa,bab,bac,cb-xp^2b,pa-ca,pc,class=3>(all x)
+<a,b,c|baa,bab,p^2b,cb,pa-ca,pc,class=3>
+<a,b,c|baa,bab,p^2b-bac,cb,pa-ca,pc,class=3>
+<a,b,c|baa,bac,p^2b,cb,pa-ca,pc,class=3>
+<a,b,c|baa,bac,p^2b,cb,pa-ca-bab,pc,class=3>
+<a,b,c|baa,bac,p^2b,cb,pa-ca-wbab,pc,class=3>
+<a,b,c|baa,bac,p^2b,cb,pa-ca,pc-bab,class=3>
+<a,b,c|baa,bac,p^2b-bab,cb,pa-ca,pc,class=3>
+<a,b,c|bab,bac,p^2b,cb,pa-ca,pc,class=3>
+<a,b,c|bab,bac,p^2b,cb-baa,pa-ca,pc,class=3>
+<a,b,c|bab,bac,p^2b,cb-wbaa,pa-ca,pc,class=3>
+<a,b,c|bab,bac,p^2b,cb,pa-ca,pc-baa,class=3>
+<a,b,c|bab,bac,p^2b,cb-baa,pa-ca,pc-baa,class=3>
+<a,b,c|bab,bac,p^2b,cb-wbaa,pa-ca,pc-baa,class=3>
+<a,b,c|bab,bac,p^2b-baa,cb-xbaa,pa-ca,pc,class=3>(all x)
+<a,b,c|bab,bac,p^2b-wbaa,cb-xbaa,pa-ca,pc,class=3>(all x)
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca,pc,class=3>
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca-baa,pc,class=3>
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca-wbaa,pc,class=3>
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca,pc-baa,class=3>
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca,pc-wbaa,class=3>(p=1 mod 3)
+<a,b,c|bab-baa,bac,p^2b,cb,pa-ca,pc-w^2baa,class=3>(p=1 mod 3)
+<a,b,c|bab-baa,bac,p^2b-baa,cb,pa-ca,pc,class=3>
+<a,b,c|bab-baa,bac,p^2b-wbaa,cb,pa-ca,pc,class=3>

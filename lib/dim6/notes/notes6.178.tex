@@ -1,0 +1,201 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Thursday, June 27, 2013 17:23:01}
+%TCIDATA{LastRevised=Friday, June 28, 2013 11:25:03}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$A=\left( 
+%\begin{array}{cc}
+%t & x \\ 
+%y & z%
+%\end{array}%
+%\right) $
+%$P=\left( 
+%\begin{array}{ll}
+%-1 & 0 \\ 
+%0 & 1%
+%\end{array}%
+%\right) $
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 6.178}
+\author{Michael Vaughan-Lee}
+\date{June 2013}
+\maketitle
+
+Algebra 6.178 has four paramaters $x,y,z,t$ taking all integer values,
+subject to $A=\left( 
+\begin{array}{cc}
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ being non-singular modulo $p$. Two such parameter matrices $A$ and 
+$B$ define isomorphic algebras if and only if%
+\[
+B=\frac{1}{\det P}PAP^{-1}\func{mod}p
+\]%
+for some matrix $P$ of the form%
+\begin{equation}
+\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+\omega \beta  & \alpha 
+\end{array}%
+\right) \text{ or }\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+-\omega \beta  & -\alpha 
+\end{array}%
+\right) 
+\end{equation}%
+which is non-singular modulo $p$. (Here, as elsewhere, $\omega $ is a
+primitive element modulo $p$.) So we need to compute the orbits of GL$(2,p)$
+under the action of the subroup of GL$(2,p)$ consisting of matrices of the
+form (1). The set of all matrices $P$ of this form is a group $G$ of order $%
+2(p^{2}-1)$. The number of orbits is $p^{2}+(p+1)/2-\gcd (p-1,4)/2$.
+
+We show that every orbit contains a matrix $\left( 
+\begin{array}{cc}
+0 & x \\ 
+y & z%
+\end{array}%
+\right) $ or $\left( 
+\begin{array}{cc}
+1 & x \\ 
+y & z%
+\end{array}%
+\right) $.
+
+Let $A=\left( 
+\begin{array}{cc}
+t & x \\ 
+y & z%
+\end{array}%
+\right) $.
+
+If $P=\left( 
+\begin{array}{ll}
+\alpha  & 0 \\ 
+0 & \alpha 
+\end{array}%
+\right) $ then $\frac{1}{\det P}PAP^{-1}=\allowbreak \left( 
+\begin{array}{cc}
+\frac{t}{\alpha ^{2}} & \frac{x}{\alpha ^{2}} \\ 
+\frac{y}{\alpha ^{2}} & \frac{z}{\alpha ^{2}}%
+\end{array}%
+\right) $. This implies that we can take $t=0$ or $1$ provided $t$ is a
+square.
+
+If $P=\left( 
+\begin{array}{ll}
+\alpha & 0 \\ 
+0 & -\alpha%
+\end{array}%
+\right) $ then $\frac{1}{\det P}PAP^{-1}=\allowbreak \left( 
+\begin{array}{cc}
+-\frac{t}{\alpha ^{2}} & \frac{x}{\alpha ^{2}} \\ 
+\frac{y}{\alpha ^{2}} & -\frac{z}{\alpha ^{2}}%
+\end{array}%
+\right) $, which means that you can take $t=0$ or 1 unless $-1$ is a square,
+i.e. unless $p=1\func{mod}4$.
+
+If $P=\left( 
+\begin{array}{ll}
+0 & \beta  \\ 
+\omega \beta  & 0%
+\end{array}%
+\right) $ then $\frac{1}{\det P}PAP^{-1}=\allowbreak \left( 
+\begin{array}{cc}
+-\frac{z}{\beta ^{2}\omega } & -\frac{y}{\beta ^{2}\omega ^{2}} \\ 
+-\frac{x}{\beta ^{2}} & -\frac{t}{\beta ^{2}\omega }%
+\end{array}%
+\right) $, so in the case $p=1\func{mod}4$ you can take $t=0$ or $1$
+provided $t$ is a square or $z$ is not a square.
+
+More generally, if $P=\left( 
+\begin{array}{ll}
+\alpha  & \beta  \\ 
+\omega \beta  & \alpha 
+\end{array}%
+\right) $ then 
+\begin{eqnarray*}
+&&\frac{1}{\det P}PAP^{-1} \\
+&=&\frac{1}{\left( \alpha ^{2}-\beta ^{2}\omega \right) ^{2}}\left( 
+\begin{array}{cc}
+t\alpha ^{2}+y\alpha \beta -x\alpha \beta \omega -z\beta ^{2}\omega  & 
+x\alpha ^{2}-y\beta ^{2}-t\alpha \beta +z\alpha \beta  \\ 
+y\alpha ^{2}-x\beta ^{2}\omega ^{2}+t\alpha \beta \omega -z\alpha \beta
+\omega  & z\alpha ^{2}-y\alpha \beta -t\beta ^{2}\omega +x\alpha \beta
+\omega 
+\end{array}%
+\right) .
+\end{eqnarray*}%
+$\allowbreak $So to show that we can take $t=0$ or $1$ even in the case $p=1%
+\func{mod}4$, we need to show that whatever the values of $t,x,y,z$ we can
+always find $\alpha ,\beta $ (not both zero) such that
+
+\[
+t\alpha ^{2}+y\alpha \beta -x\alpha \beta \omega -z\beta ^{2}\omega 
+\]%
+is a square. Clearly this is possible if $t$ is a square, or if $z$ is not a
+square. So let $p=1\func{mod}4$, and assume that $t$ is not a square and
+that $z$ is a square. We show that we can always find some value of $\alpha $
+for which%
+\[
+t\alpha ^{2}+y\alpha -x\alpha \omega -z\omega 
+\]%
+is a square. (Since $z$ is a square, this value of $\alpha $ cannot be
+zero.) Completing the square, we have%
+\[
+t\alpha ^{2}+y\alpha -x\alpha \omega -z\omega =t(\alpha +\frac{y-x\omega }{2t%
+})^{2}-\frac{(y-x\omega )^{2}}{4t}-z\omega .
+\]%
+Setting $\frac{(y-x\omega )^{2}}{4t}+z\omega $ equal to $\lambda $, we see
+that finding $\alpha $ such that $t\alpha ^{2}+y\alpha -x\alpha \omega
+-z\omega $ is a square is equivalent to finding $\alpha $ such that 
+\[
+t\alpha ^{2}-\lambda 
+\]%
+is a square. If $\lambda $ is a square then (since $p=1\func{mod}4$) we see
+that $t\alpha ^{2}-\lambda $ is a square when $\alpha =0$. On the other hand
+if $\lambda $ is not a square then (since $t$ is not a square) we can find $%
+\alpha $ such that $t\alpha ^{2}-\lambda =0$.
+
+So we can assume that $t=0$ or 1, This means that we can find
+representatives for the $p^{2}+(p+1)/2-\gcd (p-1,4)/2$ orbits in work of
+order $p^{5}$. Not brilliant --- it would be nice to do better.
+
+\end{document}

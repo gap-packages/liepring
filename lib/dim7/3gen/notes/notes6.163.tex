@@ -1,0 +1,176 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Saturday, July 20, 2013 14:50:26}
+%TCIDATA{LastRevised=Saturday, August 10, 2013 17:47:15}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebras 6.163 - 6.167}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+Algebras 6.163 -- 6.167 give a classification of algebras of order $p^{6}$
+with presentations 
+\[
+\langle a,b,c\,|\,ca-baa,\,cb,\,pa-\lambda baa-\mu bab,\,pb+\nu baa+\xi
+bab,\,pc,\,\text{class }3\rangle 
+\]%
+with $\lambda ,\mu ,\nu ,\xi \neq 0$. Most of these algebras are terminal,
+and we need a slightly different classification of these algebras from that
+given in the classification of nilpotent Lie rings of order $p^{6}$, so as
+to classify the capable ones. It turns out that $\frac{5}{2}p-\frac{9}{2}+%
+\frac{1}{2}\gcd (p-1,4)$ of these algebras are capable, and that they have a
+total of $\frac{1}{2}p^{3}+2p^{2}-5p+\frac{1}{2}+\frac{p}{2}\gcd (p-1,4)$
+descendants of order $p^{7}$ and $p$-class 4.
+
+Let $L$ have the presentation above, and suppose that $a^{\prime },b^{\prime
+},c^{\prime }$ generate $L$ and satisfy similar relations, but with
+(possibly) different $\lambda ,\mu ,\nu ,\xi $. Then 
+\begin{eqnarray*}
+a^{\prime } &=&\alpha a+\gamma c, \\
+b^{\prime } &=&\delta b+\varepsilon c, \\
+c^{\prime } &=&\alpha \delta c
+\end{eqnarray*}%
+modulo $L_{2}$ and 
+\begin{eqnarray*}
+pa^{\prime } &=&\frac{\lambda }{\alpha \delta }b^{\prime }a^{\prime
+}a^{\prime }+\frac{\mu }{\delta ^{2}}b^{\prime }a^{\prime }b^{\prime }, \\
+pb^{\prime } &=&\frac{\nu }{\alpha ^{2}}b^{\prime }a^{\prime }a^{\prime }+%
+\frac{\xi }{\alpha \delta }b^{\prime }a^{\prime }b^{\prime }
+\end{eqnarray*}%
+or 
+\begin{eqnarray*}
+a^{\prime } &=&\alpha b+\gamma c, \\
+b^{\prime } &=&\delta a+\varepsilon c, \\
+c^{\prime } &=&\alpha \delta c
+\end{eqnarray*}%
+modulo $L_{2}$ and 
+\begin{eqnarray*}
+pa^{\prime } &=&\frac{\xi }{\alpha \delta }b^{\prime }a^{\prime }a^{\prime }+%
+\frac{\nu }{\delta ^{2}}b^{\prime }a^{\prime }b^{\prime }, \\
+pb^{\prime } &=&\frac{\mu }{\alpha ^{2}}b^{\prime }a^{\prime }a^{\prime }+%
+\frac{\lambda }{\alpha \delta }b^{\prime }a^{\prime }b^{\prime }.
+\end{eqnarray*}
+
+So we can take $\lambda =1$ and $\mu =1$ or $\omega $ (or any other fixed
+integer which is not a square $\func{mod}p)$. Given these values of $\lambda
+,\mu $ it turns out that the algebra is terminal unless $\xi =1$ or $\xi
+=\mu \nu $.
+
+So we have two families of capable algebras of order $p^{6}$:
+
+\[
+\langle a,b,c\,|\,ca-baa,\,cb,\,pa-baa-\mu bab,\,pb+\nu baa+bab,\,pc,\,\text{%
+class }3\rangle , 
+\]
+
+\[
+\langle a,b,c\,|\,ca-baa,\,cb,\,pa-baa-\mu bab,\,pb+\nu baa+\mu \nu
+bab,\,pc,\,\text{class }3\rangle . 
+\]
+
+These two families have immediate descendants of order $p^{7}$ with the
+following presentations involving parameters $y,z,t$:
+
+\[
+\langle a,b,c\,|\,ca-baa,\,cb,\,pa-baa-\mu bab-ybaaa,\,pb+\nu
+baa+bab-zbaaa,\,pc-tbaaa,\,\text{class }3\rangle , 
+\]
+
+\[
+\langle a,b,c\,|\,ca-baa,\,cb,\,pa-baa-\mu bab-ybaaa,\,pb+\nu baa+\mu \nu
+bab-zbaaa,\,pc-tbaaa,\,\text{class }3\rangle . 
+\]
+
+For the first family of descendants we consider transformations of the form%
+\begin{eqnarray*}
+a^{\prime } &=&\pm a+\gamma c, \\
+b^{\prime } &=&\pm b+\varepsilon c, \\
+c^{\prime } &=&c,
+\end{eqnarray*}%
+where if $\mu \nu =1$ we need $\gamma =\mu \varepsilon $, and
+transformations of the form 
+\begin{eqnarray*}
+a^{\prime } &=&\alpha b+\gamma c, \\
+b^{\prime } &=&\alpha ^{-1}a+\varepsilon c, \\
+c^{\prime } &=&c,
+\end{eqnarray*}%
+where $\alpha ^{2}\nu =\mu $, and where if $\mu \nu =1$ we need $\gamma =\mu
+\varepsilon $. For these transformations we have%
+\begin{eqnarray*}
+y &\rightarrow &\pm y+\gamma t+\gamma \mu ^{-1}+\varepsilon  \\
+z &\rightarrow &\pm z+\varepsilon t-\nu \gamma \mu ^{-1}+\nu \varepsilon
+-2\varepsilon \mu ^{-1}, \\
+t &\rightarrow &t,
+\end{eqnarray*}%
+and%
+\begin{eqnarray*}
+y &\rightarrow &-\alpha z-\gamma t+\varepsilon -\nu \gamma +2\gamma \mu
+^{-1}, \\
+z &\rightarrow &-\alpha ^{-1}y-\varepsilon t-\gamma \mu ^{-1}\nu
+-\varepsilon \mu ^{-1}, \\
+t &\rightarrow &-t-\nu +\mu ^{-1}.
+\end{eqnarray*}
+
+For the second family of descendants we can assume that $\mu \nu \neq 1$. We
+consider transformations of the form%
+\begin{eqnarray*}
+a^{\prime } &=&\pm a+\mu \varepsilon c, \\
+b^{\prime } &=&\pm b+\varepsilon c, \\
+c^{\prime } &=&c,
+\end{eqnarray*}%
+and, when $\mu \nu =-1$ and $p=1\func{mod}4$, transformations of the form%
+\begin{eqnarray*}
+a^{\prime } &=&\alpha b+\mu \varepsilon c, \\
+b^{\prime } &=&-\alpha ^{-1}a+\varepsilon c, \\
+c^{\prime } &=&-c,
+\end{eqnarray*}%
+where $\alpha ^{2}=-\mu ^{2}$. For these transformations we have%
+\begin{eqnarray*}
+y &\rightarrow &\pm y+\mu \varepsilon t+2\varepsilon , \\
+z &\rightarrow &\pm z+\varepsilon t-2\nu \varepsilon , \\
+t &\rightarrow &t,
+\end{eqnarray*}%
+and%
+\begin{eqnarray*}
+y &\rightarrow &-\alpha z-\mu \varepsilon t-2\varepsilon , \\
+z &\rightarrow &\alpha ^{-1}y-\varepsilon t+2\nu \varepsilon , \\
+t &\rightarrow &t.
+\end{eqnarray*}
+
+There is a \textsc{Magma} program to compute representative sets of
+parameters in notes6.163.m.
+
+\end{document}

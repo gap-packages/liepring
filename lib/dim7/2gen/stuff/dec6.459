@@ -1,0 +1,18 @@
+//4p+2gcd(p-1,3)+gcd(p-1,4)+2gcd(p-1,5) algebras
+<a,b|babba,baa-babb,p^2a,pb,class=5>
+<a,b|babba,baa-babb,p^2a-babbb,pb,class=5>
+<a,b|babba,baa-babb,p^2a-wbabbb,pb,class=5>
+<a,b|babba,baa-babb,p^2a-w^2babbb,pb,class=5>(p=1 mod 4)
+<a,b|babba,baa-babb,p^2a-w^3babbb,pb,class=5>(p=1 mod 4)
+<a,b|babba,baa-babb,p^2a,pb-babbb,class=5>
+<a,b|babba,baa-babb,p^2a,pb-xbabbb,class=5>(x=w,w^2,w^3,w^4)(p=1 mod 5)
+<a,b|babba,baa-babb-babbb,p^2a-xbabbb,pb,class=5>(all x)
+<a,b|babba,baa-babb-babbb,p^2a,pb-xbabbb,class=5>(x ne 0)
+<a,b|babbb,baa-babb,p^2a,pb,class=5>
+<a,b|babbb,baa-babb,p^2a-babba,pb,class=5>
+<a,b|babbb,baa-babb,p^2a-xbabba,pb,class=5>(x=w,w^2,w^3,w^4)(p=1 mod 5)
+<a,b|babbb,baa-babb,p^2a,pb-babba,class=5>
+<a,b|babbb,baa-babb,p^2a,pb-wbabba,class=5>
+<a,b|babbb,baa-babb,p^2a,pb-xbabba,class=5>(x=w^2,w^3,w^4,w^5)(p=1 mod 3)
+<a,b|babbb-babba,baa-babb,p^2a-xbabba,pb,class=5>(all x)
+<a,b|babbb-babba,baa-babb,p^2a,pb-xbabba,class=5>(x ne 0)

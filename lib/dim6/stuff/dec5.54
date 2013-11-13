@@ -1,0 +1,14 @@
+//3+2gcd(p-1,3)+gcd(p-1,4) algebras
+<a,b|baa,p^2a,pb,class=4>6.454
+<a,b|baa,p^2a,pb-babb,class=4>6.455
+<a,b|baa,p^2a-babb,pb,class=4>6.456
+<a,b|baa,p^2a-wbabb,pb,class=4>(p=1 mod 3)6.457
+<a,b|baa,p^2a-w^2babb,pb,class=4>(p=1 mod 3)6.458
+<a,b|baa-babb,p^2a,pb,class=4>6.459
+<a,b|baa-babb,p^2a,pb-babb,class=4>6.460
+<a,b|baa-babb,p^2a,pb-wbabb,class=4>6.461
+<a,b|baa-babb,p^2a,pb-w^2babb,class=4>(p=1 mod 4)6.462
+<a,b|baa-babb,p^2a,pb-w^3babb,class=4>(p=1 mod 4)6.463
+<a,b|baa-babb,p^2a-babb,pb,class=4>6.464
+<a,b|baa-babb,p^2a-wbabb,pb,class=4>(p=1 mod 3)6.465
+<a,b|baa-babb,p^2a-w^2babb,pb,class=4>(p=1 mod 3)6.466

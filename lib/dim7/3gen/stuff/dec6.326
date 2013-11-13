@@ -1,0 +1,44 @@
+//4p + 5 + 4gcd(p-1,3) + 2gcd(p-1,4) + 4gcd(p-1,5) algebras
+<a,b,c|baaaa,bab-baaa,ca,cb,pa,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca,cb,pa-baaab,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca,cb,pa-wbaaab,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca,cb,pa-xbaaab,pb,pc,class=5>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|baaaa,bab-baaa,ca,cb,pa,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca,cb,pa,pb-ybaaab,pc,class=5>(y=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|baaaa,bab-baaa,ca,cb,pa-xbaaab,pb-baaab,pc,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)
+<a,b,c|baaaa,bab-baaa,ca,cb,pa-xbaaab,pb-ybaaab,pc,class=5>(y=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)
+<a,b,c|baaaa,bab-baaa,ca,cb,pa,pb,pc-baaab,class=5>
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa-baaab,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa-wbaaab,pb,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa-xbaaab,pb,pc,class=5>(x=w^i, i=2,3,4,5)(p=1 mod 3)
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa,pb-baaab,pc,class=5>
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa,pb-xbaaab,pc,class=5>(x=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa-xbaaab,pb-baaab,pc,class=5>(x ne 0, x~x' if x^5=x'^5 mod p)
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa-xbaaab,pb-ybaaab,pc,class=5>(y=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p)(p=1 mod 5)
+<a,b,c|baaaa,bab-baaa,ca-baaab,cb,pa,pb,pc-baaab,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb,pa-xbaaaa,pb,pc,class=5>(x=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb,pa-xbaaaa,pb-baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|baaab,bab-baaa,ca,cb,pa-xbaaaa,pb-wbaaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|baaab,bab-baaa,ca,cb,pa-xbaaaa,pb-w^2baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb,pa-xbaaaa,pb-w^3baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-baaaa,pb,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-xbaaaa,pb,pc,class=5>(x=w^i, i=1,2,3,4)(p=1 mod 5)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb-baaaa,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb-wbaaaa,pc,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb-w^2baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb-w^3baaaa,pc,class=5>(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-xbaaaa,pb-baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-xbaaaa,pb-wbaaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-xbaaaa,pb-w^2baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa-xbaaaa,pb-w^3baaaa,pc,class=5>(x ne 0, x~x' if x^4=x'^4 mod p)(p=1 mod 4)
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb,pc-baaaa,class=5>
+<a,b,c|baaab,bab-baaa,ca,cb-baaaa,pa,pb,pc-wbaaaa,class=5>

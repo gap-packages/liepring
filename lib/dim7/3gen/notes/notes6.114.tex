@@ -1,0 +1,102 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Friday, July 19, 2013 11:25:23}
+%TCIDATA{LastRevised=Friday, July 19, 2013 12:46:00}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 6.114}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+Algebra 6.114 has presentation%
+\[
+\langle a,b,c\,|\,pa-ba,\,pb-cb,\,pc-kba-ca,\,\text{class }2\rangle
+\;(k=0,1,\ldots ,p-1). 
+\]
+
+Over all $p$ values of $k$, algebra 6.114 has $4p-4$ descendants of order $%
+p^{7}$ and $p$-class 3. The cases $k=-1$ and $k=3$ are straightforward, but
+things are more complicated when $k\neq -1,3$. In these cases we have a
+parametrized family of algebras%
+\[
+\langle a,b,c\,|\,bac-zbab,pa-ba,\,pb-cb,\,pc-kba-ca,\,\text{class }3\rangle
+,
+\]%
+where (for a given $k\neq -1,3$) $z$ and $z^{\prime }$ define isomorphic
+algebras if the ratios $1:z$ and $1:z^{\prime }$ are in the same orbit of
+ratios $\alpha :\beta $ under the action%
+\[
+\left( 
+\begin{array}{c}
+\alpha  \\ 
+\beta 
+\end{array}%
+\right) \rightarrow A\left( 
+\begin{array}{c}
+\alpha  \\ 
+\beta 
+\end{array}%
+\right) 
+\]%
+where $A$ equals%
+\[
+\left( 
+\begin{array}{cc}
+k-1 & 1 \\ 
+-1 & 0%
+\end{array}%
+\right) \text{ or }\left( 
+\begin{array}{cc}
+k^{2}-2k & k-1 \\ 
+1-k & -1%
+\end{array}%
+\right) \text{ or }\left( 
+\begin{array}{cc}
+\allowbreak \left( 1+\gamma k\right) \left( \gamma k-2\gamma +1\right)  & 
+\allowbreak \gamma \left( \gamma k+2-\gamma \right)  \\ 
+-\gamma \left( \gamma k+2-\gamma \right)  & -\left( -1+\gamma \right) \left(
+\gamma +1\right) 
+\end{array}%
+\right) 
+\]%
+with $\gamma \neq -1$ and $\gamma $ not a root of $\allowbreak \gamma
+^{2}+(k-1)\gamma +1=0$. (Note that the ratio $1:0$ is in the same orbit as
+the ratio $0:1$.)
+
+A \textsc{Magma} program to compute a set of representative pairs $(k,z)$ is
+given in Notes6.114.m.
+
+\end{document}

@@ -1,0 +1,11 @@
+//5p+4 algebras
+<a,b,c|bab,cac,pa-ba,pb-cb,pc,class=3>
+<a,b,c|bab,cac,pa-ba,pb-cb,pc-caa,class=3>
+<a,b,c|bab,cac,pa-ba,pb-cb,pc-wcaa,class=3>
+<a,b,c|bab,cac,pa-ba,pb-cb-caa,pc-xcaa,class=3>(all x)
+<a,b,c|bab,cac,pa-ba,pb-cb-wcaa,pc-xcaa,class=3>(all x)
+<a,b,c|bab,caa,pa-ba-xcac,pb-cb,pc,class=3>(all x)
+<a,b,c|bab,caa,pa-ba-xcac,pb-cb,pc-cac,class=3>(all x)
+<a,b,c|caa,cac,pa-ba,pb-cb,pc,class=3>
+<a,b,c|caa,cac-xbab,pa-ba,pb-cb,pc,class=3>(x ne 0)
+<a,b,c|caa-bab,cac+2bab,pa-ba,pb-cb,pc,class=3>

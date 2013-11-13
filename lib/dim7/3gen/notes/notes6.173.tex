@@ -1,0 +1,116 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Sunday, July 21, 2013 14:13:46}
+%TCIDATA{LastRevised=Sunday, July 21, 2013 17:54:08}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 6.173}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+Algebra 6.173 has presentation 
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa,\,pb,\,pc,\,\text{class }%
+3\rangle .
+\]
+
+If $L$ is a descendant of 6.173 of order $p^{7}$ then the commutator
+structure of $L$ is the same as that of one of the $p+2$ algebras with
+presentations 7.106 and 7.107 from the list of nilpotent Lie algebras of
+dimension 7 over $\mathbb{Z}_{p}$. So we can assume that $L$ has the
+following commutator relations 
+\[
+ca=bab,\,cb=\omega baa,\,baab=\lambda baaa,\,babb=\mu baaa
+\]%
+for some parameters $\lambda ,\mu $.
+
+If we let $C=\langle c\rangle +L^{2}$ then, if $a^{\prime },b^{\prime
+},c^{\prime }$ are the images of $a,b,c$ under an automorphism of $L$, we
+have 
+\begin{eqnarray*}
+a^{\prime } &=&\alpha a+\beta b\func{mod}C, \\
+b^{\prime } &=&\pm (\omega \beta a+\alpha b)\func{mod}C, \\
+c^{\prime } &=&(\alpha ^{2}-\omega \beta ^{2})c\func{mod}L^{3}
+\end{eqnarray*}%
+for some $\alpha ,\beta $ which are not both zero.  It follows that 
+\begin{eqnarray*}
+\lbrack b^{\prime },a^{\prime },a^{\prime },a^{\prime }] &=&\pm (\alpha
+^{2}-\omega \beta ^{2})(\alpha ^{2}+2\alpha \beta \lambda +\beta ^{2}\mu
+)[b,a,a,a], \\
+\lbrack b^{\prime },a^{\prime },a^{\prime },b^{\prime }] &=&(\alpha
+^{2}-\omega \beta ^{2})(\omega \alpha \beta +\alpha ^{2}\lambda +\omega
+\beta ^{2}\lambda +\alpha \beta \mu )[b,a,a,a], \\
+\lbrack b^{\prime },a^{\prime },b^{\prime },b^{\prime }] &=&\pm (\alpha
+^{2}-\omega \beta ^{2})(\omega ^{2}\beta ^{2}+2\omega \alpha \beta \lambda
++\alpha ^{2}\mu )[b,a,a,a].
+\end{eqnarray*}%
+So provided $\alpha ^{2}+2\alpha \beta \lambda +\beta ^{2}\mu \neq 0$ the
+effect of this automorphism is to transform the parameters $\lambda ,\mu $ to%
+\[
+\frac{\pm (\omega \alpha \beta +\alpha ^{2}\lambda +\omega \beta ^{2}\lambda
++\alpha \beta \mu )}{\alpha ^{2}+2\alpha \beta \lambda +\beta ^{2}\mu },\;%
+\frac{\omega ^{2}\beta ^{2}+2\omega \alpha \beta \lambda +\alpha ^{2}\mu }{%
+\alpha ^{2}+2\alpha \beta \lambda +\beta ^{2}\mu }.
+\]%
+There are $p+2$ orbits of pairs $\lambda ,\mu $ under this action.
+
+We pick a set representative pairs $\lambda ,\mu $ for these orbits, and get
+the following presentations for the descendants of 6.173 of order $p^{7}$:
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,baab-\lambda baaa,\,babb-\mu
+baaa,\,pa-ybaaa,\,pb-zbaaa,\,pc-tbaaa,\,\text{class }4\rangle .
+\]
+
+For each pair $\lambda ,\mu $ we compute the subgroup of the automorphism
+group which fixes $\lambda ,\mu $, and compute its action on the parameters $%
+y,z,\dot{t}$. It turns out that we need to treat the pair $\lambda =\mu =0$
+separately from the other pairs.
+
+If $\lambda =\mu =0$. Then the subgroup of the automorphism group we need to
+consider maps $a,b,c$ to $a^{\prime },b^{\prime },c^{\prime }$ where 
+\begin{eqnarray*}
+a^{\prime } &=&\alpha a, \\
+b^{\prime } &=&\pm \alpha b+\varepsilon c, \\
+c^{\prime } &=&\alpha ^{2}c,
+\end{eqnarray*}%
+with $b^{\prime }a^{\prime }a^{\prime }a^{\prime }=\pm \alpha ^{4}baaa$.
+
+In all other cases we can assume that if $pc\neq 0$ then $pa=pb=0$. A 
+\textsc{Magma} program to compute a set of representatives for the
+parameters $\lambda ,\mu ,y,z,t$ is given in notes6.173.m.
+
+\end{document}

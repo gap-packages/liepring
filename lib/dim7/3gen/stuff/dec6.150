@@ -1,0 +1,43 @@
+//4p+14+(p^2/2+2p+13/2)gcd(p-1,3)+gcd(p-1,4) algebras
+<a,b,c|baaa,baab,ca-baa,cb,pa,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa,cb,pa-babb,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa,cb,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa,cb,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa,cb,pa,pb-babb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa,cb,pa-babb,pb-babb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa,cb,pa-wbabb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa,cb,pa-w^2babb,pb-babb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa,cb,pa,pb,pc-babb,class=4>
+<a,b,c|baaa,baab,ca-baa,cb,pa,pb,pc-wbabb,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb-babb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb-wbabb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb-w^2babb,pc,class=4>(p=1 mod 4)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb-w^3babb,pc,class=4>(p=1 mod 4)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-babb,pb,pc,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-wbabb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-w^2babb,pb,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-babb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-wbabb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa-w^2babb,pb-xbabb,pc,class=4>(x ne 0, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb,pc-babb,class=4>
+<a,b,c|baaa,baab,ca-baa-babb,cb,pa,pb,pc-wbabb,class=4>
+<a,b,c|baab-baaa,babb-baaa,ca-baa,cb,pa-xbaaa,pb-ybaaa,pc-zbaaa,class=4>(See Notes6.150, Case 3)
+<a,b,c|babb+baaa,baab,ca-baa,cb,pa-xbaaa,pb-ybaaa,pc-zbaaa,class=4>(See Notes6.150, Case 4)
+<a,b,c|babb+wbaaa,baab,ca-baa,cb,pa-xbaaa,pb-ybaaa,pc,class=4>(See Notes6.150, Case 5)
+<a,b,c|baaa,babb,ca-baa,cb,pa,pb,pc,class=4>
+<a,b,c|baaa,babb,ca-baa,cb,pa,pb-baab,pc,class=4>
+<a,b,c|baaa,babb,ca-baa,cb,pa-baab,pb-baab,pc,class=4>
+<a,b,c|baaa,babb,ca-baa,cb,pa-baab,pb-wbaab,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,babb,ca-baa,cb,pa-baab,pb-w^2baab,pc,class=4>(p=1 mod 3)
+<a,b,c|baaa,babb,ca-baa,cb,pa,pb,pc-baab,class=4>
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb,pc,class=4>
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb-baab,pc,class=4>
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb-wbaab,pc,class=4>(p=1 mod 3)
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb-w^2baab,pc,class=4>(p=1 mod 3)
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa-baab,pb-xbaab,pc,class=4>(all x)
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa-wbaab,pb-xbaab,pc,class=4>(all x)(p=1 mod 3)
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa-w^2baab,pb-xbaab,pc,class=4>(all x)(p=1 mod 3)
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb,pc-baab,class=4>
+<a,b,c|babb-baab,baaa,ca-baa,cb,pa,pb,pc-wbaab,class=4>
+<a,b,c|baab-baaa,babb-xbaaa,ca-baa,cb,pa-ybaaa,pb-zbaaa,pc-tbaaa,class=4>(See Notes6.150, Case 8)

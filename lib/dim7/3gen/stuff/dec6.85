@@ -1,0 +1,4 @@
+//3 algebras
+<a,b,c|ba,ca,cb,p^2b,p^2c,class=3>
+<a,b,c|ba,ca-p^2a,cb,p^2b,p^2c,class=3>
+<a,b,c|ba,ca,cb-p^2a,p^2b,p^2c,class=3>

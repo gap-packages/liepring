@@ -1,0 +1,1576 @@
+
+//Main menu
+what:=27;
+while what ne 0 do
+print "          MAIN MENU";
+print " 1: Read in a presentation";
+print " 2: Start new calculation";
+print " 3: Print current presentation";
+print " 4: Get covering algebra";
+print " 5: Check Jacobi identity";
+print " 6: Enforce defining relations";
+print " 7: Save a presentation";
+print " 8: Read in a relation";
+print " 9: Enforce a prestored relation";
+print "10: Check effect of autos";
+print "11: Get group presentation via BCH formula";
+print " 0: Exit";
+
+readi what;
+
+if what eq 1 then
+//Read in a presentation
+read alg, "Input filename";
+/*
+old version
+s:=Read(alg);
+n:=#s;
+s:=Substring(s,1,n-1);
+*/
+//Read in a presentation
+s:=Read(alg);
+n:=#s;
+s:=Substring(s,1,n-1);
+print s;
+t:=Split(s,">");
+s:=t[1]*">";
+t:=Split(s,"|");
+t1:=Split(t[1],",");
+ndgen:=#t1;
+t1:=Split(t[2],",");
+numrel:=#t1-1;
+rels:=[];
+for i in [1..numrel] do
+  rels[i]:=trim(t1[i]);
+end for;
+t1:=Split(t1[numrel+1],"=");
+class:=StringToInteger(t1[2][1]);
+
+wt:=[];
+for i in [1..ndgen] do
+wt[i]:=1;
+end for;
+lastg:=ndgen;
+cc:=1;
+clend:=[];
+clend[1]:=ndgen;
+comms:=[];
+what:=3;
+end if;
+
+if what eq 2 then
+// Define a presentation
+readi ndgen, "Input number of defining generators";
+readi class, "Input (final) class";
+wt:=[1:i in [1..ndgen]];
+lastg:=ndgen;
+cc:=1;
+clend:=[];
+clend[1]:=ndgen;
+comms:=[];
+powers:=[];
+rels:=[];
+numrel:=0;
+print "Input relations - signal end with empty string";
+read s;
+while s ne "" do
+numrel:=numrel+1;
+rels[numrel]:=s;
+read s;
+end while;
+what:=3;
+end if;
+
+
+if what eq 3 then
+//print presentation
+print "Dimension",lastg,", Class",cc,", Defining generators",ndgen;
+
+if cc gt 1 then
+for i in [1..clend[cc-1]] do
+  v:=powers[i];
+  len:=0;
+  for k in [1..lastg] do
+    if v[k] ne 0 then
+      len:=len+1;
+      spot:=k;
+    end if;
+  end for;
+  if len gt 0 then
+    printf "p%m = ",i;
+  end if;
+  if len gt 0 then
+    for k in [1..spot-1] do
+      if v[k] ne 0 then
+      printf "%m^%m + ",k,v[k];
+      end if;
+    end for;
+    printf "%m^%m\n",spot,v[spot];
+  end if;
+end for;
+
+for i in [2..clend[cc-1]] do
+for j in [1..i-1] do
+if wt[i]+wt[j] le cc then
+  v:=comms[i][j];
+  len:=0;
+  for k in [1..lastg] do
+    if v[k] ne 0 then
+      len:=len+1;
+      spot:=k;
+    end if;
+  end for;
+  if len gt 0 then
+    printf "[%m,%m] = ",i,j;
+  end if;
+  if len gt 0 then
+    for k in [1..spot-1] do
+      if v[k] ne 0 then
+      printf "%m^%m + ",k,v[k];
+      end if;
+    end for;
+    printf "%m^%m\n",spot,v[spot];
+  end if;
+end if;
+end for;
+end for;
+
+end if;
+end if;
+
+if what eq 4 then
+//get cover
+s:="y";
+if cc eq class then
+  print "You have reached the predefined class";
+  read s,"Do you want to continue? (y or n)";
+end if;
+if s eq "y" then
+
+//get number of tails
+tails:=ndgen*(ndgen-1);
+tails:= tails div 2;
+tails:=tails+(lastg-ndgen)*ndgen;
+tails:=tails+ndgen;
+
+olastg:=lastg;
+nlastg:=tails+lastg;
+
+//add in trivial commutators and powers of weight cc+1
+v:=[P!0:i in [1..lastg]];
+if cc eq 1 then
+  i1:=1;
+else;
+  i1:=clend[cc-1]+1;
+end if;
+for i in [i1..lastg] do
+   comms[i]:=[];
+   powers[i]:=v;
+end for;
+for i in [2..lastg] do
+   for j in [1..i-1] do
+      if wt[i]+wt[j] eq cc+1 then
+         comms[i][j]:=v;
+      end if;
+   end for;
+end for;
+
+//extend powers
+for i in [1..lastg] do
+for k in [olastg+1..nlastg] do
+  powers[i][k]:=P!0;
+end for;
+end for;
+
+a:=cc;
+hold:=[];
+while a gt 0 do
+if a eq 1 then
+  j1:=2;
+else;
+  j1:=clend[a-1]+1;
+end if;
+j2:=clend[a];
+for j in [j1..j2] do
+for i in [1..ndgen] do
+if j gt i then
+//extend comms[j][i]
+for k in [olastg+1..nlastg] do
+  comms[j][i][k]:=P!0;
+end for;
+//add tail to [j,i], provided it is not a definition
+//and provided j is not a power
+def:=0;
+for k in [ndgen+1..lastg] do
+if defns[k] eq [j,i] then
+   def:=1;
+   break;
+end if;
+end for;
+if def eq 0 then
+   //check whether j is a power
+   if wt[j] gt 1 and defns[j][1] eq 0 then
+     k:=#hold;
+     hold[k+1]:=[j,i];
+   else;
+     lastg:=lastg+1;
+     wt[lastg]:=cc+1;
+     comms[j][i][lastg]:=P!1;
+     defns[lastg]:=[j,i];
+   end if;
+end if;
+end if;
+end for;
+end for;
+
+//now add in tails to powers
+if a eq 1 then
+  j1:=1;
+else;
+  j1:=clend[a-1]+1;
+end if;
+j2:=clend[a];
+for j in [j1..j2] do
+  //add tail to powers[j], provided it is not a definition
+  def:=0;
+  for k in [ndgen+1..lastg] do
+  if defns[k] eq [0,j] then
+     def:=1;
+     break;
+  end if;
+  end for;
+  if def eq 0 then
+    lastg:=lastg+1;
+    wt[lastg]:=cc+1;
+    powers[j][lastg]:=P!1;
+    defns[lastg]:=[0,j];
+  end if;
+end for;
+
+if a eq cc then
+   firspg:=lastg+1;
+end if;
+a:=a-1;
+end while;
+
+//now add in commutators stored in hold
+for k in [1..#hold] do
+  j:=hold[k][1];
+  i:=hold[k][2];
+  lastg:=lastg+1;
+  wt[lastg]:=cc+1;
+  comms[j][i][lastg]:=P!1;
+  defns[lastg]:=[j,i];
+end for;
+
+cc:=cc+1;
+clend[cc]:=lastg;
+if lastg ne nlastg then
+  print "Arghhh!";
+end if;
+
+
+if cc ge 4 then
+//Compute non-left-normed commutators
+for i in [ndgen+1..clend[cc-2]] do
+if 2*wt[i] le cc then
+b:=defns[i][1];
+a:=defns[i][2];
+//i=[b,a] if b ne 0, otherwise i = pa
+for j in [i+1..clend[cc-2]] do
+if wt[i]+wt[j] le cc then
+
+if b ne 0 then
+//set [j,i]=[j,b,a]-[j,a,b]
+v1:=[P!0:m in [1..lastg]];
+//get [j,b,a]
+m1:=clend[wt[j]+wt[b]-1]+1;
+m2:=clend[cc-wt[a]];
+for m in [m1..m2] do
+  g:=comms[j][b][m];
+  if g ne 0 then
+    v:=comms[m][a];
+    for n in [m1..lastg] do
+      v1[n]:=v1[n]+g*v[n];
+    end for;
+  end if;
+end for;
+//get [j,a,b]
+m1:=clend[wt[j]+wt[a]-1]+1;
+m2:=clend[cc-wt[b]];
+for m in [m1..m2] do
+  g:=comms[j][a][m];
+  if g ne 0 then
+    v:=comms[m][b];
+    for n in [m1..lastg] do
+      v1[n]:=v1[n]-g*v[n];
+    end for;
+  end if;
+end for;
+comms[j][i]:=v1;
+
+else;
+//set [j,i] = p[j,a]
+v1:=[P!0:m in [1..lastg]];
+for m in [1..clend[cc-1]] do
+  c:=comms[j][a][m];
+  if c ne 0 then
+    for n in [1..lastg] do
+      v1[n]:=v1[n]+c*powers[m][n];
+    end for;
+  end if;
+end for;
+comms[j][i]:=v1;
+end if;
+//comms[j][i] computed
+
+end if;
+end for;
+end if;
+end for;
+end if;
+
+end if;
+end if;
+
+
+if what eq 5 and cc ge 3 then
+//Jacobi
+for i in [1..ndgen] do
+for j in [i+1..clend[cc-2]-1] do
+for k in [j+1..clend[cc-2]] do
+if wt[i]+wt[j]+wt[k] le cc then
+v1:=[];
+for m in [1..lastg] do
+v1[m]:=P!0;
+end for;
+//do Jacobi (k,j,i)
+//get [k,j,i]
+m1:=clend[wt[k]+wt[j]-1]+1;
+m2:=clend[cc-wt[i]];
+for m in [m1..m2] do
+  g:=comms[k][j][m];
+  if g ne 0 then
+    v:=comms[m][i];
+    for n in [m1..lastg] do
+      v1[n]:=v1[n]+g*v[n];
+    end for;
+  end if;
+end for;
+//get [j,i,k]
+m1:=clend[wt[j]+wt[i]-1]+1;
+m2:=clend[cc-wt[k]];
+for m in [m1..m2] do
+  g:=comms[j][i][m];
+  if g ne 0 then
+    if m gt k then
+      v:=comms[m][k];
+      for n in [m1..lastg] do
+        v1[n]:=v1[n]+g*v[n];
+      end for;
+    end if;
+    if m lt k then
+      v:=comms[k][m];
+      for n in [m1..lastg] do
+        v1[n]:=v1[n]-g*v[n];
+      end for;
+    end if;
+  end if;
+end for;
+//get [i,k,j]
+m1:=clend[wt[i]+wt[k]-1]+1;
+m2:=clend[cc-wt[j]];
+for m in [m1..m2] do
+  g:=comms[k][i][m];
+  if g ne 0 then
+    v:=comms[m][j];
+    for n in [m1..lastg] do
+      v1[n]:=v1[n]-g*v[n];
+    end for;
+  end if;
+end for;
+// check if zero
+b:=0;
+for a in [1..lastg] do
+if v1[a] ne 0 then
+  b:=a;
+end if;
+end for;
+
+if b gt 0 then
+  m:=b;
+  if v1[b] ne 1 and v1[b] ne -1 then
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this Jacobi to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  end if;
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+end if;
+end for;
+end for;
+end for;
+
+//Check [pa,a]=0
+for i in [1..clend[cc-2]] do
+if 2*wt[i]+1 le cc then
+  v1:=[P!0:j in [1..lastg]];
+  for j in [i+1..clend[cc-wt[i]]] do
+    c:=powers[i][j];
+    if c ne 0 then
+      //add c*[j,i] to v
+      for k in [i+1..lastg] do
+        v1[k]:=v1[k]+c*comms[j][i][k];
+      end for; 
+    end if;
+  end for;
+// check if zero
+b:=0;
+for a in [1..lastg] do
+if v1[a] ne 0 then
+  b:=a;
+end if;
+end for;
+if b gt 0 then
+  m:=b;
+  if v1[b] ne 1 and v1[b] ne -1 then
+  printf "[p%m,%m]",i,i;
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this Jacobi to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  end if;
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+
+end if;
+end for;
+
+//Check [pb,a]=[b,pa]
+for i in [1..clend[cc-2]-1] do
+for j in [i+1..clend[cc-2]] do
+if wt[i]+wt[j]+1 le cc then
+  v1:=[P!0:k in [1..lastg]];
+  //set v1=[pj,i]
+  for k in [j+1..clend[cc-wt[i]]] do
+    c:=powers[j][k];
+    if c ne 0 then
+      for l in [j+1..lastg] do
+        v1[l]:=v1[l]+c*comms[k][i][l];
+      end for;
+    end if;
+  end for;
+  //Add [pi,j] to v1
+  for k in [i+1..clend[cc-wt[j]]] do
+    c:=powers[i][k];
+    if c ne 0 and k ne j then
+      if k gt j then
+        v2:=comms[k][j];
+      else;
+        v2:=comms[j][k];
+        c:=-c;
+      end if;
+      for l in [j+1..lastg] do
+        v1[l]:=v1[l]+c*v2[l];
+      end for;
+    end if;
+  end for;
+
+// check if zero
+b:=0;
+for a in [1..lastg] do
+if v1[a] ne 0 then
+  b:=a;
+end if;
+end for;
+if b gt 0 then
+  m:=b;
+  if v1[b] ne 1 and v1[b] ne -1 then
+  printf "[p%m,%m]=[%m,p%m]",j,i,j,i;
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this Jacobi to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  end if;
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+
+
+end if;
+end for;
+end for;
+
+//Check [pb,a]=p[b,a]
+for i in [1..clend[cc-2]-1] do
+for j in [i+1..clend[cc-2]] do
+if wt[i]+wt[j]+1 le cc then
+  v1:=[P!0:k in [1..lastg]];
+  //set v1=[pj,i]
+  for k in [j+1..clend[cc-wt[i]]] do
+    c:=powers[j][k];
+    if c ne 0 then
+      for l in [j+1..lastg] do
+        v1[l]:=v1[l]+c*comms[k][i][l];
+      end for;
+    end if;
+  end for;
+  //Subtract p[j,i] from v1
+  for k in [1..clend[cc-1]] do
+    c:=comms[j][i][k];
+    if c ne 0 then
+      for l in [1..lastg] do
+        v1[l]:=v1[l]-c*powers[k][l];
+      end for;
+    end if;
+  end for;
+
+// check if zero
+b:=0;
+for a in [1..lastg] do
+if v1[a] ne 0 then
+  b:=a;
+end if;
+end for;
+if b gt 0 then
+  m:=b;
+  if v1[b] ne 1 and v1[b] ne -1 then
+  printf "[p%m,%m]=[%m,p%m]",j,i,j,i;
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this Jacobi to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  end if;
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+
+
+end if;
+end for;
+end for;
+
+end if;
+
+if what eq 10 then
+missed:=[];
+missn:=0;
+//Check effect of autos
+for i in [ndgen+1..lastg] do
+a:=defns[i][1];
+b:=defns[i][2];
+if a ne 0 then
+//i=[a,b]
+u:=automs[a];
+v:=automs[b];
+l1:=clend[cc-1];
+w:=[];
+for j in [1..lastg] do
+  w[j]:=P!0;
+end for;
+for j in [1..l1] do
+for k in [1..l1] do
+  e:=u[j]*v[k];
+  if (wt[j]+wt[k] le cc) and (j ne k) and (e ne 0) then
+  if j gt k then
+    c:=comms[j][k];
+    for n in [1..lastg] do
+      w[n]:=w[n]+e*c[n];
+    end for;
+  else;
+    c:=comms[k][j];
+    for n in [1..lastg] do
+      w[n]:=w[n]-e*c[n];
+    end for;
+  end if;  
+  end if;
+end for;
+end for;
+//subtract away head of comms[a][b]
+c:=comms[a][b];
+  for n in [1..i-1] do
+    g:=c[n];
+    if g ne 0 then
+      v:=automs[n];
+      for j in [1..lastg] do
+        w[j]:=w[j]-g*v[j];
+      end for;
+    end if;
+  end for;
+automs[i]:=w;
+else;
+  //i=pb
+  v:=automs[b];
+  l1:=clend[cc-1];
+  w:=[P!0:j in [1..lastg]];
+  for j in [1..l1] do
+    c:=v[j];
+    if c ne 0 then
+      for k in [1..lastg] do
+        w[k]:=w[k]+c*powers[j][k];
+      end for;
+    end if;
+  end for;
+
+  //subtract away head of powers[b]
+  c:=powers[b];
+  for n in [1..i-1] do
+    g:=c[n];
+    if g ne 0 then
+      v:=automs[n];
+      for j in [1..lastg] do
+        w[j]:=w[j]-g*v[j];
+      end for;
+    end if;
+  end for;
+  automs[i]:=w;
+
+end if;
+end for;
+//This completes calculation of images of PCP gens
+
+// get rest of commutators
+for x in [2..l1] do
+for y in [1..x-1] do
+if wt[x]+wt[y] le cc then
+//print x,y;
+u:=automs[x];
+v:=automs[y];
+w:=[];
+for j in [1..lastg] do
+  w[j]:=P!0;
+end for;
+for j in [1..l1] do
+for k in [1..l1] do
+  e:=u[j]*v[k];
+  if (wt[j]+wt[k] le cc) and (j ne k) and (e ne 0) then
+  if j gt k then
+    c:=comms[j][k];
+    for n in [1..lastg] do
+      w[n]:=w[n]+e*c[n];
+    end for;
+  else;
+    c:=comms[k][j];
+    for n in [1..lastg] do
+      w[n]:=w[n]-e*c[n];
+    end for;
+  end if;  
+  end if;
+end for;
+end for;
+
+//compare w with image of comms[x][y]
+c:=comms[x][y];
+for n in [1..lastg] do
+  g:=c[n];
+  if g ne 0 then
+    v:=automs[n];
+    for i in [1..lastg] do
+      w[i]:=w[i]-g*v[i];
+    end for;
+  end if;
+end for;
+for i in [1..lastg] do
+  if w[i] ne 0 then
+    print x,y, "0 =",w[i];
+    missn:=missn+1;
+    missed[missn]:=w[i];
+  end if;
+end for;
+end if;
+end for;
+end for;
+
+//Check powers
+for x in [1..l1] do
+  u:=automs[x];
+  w:=[P!0:i in [1..lastg]];
+  for i in [1..l1] do
+    c:=u[i];
+    if c ne 0 then
+      //add c*pi to w
+      for j in [1..lastg] do
+        w[j]:=w[j]+c*powers[i][j];
+      end for;
+    end if;
+  end for;
+
+  //compare w with image of powers[x]
+  c:=powers[x];
+  for n in [1..lastg] do
+    g:=c[n];
+    if g ne 0 then
+      v:=automs[n];
+      for i in [1..lastg] do
+        w[i]:=w[i]-g*v[i];
+      end for;
+    end if;
+  end for;
+  for i in [1..lastg] do
+    if w[i] ne 0 then
+      print "p",x, " 0 =",w[i];
+      missn:=missn+1;
+      missed[missn]:=w[i];
+    end if;
+  end for;
+
+
+end for;
+//End of powers checking
+end if;
+
+if what eq 7 then
+//Save a presentation
+s:="<";
+for i in [1..ndgen-1] do
+  s:=s*gens[i]*",";
+end for;
+s:=s*gens[ndgen]*" | ";
+if #rels gt 0 then
+  numrel:=#rels;
+  for i in [1..numrel-1] do
+    s:=s*rels[i]*", ";
+  end for;
+  s:=s*rels[numrel]*", class="*IntegerToString(class)*">";
+else;
+  s:=s*"class="*IntegerToString(class)*">";
+end if;
+read algname, "Input name of output file";
+PrintFile(algname,s);
+read a,"Do you want to save automorphisms? y or n";
+if a eq "y" then
+  algname:="auts"*algname;
+  for i in [1..ndgen] do
+    PrintFile(algname,"automs[");
+    PrintFile(algname,i);
+    PrintFile(algname,"]:=");
+    PrintFile(algname,automs[i]);
+    PrintFile(algname,";");
+  end for;
+end if;
+
+end if;
+
+if what eq 8 then
+//Enforce a relation
+  v1:=[];
+  for i in [1..lastg] do
+    v1[i]:=P!0;
+  end for;
+  b:=0;
+  ccbeg:=clend[cc-1]+1;
+  print "Input relation as a vector from",ccbeg,"to",lastg;
+  for i in [ccbeg..lastg] do
+    readi j;
+    v1[i]:=P!j;
+    if j ne 0 then
+      b:=i;
+    end if;
+  end for;
+
+if b gt 0 then
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this relation to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+
+end if;
+
+if what eq 9 then
+print "You need to have set v1 equal to a vector of length";
+print "lastg, with entries in P";
+readi y,"Enter 0 if you want to continue, 1 if not";
+if y eq 0 then
+
+b:=0;
+for a in [1..lastg] do
+  if v1[a] ne 0 then
+    b:=a;
+  end if;
+end for;
+
+if b gt 0 then
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this relation to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+  end if;
+end if;
+
+end if;
+
+end if;
+
+if what eq 6 and cc gt 1 then
+//Enforce defining relations
+numrel:=#rels;
+if numrel gt 0 then
+for i in [1..numrel] do
+v1:=[P!0:i in [1..lastg]];
+s:=rels[i];
+while s ne "" do
+a:=split(s);
+s:=a[4];
+factor:=getpol(P,a[1]);
+exp:=StringToInteger(a[2]);
+t:=a[3];
+g:=StringToCode(t[1])-96;
+v2:=[P!0:j in [1..lastg]];
+v2[g]:=P!1;
+for j in [2..#t] do
+  //commute v2 with rest of entries
+  g:=StringToCode(t[j])-96;
+  v3:=[P!0:i in [1..lastg]];
+  for k in [1..clend[cc-1]] do
+    //commute v2 with g
+    c:=v2[k];
+    if c ne 0 then
+      h:=comms[k][g];
+      for l in [1..lastg] do
+        v3[l]:=v3[l]+c*h[l];
+      end for;
+    end if;
+  end for;
+  v2:=v3;
+end for;
+//now get appropriate power p^exp*v2
+if exp gt 0 then
+for j in [1..exp] do
+  v3:=[P!0:k in [1..lastg]];
+  for k in [1..clend[cc-1]] do
+    c:=v2[k];
+    if c ne 0 then
+      for l in [1..lastg] do
+        v3[l]:=v3[l]+c*powers[k][l];      
+      end for;
+    end if;
+  end for;
+  v2:=v3;
+end for;
+end if;
+//this completes calculati0on of p^exp*v2
+
+//add factor*v2 to v1
+for k in [1..lastg] do
+  v1[k]:=v1[k]+factor*v2[k];
+end for;
+
+end while;
+
+//enforce relation
+b:=0;
+for a in [1..lastg] do
+  if v1[a] ne 0 then
+    b:=a;
+  end if;
+end for;
+
+if b gt 0 then
+  m:=b;
+  if v1[b] ne 1 and v1[b] ne -1 then
+  for a in [1..b-1] do
+    if v1[a] ne 0 then
+      printf "%m^%m + ",a,v1[a];
+    end if;
+  end for;
+  printf "%m^%m\n",b,v1[b];
+  print "Do you want to use this relation to eliminate a generator",b;
+  readi m,"Enter 0 for NO, or i for YES -- generator i";
+  end if;
+  if m gt 0 then
+    if m gt lastg or v1[m] eq 0 then
+      print "tricky!";
+    else;
+      v27:=v1[m];
+      v27:=v27^-1;
+      for a in [2..clend[cc-1]] do
+      for b in [1..a-1] do
+      if wt[a]+wt[b] le cc then
+        v:=comms[a][b];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        comms[a][b]:=[];
+        for n in [1..lastg-1] do
+          comms[a][b][n]:=v[n];
+        end for;
+      end if;
+      end for;
+      end for;
+
+      for a in [1..clend[cc-1]] do
+        v:=powers[a];
+        g:=v[m];
+        if g ne 0 then
+          c:=g*v27;
+          for n in [1..lastg] do
+            v[n]:=v[n]-c*v1[n];
+          end for;
+        end if;
+        for n in [m..lastg-1] do
+          v[n]:=v[n+1];
+        end for;
+        powers[a]:=[];
+        for n in [1..lastg-1] do
+          powers[a][n]:=v[n];
+        end for;
+      end for;
+
+      lastg:=lastg-1;
+      if m lt firspg then
+        firspg:=firspg-1;
+      end if;
+      defn2:=[];
+      for n in [clend[1]+1..lastg] do
+        defn2[n]:=defns[n];
+        if n ge m then
+          defn2[n]:=defns[n+1];
+        end if;
+      end for;
+      defns:=defn2;
+    end if;
+    clend[cc]:=lastg;
+    end if;
+end if;
+
+//end of relation code
+end for;
+end if;
+end if;
+
+
+if what eq 11 then
+//Get group presentation via BCH
+bch:=[];
+for i in [1..ndgen] do
+  bch[i]:=[P!0:j in [1..lastg]];
+  bch[i][i]:=P!1;
+end for;
+for i in [ndgen+1..lastg] do
+  g:=defns[i][1];
+  h:=defns[i][2];
+  //if g ne 0 then i=[g,h] - use BCH to get [e^g,e^h]
+  //if g = 0 then i = ph.
+
+if g ne 0 then
+  u:=[bch[h],bch[g]];
+v1:=[P!0:j in [1..lastg]];
+s:=bchc;
+while s ne "" do
+a:=split(s);
+s:=a[4];
+factor:=getpol(P,a[1]);
+t:=a[3];
+v2:=bch[g];
+for j in [2..#t] do
+  //commute v2 with rest of entries
+  v4:=u[StringToCode(t[j])-96];
+  v3:=[P!0:i in [1..lastg]];
+  for j1 in [2..clend[cc-1]] do
+  for j2 in [1..j1-1] do
+  c:=v2[j1]*v4[j2]-v2[j2]*v4[j1];
+  if c ne 0 and wt[j1]+wt[j2] le cc then
+    //add c*comms[j1][j2] to v3
+    h:=comms[j1][j2];
+    for l in [1..lastg] do
+      v3[l]:=v3[l]+c*h[l];
+    end for;
+  end if;
+  end for;
+  end for;
+  v2:=v3;
+end for;
+//add factor*v2 to v1
+for k in [1..lastg] do
+  v1[k]:=v1[k]+factor*v2[k];
+end for;
+
+end while;
+bch[i]:=v1;
+
+else;
+//Set bch[i] = p.bch[h]
+v1:=[P!0:j in [1..lastg]];
+for j in [1..clend[cc-1]] do
+  c:=bch[h][j];
+  if c ne 0 then
+    for k in [1..lastg] do
+      v1[k]:=v1[k]+c*powers[j][k];
+    end for;
+  end if;
+end for;
+bch[i]:=v1;
+
+end if;
+end for;
+//This completes calculation of bch[i] for i=1,2,...,lastg
+
+//Now get modified relations
+numrel:=#rels;
+mrels:=[];
+for i in [1..numrel] do
+s:=rels[i];
+a:=split(s);
+factor:=getpol(P,a[1]);
+if factor ne 1 then
+  print "Argh!!!!!!!";
+end if;
+u:=a[2];
+strexp:=u;
+t:=a[3];
+//t represents a Lie product of defining generators,
+//and u and t represent p^u.t
+mrels[i]:=lietogrp(t)[1];
+if u ne "0" then
+  if u eq "1" then
+    mrels[i]:=mrels[i]*"^p";
+  else;
+    mrels[i]:=mrels[i]*"^p^"*u;
+  end if;
+end if;
+n:=#t;
+
+if n gt 1 then
+  g:=strtogen(defns,clend,ndgen,cc,Substring(t,1,n-1));
+  if g eq 0 then
+    print "Arghhhh!!!!";
+  end if;
+  h:=StringToCode(t[n])-96;
+  u:=[bch[h],bch[g]];
+  v1:=[P!0:j in [1..lastg]];
+  s:=bchc;
+  while s ne "" do
+  a:=split(s);
+  s:=a[4];
+  factor:=getpol(P,a[1]);
+  t:=a[3];
+  v2:=bch[g];
+  for j in [2..#t] do
+    //commute v2 with rest of entries
+    v4:=u[StringToCode(t[j])-96];
+    v3:=[P!0:i in [1..lastg]];
+    for j1 in [2..clend[cc-1]] do
+    for j2 in [1..j1-1] do
+    c:=v2[j1]*v4[j2]-v2[j2]*v4[j1];
+    if c ne 0 and wt[j1]+wt[j2] le cc then
+      //add c*comms[j1][j2] to v3
+      h:=comms[j1][j2];
+      for l in [1..lastg] do
+        v3[l]:=v3[l]+c*h[l];
+      end for;
+    end if;
+    end for;
+    end for;
+    v2:=v3;
+  end for;
+  //add factor*v2 to v1
+  for k in [1..lastg] do
+    v1[k]:=v1[k]+factor*v2[k];
+  end for;
+
+  end while;
+
+else;
+  h:=StringToCode(t[n])-96;
+  v1:=bch[h];
+end if;
+
+//Now raise v1 to appropriate power
+exp:=StringToInteger(strexp);
+for j in [1..exp] do
+  v2:=[P!0:k in [1..lastg]];
+  for k in [1..clend[cc-1]] do
+    c:=v1[k];
+    if c ne 0 then
+      for k1 in [1..lastg] do
+        v2[k1]:=v2[k1]+c*powers[k][k1];
+      end for;
+    end if;
+  end for;
+  v1:=v2;
+end for;
+
+//Now zero out v1 using BCH product formula
+for j in [1..lastg] do
+if v1[j] ne 0 then
+  u:=lietogrp(gentostr(defns,ndgen,lastg,j));
+  mrels[i]:=mrels[i]*"*"*u[1];
+  c:=-v1[j];
+  if c eq 1 and u[2] ne "" then
+    mrels[i]:=mrels[i]*"^"*u[2];
+  end if;
+  if c eq -1 and u[2] ne "" then
+    mrels[i]:=mrels[i]*"^-"*u[2];
+  end if;
+  if c eq -1 and u[2] eq "" then
+    mrels[i]:=mrels[i]*"^-1";
+  end if;
+  if c ne 1 and c ne -1 then
+    s:=poltostr(P,c);
+    mrels[i]:=mrels[i]*"^"*s;
+    if u[2] ne "" then
+      mrels[i]:=mrels[i]*"*"*u[2];
+    end if;
+  end if;
+  //multiply bch[j] by c
+  v3:=[];
+  v2:=[];
+  for k in [1..lastg] do
+    v3[k]:=c*bch[j][k];
+    v2[k]:=v1[k]+v3[k];
+  end for;
+  //compute [v3,v1]
+    v4:=[P!0:k in [1..lastg]];
+    for j1 in [2..clend[cc-1]] do
+    for j2 in [1..j1-1] do
+    c:=v3[j1]*v1[j2]-v3[j2]*v1[j1];
+    if c ne 0 and wt[j1]+wt[j2] le cc then
+      //add c*comms[j1][j2] to v4
+      h:=comms[j1][j2];
+      for l in [1..lastg] do
+        v4[l]:=v4[l]+c*h[l];
+      end for;
+    end if;
+    end for;
+    end for;
+  //subtract (1/2)v4 from v2 and subtract v3 from v1
+    for k in [1..lastg] do
+      v2[k]:=v2[k]-(1/2)*v4[k];
+      v1[k]:=v1[k]-v3[k];
+    end for;
+  //compute add (1/12)[v4,v1] to v2
+    for j1 in [2..clend[cc-1]] do
+    for j2 in [1..j1-1] do
+    c:=v4[j1]*v1[j2]-v4[j2]*v1[j1];
+    if c ne 0 and wt[j1]+wt[j2] le cc then
+      //add (1/12)*c*comms[j1][j2] to v2
+      c:=c*(1/12);
+      h:=comms[j1][j2];
+      for l in [1..lastg] do
+        v2[l]:=v2[l]+c*h[l];
+      end for;
+    end if;
+    end for;
+    end for;
+    v1:=v2;
+end if;
+end for;
+
+end for;
+s:="<";
+for i in [1..ndgen-1] do
+  s:=s*gens[i]*",";
+end for;
+s:=s*gens[ndgen]*" | ";
+
+if #mrels gt 0 then
+  numrel:=#mrels;
+  for i in [1..numrel-1] do
+    s:=s*mrels[i]*", ";
+  end for;
+  s:=s*mrels[numrel]*", class="*IntegerToString(class)*">";
+else;
+  s:=s*"class="*IntegerToString(class)*">";
+end if;
+
+print s;
+
+end if;
+
+
+end while;
+
+v1:=[P!0:i in [1..lastg]];
+

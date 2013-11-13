@@ -1,0 +1,70 @@
+//8p+15+(2p+5)gcd(p-1,3)+(p+2)gcd(p-1,4)+gcd(p-1,5) algebras
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc-bab,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc,pd-bab,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc-bab,pd-bab,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc,pd-wbab,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc-bab,pd-wbab,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc,pd-w^2bab,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc-bab,pd-w^2bab,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca-bab,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca-wbab,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca,pb-bab,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca-bab,pb-bab,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc,pa-ca-wbab,pb-bab,pc,pd,class=3>
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-xbab,pd-bab,class=3>(all x, x~x' if x^3=x'^3 mod p)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-xbab,pd-wbab,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-xbab,pd-w^2bab,class=3>(all x, x~x' if x^3=x'^3 mod p)(p=1 mod 3)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-bab,pd,class=3>
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-wbab,pd,class=3>(p=1 mod 5)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-w^2bab,pd,class=3>(p=1 mod 5)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-w^3bab,pd,class=3>(p=1 mod 5)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc-w^4bab,pd,class=3>(p=1 mod 5)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-bab,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-wbab,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-w^2bab,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-w^3bab,pc,pd,class=3>(all x, x~-x)(p=1 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-bab,pc,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-xbab,pb-wbab,pc,pd,class=3>(all x)(p=3 mod 4)
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-bab,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da-bab,db-ca,dc,pa-ca-wbab,pb,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc-bab,pa-ca,pb,pc,pd-xbab,class=3>(all x)
+<a,b,c,d|baa,cb,da,db-ca,dc-bab,pa-ca,pb,pc-bab,pd-xbab,class=3>(all x)
+<a,b,c,d|baa,cb,da,db-ca,dc-bab,pa-ca,pb-bab,pc,pd,class=3>
+<a,b,c,d|baa,cb,da,db-ca,dc-bab,pa-ca-ybab,pb,pc,pd+bab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)
+<a,b,c,d|baa,cb,da,db-ca,dc-bab,pa-ca-ybab,pb,pc-bab,pd+bab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)
+<a,b,c,d|baa,cb,da,db-ca,dc-wbab,pa-ca,pb,pc,pd-xbab,class=3>(all x)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-wbab,pa-ca,pb,pc-bab,pd-xbab,class=3>(all x)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-wbab,pa-ca,pb-bab,pc,pd,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-wbab,pa-ca-ybab,pb,pc,pd+wbab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-wbab,pa-ca-ybab,pb,pc-bab,pd+wbab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-w^2bab,pa-ca,pb,pc,pd-xbab,class=3>(all x)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-w^2bab,pa-ca,pb,pc-bab,pd-xbab,class=3>(all x)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-w^2bab,pa-ca,pb-bab,pc,pd,class=3>(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-w^2bab,pa-ca-ybab,pb,pc,pd+w^2bab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)(p=1 mod 3)
+<a,b,c,d|baa,cb,da,db-ca,dc-w^2bab,pa-ca-ybab,pb,pc-bab,pd+w^2bab,class=3>(y ne 0, y~y' if y^3=y'^3 mod p)(p=1 mod 3)
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca,pb,pc,pd-baa,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca,pb,pc,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca-baa,pb,pc,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca,pb-baa,pc,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc,pa-ca,pb-wbaa,pc,pd,class=3>
+<a,b,c,d|bab,cb-baa,da,db-ca,dc,pa-ca,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,cb-baa,da,db-ca,dc,pa-ca,pb,pc,pd-baa,class=3>
+<a,b,c,d|bab,cb-baa,da,db-ca,dc,pa-ca,pb,pc,pd-wbaa,class=3>(p=1 mod 4)
+<a,b,c,d|bab,cb-baa,da,db-ca,dc,pa-ca,pb-xbaa,pc,pd,class=3>(all x)
+<a,b,c,d|bab,cb-baa,da,db-ca,dc,pa-ca-baa,pb+baa,pc,pd,class=3>
+<a,b,c,d|bab,cb-wbaa,da,db-ca,dc,pa-ca,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,cb-wbaa,da,db-ca,dc,pa-ca,pb,pc,pd-baa,class=3>
+<a,b,c,d|bab,cb-wbaa,da,db-ca,dc,pa-ca,pb,pc,pd-wbaa,class=3>(p=1 mod 4)
+<a,b,c,d|bab,cb-wbaa,da,db-ca,dc,pa-ca,pb-xbaa,pc,pd,class=3>(all x)
+<a,b,c,d|bab,cb-wbaa,da,db-ca,dc,pa-ca-baa,pb+wbaa,pc,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb,pc-baa,pd,class=3>
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb,pc-wbaa,pd,class=3>(p=1 mod 3)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb,pc-w^2baa,pd,class=3>(p=1 mod 3)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb,pc,pd-xbaa,class=3>(all x)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb-baa,pc,pd-xbaa,class=3>(all x)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb-wbaa,pc,pd-xbaa,class=3>(all x)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb-w^2baa,pc,pd-xbaa,class=3>(all x)(p=1 mod 4)
+<a,b,c,d|bab,cb,da,db-ca,dc-baa,pa-ca,pb-w^3baa,pc,pd-xbaa,class=3>(all x)(p=1 mod 4)

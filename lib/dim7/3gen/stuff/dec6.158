@@ -1,0 +1,3 @@
+//p algebras
+<a,b,c|ca-baa,cb,pa-wbab,pb+wbaa,pc-xbaaa,class=4>(x ne 0,-w, x~-w-x)
+<a,b,c|ca-baa,cb,pa-wbab-xbaaa,pb+wbaa,pc,class=4>(all x, x~-x)

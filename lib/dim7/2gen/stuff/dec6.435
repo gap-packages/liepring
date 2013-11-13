@@ -1,0 +1,22 @@
+//7+2gcd(p-1,3)+2gcd(p-1,4) algebras
+<a,b|baaaa,bab,p^2a,pb,class=5>
+<a,b|baaaa,bab,p^2a-baaab,pb,class=5>
+<a,b|baaaa,bab,p^2a-wbaaab,pb,class=5>
+<a,b|baaaa,bab,p^2a,pb-baaab,class=5>
+<a,b|baaab,bab,p^2a-baaaa,pb,class=5>
+<a,b|baaab,bab-baaaa,p^2a-baaaa,pb,class=5>
+<a,b|baaab,bab-wbaaaa,p^2a-baaaa,pb,class=5>
+<a,b|baaab,bab-w^2baaaa,p^2a-baaaa,pb,class=5>(p=1 mod 3)
+<a,b|baaab,bab-w^3baaaa,p^2a-baaaa,pb,class=5>(p=1 mod 3)
+<a,b|baaab,bab-w^4baaaa,p^2a-baaaa,pb,class=5>(p=1 mod 3)
+<a,b|baaab,bab-w^5baaaa,p^2a-baaaa,pb,class=5>(p=1 mod 3)
+<a,b|baaab,bab,p^2a,pb,class=5>
+<a,b|baaab,bab-baaaa,p^2a,pb,class=5>
+<a,b|baaab,bab,p^2a,pb-baaaa,class=5>
+<a,b|baaab,bab-baaaa,p^2a,pb-baaaa,class=5>
+<a,b|baaab,bab,p^2a,pb-wbaaaa,class=5>
+<a,b|baaab,bab-baaaa,p^2a,pb-wbaaaa,class=5>
+<a,b|baaab,bab,p^2a,pb-w^2baaaa,class=5>(p=1 mod 4)
+<a,b|baaab,bab-baaaa,p^2a,pb-w^2baaaa,class=5>(p=1 mod 4)
+<a,b|baaab,bab,p^2a,pb-w^3baaaa,class=5>(p=1 mod 4)
+<a,b|baaab,bab-baaaa,p^2a,pb-w^3baaaa,class=5>(p=1 mod 4)

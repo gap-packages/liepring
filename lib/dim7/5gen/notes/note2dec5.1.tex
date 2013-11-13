@@ -1,0 +1,366 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Monday, July 01, 2013 14:26:16}
+%TCIDATA{LastRevised=Thursday, August 08, 2013 12:28:26}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Descendants of algebra 5.1 of order $p^{7}$}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+The following occurs in computing the immediate descendants of order $p^{7}$
+of algebra 5.1. There are 6 commutator structures possible with $L^{2}$
+having order $p^{2}$, and this problem arises in Case 6, with $pL=L^{2}$.
+Here $pa=pd=0$, and we write%
+\[
+\left( 
+\begin{array}{l}
+pb \\ 
+pc \\ 
+pe%
+\end{array}%
+\right) =A\left( 
+\begin{array}{l}
+ba \\ 
+ca%
+\end{array}%
+\right) 
+\]%
+for a $3\times 2$ matrix $A$. We consider the orbits of matrices 
+\[
+A=\left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) 
+\]%
+where $(tz-xy)^{2}-(ux-vt)(uz-vy)$ is not a square under the action of
+non-singular matrices $\left( 
+\begin{array}{ll}
+a & c \\ 
+b & d%
+\end{array}%
+\right) $ given by 
+\[
+\left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) \rightarrow (ad-bc)^{-2}\left( 
+\begin{array}{lll}
+(ad+bc) & 2bd & -2ac \\ 
+cd & d^{2} & -c^{2} \\ 
+-ab & -b^{2} & a^{2}%
+\end{array}%
+\right) \left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) \left( 
+\begin{array}{ll}
+d & -b \\ 
+-c & a%
+\end{array}%
+\right) .
+\]
+
+Each such orbit contains a matrix with $u=0$ and $v=1$, and we pick one
+matrix of this form out of each orbit, giving $k$ algebras 
+\[
+\langle
+a,b,c,d,e\,|%
+\,da,ea,cb,db-ca,eb,dc,ec,ed-ba,pa,pb-ca,pc-tba-xca,pd,pe-yba-zca,\,\text{%
+class }2\rangle ,
+\]%
+where $k=4$ when $p=3$, $k=(p^{2}-1)/2$ when $p=1\func{mod}3$, and $%
+k=(p^{2}+1)/2$ when $p=2\func{mod}3$.
+
+First we consider the action of four particular matrices $\left( 
+\begin{array}{ll}
+a & c \\ 
+b & d%
+\end{array}%
+\right) $: $\left( 
+\begin{array}{ll}
+1 & 0 \\ 
+b & 1%
+\end{array}%
+\right) $, $\left( 
+\begin{array}{ll}
+1 & c \\ 
+0 & 1%
+\end{array}%
+\right) $, $\left( 
+\begin{array}{ll}
+a & 0 \\ 
+0 & d%
+\end{array}%
+\right) $, $\left( 
+\begin{array}{ll}
+0 & c \\ 
+b & 0%
+\end{array}%
+\right) $. These four matrices transform $\left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ into
+
+\begin{equation}
+\allowbreak \left( 
+\begin{array}{cc}
+u+2tb & v+2xb-b\left( u+2tb\right)  \\ 
+t & x-tb \\ 
+-tb^{2}-ub+y & z-vb-xb^{2}+b\left( tb^{2}+ub-y\right) 
+\end{array}%
+\right) ,
+\end{equation}
+
+\begin{equation}
+\allowbreak \left( 
+\begin{array}{cc}
+u-2yc-c\left( v-2zc\right)  & v-2zc \\ 
+t+uc-c\left( -zc^{2}+vc+x\right) -yc^{2} & -zc^{2}+vc+x \\ 
+y-zc & z%
+\end{array}%
+\right) ,
+\end{equation}
+
+\begin{equation}
+\allowbreak \left( 
+\begin{array}{cc}
+\frac{u}{a} & \frac{v}{d} \\ 
+\frac{t}{a^{2}}d & \frac{x}{a} \\ 
+\frac{y}{d} & z\frac{a}{d^{2}}%
+\end{array}%
+\right) ,
+\end{equation}
+
+\begin{equation}
+\allowbreak \left( 
+\begin{array}{cc}
+-\frac{v}{b} & -\frac{u}{c} \\ 
+\frac{z}{b^{2}}c & \frac{y}{b} \\ 
+\frac{x}{c} & t\frac{b}{c^{2}}%
+\end{array}%
+\right) .
+\end{equation}
+
+\bigskip From (1) we see that we can take $u=0$ provided $t\neq 0$, and from
+(2) and (4) we see that we can take $v=0$ provided $z\neq 0$, and then swap $%
+u$ and $v$ to get $u=0$. In the case when $t=z=0$ and both $u$ and $v$ are
+non-zero we can use (4) to take $x=y=1$. (None of the rows of $\left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ can equal zero.)
+
+Now consider the action of $\left( 
+\begin{array}{ll}
+a & c \\ 
+-a & c%
+\end{array}%
+\right) $ on $\left( 
+\begin{array}{ll}
+u & v \\ 
+0 & 1 \\ 
+1 & 0%
+\end{array}%
+\right) $. We obtain%
+\[
+\allowbreak \frac{1}{4a^{2}c^{2}}\left( 
+\begin{array}{cc}
+0 & -4a^{2}c \\ 
+-c\left( c^{2}-uc^{2}\right) -c\left( c^{2}+vc^{2}\right)  & a\left(
+c^{2}+vc^{2}\right) -a\left( c^{2}-uc^{2}\right)  \\ 
+c\left( a^{2}+ua^{2}\right) +c\left( a^{2}-va^{2}\right)  & a\left(
+a^{2}+ua^{2}\right) -a\left( a^{2}-va^{2}\right) 
+\end{array}%
+\right) .
+\]
+
+This proves that every orbit contains a matrix with first row $(0,1)$.
+
+Now in a matrix $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $, the condition \textquotedblleft $(tz-xy)^{2}-(ux-vt)(uz-vy)$ is
+not a square\textquotedblright\ reduces to \textquotedblleft $(tz-xy)^{2}-ty$
+is not a square\textquotedblright , so neither $t$ nor $y$ can be zero. The
+action of $\left( 
+\begin{array}{ll}
+a & 0 \\ 
+0 & 1%
+\end{array}%
+\right) $ on $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ gives $\allowbreak \left( 
+\begin{array}{cc}
+0 & 1 \\ 
+\frac{t}{a^{2}} & \frac{x}{a} \\ 
+y & za%
+\end{array}%
+\right) $, and so every orbit contains a matrix $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ where $t$ is either one or the least non-square modulo $p$, where $%
+0\leq x\leq \frac{p-1}{2}$, and where when $x=0$, $0\leq z\leq \frac{p-1}{2}$%
+. It seems experimentally that every orbit contains a matrix with $u=0$, $%
+v=t=1$, but I have no proof of this.$\allowbreak $
+
+Next we show that if we have $(u,v,t,x,y,z)$ satisfying these conditions,
+and if we act on $\left( 
+\begin{array}{ll}
+u & v \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ with a non-identity matrix $\left( 
+\begin{array}{ll}
+a & 0 \\ 
+b & d%
+\end{array}%
+\right) $, then we obtain $\left( 
+\begin{array}{ll}
+u^{\prime } & v^{\prime } \\ 
+t^{\prime } & x^{\prime } \\ 
+y^{\prime } & z^{\prime }%
+\end{array}%
+\right) $ where $(u^{\prime },v^{\prime },t^{\prime },x^{\prime },y^{\prime
+},z^{\prime })$ which is lexicographically higher than $(u,v,t,x,y,z)$. The
+action of $\left( 
+\begin{array}{ll}
+a & 0 \\ 
+b & d%
+\end{array}%
+\right) $ on $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ gives
+
+\[
+\allowbreak \left( 
+\begin{array}{cc}
+2\frac{t}{a^{2}}b & a\left( \frac{1}{ad}+2\frac{x}{a^{2}}\frac{b}{d}\right)
+-2\frac{t}{a^{2}}\frac{b^{2}}{d} \\ 
+\frac{t}{a^{2}}d & \frac{x}{a}-\frac{t}{a^{2}}b \\ 
+d\left( \frac{y}{d^{2}}-\frac{t}{a^{2}}\frac{b^{2}}{d^{2}}\right)  & 
+-a\left( \frac{1}{a}\frac{b}{d^{2}}-\frac{z}{d^{2}}+\frac{x}{a^{2}}\frac{%
+b^{2}}{d^{2}}\right) -b\left( \frac{y}{d^{2}}-\frac{t}{a^{2}}\frac{b^{2}}{%
+d^{2}}\right) 
+\end{array}%
+\right) ,
+\]%
+which is lexicographically higher unless $b=0$ and $d=1$. But when $b=0$ and 
+$d=1$, then the action gives $\allowbreak \left( 
+\begin{array}{cc}
+0 & 1 \\ 
+\frac{t}{a^{2}} & \frac{x}{a} \\ 
+y & za%
+\end{array}%
+\right) $, which is lexicographically higher unless $a=1$.
+
+So we only need to consider the action of matrices $\left( 
+\begin{array}{ll}
+a & c \\ 
+b & d%
+\end{array}%
+\right) $ where $c\neq 0$, and we write such a matrix as $k\left( 
+\begin{array}{ll}
+a & 1 \\ 
+b & d%
+\end{array}%
+\right) $. The action of $\left( 
+\begin{array}{ll}
+a & 1 \\ 
+b & d%
+\end{array}%
+\right) $ on $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+t & x \\ 
+y & z%
+\end{array}%
+\right) $ gives
+
+\[
+\allowbreak \frac{1}{\left( b-ad\right) ^{2}}\left( 
+\begin{array}{cc}
+a(2z-2dy-d)+b(2td^{2}-1-2xd) & b\left( 2ya-2tbd\right) +a\left(
+b-2za+ad+2xbd\right)  \\ 
+z-d-xd^{2}-d\left( y-td^{2}\right)  & a\left( xd^{2}+d-z\right) +b\left(
+y-td^{2}\right)  \\ 
+ab+xb^{2}-za^{2}-d\left( tb^{2}-ya^{2}\right)  & b\left(
+tb^{2}-ya^{2}\right) -a\left( -za^{2}+ab+xb^{2}\right) 
+\end{array}%
+\right) .
+\]%
+$\allowbreak \allowbreak $
+
+So we need $a(2z-2dy-d)+b(2td^{2}-1-2xd)=0$ and we want to take%
+\[
+k=\allowbreak \frac{1}{\left( b-ad\right) ^{2}}\left( b\left(
+2ya-2tbd\right) +a\left( b-2za+ad+2xbd\right) \right) .
+\]
+
+The \textsc{magma} program note2dec5.1.m finds a set of representatives for
+the orbits. The integer parameters $t,x,y,z$ correspond to $t1,x1,y1,z1$ in
+GF$(p)$.
+
+\end{document}

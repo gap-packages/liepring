@@ -1,0 +1,9 @@
+//5+gcd(p-1,3) algebras
+<a,b|baaa,p^2a,pb-bab,class=4>
+<a,b|baaa,p^2a,pb-bab-baab,class=4>
+<a,b|baaa,p^2a-baab,pb-bab,class=4>
+<a,b|baab,p^2a,pb-bab,class=4>
+<a,b|baab,p^2a,pb-bab-baaa,class=4>
+<a,b|baab,p^2a,pb-bab-wbaaa,class=4>(p=1 mod 3)
+<a,b|baab,p^2a,pb-bab-w^2baaa,class=4>(p=1 mod 3)
+<a,b|baab,p^2a-baaa,pb-bab,class=4>

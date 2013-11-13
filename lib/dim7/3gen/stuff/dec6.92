@@ -1,0 +1,16 @@
+//2p + 13 algebras
+<a,b,c|baa,caa,cac,cb,pb-ba,pc,class=3>
+<a,b,c|baa,caa,cac,cb-p^2a,pb-ba,pc,class=3>
+<a,b,c|baa,caa,p^2a,cb,pb-ba,pc,class=3>
+<a,b,c|baa,caa,p^2a,cb,pb-ba,pc-cac,class=3>
+<a,b,c|baa,caa,p^2a,cb,pb-ba-cac,pc,class=3>
+<a,b,c|baa,caa,p^2a,cb,pb-ba-cac,pc-cac,class=3>
+<a,b,c|baa,caa,p^2a-cac,cb,pb-ba,pc,class=3>
+<a,b,c|baa,caa,p^2a-wcac,cb,pb-ba,pc,class=3>
+<a,b,c|baa,cac,p^2a,cb,pb-ba,pc-xcaa,class=3>(all x)
+<a,b,c|baa,cac,p^2a,cb-caa,pb-ba,pc-xcaa,class=3>(all x)
+<a,b,c|baa,cac,p^2a-caa,cb,pb-ba,pc,class=3>
+<a,b,c|baa,cac,p^2a-caa,cb-caa,pb-ba,pc,class=3>
+<a,b,c|caa,cac,p^2a,cb,pb-ba,pc,class=3>
+<a,b,c|caa,cac-baa,p^2a,cb,pb-ba,pc,class=3>
+<a,b,c|caa-baa,cac,p^2a,cb,pb-ba,pc,class=3>

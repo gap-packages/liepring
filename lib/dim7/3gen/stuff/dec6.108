@@ -1,0 +1,33 @@
+//(p-1)(12 + gcd(p-1,3))/2 + gcd(p-1,4)/2 algebras
+<a,b,c|baa,bab,pa-ca,pb-cb,pc,class=3>
+<a,b,c|baa,bac,pa-ca,pb-cb,pc,class=3>
+<a,b,c|baa,bac,pa-ca-bab,pb-cb,pc,class=3>
+<a,b,c|baa,bac,pa-ca-wbab,pb-cb,pc,class=3>
+<a,b,c|baa,bac,pa-ca,pb-cb,pc-bab,class=3>
+<a,b,c|baa,bab,pa-ca,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab,bac-baa,pa-ca,pb+2cb,pc,class=3>
+<a,b,c|baa,bac,pa-ca,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,bac,pa-ca-bab,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,bac,pa-ca-wbab,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|baa,bac,pa-ca,pb-xcb,pc-bab,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab,bac,pa-ca,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab,bac,pa-ca,pb-xcb-baa,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab,bac,pa-ca,pb-xcb-wbaa,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab,bac,pa-ca,pb-xcb,pc-baa,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb-baa,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb-wbaa,pc,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb,pc-baa,class=3>(x ne 0,1,-1, x~x^-1)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb,pc-wbaa,class=3>(x ne 0,1,-1, x~x^-1)(p=1 mod 3)
+<a,b,c|bab-baa,bac,pa-ca,pb-xcb,pc-w^2baa,class=3>(x ne 0,1,-1, x~x^-1)(p=1 mod 3)
+<a,b,c|baa,bab,pa-ca,pb+cb,pc,class=3>
+<a,b,c|baa,cab,pa-ca,pb+cb,pc,class=3>
+<a,b,c|baa,cab,pa-ca-bab,pb+cb,pc,class=3>
+<a,b,c|baa,cab,pa-ca-wbab,pb+cb,pc,class=3>
+<a,b,c|baa,cab,pa-ca,pb+cb,pc-bab,class=3>
+<a,b,c|bab-baa,cab,pa-ca,pb+cb,pc,class=3>
+<a,b,c|bab-baa,cab,pa-ca,pb+cb-baa,pc,class=3>
+<a,b,c|bab-baa,cab,pa-ca,pb+cb-wbaa,pc,class=3>(p=1 mod 4)
+<a,b,c|bab-baa,cab,pa-ca,pb+cb,pc-baa,class=3>
+<a,b,c|bab-baa,cab,pa-ca,pb+cb,pc-wbaa,class=3>(p=1 mod 3)
+<a,b,c|bab-baa,cab,pa-ca,pb+cb,pc-w^2baa,class=3>(p=1 mod 3)

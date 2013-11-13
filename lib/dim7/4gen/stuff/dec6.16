@@ -1,0 +1,7 @@
+//6 algebras
+<a,b,c,d|ca,cb,da,db,dc-ba,pb,pc,pd,class=3>
+<a,b,c,d|ca-p^2a,cb,da,db,dc-ba,pb,pc,pd,class=3>
+<a,b,c,d|ca,cb,da,db,dc-ba-p^2a,pb,pc,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da,db,dc-ba,pb,pc,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da-p^2a,db,dc-ba,pb,pc,pd,class=3>
+<a,b,c,d|ca,cb-p^2a,da-wp^2a,db,dc-ba,pb,pc,pd,class=3>

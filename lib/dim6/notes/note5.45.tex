@@ -1,0 +1,73 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Thursday, June 27, 2013 17:23:01}
+%TCIDATA{LastRevised=Sunday, June 30, 2013 11:35:54}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$A=\left( 
+%\begin{array}{cc}
+%t & x \\ 
+%y & z%
+%\end{array}%
+%\right) $
+%$P=\left( 
+%\begin{array}{ll}
+%-1 & 0 \\ 
+%0 & 1%
+%\end{array}%
+%\right) $
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 5.45}
+\author{Michael Vaughan-Lee}
+\date{June 2013}
+\maketitle
+
+Algebra 5.45 has $p$ immediate descendants of order $p^{6}$. These $p$
+descendants are given by a two parameter family of Lie rings, named 6.427.
+
+The two parameters are $x,y$, and the pair $(x,y)$ gives the same algebra as 
+$(z,t)$ if and only if $y^{2}-\omega x^{2}=t^{2}-\omega z^{2}\func{mod}p$.
+(Here, as elsewhere, $\omega $ is a primitive element modulo $p$.) We get
+the $\frac{p+1}{2}$ distinct squares modulo $p$ with parameters $(x,0)$ with 
+$0\leq x\leq \frac{p-1}{2}$. To obtain the non-squares, find $a$ such that $%
+a^{2}-\omega $ is not a square modulo $p$, and take parameters $(ay,y)$ for $%
+0<y\leq \frac{p-1}{2}$. In the case $p=1\func{mod}4$, $a=0$ will do. I don't
+think the search for $a$ is linear in $p$ for $p=3\func{mod}4$, but since $%
+a^{2}-\omega $ is not a square modulo $p$ for half of the possible values of 
+$a$, you would have to be unlucky not to find a suitable $a$ quickly.
+
+\end{document}

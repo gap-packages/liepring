@@ -1,0 +1,10 @@
+//4p-1+gcd(p-1,5)+gcd(p-1,7) algebras
+<a,b|bab-baaaa,baaab,pa,pb,class=6>
+<a,b|bab-baaaa,baaab,pa,pb-baaaaa,class=6>
+<a,b|bab-baaaa,baaab,pa,pb-xbaaaaa,class=6>(x=w,w^2,w^3,w^4)(p=1 mod 5)
+<a,b|bab-baaaa,baaab,pa-baaaaa,pb,class=6>
+<a,b|bab-baaaa,baaab,pa-xbaaaaa,pb,class=6>(x=w,w^2,w^3,w^4,w^5,w^6)(p=1 mod 7)
+<a,b|bab-baaaa,baaab-baaaaa,pa,pb-xbaaaaa,class=6>(all x)
+<a,b|bab-baaaa,baaab-baaaaa,pa-xbaaaaa,pb,class=6>(x ne 0)
+<a,b|bab-baaaa-baaaaa,baaab,pa,pb-xbaaaaa,class=6>(all x)
+<a,b|bab-baaaa-baaaaa,baaab,pa-xbaaaaa,pb,class=6>(x ne 0)

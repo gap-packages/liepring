@@ -1,0 +1,275 @@
+
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sw20elba}
+
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2890}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Created=Monday, July 22, 2013 07:22:03}
+%TCIDATA{LastRevised=Thursday, August 22, 2013 18:34:59}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Articles\SW\mrvl">}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{ComputeDefs=
+%$\beta =0$
+%$P=\left( 
+%\begin{array}{ll}
+%\alpha  & \beta  \\ 
+%\omega \beta  & \alpha 
+%\end{array}%
+%\right) $
+%}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{{\hfill $\Box$ \\}}
+\input{tcilatex}
+\addtolength{\textheight}{30pt}
+
+\begin{document}
+
+\title{Algebra 6.178}
+\author{Michael Vaughan-Lee}
+\date{July 2013}
+\maketitle
+
+Algebra 6.178 has presentation 
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-\lambda baa-\mu bab,\,pb-\nu
+baa-\xi bab,\,pc,\,\text{class }3\rangle , 
+\]%
+where we write $A=\left( 
+\begin{array}{ll}
+\lambda & \mu \\ 
+\nu & \xi%
+\end{array}%
+\right) $, and $A$ ranges over a set of representatives for the orbits of
+non-singular $2\times 2$ matrices under the action 
+\[
+A\rightarrow \frac{1}{\det P}PAP^{-1} 
+\]%
+as $P$ ranges over non-singular matrices 
+\[
+P=\left( 
+\begin{array}{ll}
+\alpha & \beta \\ 
+\pm \omega \beta & \pm \alpha%
+\end{array}%
+\right) . 
+\]%
+$\allowbreak $
+
+These algebras are terminal unless $\xi =-\lambda $. The number of orbits of
+non-singular matrices with $\xi =-\lambda $ is $(3p-1)/2$. The matrices
+split up into one orbit of size $p-1$ (matrices $\left( 
+\begin{array}{ll}
+0 & y \\ 
+\omega y & 0%
+\end{array}%
+\right) $), $p-1$ orbits of size $(p^{2}-1)/2$ (including two orbits of
+elements $\left( 
+\begin{array}{ll}
+x & y \\ 
+-\omega y & -x%
+\end{array}%
+\right) $), and $(p-1)/2$ orbits of size $p^{2}-1$. In all, 6.178 has $%
+(3p^{2}-1)/2$ descendants of order $p^{7}$ and $p$-class 4. All orbits
+contain matrices where $\lambda =0$ or $\lambda =1$.
+
+It is possible to choose orbit representatives of the following 6 types: 
+
+\begin{enumerate}
+\item $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+\omega  & 0%
+\end{array}%
+\right) $, 
+
+\item $\left( 
+\begin{array}{ll}
+1 & 0 \\ 
+0 & -1%
+\end{array}%
+\right) $ when $p=1\func{mod}4$, 
+
+\item $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+-\omega  & 0%
+\end{array}%
+\right) $ (all $\left( 
+\begin{array}{ll}
+0 & \mu  \\ 
+-\omega \mu  & 0%
+\end{array}%
+\right) $ are in the same orbit as $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+-\omega  & 0%
+\end{array}%
+\right) $, but this orbit also contains elements $\left( 
+\begin{array}{ll}
+1 & \mu  \\ 
+-\omega \mu  & -1%
+\end{array}%
+\right) $), 
+
+\item one representative $\left( 
+\begin{array}{ll}
+1 & \mu  \\ 
+-\omega \mu  & -1%
+\end{array}%
+\right) $ $(\mu \neq 0)$ which is not in the same orbit as $\left( 
+\begin{array}{ll}
+0 & 1 \\ 
+-\omega  & 0%
+\end{array}%
+\right) $ when $p=3\func{mod}4$, 
+
+\item $p-3$ representatives $\left( 
+\begin{array}{ll}
+0 & \mu  \\ 
+\nu  & 0%
+\end{array}%
+\right) $ $(\nu \neq \pm \omega \mu )$, and 
+
+\item $(p-1)/2\,$\ representatives of the form $\left( 
+\begin{array}{ll}
+1 & \mu  \\ 
+\nu  & -1%
+\end{array}%
+\right) $ $(\nu \neq -\omega \mu )$.
+\end{enumerate}
+
+We then obtain the following presentations for the descendants of 6.178. The
+first four cases of the matrix $A$ are straightforward.
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-bab,\,pb-\omega
+baa,\,pc-xbaaa,\,\text{class }4\rangle \,(\text{all }x,\,x\sim -x),
+\]
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa,\,pb+bab,\,pc-xbaab,\,%
+\text{class }4\rangle \,(\text{all }x,\,x\sim -x,\,p=1\func{mod}4),
+\]
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-bab,\,pb+\omega
+baa,\,pc-xbaaa,\,\text{class }4\rangle \,(\text{all }x,\,x\sim -x),
+\]
+
+For the one matrix $\left( 
+\begin{array}{ll}
+1 & \mu  \\ 
+-\omega \mu  & -1%
+\end{array}%
+\right) $ $(\mu \neq 0)$ when $p=3\func{mod}4$, we have 
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab,\,pb+\omega \mu
+baa+bab,\,pc-xbaaa,\,\text{class }4\rangle \,(\text{all }x,\,x\sim -x).
+\]
+
+For the $p-3$ matrices $A=\left( 
+\begin{array}{ll}
+0 & \mu \\ 
+\nu & 0%
+\end{array}%
+\right) $ $(\nu \neq \pm \omega \mu )$, we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-\mu bab,\,pb-\nu
+baa,\,pc-xbaaa,\,\text{class }4\rangle \,(\text{all }x,\,x\sim -x),
+\]%
+but we have extra descendants if $(\omega \mu +2\nu )(2\omega \nu +\mu
+^{-1}\nu ^{2})$ is a square. If $\omega \mu +2\nu =0$ then we have,
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-\mu bab-xbaaa,\,pb-\nu
+baa,\,pc,\,\text{class }4\rangle \,(x\neq 0,\,x\sim -x),
+\]%
+If $2\omega \nu +\mu ^{-1}\nu ^{2}=0$ we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-\mu bab,\,pb-\nu
+baa-xbaaa,\,pc,\,\text{class }4\rangle \,(x\neq 0,\,x\sim -x),
+\]%
+and if $(\omega \mu +2\nu )(2\omega \nu +\mu ^{-1}\nu ^{2})=y^{2}\neq 0$
+then for one such value $y$ we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-\mu bab,\,pb-\nu
+baa-xbaaa,\,pc-ybaaa,\,\text{class }4\rangle \,(x\neq 0,\,x\sim -x).
+\]
+
+The situation is even more complicated for the $(p-1)/2$ matrices $A=\left( 
+\begin{array}{ll}
+1 & \mu \\ 
+\nu & -1%
+\end{array}%
+\right) $ $(\nu \neq -\omega \mu )$. First we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab,\,pb-\nu
+baa+bab,\,pc-xbaab,\,\text{class }4\rangle \,(\text{all }x). 
+\]%
+But if $\left( 1+\mu \nu \right) \left( 2\left( \omega \mu +\nu \right)
+^{2}+\omega (1+\mu \nu )\right) $ is a square we have an additional $p-1$
+descendants. It is not that easy to prove, but $\left( 1+\mu \nu \right)
+\left( 2\left( \omega \mu +\nu \right) ^{2}+\omega (1+\mu \nu )\right) $
+cannot equal zero, under the assumption that $A$ is not in the same orbit as
+a matrix with $(1,1)$ entry equal to zero. If $\left( 1+\mu \nu \right)
+\left( 2\left( \omega \mu +\nu \right) ^{2}+\omega (1+\mu \nu )\right)
+=x^{2}\neq 0$, then if $x-\omega \mu -\nu =\omega \mu ^{2}+2\mu \nu +1=0$ we
+have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab-ybaab,\,pb-\nu
+baa+bab,\,pc-xbaab,\,\text{class }4\rangle \,(y\neq 0,\,y\sim -y),
+\]%
+but if one of $x-\omega \mu -\nu $, $\omega \mu ^{2}+2\mu \nu +1$ is
+non-zero we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab,\,pb-\nu
+baa+bab-ybaab,\,pc-xbaab,\,\text{class }4\rangle \,(y\neq 0,\,y\sim -y).
+\]%
+And similarly for $-x$, if $x+\omega \mu +\nu =\omega \mu ^{2}+2\mu \nu +1=0$
+we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab-ybaab,\,pb-\nu
+baa+bab,\,pc+xbaab,\,\text{class }4\rangle \,(y\neq 0,\,y\sim -y),
+\]%
+but if one of $x+\omega \mu +\nu $, $\omega \mu ^{2}+2\mu \nu +1$ is
+non-zero we have
+
+\[
+\langle a,b,c\,|\,ca-bab,\,cb-\omega baa,\,pa-baa-\mu bab,\,pb-\nu
+baa+bab-ybaab,\,pc+xbaab,\,\text{class }4\rangle \,(y\neq 0,\,y\sim -y).
+\]
+
+There is a \textsc{Magma} program notes6.178.m which computes a
+representative set of matrices $A$ for any given $p$, and then computes
+representative values for the other parameters for each $A$.
+
+\end{document}

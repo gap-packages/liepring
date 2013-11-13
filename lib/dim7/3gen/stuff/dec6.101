@@ -1,0 +1,4 @@
+//3(p-1)/2 algebras
+<a,b,c|baa,caa,cb,pb-xca,pc-ba-ca,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,caa,cb-p^2a,pb-xca,pc-ba-ca,class=3>(all x, 1+4x not a square mod p)
+<a,b,c|baa,p^2a,cb,pb-xca,pc-ba-ca,class=3>(all x, 1+4x not a square mod p)

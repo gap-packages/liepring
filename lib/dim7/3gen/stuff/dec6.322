@@ -1,0 +1,4 @@
+//3 algebras
+<a,b,c|ba,ca,cb,pb,pc,class=5>
+<a,b,c|ba-p^4a,ca,cb,pb,pc,class=5>
+<a,b,c|ba,ca,cb-p^4a,pb,pc,class=5>
