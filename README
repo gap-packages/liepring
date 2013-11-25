@@ -1,0 +1,35 @@
+
+ 
+                                LiePRing
+             ==============================================
+
+LiePRing is a GAP4 package. Its main objective is to provide
+access to the nilpotent Lie rings of order p^n for p>2 and n<=7.
+
+REMARK: this package is written for GAP4.4 (and higher versions);
+        the package LieRing is required.
+
+
+                                Installation
+             ==============================================
+
+
+To install the package LiePRing move the file `liepring-XX.tar.gz'
+(or any other archive containing it) into the `pkg' directory.
+Usually this will be the `pkg' subdirectory in your GAP4 installation.
+However, it is also possible to have a `pkg' subdirectory in a 
+different place, see the section `Installing GAP Packages' of the 
+GAP4 reference manual for more information.
+Then simply unpack `liepring-XX.tar.gz' and your installation is
+complete.
+In GAP issue 
+
+            gap> LoadPackage( "liepring" );
+
+
+             
+                                Documentation
+             ==============================================
+
+The manual of CoReLG is contained in /pkg/liepring/doc. 
+
