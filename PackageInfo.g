@@ -3,7 +3,7 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.1",
+Version := "1.2",
 Date := "08/11/2013",
 
 PackageWWWHome 
@@ -41,7 +41,7 @@ AbstractHTML := "",
 PackageDoc := rec(
   BookName  := "LiePRing",
   ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
+  HTMLStart := "doc/chapters.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "LiePRing Package",
