@@ -390,14 +390,14 @@ W := PrimitiveRootMod(P);
 xrange:=[0,1]; if P mod 3 = 1 then xrange:=[0,1,W,W^2] mod P; fi; Sort(xrange);
 for x in xrange do
 for u in [0..P-1] do
-  Add(reps5,CutVector([1,0,0,0,0,1,x,0,0,0,u,0], 4)*One(GF(P)));
+  Add(reps5,MyCutVector([1,0,0,0,0,1,x,0,0,0,u,0], 4)*One(GF(P)));
 od;
 od;
 
 for y in [1,W] do
 for x in [0..(P-1)/2] do
 for u in [0..P-1] do
-  Add(reps5,CutVector([1,0,0,0,0,1,x,y,0,0,u,0], 4)*One(GF(P)));
+  Add(reps5,MyCutVector([1,0,0,0,0,1,x,y,0,0,u,0], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -405,7 +405,7 @@ od;
 for y in [0..P-1] do
 for x in [0..P-1] do
 for u in [0..P-1] do
-  Add(reps5,CutVector([1,0,0,0,0,1,x,y,0,1,u,0], 4)*One(GF(P)));
+  Add(reps5,MyCutVector([1,0,0,0,0,1,x,y,0,1,u,0], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -414,7 +414,7 @@ for t in [0..P-1] do
 for y in [0..P-1] do
 for x in [0..P-1] do
 for u in [0..P-1] do
-  Add(reps5,CutVector([1,0,0,0,0,1,x,y,1,t,u,0], 4)*One(GF(P)));
+  Add(reps5,MyCutVector([1,0,0,0,0,1,x,y,1,t,u,0], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -425,7 +425,7 @@ for t in [0..P-1] do
 for y in [0..P-1] do
 for x in [0..P-1] do
 for u in [0..P-1] do
-  Add(reps5,CutVector([1,0,0,0,0,1,x,y,z,t,u,1], 4)*One(GF(P)));
+  Add(reps5,MyCutVector([1,0,0,0,0,1,x,y,z,t,u,1], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -843,14 +843,14 @@ xrange:=[0,1];
 if P mod 3 = 1 then xrange:=[0,1,W,W^2] mod P; fi; Sort(xrange);
 for x in xrange do
 for v in [0..P-1] do
-  Add(reps9,CutVector([0,1,0,0,0,1,x,0,0,0,0,v], 4)*One(GF(P)));
+  Add(reps9,MyCutVector([0,1,0,0,0,1,x,0,0,0,0,v], 4)*One(GF(P)));
 od;
 od;
 
 for t in [1,W] do
 for x in [0..(P-1)/2] do
 for v in [0..P-1] do
-  Add(reps9,CutVector([0,1,0,0,0,1,x,0,0,t,0,v], 4)*One(GF(P)));
+  Add(reps9,MyCutVector([0,1,0,0,0,1,x,0,0,t,0,v], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -859,7 +859,7 @@ for y in [1,W] do
 for t in [0..P-1] do
 for x in [0..(P-1)/2] do
 for v in [0..P-1] do
-  Add(reps9,CutVector([0,1,0,0,0,1,x,y,0,t,0,v], 4)*One(GF(P)));
+  Add(reps9,MyCutVector([0,1,0,0,0,1,x,y,0,t,0,v], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -869,7 +869,7 @@ for y in [0..P-1] do
 for t in [0..P-1] do
 for x in [0..P-1] do
 for v in [0..P-1] do
-  Add(reps9,CutVector([0,1,0,0,0,1,x,y,0,t,1,v], 4)*One(GF(P)));
+  Add(reps9,MyCutVector([0,1,0,0,0,1,x,y,0,t,1,v], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -879,7 +879,7 @@ for y in [0..P-1] do
 for t in [0..P-1] do
 for x in [0..P-1] do
 for v in [0..P-1] do
-  Add(reps9,CutVector([0,1,0,0,0,1,x,y,1,t,u,v], 4)*One(GF(P)));
+  Add(reps9,MyCutVector([0,1,0,0,0,1,x,y,1,t,u,v], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -907,7 +907,7 @@ if x+z = 0 then urange:=[0..(P-1)/2]; fi;
 for t in [0..P-1] do
 for u in urange do
 for v in [0..P-1] do
-Add(reps10,CutVector([0,1,0,1,0,1,x,y,z,t,u,v], 4)*One(GF(P)));
+Add(reps10,MyCutVector([0,1,0,1,0,1,x,y,z,t,u,v], 4)*One(GF(P)));
 od;
 od;
 od;
@@ -937,7 +937,7 @@ if x+z = 0 then urange:=[0..(P-1)/2]; fi;
 for t in [0..P-1] do
 for u in urange do
 for v in [0..P-1] do
-Add(reps11,CutVector([0,1,0,W,0,1,x,y,z,t,u,v], 4)*One(GF(P)));
+Add(reps11,MyCutVector([0,1,0,W,0,1,x,y,z,t,u,v], 4)*One(GF(P)));
 od;
 od;
 od;

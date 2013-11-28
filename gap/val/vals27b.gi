@@ -1,12 +1,12 @@
 
-Leading:=function(A)
+Leading27b:=function(A)
   if A[1][1] <> 0*A[1][1] then return A[1][1]; fi;
   if A[1][2] <> 0*A[1][1] then return A[1][2]; fi;
   if A[2][1] <> 0*A[1][1] then return A[2][1]; fi;
   return A[2][2];
 end;
 
-Linearise2 := function(list)
+Linearise27b := function(list)
    return list{[10,11,12,7,1,2,3,4,5,6,8,9]};
 end;
 
@@ -34,8 +34,8 @@ for i in [0..P-1] do
   Add(range,[1,i]);
 od;
 
-Add(params,Linearise2([0,0,0,0,0,0,0,0,1,0,0,0]));
-Add(params,Linearise2([0,0,0,0,1,0,0,0,1,0,0,0]));
+Add(params,Linearise27b([0,0,0,0,0,0,0,0,1,0,0,0]));
+Add(params,Linearise27b([0,0,0,0,1,0,0,0,1,0,0,0]));
 
 y1:=0;
 for y2 in [0,1] do
@@ -49,7 +49,7 @@ for y4 in y4range do
 new:=1;
 index:=P^3*y1+P^2*y2+P*y3+y4;
 
-A:=CutVector([y1,y2,y3,y4], 2)*One(F);
+A:=MyCutVector([y1,y2,y3,y4], 2)*One(F);
 
 if A = 0*A then
   Add(params,[0,0,0,0,0,0,0,0,0,0,0,0]);
@@ -63,12 +63,12 @@ for s in range do
 b:=s[1];
 c:=s[2];
 
-B:=CutVector([c,W*b,b,c], 2)*One(F);
-C:=CutVector([a*c-W*b*d,W*a*b-W*c*d, a*b-c*d,a*c-W*b*d], 2)*One(F);
+B:=MyCutVector([c,W*b,b,c], 2)*One(F);
+C:=MyCutVector([a*c-W*b*d,W*a*b-W*c*d, a*b-c*d,a*c-W*b*d], 2)*One(F);
 
 D:=B*A*C^-1;
 
-k:=Leading(D);
+k:=Leading27b(D);
 D:=k^-1*D;
 
 z1:=IntFFE(D[1][1]);
@@ -85,7 +85,7 @@ C[1]:=-C[1];
 
 D:=B*A*C^-1;
 
-k:=Leading(D);
+k:=Leading27b(D);
 D:=k^-1*D;
 
 z1:=IntFFE(D[1][1]);
@@ -102,7 +102,7 @@ if new = 0 then break; fi;
 od;
 
 if new = 1 then
-  Add(params,Linearise2([0,0,0,0,y2,0,y3,y4,0,0,0,0]));
+  Add(params,Linearise27b([0,0,0,0,y2,0,y3,y4,0,0,0,0]));
 fi;
 
 od;
@@ -112,23 +112,23 @@ od;
 for z in [1..((P-1)/2)] do
 for u in [0,1] do
 for t in [0..P-1] do
-  Add(params,Linearise2([0,0,0,0,0,z,u,0,t,0,1,0]));
+  Add(params,Linearise27b([0,0,0,0,0,z,u,0,t,0,1,0]));
 od;
 od;
 od;
 
 for t in [1..P-1] do
 for x in [0,1] do
-  Add(params,Linearise2([0,0,0,x,0,0,0,0,t,0,1,0]));
+  Add(params,Linearise27b([0,0,0,x,0,0,0,0,t,0,1,0]));
 od;
 od;
 
-Add(params,Linearise2([0,0,0,0,0,0,0,0,0,0,1,0]));
+Add(params,Linearise27b([0,0,0,0,0,0,0,0,0,0,1,0]));
 
-Add(params,Linearise2([0,0,0,0,0,0,1,0,0,0,1,0]));
+Add(params,Linearise27b([0,0,0,0,0,0,1,0,0,0,1,0]));
 
 for u in [0..((P-1)/2)] do
-  Add(params,Linearise2([0,0,0,1,0,0,u,0,0,0,1,0]));
+  Add(params,Linearise27b([0,0,0,1,0,0,u,0,0,0,1,0]));
 od;
 
 for y1 in [0,1,lns] do
@@ -136,10 +136,10 @@ for y2 in [0..(P-1)/2] do
 for y3 in [0..P-1] do
 for y4 in [0..P-1] do
 
-A:=CutVector([y1,y2,y3,y4], 2)*One(F);
+A:=MyCutVector([y1,y2,y3,y4], 2)*One(F);
 
 if A = 0*A then
-  Add(params,Linearise2([0,0,0,0,0,0,0,0,0,0,0,1]));
+  Add(params,Linearise27b([0,0,0,0,0,0,0,0,0,0,0,1]));
   continue;
 fi;
 
@@ -149,13 +149,13 @@ index:=P^3*y1+P^2*y2+P*y3+y4;
 for r in range do
 b:=r[1]; c:=r[2];
 
-B:=CutVector([c,W*b,b,c], 2)*One(F);
-C:=CutVector([c*(c^2-W*b^2),W*b*(c^2-W*b^2), 
+B:=MyCutVector([c,W*b,b,c], 2)*One(F);
+C:=MyCutVector([c*(c^2-W*b^2),W*b*(c^2-W*b^2), 
               b*(c^2-W*b^2),c*(c^2-W*b^2)], 2)*One(F);
 
 D:=B*A*C^-1;
 
-k:=Leading(D);
+k:=Leading27b(D);
 D:=k^-1*D;
 if IsSquareGF(F, k)=false then D:=lns*D; fi;
 
@@ -168,13 +168,13 @@ ind1:=P^3*z1+P^2*z2+P*z3+z4;
 
 if ind1 < index then new:=0; break; fi;
 
-B:=CutVector([-c,-W*b,b,c], 2)*One(F);
-C:=CutVector([-c*(c^2-W*b^2),-W*b*(c^2-W*b^2),
+B:=MyCutVector([-c,-W*b,b,c], 2)*One(F);
+C:=MyCutVector([-c*(c^2-W*b^2),-W*b*(c^2-W*b^2),
                b*(c^2-W*b^2),c*(c^2-W*b^2)], 2)*One(F);
 
 D:=B*A*C^-1;
 
-k:=Leading(D);
+k:=Leading27b(D);
 D:=k^-1*D;
 if IsSquareGF(F,k)=false then D:=lns*D; fi;
 
@@ -190,7 +190,7 @@ if ind1 < index then new:=0; break; fi;
 od;
 
 if new = 1 then
-  Add(params,Linearise2([0,0,0,y1,y2,0,y3,y4,0,0,0,1]));
+  Add(params,Linearise27b([0,0,0,y1,y2,0,y3,y4,0,0,0,1]));
 fi;
 
 od;
@@ -204,7 +204,7 @@ for v in [0..P-1] do
 lastt:=P-1;
 if u = 0 then lastt:=(P-1)/2; fi;
 for t in [0..lastt] do
-  Add(params,Linearise2([0,1,0,x,0,0,u,v,t,0,0,1]));
+  Add(params,Linearise27b([0,1,0,x,0,0,u,v,t,0,0,1]));
 od;
 od;
 od;
@@ -218,7 +218,7 @@ for y4 in [0..(P-1)/2] do
 new:=1;
 index:=P*y3+y4;
 
-A:=CutVector([y1,y2,y3,y4], 2)*One(F);
+A:=MyCutVector([y1,y2,y3,y4], 2)*One(F);
 
 for r in range do
 a:=r[1];
@@ -235,8 +235,8 @@ k:=IntFFE(k1*k2^-1);
 b:=k*b1;
 c:=k*c1;
 
-B:=CutVector([a,d,W*d,a], 2)*One(F);
-C:=CutVector([a*c-W*b*d,W*a*b-W*c*d,
+B:=MyCutVector([a,d,W*d,a], 2)*One(F);
+C:=MyCutVector([a*c-W*b*d,W*a*b-W*c*d,
         a*b-c*d,a*c-W*b*d], 2)*One(F);
 
 D:=B*A*C^-1;
@@ -254,7 +254,7 @@ if new = 0 then break; fi;
 od;
 
 if new = 1 then
-  Add(params,Linearise2([0,1,0,0,0,0,0,0,0,y3,y4,0]));
+  Add(params,Linearise27b([0,1,0,0,0,0,0,0,0,y3,y4,0]));
 fi;
 
 od;
@@ -270,15 +270,15 @@ for y4 in [0..P-1] do
 new:=1;
 index:=P^3*y1+P^2*y2+P*y3+y4;
 
-A:=CutVector([y1,y2,y3,y4], 2)*One(F);
+A:=MyCutVector([y1,y2,y3,y4], 2)*One(F);
 if Rank(A) <> 2 then continue; fi;
 
 for r in range do
 a:=r[1];
 d:=r[2];
 
-B:=CutVector([a,d,W*d,a], 2)*One(F);
-C:=CutVector([a,-W*d,-d,a], 2)*One(F);
+B:=MyCutVector([a,d,W*d,a], 2)*One(F);
+C:=MyCutVector([a,-W*d,-d,a], 2)*One(F);
 
 D:=B*A*C^-1;
 
@@ -309,7 +309,7 @@ if new = 0 then break; fi;
 od;
 
 if new = 1 then
-  Add(params,Linearise2([y1,y2,0,0,0,0,0,0,1,y3,y4,0]));
+  Add(params,Linearise27b([y1,y2,0,0,0,0,0,0,1,y3,y4,0]));
   Add(mats,A);
 fi;
 
@@ -327,15 +327,15 @@ y6:=IntFFE(A[2][2]);
 
 y3:=0; y4:=1;
 
-A2:=CutVector([y1,y2,0,0,0,0,y3,y4,1,y5,y6,0], 4)*One(F);
+A2:=MyCutVector([y1,y2,0,0,0,0,y3,y4,1,y5,y6,0], 4)*One(F);
 new:=1;
 
 for r in range do
 a:=r[1];
 d:=r[2];
 
-B:=CutVector([a,d,W*d,a], 2)*One(F);
-C:=CutVector([a,-W*d,-d,a], 2)*One(F);
+B:=MyCutVector([a,d,W*d,a], 2)*One(F);
+C:=MyCutVector([a,-W*d,-d,a], 2)*One(F);
 D:=B*A*C^-1;
 
 B[2]:=-B[2];
@@ -349,8 +349,8 @@ for x in [0..P-1] do
 
 if D = A then
 
-B:=CutVector([a,0,0,d, 0,1,0,0, n,0,1,x, W*d,0,0,a], 4)*One(F);
-C:=CutVector([a,-W*d,0, -d,a,0, -n,W*x,1], 3)*One(F);
+B:=MyCutVector([a,0,0,d, 0,1,0,0, n,0,1,x, W*d,0,0,a], 4)*One(F);
+C:=MyCutVector([a,-W*d,0, -d,a,0, -n,W*x,1], 3)*One(F);
 D3:=B*A2*C^-1;
 
 z1:=IntFFE(D3[3][1]);
@@ -362,8 +362,8 @@ fi;
 
 if D2 = A then
 
-B:=CutVector([a,0,0,d, 0,1,0,0, n,0,-1,x, -W*d,0,0,-a], 4)*One(F);
-C:=CutVector([a,-W*d,0, d,-a,0, -n,W*x,-1], 3)*One(F);
+B:=MyCutVector([a,0,0,d, 0,1,0,0, n,0,-1,x, -W*d,0,0,-a], 4)*One(F);
+C:=MyCutVector([a,-W*d,0, d,-a,0, -n,W*x,-1], 3)*One(F);
 
 D3:=B*A2*C^-1;
 
@@ -384,7 +384,7 @@ if new = 0 then break; fi;
 od;
 
 if new = 1 then
-  Add(params,Linearise2([y1,y2,0,0,0,0,0,1,1,y5,y6,0]));
+  Add(params,Linearise27b([y1,y2,0,0,0,0,0,1,1,y5,y6,0]));
 fi;
 
 od;

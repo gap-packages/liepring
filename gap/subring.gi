@@ -32,7 +32,7 @@ InsertLPR := function( list, g, k )
     local e, l;
     repeat
         e := Exponents(g);
-        l := DepthVector(e);
+        l := PositionNonZero(e);
         if l >= k then 
             return false;
         elif list[l] = true then 
@@ -47,7 +47,7 @@ end;
 StripLPR := function( list )
     local r, d, i, e, j, k;
     r := Length(list);
-    d := List(list, x -> DepthVector(Exponents(x)));
+    d := List(list, x -> PositionNonZero(Exponents(x)));
     for i in [1..r] do
         e := Exponents(list[i]);
         for j in [d[i]+1..r] do
@@ -77,7 +77,7 @@ BasisByGens := function( L, part, gens )
 
     # fill in part
     for i in [1..Length(part)] do
-        a := DepthVector(Exponents(part[i]));
+        a := PositionNonZero(Exponents(part[i]));
         f[a] := part[i];
     od;
     k := DensityLPR(f);

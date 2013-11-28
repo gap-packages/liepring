@@ -876,7 +876,7 @@ end;
 ##
 ## "See Notes6.150
 ##
-Less := function( P, A, D )
+Less6150 := function( P, A, D )
     return P^2*A[3]+P*A[1]+A[2] > P^2*D[3]+P*D[1]+D[2];
 end;
 
@@ -898,11 +898,11 @@ ValsFunction23 := function(P)
                                 B := [[a,0,0],[0,a,0],[c,-c,a^2]] * One(GF(P));
                                 C := (a^4) *One(GF(P));
                                 D := IntVecFFE(C^-1*A*B); 
-                                if Less(P, A, D) then n := 0; fi;
+                                if Less6150(P, A, D) then n := 0; fi;
                                 B := [[0,a,0],[a,0,0],[c,-c,a^2]] * One(GF(P));
                                 C := (-(a^4)) *One(GF(P));
                                 D := IntVecFFE(C^-1*A*B); 
-                                if Less(P, A, D) then n := 0; fi;
+                                if Less6150(P, A, D) then n := 0; fi;
                             fi;
                         od;
                     od;

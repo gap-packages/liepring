@@ -101,7 +101,7 @@ end );
 
 ExponentsByBasis := function( list, elm )
     local r, d, e, f, i, k;
-    d := List(list, x -> DepthVector(Exponents(x)));
+    d := List(list, x -> PositionNonZero(Exponents(x)));
     e := Exponents(elm);
     f := List(d, x -> 0);
     for i in [1..Length(e)] do

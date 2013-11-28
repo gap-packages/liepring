@@ -25,8 +25,8 @@ SpecialiseLiePRingNC := function( L, P, para, vals )
     if sp then 
         T.prime := P;
         W := PrimitiveRootMod(P);
-        p := Indeterminate(Integers, "p");
-        w := Indeterminate(Integers, "w");
+        p := IndeterminateByName("p");
+        w := IndeterminateByName("w");
         para := Concatenation( [p,w], para );
         vals := Concatenation( [P,W], vals );
     fi;
@@ -120,8 +120,8 @@ SpecialiseLiePRing := function( L, P, para, vals )
 
     # get table
     S := SCTable(Zero(L));
-    p := Indeterminate(Integers, "p");
-    w := Indeterminate(Integers, "w");
+    p := IndeterminateByName("p");
+    w := IndeterminateByName("w");
 
     # check for consistency 
     if p in para or w in para then 
@@ -188,20 +188,20 @@ LiePRingsInFamily := function( arg )
     fi;
 
     # assign variable names
-    p := Indeterminate(Integers, "p");
-    w := Indeterminate(Integers, "w");
-    x := Indeterminate(Integers, "x");
-    y := Indeterminate(Integers, "y");
-    z := Indeterminate(Integers, "z");
-    t := Indeterminate(Integers, "t");
-    j := Indeterminate(Integers, "j");
-    k := Indeterminate(Integers, "k");
-    m := Indeterminate(Integers, "m");
-    n := Indeterminate(Integers, "n");
-    r := Indeterminate(Integers, "r");
-    s := Indeterminate(Integers, "s");
-    u := Indeterminate(Integers, "u");
-    v := Indeterminate(Integers, "v");
+    p := IndeterminateByName("p");
+    w := IndeterminateByName("w");
+    x := IndeterminateByName("x");
+    y := IndeterminateByName("y");
+    z := IndeterminateByName("z");
+    t := IndeterminateByName("t");
+    j := IndeterminateByName("j");
+    k := IndeterminateByName("k");
+    m := IndeterminateByName("m");
+    n := IndeterminateByName("n");
+    r := IndeterminateByName("r");
+    s := IndeterminateByName("s");
+    u := IndeterminateByName("u");
+    v := IndeterminateByName("v");
 
     para := Difference( S.param, [w] );
     vals := [];

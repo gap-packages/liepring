@@ -1310,7 +1310,7 @@ for y6 in [0..P-1] do
 for y3 in [0..P-1] do
 for y4 in [0..P-1] do
 
-A:=One(F)*CutVector([y3,y4,y5,y6], 2);
+A:=One(F)*MyCutVector([y3,y4,y5,y6], 2);
 if A = 0*A then
   Add(mats,A);
   continue;
@@ -1323,8 +1323,8 @@ for a in [1..P-1] do
 for x in CU do
 c:=a*x;
 
-B:=One(F)*CutVector([a^-1*c^2,0,0,c], 2);
-C:=One(F)*CutVector([a*c^2,0,0,a^2*c], 2);
+B:=One(F)*MyCutVector([a^-1*c^2,0,0,c], 2);
+C:=One(F)*MyCutVector([a*c^2,0,0,a^2*c], 2);
 
 D:=B*A*C^-1;
 
@@ -1338,8 +1338,8 @@ ind1:=P^3*z5+P^2*z6+P*z3+z4;
 
 if ind1 < index then new:=0; fi;
 
-B:=One(F)*CutVector([0,a^-1*c^2,c,0], 2);
-C:=One(F)*CutVector([0,a*c^2,a^2*c,0], 2);
+B:=One(F)*MyCutVector([0,a^-1*c^2,c,0], 2);
+C:=One(F)*MyCutVector([0,a*c^2,a^2*c,0], 2);
 
 D:=B*A*C^-1;
 
@@ -1376,23 +1376,23 @@ for a in [1..P-1] do
 for x in CU do
 c:=a*x;
 
-B:=One(F)*CutVector([a^-1*c^2,0,0,c], 2);
-C:=One(F)*CutVector([a*c^2,0,0,a^2*c], 2);
+B:=One(F)*MyCutVector([a^-1*c^2,0,0,c], 2);
+C:=One(F)*MyCutVector([a*c^2,0,0,a^2*c], 2);
 
 D:=B*AS*C^-1;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([a,0,0,0,a^-1*c^2,0,0,0,c], 3));
+  Add(stab1,One(F)*MyCutVector([a,0,0,0,a^-1*c^2,0,0,0,c], 3));
   Add(stab2,C);
 fi;
 
-B:=One(F)*CutVector([0,a^-1*c^2,c,0], 2);
-C:=One(F)*CutVector([0,a*c^2,a^2*c,0], 2);
+B:=One(F)*MyCutVector([0,a^-1*c^2,c,0], 2);
+C:=One(F)*MyCutVector([0,a*c^2,a^2*c,0], 2);
 
 D:=B*AS*C^-1;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([a,0,0,0,0,a^-1*c^2,0,c,0], 3));
+  Add(stab1,One(F)*MyCutVector([a,0,0,0,0,a^-1*c^2,0,c,0], 3));
   Add(stab2,C);
 fi;
 
@@ -1407,7 +1407,7 @@ y6:=IntFFE(AS[2][2]);
 for y1 in [0..P-1] do
 for y2 in [0..P-1] do
 
-A:=One(F)*CutVector([y1,y2,y3,y4,y5,y6], 3);
+A:=One(F)*MyCutVector([y1,y2,y3,y4,y5,y6], 3);
 if A = 0*A then
   Add(params[17],[0,0,0,0,0,0]);
   continue;
@@ -1461,7 +1461,7 @@ for y6 in [0..P-1] do
 for y3 in [0..P-1] do
 for y4 in [0..P-1] do
 
-A:=One(F)*CutVector([y3,y4,y5,y6], 2);
+A:=One(F)*MyCutVector([y3,y4,y5,y6], 2);
 if A = 0*A then
   Add(mats,A);
   continue;
@@ -1474,8 +1474,8 @@ for a in [1..P-1] do
 for x in CU do
 c:=a*x;
 
-B:=One(F)*CutVector([a^-1*c^2,0,0,c], 2);
-C:=One(F)*CutVector([a*c^2,0,0,a^2*c], 2);
+B:=One(F)*MyCutVector([a^-1*c^2,0,0,c], 2);
+C:=One(F)*MyCutVector([a*c^2,0,0,a^2*c], 2);
 
 D:=B*A*C^-1;
 
@@ -1511,13 +1511,13 @@ for a in [1..P-1] do
 for x in CU do
 c:=a*x;
 
-B:=One(F)*CutVector([a^-1*c^2,0,0,c], 2);
-C:=One(F)*CutVector([a*c^2,0,0,a^2*c], 2);
+B:=One(F)*MyCutVector([a^-1*c^2,0,0,c], 2);
+C:=One(F)*MyCutVector([a*c^2,0,0,a^2*c], 2);
 
 D:=B*AS*C^-1;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([a,0,0,0,a^-1*c^2,0,0,0,c], 3));
+  Add(stab1,One(F)*MyCutVector([a,0,0,0,a^-1*c^2,0,0,0,c], 3));
   Add(stab2,C);
 fi;
 
@@ -1532,7 +1532,7 @@ y6:=IntFFE(AS[2][2]);
 for y1 in [0..P-1] do
 for y2 in [0..P-1] do
 
-A:=One(F)*CutVector([y1,y2,y3,y4,y5,y6], 3);
+A:=One(F)*MyCutVector([y1,y2,y3,y4,y5,y6], 3);
 if A = 0*A then
   Add(params[18],[0,0,0,0,0,0]);
   continue;
@@ -1865,7 +1865,7 @@ for y4 in [0..P-1] do
 for y5 in [0..P-1] do
 for y6 in [0..P-1] do
 
-A:=One(F)*CutVector([y3,y4,y5,y6], 2);
+A:=One(F)*MyCutVector([y3,y4,y5,y6], 2);
 if A = 0*A then
   Add(mats,A);
   continue;
@@ -1878,8 +1878,8 @@ for bc in bcrange do
 b:=bc[1]; c:=bc[2];
 for m in [-1,1] do
 
-B:=One(F)*CutVector([W*b,m*c,W*c,W*m*b], 2);
-C:=One(F)*CutVector([W*(W*b^2+c^2),m*2*W*b*c,2*W^2*b*c,m*W*(W*b^2+c^2)], 2);
+B:=One(F)*MyCutVector([W*b,m*c,W*c,W*m*b], 2);
+C:=One(F)*MyCutVector([W*(W*b^2+c^2),m*2*W*b*c,2*W^2*b*c,m*W*(W*b^2+c^2)], 2);
 
 D:=B*A*C^-1;
 if D[1][1] <> Zero(F) then D:=D[1][1]^-1*D; fi;
@@ -1921,8 +1921,8 @@ for c in [0..P-1] do
 for m in [-1,1] do
 if b+c = 0 then continue; fi;
 
-B:=One(F)*CutVector([W*b,m*c,W*c,W*m*b], 2);
-C:=One(F)*CutVector([W*(W*b^2+c^2),m*2*W*b*c,2*W^2*b*c,m*W*(W*b^2+c^2)], 2);
+B:=One(F)*MyCutVector([W*b,m*c,W*c,W*m*b], 2);
+C:=One(F)*MyCutVector([W*(W*b^2+c^2),m*2*W*b*c,2*W^2*b*c,m*W*(W*b^2+c^2)], 2);
 
 D:=B*AS*C^-1;
 if D[1][1] <> Zero(F) 
@@ -1935,7 +1935,7 @@ if D[1][1]=Zero(F) and D[1][2]=Zero(F) and D[2][1]=Zero(F) and D[2][2]<>Zero(F)
 then D:=D[2][2]^-1*D; fi;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([1,0,0,0,W*b,m*c,0,W*c,W*m*b], 3));
+  Add(stab1,One(F)*MyCutVector([1,0,0,0,W*b,m*c,0,W*c,W*m*b], 3));
   Add(stab2,C);
 fi;
 
@@ -1951,7 +1951,7 @@ y6:=IntFFE(AS[2][2]);
 for y1 in [0..P-1] do
 for y2 in [0..P-1] do
 
-A:=One(F)*CutVector([y1,y2,y3,y4,y5,y6], 3);
+A:=One(F)*MyCutVector([y1,y2,y3,y4,y5,y6], 3);
 if A = 0*A then
   Add(params[22],[0,0,0,0,0,0]);
   continue;
@@ -2009,7 +2009,7 @@ for y6 in [0..P-1] do
 for y3 in [0..P-1] do
 for y4 in [0..P-1] do
 
-A:=One(F)*CutVector([y3,y4,y5,y6], 2);
+A:=One(F)*MyCutVector([y3,y4,y5,y6], 2);
 if A = 0*A then
   Add(mats,A);
   continue;
@@ -2021,8 +2021,8 @@ index:=P^3*y5+P^2*y6+P*y3+y4;
 for a in [1..P-1] do
 for m in [-1,1] do
 
-B:=One(F)*CutVector([a,0,0,m*a], 2);
-C:=One(F)*CutVector([a^3,0,0,m*a^3], 2);
+B:=One(F)*MyCutVector([a,0,0,m*a], 2);
+C:=One(F)*MyCutVector([a^3,0,0,m*a^3], 2);
 
 D:=B*A*C^-1;
 
@@ -2039,8 +2039,8 @@ if ind1 < index then new:=0; fi;
 if P mod 3 = 2 and new = 1 then
 for b in [sol,-sol] do
 
-B:=One(F)*CutVector([-2*W*a*b,a,m*W*a,-2*m*W*a*b], 2);
-C:=One(F)*CutVector([8/3*W^2*a^3*b,4/3*W*a^3,4/3*m*W^2*a^3,8/3*m*W^2*a^3*b], 2);
+B:=One(F)*MyCutVector([-2*W*a*b,a,m*W*a,-2*m*W*a*b], 2);
+C:=One(F)*MyCutVector([8/3*W^2*a^3*b,4/3*W*a^3,4/3*m*W^2*a^3,8/3*m*W^2*a^3*b], 2);
 
 D:=B*A*C^-1;
 
@@ -2078,27 +2078,27 @@ stab2:=[];
 for a in [1..P-1] do
 for m in [-1,1] do
 
-B:=One(F)*CutVector([a,0,0,m*a], 2);
-C:=One(F)*CutVector([a^3,0,0,m*a^3], 2);
+B:=One(F)*MyCutVector([a,0,0,m*a], 2);
+C:=One(F)*MyCutVector([a^3,0,0,m*a^3], 2);
 
 D:=B*AS*C^-1;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([a,0,0,0,a,0,0,0,m*a], 3));
+  Add(stab1,One(F)*MyCutVector([a,0,0,0,a,0,0,0,m*a], 3));
   Add(stab2,C);
 fi;
 
 if P mod 3 = 2 then
 for b in [sol,-sol] do
 
-B:=One(F)*CutVector([-2*W*a*b,a,m*W*a,-2*m*W*a*b], 2);
-C:=One(F)*CutVector([8/3*W^2*a^3*b,4/3*W*a^3,4/3*m*W^2*a^3,8/3*m*W^2*a^3*b], 2);
+B:=One(F)*MyCutVector([-2*W*a*b,a,m*W*a,-2*m*W*a*b], 2);
+C:=One(F)*MyCutVector([8/3*W^2*a^3*b,4/3*W*a^3,4/3*m*W^2*a^3,8/3*m*W^2*a^3*b], 2);
 
 D:=B*AS*C^-1;
 
 if D = AS then
   Add(stab1,
-  One(F)*CutVector([4*W*a*b,-3*W*a*b,a/2,0,-2*W*a*b,a,0,m*W*a,-2*m*W*a*b], 3));
+  One(F)*MyCutVector([4*W*a*b,-3*W*a*b,a/2,0,-2*W*a*b,a,0,m*W*a,-2*m*W*a*b], 3));
   Add(stab2,C);
 fi;
 
@@ -2116,7 +2116,7 @@ y6:=IntFFE(AS[2][2]);
 for y1 in [0..P-1] do
 for y2 in [0..P-1] do
 
-A:=One(F) * CutVector([y1,y2,y3,y4,y5,y6], 3);
+A:=One(F) * MyCutVector([y1,y2,y3,y4,y5,y6], 3);
 if A = 0*A then
   Add(params[23],[0,0,0,0,0,0]);
   continue;
@@ -2183,12 +2183,12 @@ for y in [1..P-1] do
   if One(F)*(W*y^2+3) = Zero(F) then b:=y; break; fi;
 od;
 
-B1:=One(F)*CutVector([2,2*b,2*W*b,2], 2);
-C1:=One(F)*CutVector([32,-32*b,-32*W*b,32], 2);
-B2:=One(F)*CutVector([2,-2*b,-2*W*b,2], 2);
-C2:=One(F)*CutVector([32,32*b,32*W*b,32], 2);
-BB1:=One(F)*CutVector([-4,s*b+3,3*s*W^-1+b,0,2,2*b,0,2*W*b,2], 3);
-BB2:=One(F)*CutVector([-4,-s*b+3,3*s*W^-1-b,0,2,-2*b,0,-2*W*b,2], 3);
+B1:=One(F)*MyCutVector([2,2*b,2*W*b,2], 2);
+C1:=One(F)*MyCutVector([32,-32*b,-32*W*b,32], 2);
+B2:=One(F)*MyCutVector([2,-2*b,-2*W*b,2], 2);
+C2:=One(F)*MyCutVector([32,32*b,32*W*b,32], 2);
+BB1:=One(F)*MyCutVector([-4,s*b+3,3*s*W^-1+b,0,2,2*b,0,2*W*b,2], 3);
+BB2:=One(F)*MyCutVector([-4,-s*b+3,3*s*W^-1-b,0,2,-2*b,0,-2*W*b,2], 3);
 
 mats:=[];
 
@@ -2197,7 +2197,7 @@ for y6 in [0..P-1] do
 for y3 in [0..P-1] do
 for y4 in [0..P-1] do
 
-A:=One(F)*CutVector([y3,y4,y5,y6], 2);
+A:=One(F)*MyCutVector([y3,y4,y5,y6], 2);
 if A = 0*A then
   Add(mats,A);
   continue;
@@ -2269,8 +2269,8 @@ for a in [1..(P-1)/2] do
 D:=(One(F)*a)^-2*AS;
 
 if D = AS then
-  Add(stab1,One(F)*CutVector([1,0,0,0,1,0,0,0,1], 3));
-  Add(stab2,One(F)*CutVector([a^2,0,0,a^2], 2));
+  Add(stab1,One(F)*MyCutVector([1,0,0,0,1,0,0,0,1], 3));
+  Add(stab2,One(F)*MyCutVector([a^2,0,0,a^2], 2));
 fi;
 
 D:=(One(F)*a)^-2*AS1;
@@ -2297,7 +2297,7 @@ y6:=IntFFE(AS[2][2]);
 for y1 in [0..P-1] do
 for y2 in [0..P-1] do
 
-A:=One(F)*CutVector([y1,y2,y3,y4,y5,y6], 3); 
+A:=One(F)*MyCutVector([y1,y2,y3,y4,y5,y6], 3); 
 if A = 0*A then
   Add(params[24],[0,0,0,0,0,0,s]);
   continue;

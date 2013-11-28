@@ -2,15 +2,27 @@
 ##
 ##
 ##
+OFFSET_VARS := 1000;
+
+IndeterminateByName := function( name )
+    local l, i, v;
+    l := ["p", "w", "x", "y", "z", "t", "j", "k", "m", "n", "r", 
+          "s", "u", "v", "g3", "g4", "g5", "g7", "g8", "g9" ];
+    i := Position( l, name );
+    if i = fail then return fail; fi;
+    v := Indeterminate(Integers, OFFSET_VARS+i); 
+    if not HasName(v) then SetName(v,name); fi;
+    return v;
+end;
 
 LiePRing_ReadPackage := function(relpath)
     local preamble, code, c, filename, func;
 
     preamble := "local p, w, x, y, z, t, j, k, m, n, r, s, u, v;\n";
     for c in "pwxyztjkmnrsuv" do
-        # c := Indeterminate(Integers, "c");
+        # c := IndeterminateByName("c");
         Add(preamble, c);
-        Append(preamble, " := Indeterminate(Integers, \"");
+        Append(preamble, " := IndeterminateByName(\"");
         Add(preamble, c);
         Append(preamble, "\");\n");
     od;

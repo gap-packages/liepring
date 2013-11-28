@@ -1,13 +1,13 @@
 
-DepthVector := function ( vec )
-    local  i;
-    for i  in [ 1 .. Length( vec ) ]  do
-        if vec[i] <> 0 * vec[i]  then
-            return i;
-        fi;
-    od;
-    return Length( vec ) + 1;
-end;
+#DepthVector := function ( vec )
+#    local  i;
+#    for i  in [ 1 .. Length( vec ) ]  do
+#        if vec[i] <> 0 * vec[i]  then
+#            return i;
+#        fi;
+#    od;
+#    return Length( vec ) + 1;
+#end;
 
 WordByExps := function ( exp )
     local  w, i;
@@ -21,7 +21,7 @@ WordByExps := function ( exp )
     return w;
 end;
 
-CutVector := function ( vec, l )
+MyCutVector := function ( vec, l )
     local  d, new, i;
     if Length( vec ) = 0  then
         return [  ];

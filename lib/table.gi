@@ -3,13 +3,13 @@ LIE_TABLE := [];
 
 CallFuncList( function()
     local p, g3, g4, g5, g6, g7, g8, g9;
-    p := Indeterminate(Integers, "p");
-    g3 := Indeterminate(Rationals, "g3");
-    g4 := Indeterminate(Rationals, "g4");
-    g5 := Indeterminate(Rationals, "g5");
-    g7 := Indeterminate(Rationals, "g7");
-    g8 := Indeterminate(Rationals, "g8");
-    g9 := Indeterminate(Rationals, "g9");
+    p := IndeterminateByName("p");
+    g3 := IndeterminateByName("g3");
+    g4 := IndeterminateByName("g4");
+    g5 := IndeterminateByName("g5");
+    g7 := IndeterminateByName("g7");
+    g8 := IndeterminateByName("g8");
+    g9 := IndeterminateByName("g9");
 
 LIE_TABLE := [
 
@@ -246,16 +246,16 @@ LIE_TABLE := [
 ["gap7.1", 1] ];
 end, []);
 
-Evaluate := function( f, P )
+EvaluateWithGcds := function( f, P )
     local inds, vals, p, g3, g4, g5, g6, g7, g8, g9;
     if IsInt(f) then return f; fi;
-    p := Indeterminate(Integers, "p");
-    g3 := Indeterminate(Rationals, "g3");
-    g4 := Indeterminate(Rationals, "g4");
-    g5 := Indeterminate(Rationals, "g5");
-    g7 := Indeterminate(Rationals, "g7");
-    g8 := Indeterminate(Rationals, "g8");
-    g9 := Indeterminate(Rationals, "g9");
+    p := IndeterminateByName("p");
+    g3 := IndeterminateByName("g3");
+    g4 := IndeterminateByName("g4");
+    g5 := IndeterminateByName("g5");
+    g7 := IndeterminateByName("g7");
+    g8 := IndeterminateByName("g8");
+    g9 := IndeterminateByName("g9");
     inds := [p, g3, g4, g5, g7, g8, g9];
     vals := [P, Gcd(P-1,3), Gcd(P-1,4), Gcd(P-1,5), Gcd(P-1,7), Gcd(P-1,8),
                 Gcd(P-1,9)];
@@ -270,7 +270,7 @@ InstallGlobalFunction( LiePRingsDim7ByFile, function( arg )
 
     # read and construct the desired lie p-rings
     LIE_DATA[7] := [];
-    ReadPackage("liepring", Concatenation("lib/dim7/",LIE_TABLE[arg[1]][1]));
+    LiePRing_ReadPackage(Concatenation("lib/dim7/",LIE_TABLE[arg[1]][1]));
     L := List(LIE_DATA[7], x -> LiePRingByData(7, x));
 
     # restore
@@ -284,7 +284,7 @@ InstallGlobalFunction( LiePRingsDim7ByFile, function( arg )
     spe := Flat(Filtered(spe, l -> l <> fail ));
 
     # check
-    v := Evaluate( LIE_TABLE[arg[1]][2], arg[2] );
+    v := EvaluateWithGcds( LIE_TABLE[arg[1]][2], arg[2] );
     if Length(spe) <> v then
         Print("WARNING: ",Length(spe)-v," too many \n");
         return fail;
@@ -298,7 +298,7 @@ GetDim7FileByNumber := function( P, nr )
     j := 0;
     while j < nr do
         i := i+1;
-        v := Evaluate( LIE_TABLE[i][2], P );
+        v := EvaluateWithGcds( LIE_TABLE[i][2], P );
         j := j + v;
     od;
     return [i, nr-j+v];

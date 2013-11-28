@@ -1,4 +1,4 @@
-Linearise := function(A)
+Linearise27a := function(A)
     return IntVecFFE( [ A[4][1], A[4][2], A[4][3], A[3][1], 
                         A[1][1], A[1][2], A[1][3], A[2][1],
                         A[2][2], A[2][3], A[3][2], A[3][3] ] );   
@@ -76,14 +76,14 @@ ValsFunction27a := function ( P )
     translft := [  ];
     transrt := [  ];
     translft[1] 
-     := CutVector( [ 0, 0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0 ], 4 ) 
+     := MyCutVector( [ 0, 0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, -1, 0, 0, 0 ], 4 ) 
       * One( F );
-    transrt[1] := CutVector( [ 0, 0, 1, 0, 1, 0, 1, 0, 0 ], 3 ) * One( F );
+    transrt[1] := MyCutVector( [ 0, 0, 1, 0, 1, 0, 1, 0, 0 ], 3 ) * One( F );
     for i  in [ 1 .. P - 1 ]  do
         Add( translft, 
-         CutVector( [ 1, 0, 0, (- i), 0, 1, i, 0, 0, 0, 1, 0, 0, 0, 0, 1 ], 4 
+         MyCutVector( [ 1, 0, 0, (- i), 0, 1, i, 0, 0, 0, 1, 0, 0, 0, 0, 1 ], 4 
              ) * One( F ) );
-        Add( transrt, CutVector( [ 1, 2 * i, i ^ 2, 0, 1, i, 0, 0, 1 ], 3 ) 
+        Add( transrt, MyCutVector( [ 1, 2 * i, i ^ 2, 0, 1, i, 0, 0, 1 ], 3 ) 
           * One( F ) );
     od;
     #Print( "transversal done \n" );
@@ -92,7 +92,7 @@ ValsFunction27a := function ( P )
         A := MutableNullMat( 4, 3, F );
         A[3] := reps1[i][1];
         A[4] := reps1[i][2];
-        Add( params, Linearise(A) );
+        Add( params, Linearise27a(A) );
     od;
     #Print( "reps1 dealt with: ", Length( params ), "\n" );
     for i  in [ 1 .. Length( reps2 ) ]  do
@@ -124,7 +124,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -137,7 +137,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps2 dealt with: ", Length( params ), "\n" );
@@ -170,7 +170,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -183,7 +183,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps3 dealt with: ", Length( params ), "\n" );
@@ -216,7 +216,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -229,7 +229,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps4 dealt with: ", Length( params ), "\n" );
@@ -262,7 +262,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -275,7 +275,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps5 dealt with: ", Length( params ), "\n" );
@@ -308,7 +308,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -321,7 +321,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps6 dealt with: ", Length( params ), "\n" );
@@ -354,7 +354,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -367,7 +367,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps7 dealt with: ", Length( params ), "\n" );
@@ -400,7 +400,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -413,7 +413,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps8 dealt with: ", Length( params ), "\n" );
@@ -446,7 +446,7 @@ ValsFunction27a := function ( P )
             d := B[2][2];
             B 
              := 
-              CutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
+              MyCutVector( [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, (- c), 0, 0, 
                     (- b), a ], 4 ) * One( F );
             D := B * D;
             B := Btable[ind];
@@ -459,7 +459,7 @@ ValsFunction27a := function ( P )
             fi;
         od;
         if new  then
-            Add( params, Linearise(A) );
+            Add( params, Linearise27a(A) );
         fi;
     od;
     #Print( "reps9 dealt with: ", Length( params ), "\n" );
@@ -479,7 +479,7 @@ ValsFunction27a := function ( P )
                         for v  in [ 0 .. P - 1 ]  do
                             A 
                              := 
-                              CutVector( [ 0, 1, 0, 1, 0, 1, x, y, z, t, u, v 
+                              MyCutVector( [ 0, 1, 0, 1, 0, 1, x, y, z, t, u, v 
                                    ], 4 ) * One( F );
                             new := true;
                             index 
@@ -510,7 +510,7 @@ ValsFunction27a := function ( P )
                                 d := B[2][2];
                                 B 
                                  := 
-                                  CutVector( 
+                                  MyCutVector( 
                                      [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, 
                                         (- c), 0, 0, (- b), a ], 4 ) 
                                   * One( F );
@@ -525,7 +525,7 @@ ValsFunction27a := function ( P )
                                 fi;
                             od;
                             if new  then
-                                Add( params, Linearise(A) );
+                                Add( params, Linearise27a(A) );
                             fi;
                         od;
                     od;
@@ -550,7 +550,7 @@ ValsFunction27a := function ( P )
                         for v  in [ 0 .. P - 1 ]  do
                             A 
                              := 
-                              CutVector( [ 0, 1, 0, W, 0, 1, x, y, z, t, u, v 
+                              MyCutVector( [ 0, 1, 0, W, 0, 1, x, y, z, t, u, v 
                                    ], 4 ) * One( F );
                             new := true;
                             index 
@@ -581,7 +581,7 @@ ValsFunction27a := function ( P )
                                 d := B[2][2];
                                 B 
                                  := 
-                                  CutVector( 
+                                  MyCutVector( 
                                      [ a, b, 0, 0, c, d, 0, 0, 0, 0, d, 
                                         (- c), 0, 0, (- b), a ], 4 ) 
                                   * One( F );
@@ -596,7 +596,7 @@ ValsFunction27a := function ( P )
                                 fi;
                             od;
                             if new  then
-                                Add( params, Linearise(A) );
+                                Add( params, Linearise27a(A) );
                             fi;
                         od;
                     od;
