@@ -217,7 +217,7 @@ CheckLiePRingsDim7ByFilePlus := function( nr, P )
 
     # check number
     Print("  check number \n");
-    v := Evaluate( LIE_TABLE[nr][2], P );
+    v := EvaluatePorcPoly( LIE_TABLE[nr][2], P );
     if Length(spe) <> v then
         Print("wrong number: ",Length(spe)-v," off \n");
         return fail;

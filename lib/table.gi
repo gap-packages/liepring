@@ -4,12 +4,12 @@ LIE_TABLE := [];
 CallFuncList( function()
     local p, g3, g4, g5, g6, g7, g8, g9;
     p := IndeterminateByName("p");
-    g3 := IndeterminateByName("g3");
-    g4 := IndeterminateByName("g4");
-    g5 := IndeterminateByName("g5");
-    g7 := IndeterminateByName("g7");
-    g8 := IndeterminateByName("g8");
-    g9 := IndeterminateByName("g9");
+    g3 := IndeterminateByName("(p-1,3)");
+    g4 := IndeterminateByName("(p-1,4)");
+    g5 := IndeterminateByName("(p-1,5)");
+    g7 := IndeterminateByName("(p-1,7)");
+    g8 := IndeterminateByName("(p-1,8)");
+    g9 := IndeterminateByName("(p-1,9)");
 
 LIE_TABLE := [
 
@@ -246,22 +246,6 @@ LIE_TABLE := [
 ["gap7.1", 1] ];
 end, []);
 
-EvaluateWithGcds := function( f, P )
-    local inds, vals, p, g3, g4, g5, g6, g7, g8, g9;
-    if IsInt(f) then return f; fi;
-    p := IndeterminateByName("p");
-    g3 := IndeterminateByName("g3");
-    g4 := IndeterminateByName("g4");
-    g5 := IndeterminateByName("g5");
-    g7 := IndeterminateByName("g7");
-    g8 := IndeterminateByName("g8");
-    g9 := IndeterminateByName("g9");
-    inds := [p, g3, g4, g5, g7, g8, g9];
-    vals := [P, Gcd(P-1,3), Gcd(P-1,4), Gcd(P-1,5), Gcd(P-1,7), Gcd(P-1,8),
-                Gcd(P-1,9)];
-    return Value( f, inds, vals );
-end;
-
 InstallGlobalFunction( LiePRingsDim7ByFile, function( arg )
     local rem, L, spe, v;
 
@@ -284,7 +268,7 @@ InstallGlobalFunction( LiePRingsDim7ByFile, function( arg )
     spe := Flat(Filtered(spe, l -> l <> fail ));
 
     # check
-    v := EvaluateWithGcds( LIE_TABLE[arg[1]][2], arg[2] );
+    v := EvaluatePorcPoly( LIE_TABLE[arg[1]][2], arg[2] );
     if Length(spe) <> v then
         Print("WARNING: ",Length(spe)-v," too many \n");
         return fail;
@@ -298,7 +282,7 @@ GetDim7FileByNumber := function( P, nr )
     j := 0;
     while j < nr do
         i := i+1;
-        v := EvaluateWithGcds( LIE_TABLE[i][2], P );
+        v := EvaluatePorcPoly( LIE_TABLE[i][2], P );
         j := j + v;
     od;
     return [i, nr-j+v];

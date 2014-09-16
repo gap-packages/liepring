@@ -3,7 +3,7 @@ InstallGlobalFunction( CreateLiePRing, function(SC)
     local fam, I, b, R;
 
     # check
-    if Length(SC.param) = 0 then Unbind(SC.param); fi;
+    if IsBound(SC.param) and Length(SC.param) = 0 then Unbind(SC.param); fi;
 
     # create family with type 
     fam := NewFamily( "LPRElementsFamily", IsLPRElement, IsLPRElement );
@@ -100,16 +100,16 @@ InstallMethod( IsLiePRing, true, [IsRing], 0, function(L)
 end );
 
 InstallMethod( PrintObj, true, [IsLiePRing], SUM_FLAGS, function(L)
-    Print("<Lie ring with ",Length(GeneratorsOfRing(L))," generators> \n");
+    Print("<LiePRing with ",Length(GeneratorsOfRing(L))," generators> \n");
 end );
 
 InstallMethod( ViewObj, true, [IsLiePRing], SUM_FLAGS, function(L)
     if IsBound(SCTable(Zero(L)).param) then 
-        Print("<Lie ring of dimension ",DimensionOfLiePRing(L),
+        Print("<LiePRing of dimension ",DimensionOfLiePRing(L),
               " over prime ",PrimeOfLiePRing(L),
               " with parameters ",SCTable(Zero(L)).param,">");
     else
-        Print("<Lie ring of dimension ",DimensionOfLiePRing(L),
+        Print("<LiePRing of dimension ",DimensionOfLiePRing(L),
               " over prime ",PrimeOfLiePRing(L),">");
     fi;
 end );

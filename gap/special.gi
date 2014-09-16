@@ -83,7 +83,10 @@ end;
 ##
 IsValidPrime := function(L, P)
     local c;
-    if not IsPrimeInt(P) or P=2 then return false; fi;
+    if not IsPrimeInt(P) then return false; fi;
+    if not HasLibraryConditions(L) then return true; fi;
+    if P=2 then return false; fi;
+    if P=3 and PClassOfLiePRing(L) > 2 then return false; fi;
     c := L!.LibraryConditions[2];
     if c = "p=1 mod 3" then  
         if (P mod 3) <> 1 then return false; fi;
@@ -108,7 +111,6 @@ IsValidPrime := function(L, P)
     elif c = "p=3 mod 4, p=1 mod 3" then
         if (P mod 4) <> 3 or (P mod 3) <> 1 then return false; fi;
     fi;
-    if P=3 and PClassOfLiePRing(L) > 2 then return false; fi;
     return true;
 end;
 

@@ -7,36 +7,46 @@ DensityLPR := function( list )
     return 1;
 end;
 
-NormedLPR := function( g, l )
-    local p, e;
+NormedLPR := function( L, g, l )
+    local p, e, w, h;
 
+    w := Indeterminate(Rationals, "w");
+    h := [w, -w, w^-1, -w^-1];
     if g = 0*g then return g; fi;
     p := SCTable(g).prime;
     e := Exponents(g)[l];
 
-    if IsPolynomial(e) or IsRationalFunction(e) then 
-        Print("WARNING: Dividing by ",e,"\n");
+    if (IsPolynomial(e) or IsRationalFunction(e)) and (not e in h) then 
+        Print("WARNING: Dividing by ",e," in ",L!.LibraryName,"\n");
     fi;
     e := e^-1; 
 
     if IsInt(p) then 
         e := e mod p; 
-    elif e <> 1 and e <> -1 then 
-        Print("WARNING: Multiplying by ",e,"\n");
+    elif (e <> 1 and e <> -1) and (not e in h) then 
+        Print("WARNING: Dividing by ",e," in ",L!.LibraryName,"\n");
     fi;
 
     return e*g;
 end; 
 
-InsertLPR := function( list, g, k )
+MyDepth := function(vec)
+    local i;
+    for i in [1..Length(vec)] do
+        if vec[i] <> 0*vec[i] then return i; fi;
+    od;
+    return Length(vec)+1;
+end;
+
+InsertLPR := function( L, list, g, k )
     local e, l;
     repeat
         e := Exponents(g);
-        l := PositionNonZero(e);
+        l := MyDepth(e);
         if l >= k then 
             return false;
         elif list[l] = true then 
-            list[l] := NormedLPR( g, l );
+            list[l] := NormedLPR( L, g, l );
             return l;
         else
             g := g - e[l]*list[l];
@@ -91,7 +101,7 @@ BasisByGens := function( L, part, gens )
     # step 1: process t (integral elements)
     while i <= j do
         g := t[i];
-        a := InsertLPR( f, g, k );
+        a := InsertLPR( L, f, g, k );
         if IsInt(a) then 
 
             # reset density
@@ -128,7 +138,7 @@ BasisByGens := function( L, part, gens )
     j := Length(s);
     while i <= j do
         g := s[i];
-        a := InsertLPR( f, g, k );
+        a := InsertLPR( L, f, g, k );
         if IsInt(a) then 
 
             # reset density

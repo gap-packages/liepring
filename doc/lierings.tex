@@ -1,190 +1,254 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Chapter{Lie p-rings}
+\Chapter{LiePRings in GAP}
 
-A Lie ring $L$ is an additive abelian group with a multiplication that
-is alternating, bilinear and satisfies the Jacobi identity. The 
-multiplication in a Lie ring is often denoted with brakets $[g,h]$, 
-however, in GAP and also in this manual multiplication is denoted by
-$g \cdot h$. 
-
-Let $L$ be a Lie $p$-ring and thus a nilpotent Lie ring of order $p^n$.
-Then $L$ has a central series $L = L_1 \geq \ldots \geq L_n \geq \{0\}$ 
-with quotients of order $p$. Choose $l_i \in L_i \setminus L_{i+1}$ for 
-$1 \leq i \leq n$. Then $(l_1, \ldots, l_n)$ is a generating set of $L$ 
-satisfying that $p \cdot l_i \in L_{i+1}$ and $l_i \cdot l_j \in L_{i+1}$ 
-for $1 \leq j \< i \leq n$. We also call such a generating sequence
-a {\it basis} for $L$ and we say that $L$ has {\it dimension} $n$.
-
-Given a basis $(l_1, \ldots, l_n)$ for a Lie $p$-ring $L$, there exist 
-coefficients $c_{i,j,k} \in \{0, \ldots, p-1\}$ so that the following 
-relations hold in $L$ for $1 \leq j \< i \leq n$:
-
-$$ l_i \cdot l_j = \sum_{k=i+1}^n c_{i,j,k} l_k, $$ 
-$$ p l_i = \sum_{k=i+1}^n c_{i,i,k} l_k. $$
-
-These relations define the Lie $p$-ring $L$. This package contains the
-definition of a datastructure <LiePRing> that allows to define Lie $p$-rings
-via structure constants $c_{i,j,k}$. 
+This package introduces a new datastructure that allows to define and
+compute with Lie $p$-rings in GAP. We first describe this datastructure
+in the case of ordinary Lie $p$-rings; that is, Lie $p$-rings for a fixed
+prime $p$ with given structure constants. Then we show how this datastructure
+can also be used to define so-called 'generic' Lie $p$-rings; that is, 
+Lie $p$-rings with indeterminate prime $p$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Ordinary Lie p-rings}
 
-In an ordinary Lie $p$-ring, the prime $p$ is an integer and the structure
-constants $c_{i,j,k}$ are elements in $\{0, \ldots, p-1\}$. The following 
-example takes the 9th Lie $p$-ring from the database of Lie $p$-rings of 
-order $5^4$ and does some elementary computations with it.
+Let $p$ be a prime and let $L$ be a Lie $p$-ring of order $p^n$. Let 
+$(l_1, \ldots, l_n)$ be a basis for $L$. Then there exist coefficients 
+$c_{i,j,k} \in \{0, \ldots, p-1\}$ so that the following relations hold 
+in $L$ for $1 \leq i,j \leq n$ with $i \neq j$:
+
+$$ l_i \cdot l_j = \sum_{k=i+1}^n c_{i,j,k} l_k, $$
+$$ p l_i = \sum_{k=i+1}^n c_{i,i,k} l_k. $$
+
+These structure constants define the Lie $p$-ring $L$. As the multiplication 
+in a Lie $p$-ring is anticommutative, it follows that $c_{i,j,k} = -c_{j,i,k}$ 
+holds for each $k$ and each $i \neq j$. Thus the structure constants 
+$c_{i,j,k}$ for $i \geq j$ are sufficient to define the Lie $p$-ring $L$.
+
+This package contains the new datastructure <LiePRing> that allows to 
+define Lie $p$-rings via their structure constants $c_{i,j,k}$. To use
+this datastructure, we first collect all relevant information into a 
+record as follows:
+\beginitems
+<dim> &
+   the dimension $n$ of $L$;
+
+<prime> &
+   the prime $p$ of $L$;
+
+<tab> &
+   a list with structure constants 
+   $[c_{1,1}, c_{2,1}, c_{2,2}, c_{3,1}, c_{3,2}, c_{3,3}, \ldots]$.
+\enditems
+
+Each entry $c_{i,j}$ in the list <tab> is a list $[k_1, c_{i,j,k_1}, k_2, 
+c_{i,j,k_2}, \ldots]$ so that $k_1 \< k_2 \< \ldots$ and the entries 
+$c_{i,j,k_1}, c_{i,j,k_2}, \ldots$ are the non-zero structure contants 
+in the product $l_i \cdot l_j$. Thus if $l_i \cdot l_j = 0$, then $c_{i,j}$
+is the empty list. If an entry in the list <tab> is not bound, then it is
+assumed to be the empty list.
+
+\> LiePRingBySCTable( SC )
+\> LiePRingBySCTableNC( SC )
+
+These functions create a <LiePRing> from the structure constants table
+record $SC$. The first version checks that the multiplication defined by
+<tab> is alternating and satisfies the Jacobi-identity, the second version
+assumes that this is the case and omits these checks. These checks can
+also be carried out independently via the following function.
+
+\> CheckIsLiePRing( L )
+
+This function takes as input an object <L> created via <LiePRingBySCTableNC>
+and checks that the Jacobi identity holds in this ring.
+
+The following example creates the Lie $2$-ring of order $8$ with trivial 
+multiplication.  
 
 \beginexample
-gap> L := LiePRingsByLibrary(4, 5)[9];
-<Lie ring of dimension 4 over prime 5>
+gap> SC := rec( dim := 3, prime := 2, tab := [] );;
+gap> L := LiePRingBySCTable(SC);
+<LiePRing of dimension 3 over prime 2>
 gap> l := BasisOfLiePRing(L);
-[ l1, l2, l3, l4 ]
+[ l1, l2, l3 ]
 gap> l[1]*l[2];
 0
-gap> 5*l[1];
-l3
+gap> 2*l[1];
+0
+gap> l[1] + l[2];
+l1 + l2
+\endexample
+
+The next example creates a LiePRing of order $5^4$ with non-trivial 
+multiplication.
+
+\beginexample
+gap> SC := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
+gap> L := LiePRingBySCTableNC(SC);;
+gap> ViewPCPresentation(L);
+[l2,l1] = l3
+[l3,l1] = l4
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Generic Lie p-rings}
 
-In a generic Lie $p$-ring, the structure constants are allowed to be 
-polynomials in a finite set of indeterminates. In particular, the prime 
-$p$ may not be a fixed integer, but an indeterminate. The following examples 
-takes the 9th Lie $p$-ring from the database of Lie $p$-rings of order $p^4$ 
-and does some elementary computations with it.
+In a generic Lie $p$-ring, $p$ is allowed to be an indeterminate and 
+the structure constants are allowed to be polynomials in a finite set of 
+commuting indeterminates. It is generally assumed that the indeterminate
+with name <p> represents the prime, the indeterminate with name <w> 
+represents the smallest primitive root modulo the prime and there are 
+further predefined indeterminates with the names <x>, <y>, <z>, <t>, 
+<j>, <k>, <m>, <n>, <r>, <s>, <u> and <v>. These indeterminates are used 
+in the database of Lie $p$-rings and they can be obtained via
+
+\> IndeterminateByName( string )
+
+The structure constants records for generic Lie $p$-rings are similar to
+those for ordinary Lie $p$-rings, but have the additional entry <param>
+which is a list containing all indeterminates used in the considered Lie
+$p$-ring. We exhibit an example.
 
 \beginexample
-gap> L := LiePRingsByLibrary(4)[9];
-<Lie ring of dimension 4 over prime p>
+gap> p := IndeterminateByName("p");;
+gap> x := IndeterminateByName("x");;
+gap> S := rec( dim := 5, 
+               param := [ x ], 
+               prime := p, 
+>              tab := [ [ 4, 1 ], [ 3, 1 ], [ 5, x ], [ 4, 1 ], [ 5, 1 ] ] );;
+gap> L := LiePRingBySCTable(S);
+<LiePRing of dimension 5 over prime p with parameters [ x ]>
+gap> ViewPCPresentation(L);
+p*l1 = l4
+p*l2 = x*l5
+[l2,l1] = l3
+[l3,l1] = l4
+[l3,l2] = l5
 gap> l := BasisOfLiePRing(L);
-[ l1, l2, l3, l4 ]
-gap> p := PrimeOfLiePRing(L);
-p
+[ l1, l2, l3, l4, l5 ]
 gap> p*l[1];
-l3
+l4
+gap> l[1]+l[2];
+l1 + l2
 gap> l[1]*l[2];
-0
+-1*l3
 \endexample
 
-A generic Lie $p$-ring thus defines a family of Lie $p$-rings by evaluating
-the prime $p$ and by evaluating the other parameters. It is generally 
-assumed that $p$ is evaluated to a prime and $w$ is evaluated to a primitive
-root of the field of $p$ elements. The following functions allow to evaluate 
-indeterminates in values.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Specialising Lie $p$-rings}
 
-\> SpecialisePrimeOfLiePRing(L, P)
-
-takes a generic Lie $p$-ring $L$ and specialises its prime $p$ (an 
-indeterminate) to the value $P$. It also specialises the indeterminate
-$w$ to a primitive root of $GF(p)$ if $w$ occurs in the presentation 
-of $L$. 
-
-The following example shows a generic Lie $p$-ring with the parameter
-$x$ in the relations. This parameter $x$ is not evaluated together with
-the prime.
-
-\beginexample
-gap> L := LiePRingsByLibrary(6)[14];
-<Lie ring of dimension 6 over prime p with parameters [ x ]>
-gap> ViewPCPresentation(L);
-p*l1 = l4
-p*l2 = x*l6
-p*l4 = l5
-[l2,l1] = l3
-[l3,l1] = l5
-[l3,l2] = l6
-gap> K := SpecialisePrimeOfLiePRing(L, 5);
-<Lie ring of dimension 6 over prime 5 with parameters [ x ]>
-gap> ViewPCPresentation(K);
-5*l1 = l4
-5*l2 = x*l6
-5*l4 = l5
-[l2,l1] = l3
-[l3,l1] = l5
-[l3,l2] = l6
-\endexample
-
-The following example shows a generic Lie $p$-ring with the parameter
-$w$ in the relations. As $w$ is evaluated to a primitive root of $GF(p)$,
-it is evaluated together with the prime.
-
-\beginexample
-gap> L := LiePRingsByLibrary(6)[19];
-<Lie ring of dimension 6 over prime p with parameters [ w ]>
-gap> ViewPCPresentation(L);
-p*l1 = l4
-p*l2 = w*l5
-p*l4 = l6
-[l2,l1] = l3
-[l3,l1] = l5
-gap> K := SpecialisePrimeOfLiePRing(L, 17);
-<Lie ring of dimension 6 over prime 17>
-gap> ViewPCPresentation(K);
-17*l1 = l4
-17*l2 = 3*l5
-17*l4 = l6
-[l2,l1] = l3
-[l3,l1] = l5
-\endexample
+A generic Lie $p$-ring defines a family of ordinary Lie $p$-rings by 
+evaluating the parameters contained in its presentation. It is generally 
+assumed that the indeterminate $p$ is evaluated to a rational prime $P$ 
+and the indeterminate $w$ is evaluated to the smallest primitive root 
+modulo $P$ (this can be determined via <PrimitiveRootMod(P)>). All other 
+indeterminates can take arbitrary integer values (usually these values are
+in $\{0, \ldots, P-1\}$, but other choices are possible as well). The 
+following functions allow to evaluate the indeterminates.
 
 \> SpecialiseLiePRing(L, P, para, vals)
 
-takes a generic Lie $p$-ring $L$ and specialises its prime $p$ as above
-and also specialises the indeterminates in $para$ to the values $vals$.
+takes as input a generic Lie $p$-ring <L>, a rational prime <P>, 
+a list of indeterminates <para> and a corresponding list of values
+<vals>. The function returns a new Lie $p$-ring in which the prime 
+<p> is evaluated to <P>, the parameter <w> is evaluated to 
+<PrimitiveRootMod(P)> and the parameters in <para> are evaluated
+to <vals>. 
+
+\> SpecialisePrimeOfLiePRing(L, P)
+
+this is a shortcut for <SpecialiseLiePRing(L, P, [], [])>. We exhibit
+a some example applications.
 
 \beginexample
-gap> L := LiePRingsByLibrary(6)[14];
-<Lie ring of dimension 6 over prime p with parameters [ x ]>
+gap> p := IndeterminateByName("p");;
+gap> w := IndeterminateByName("w");;
+gap> x := IndeterminateByName("x");;
+gap> y := IndeterminateByName("y");;
+gap> S := rec( dim := 7, 
+               param := [ w, x, y ], 
+               prime := p, 
+               tab := [ [  ], [ 6, 1 ], [ 6, 1 ], [ 7, 1 ], [  ], 
+                        [ 6, x, 7, y ], [  ], [ 7, 1 ], [ 6, w ] ] );
+gap> L := LiePRingBySCTable(S);
+<LiePRing of dimension 7 over prime p with parameters [ w, x, y ]>
 gap> ViewPCPresentation(L);
-p*l1 = l4
-p*l2 = x*l6
-p*l4 = l5
-[l2,l1] = l3
-[l3,l1] = l5
-[l3,l2] = l6
-gap> para := ParametersOfLiePRing(L);
-[ x ]
-gap> SpecialiseLiePRing(L, 29, para, [0]);
-<Lie ring of dimension 6 over prime 29>
+p*l2 = l6
+p*l3 = x*l6 + y*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = w*l6
+gap> 
+gap> SpecialiseLiePRing(L, 7, [x, y], [0,0]);
+<LiePRing of dimension 7 over prime 7>
 gap> ViewPCPresentation(last);
-29*l1 = l4
-29*l4 = l5
-[l2,l1] = l3
-[l3,l1] = l5
-[l3,l2] = l6
+7*l2 = l6
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 3*l6
+gap>
+gap> SpecialiseLiePRing(L, 11, [x, y], [0,10]);
+<LiePRing of dimension 7 over prime 11>
+gap> ViewPCPresentation(last);
+11*l2 = l6
+11*l3 = 10*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 2*l6
+gap>
+gap> Cartesian([0,1],[0,1]);
+[ [ 0, 0 ], [ 0, 1 ], [ 1, 0 ], [ 1, 1 ] ]
+gap> List(last, v -> SpecialiseLiePRing(L, 2, [x,y], v));
+[ <LiePRing of dimension 7 over prime 2>, 
+  <LiePRing of dimension 7 over prime 2>, 
+  <LiePRing of dimension 7 over prime 2>, 
+  <LiePRing of dimension 7 over prime 2> ]
 \endexample
 
-The following example shows that it is possible to specialise some of
-the parameters only. Again, note that $w$ is always specialised together
-with $p$.
+It is not necessary to specialise all parameters at once. In particular,
+it is possible to leave the prime <p> as indeterminate and specialize only
+some of the parameters. (Except for <w> which is linked to <p>.)
 
 \beginexample
-gap> L := LiePRingsByLibrary(6)[267];
-<Lie ring of dimension 6 over prime p with parameters [ w, x, y, z, t ]>
-gap> ViewPCPresentation(L);
-p*l1 = t*l5 + x*l6
-p*l2 = y*l5 + z*l6
-[l2,l1] = l4
-[l3,l1] = l6
-[l3,l2] = w*l5
-[l4,l1] = l5
-[l4,l2] = l6
-gap> x := Indeterminate(Integers, "x");
-x
-gap> SpecialiseLiePRing(L, 29, [x], [0]);
-<Lie ring of dimension 6 over prime 29 with parameters [ t, z, y ]>
-gap> ViewPCPresentation(last);
-29*l1 = t*l5
-29*l2 = y*l5 + z*l6
-[l2,l1] = l4
-[l3,l1] = l6
-[l3,l2] = 2*l5
-[l4,l1] = l5
-[l4,l2] = l6
+gap> SpecialiseLiePRing(L, p, [x], [0]);
+<LiePRing of dimension 7 over prime p with parameters [ y, w ]>
+gap> ViewPCPresentation(ll[4]);
+2*l2 = l6
+2*l3 = l6 + l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = l6
+gap> SpecialiseLiePRing(L, p, [y], [3]);
+<LiePRing of dimension 7 over prime p with parameters [ x, w ]>
+gap> ViewPCPresentation(ll[4]);
+2*l2 = l6
+2*l3 = l6 + l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = l6
 \endexample
 
+It is also possible to specialise the prime only, but leave all or
+some of the parameters indeterminate. Note that specialising <p>
+also specialises <w>. Again, we continue to use the generic Lie 
+$p$-ring $L$ as above.
+
+\beginexample
+gap> SpecialisePrimeOfLiePRing(L, 29);
+<LiePRing of dimension 7 over prime 29 with parameters [ y, x ]>
+gap> ViewPCPresentation(last);
+29*l2 = l6
+29*l3 = x*l6 + y*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 2*l6
+\endexample
 
 \> LiePValues(K)
 
@@ -193,107 +257,62 @@ contains the parameters that have been specialised and their values.
 
 \beginexample
 gap>  L := LiePRingsByLibrary(6)[14];
-<Lie ring of dimension 6 over prime p with parameters [ x ]>
+<LiePRing of dimension 6 over prime p with parameters [ x ]>
 gap>  K := SpecialisePrimeOfLiePRing(L, 5);
-<Lie ring of dimension 6 over prime 5 with parameters [ x ]>
+<LiePRing of dimension 6 over prime 5 with parameters [ x ]>
 gap> LiePValues(K);
 [ [ p, w ], [ 5, 2 ] ]
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Creation of Lie p-rings}
-
-Lie $p$-rings can be created from certain table containing the structure
-constants.
-
-\> LiePRingBySCTable(SC)
-\> LiePRingBySCTableNC(SC)
-
-creates a Lie $p$-ring datastructure from <SC>. The input <SC> should be
-a record with entries $dim$, $prime$, $tab$ and possibly $param$. The
-NC version assumes that the Jacobi identity is satisfied by <SC> and the
-other version checks this. The entry $tab$ is a list of lists. This list
-defines $l_i \cdot l_j$ for $j \< i$ via the entry at position 
-$1+\ldots+j-1+i$ and it defines $p \cdot l_i$ via the entry at position 
-$1+\ldots+i$. If an entry in this list is not bound, then it is assumed 
-to be the empty list.
-
-\> CheckIsLiePRing(L) 
-
-this function assumes that $L$ has been defined via <LiePRingBySCTableNC> 
-and it checks the Jacobi identity for the multiplication in $L$.
-
-\beginexample
-gap> p := Indeterminate(Integers,"p");;
-gap> w := Indeterminate(Integers,"w");;
-gap> x := Indeterminate(Integers,"x");;
-gap> y := Indeterminate(Integers,"y");;
-gap> z := Indeterminate(Integers,"z");;
-gap> t := Indeterminate(Integers,"t");;
-gap> SC := rec( dim := 6, param := [w,x,y,z,t], prime := p, 
->               tab := [ [ 5, t, 6, x ], [ 4, 1 ], [ 5, y, 6, z ],
->                        [ 6, 1 ], [ 5, w ], [  ], [ 5, 1 ], [ 6, 1 ] ] );;
-gap> L := LiePRingBySCTable(SC);
-<Lie ring of dimension 6 over prime p with parameters [ w, x, y, z, t ]>
-gap> ViewPCPresentation(L);
-p*l1 = t*l5 + x*l6
-p*l2 = y*l5 + z*l6
-[l2,l1] = l4
-[l3,l1] = l6
-[l3,l2] = w*l5
-[l4,l1] = l5
-[l4,l2] = l6
-\endexample
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Subrings of Lie p-rings}
 
-Let $L$ be a Lie $p$-ring defined via structure constants. Then each subring 
-$U$ of $L$ is a Lie ring and it has $p$-power order as well. Hence it is also
-a Lie $p$-ring and thus it has a basis $(u_1, \ldots, u_m)$. Suppose that 
-$L$ has order $p^n$ and let $(l_1, \ldots, l_n)$ denote its natural basis
-corresponding to its defining structure constants. Then each $u_i$ can be
-expressed as a linear combination $u_i = m_{i,1} l_1 + \ldots + m_{i,n} l_n$
-with $m_{i,j} \in \{0, \ldots, p-1\}$. Let $M = (m_{i,j})$ denote the matrix
-of coefficients. Then we say that $(u_1, \ldots, u_m)$ is {\it induced} 
-if $M$ is in upper triangular form. We say that $(u_1, \ldots, u_m)$ is
-{\it canonical} if $M$ is in upper echelon form; that is, it is upper 
-triangular, each row in $M$ has leading entry $1$ and there are $0$'s 
-above each leading entry.
+Let $L$ be a Lie $p$-ring with basis $(l_1, \ldots, l_n)$ and let $U$ be a 
+subring of $L$. Then $U$ is a Lie $p$-ring and thus also has a basis $(u_1, 
+\ldots, u_m)$. For $1 \leq i \leq m$ we define the coefficients $a_{i,j} 
+\in \{0, \ldots, p-1\}$ via 
+$$ u_i = \sum_{j=1}^n a_{i,j} l_i $$
+and we denote with $A$ the matrix with entries $a_{i,j}$. We say that the 
+basis $(u_1, \ldots, u_m)$ is {\it induced} if $A$ is in upper triangular 
+form. Further, the basis $(u_1, \ldots, u_m)$ is {\it canonical} if $A$ is 
+in upper echelon form; that is, it is upper triangular, each row in $A$ has 
+leading entry $1$ and there are $0$'s above the leading entry. Note that a
+canonical basis is unique for the subring.
 
 \> LiePSubring(L, gens)
 
-returns the subring of $L$ generated by $gens$. This function computes
-a canonical basis for the subring. Note that this function also works for
-generic Lie $p$-rings $L$, but there may be strange effects in this case.
-The following example shows that.
+Let <L> be a (generic or ordinary) Lie $p$-ring and let <gens> be a set of 
+elements in <L>. This function determines a canonical basis for the subring
+generated by <gens> in <L> and returns the LiePSubring of <L> generated by
+<gens>. Note that this function may have strange effects for generic Lie
+$p$-rings as the following example shows.
 
 \beginexample
 gap> L := LiePRingsByLibrary(6)[100];
-<Lie ring of dimension 6 over prime p>
+<LiePRing of dimension 6 over prime p>
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3, l4, l5, l6 ]
 gap> U := LiePSubring(L, [5*l[1]]);
-WARNING: Multiplying by 1/5
-<Lie ring of dimension 3 over prime p>
+WARNING: Dividing by 1/5 in 6.464
+<LiePRing of dimension 3 over prime p>
 gap> BasisOfLiePRing(U);
 [ l1, l4, l6 ]
 gap>
-gap> K := SpecialisePrimeOfLiePRing(L, 5);
-<Lie ring of dimension 6 over prime 5>
-gap> b := BasisOfLiePRing(K);
+gap>  K := SpecialisePrimeOfLiePRing(L, 5);
+<LiePRing of dimension 6 over prime 5>
+gap>  b := BasisOfLiePRing(K);
 [ l1, l2, l3, l4, l5, l6 ]
 gap> LiePSubring(K, [5*b[1]]);
-<Lie ring of dimension 2 over prime 5>
-gap> BasisOfLiePRing(last);
+<LiePRing of dimension 2 over prime 5>
+gap>  BasisOfLiePRing(last);
 [ l4, l6 ]
 gap>
 gap> K := SpecialisePrimeOfLiePRing(L, 7);
-<Lie ring of dimension 6 over prime 7>
+<LiePRing of dimension 6 over prime 7>
 gap> b := BasisOfLiePRing(K);
 [ l1, l2, l3, l4, l5, l6 ]
 gap> U := LiePSubring(L, [5*b[1]]);
-<Lie ring of dimension 1 over prime p>
+<LiePRing of dimension 1 over prime p>
 gap> BasisOfLiePRing(U);
 [ l1 + 2*l4 ]
 \endexample
@@ -305,7 +324,7 @@ an induced basis for the ideal.
 
 \beginexample
 gap> LiePIdeal(L, [l[1]]);
-<Lie ring of dimension 5 over prime p>
+<LiePRing of dimension 5 over prime p>
 gap> BasisOfLiePRing(last);
 [ l1, l3, l4, l5, l6 ]
 \endexample
@@ -317,18 +336,18 @@ $L$. This function requires that $L$ is an ordinary Lie $p$-ring.
 
 \beginexample
 gap> LiePIdeal(K, [b[1]]);
-<Lie ring of dimension 5 over prime 5>
+<LiePRing of dimension 5 over prime 5>
 gap> LiePIdeal(K, [b[2]]);
-<Lie ring of dimension 4 over prime 5>
+<LiePRing of dimension 4 over prime 5>
 gap> LiePQuotient(K,last);
-<Lie ring of dimension 2 over prime 5>
+<LiePRing of dimension 2 over prime 5>
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Elementary functions for Lie p-rings and their subrings}
+\Section{Elementary functions}
 
-The following functions work for ordinary and generic Lie $p$-rings $L$
-and their subrings.
+The functions described in this section work for ordinary and generic
+Lie $p$-rings and their subrings.
 
 \> PrimeOfLiePRing(L)
 
@@ -341,20 +360,23 @@ returns a basis for $L$.
 
 \> DimensionOfLiePRing(L)
 
-returns $n$ where $L$ has order $p^n$.
+returns the dimension of <L>.
 
 \> ParametersOfLiePRing(L)
 
 returns the list of indeterminates involved in $L$. If $L$ is a subring
 of a Lie $p$-ring defined by structure constants, then the parameters of
-the parent are returned.
+the parent are returned. 
 
 \> ViewPCPresentation(L)
 
 prints the presentation for $L$ with respect to its basis. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Series for Lie p-rings and their subrings}
+\Section{Series of subrings}
+
+Let <L> be a generic or ordinary Lie $p$-ring or a subring of such such
+a Lie $p$-ring. 
 
 \> LiePLowerCentralSeries(L)
 
@@ -370,7 +392,8 @@ returns the derived series of $L$.
 
 \> LiePMinimalGeneratingSet(L)
 
-returns a minimal generating set of $L$.
+returns a minimal generating set of $L$; that is, a generating set of
+smallest possible size.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{The Lazard correspondence}
@@ -381,7 +404,7 @@ is based on the Liering package \cite{CdG10}.
 
 \> PGroupByLiePRing(L)
 
-returns the $p$-group $G$ obtained from $L$ via the Lazard correspondence.
-This function requires that $L$ is an ordinary Lie $p$-ring with $cl(L) \< p$. 
+Let <L> be an ordinary Lie $p$-ring with $cl(L) \< p$. Then this function 
+returns the $p$-group $G$ obtained from $L$ via the Lazard correspondence. 
 
 

@@ -3,7 +3,7 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.5",
+Version := "1.6",
 Date := "08/11/2013",
 
 PackageWWWHome 
@@ -30,7 +30,10 @@ Persons := [
     Place         := "TU Braunschweig" ),
 ],
 
-Status := "deposited",
+Status           := "accepted",
+CommunicatedBy   := "Leonard Soicher (London)",
+AcceptDate       := "09/2014",
+
 README_URL := 
   Concatenation( ~.PackageWWWHome, "README" ),
 PackageInfoURL := 

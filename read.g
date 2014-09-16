@@ -6,8 +6,10 @@ OFFSET_VARS := 1000;
 
 IndeterminateByName := function( name )
     local l, i, v;
-    l := ["p", "w", "x", "y", "z", "t", "j", "k", "m", "n", "r", 
-          "s", "u", "v", "g3", "g4", "g5", "g7", "g8", "g9" ];
+    l := ["p", "w", 
+          "x", "y", "z", "t", "j", "k", "m", "n", "r", "s", "u", "v", 
+          "(p-1,3)", "(p-1,4)", "(p-1,5)", "(p-1,7)", "(p-1,8)", "(p-1,9)", 
+          "(p+1,3)", "(p^2-1,16)", "a"];
     i := Position( l, name );
     if i = fail then return fail; fi;
     v := Indeterminate(Integers, OFFSET_VARS+i); 
@@ -347,6 +349,7 @@ ReadPackage( "liepring", "gap/val/vals27b.gi");
 ReadPackage( "liepring", "gap/val/vals28.gi");
 ReadPackage( "liepring", "gap/special.gi");
 ReadPackage( "liepring", "gap/pgroup.gi");
+ReadPackage( "liepring", "gap/porcpoly.gi");
 ReadPackage( "liepring", "lib/data.gi");
 ReadPackage( "liepring", "lib/table.gi");
 #ReadPackage( "liepring", "lib/check.gi"); 
