@@ -335,6 +335,8 @@ LiePRing_ReadPackage( "lib/dim7/gap7.1");
 ##
 ## read functions
 ##
+PGroupByLiePRing := false; ## dummy
+
 ReadPackage( "liepring", "gap/general.gi");
 ReadPackage( "liepring", "gap/collect.gi");
 ReadPackage( "liepring", "gap/lieelms.gi");
