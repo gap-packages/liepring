@@ -6,11 +6,6 @@ Subtitle := "Database and algorithms for Lie p-rings",
 Version := "1.8",
 Date := "08/11/2013",
 
-PackageWWWHome 
-  := "http://www.icm.tu-bs.de/~beick/soft/liepring/",
-ArchiveURL 
-  := Concatenation( ~.PackageWWWHome, "liepring-", ~.Version ),
-ArchiveFormats := ".tar.gz",
 Persons := [
   rec( 
     LastName      := "Vaughan-Lee",
@@ -34,10 +29,18 @@ Status           := "accepted",
 CommunicatedBy   := "Leonard Soicher (London)",
 AcceptDate       := "09/2014",
 
-README_URL := 
-  Concatenation( ~.PackageWWWHome, "README" ),
-PackageInfoURL := 
-  Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+PackageWWWHome  := "https://gap-packages.github.io/liepring/",
+README_URL      := Concatenation( ~.PackageWWWHome, "README" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+SourceRepository := rec(
+    Type := "git",
+    URL := "https://github.com/gap-packages/liepring",
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/liepring-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
 AbstractHTML := "",
 
