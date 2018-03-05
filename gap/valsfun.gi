@@ -1408,8 +1408,8 @@ ValsFunction27 := function(P)
           x1, y1, z1, t1, l;
 
     F := GF(P);
-    A := MutableNullMat(2, 2, F);
-    B := MutableNullMat(2, 2, F);
+    A := NullMat(2, 2, F);
+    B := NullMat(2, 2, F);
     W := PrimitiveRootMod(P);
     range := Concatenation( [[0,1]], List([0..P-1], x -> [1,x]));
 

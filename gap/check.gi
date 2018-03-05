@@ -1,5 +1,5 @@
 
-RequirePackage("liepring");
+LoadPackage("liepring");
 LL := List([1..7], x -> LiePRingsByLibrary(x));
 
 CheckFamily := function(L, P)

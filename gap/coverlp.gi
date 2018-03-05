@@ -92,7 +92,7 @@ LiePCover := function(L)
 
     # evaluate pairs
     I := IdentityMat(T.dim);
-    Q := MutableNullMat( T.dim, T.dim );
+    Q := NullMat( T.dim, T.dim );
     for i in [1..T.dim] do
         for j in [1..T.dim] do
             Q[i][j] := LRMultiply( T, I[i], I[j] );

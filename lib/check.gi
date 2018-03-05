@@ -1,5 +1,5 @@
 
-RequirePackage("anupq");
+LoadPackage("anupq");
 
 SCodeByGroup := function( G )
     local F, S, K; 
