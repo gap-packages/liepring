@@ -1,0 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Chapter{Lie p-rings}
+
+In this preliminary chapter we recall some of theoretic background
+of Lie rings and Lie $p$-rings. We refer to Chapter 5 in \cite{Khu} 
+for some further details. Throughout we assume that $p$ stands for 
+a rational prime.
+\medskip
+
+A Lie ring $L$ is an additive abelian group with a multiplication that
+is alternating, bilinear and satisfies the Jacobi identity. We denote 
+the product of two elements $g$ and $h$ of $L$ with $g h$.
+\medskip
+
+A subset $I \subseteq L$ is an {\it ideal} in the Lie ring $L$ if it
+is a subgroup of the additive group of $L$ and it satisfies $a l \in 
+I$ for all $a \in I$ and $l \in L$. As the multiplication in $L$ is
+alternating, it follows that $l a \in I$ for all $l \in L$ and $a \in 
+I$. Note that if $I$ and $J$ are ideals in $L$, then $I + J = \{
+a + b \mid a \in I, b \in J\}$ and $I J = \langle a b \mid 
+a \in I, b \in J \rangle_+$ are ideals in $L$.
+\medskip
+
+A subset $U \subseteq L$ is a {\it subring} of the Lie ring $L$ if $U$
+is a Lie ring with respect to the addition and the multiplication of $L$.
+Every ideal in $L$ is also a subring of $L$. As usual, for an ideal $I$ in
+$L$ the quotient $L/I$ has the structure of a Lie ring, but this does not
+hold for subrings.
+\medskip
+
+The {\it lower central series} of the Lie ring $L$ is the series of ideals 
+$L = \gamma_1(L) \geq \gamma_2(L) \geq \ldots$ defined by $\gamma_i(L)
+= \gamma_{i-1}(L) L$. We say that $L$ is {\it nilpotent} if there exists a 
+natural number $c$ with $\gamma_{c+1}(L) = \{0\}$. The smallest natural number 
+with this property is the {\it class} of $L$.
+\medskip
+
+The notion of nilpotence now allows to state the central definition of 
+this package. A {\bf Lie p-ring} is a Lie ring that is nilpotent and has 
+$p^n$ elements for some natural number $n$. 
+\medskip
+
+Every finite dimensional Lie algebra over a field with $p$ elements 
+is an example for a Lie ring with $p^n$ elements. Note that there exist
+non-nilpotent Lie algebras of this type: the Lie algebra consisting of 
+all $n \times n$ matrices with trace $0$ and $n \geq 3$ is an example. 
+Thus not every Lie ring with $p^n$ elements is nilpotent. (In contrast
+to the group case, where every group with $p^n$ elements is nilpotent!)
+\medskip
+
+For a Lie $p$-ring $L$ we define the series $L = \lambda_1(L) \geq 
+\lambda_2(L) \geq \ldots$ 
+via $\lambda_{i+1}(L) = \lambda_i(L) L + p \lambda_i(L)$. This 
+series is the {\it lower exponent-$p$ central series} of $L$. Its length 
+is the {\it $p$-class} of $L$. If $|L/\lambda_2(L)| = p^d$, then $d$ is 
+the {\it minimal generator number} of $L$. Similar to the $p$-group case, 
+one can observe that this is indeed the cardinality of a generating set 
+of smallest possible size.
+\medskip
+
+Each Lie $p$-ring $L$ has a central series $L = L_1 \geq \ldots \geq L_n 
+\geq \{0\}$ with quotients of order $p$. Choose $l_i \in L_i \setminus 
+L_{i+1}$ for $1 \leq i \leq n$. Then $(l_1, \ldots, l_n)$ is a generating 
+set of $L$ satisfying that $p l_i \in L_{i+1}$ and $l_i l_j 
+\in L_{i+1}$ for $1 \leq j \< i \leq n$. We call such a generating sequence 
+a {\it basis} for $L$ and we say that $L$ has {\it dimension} $n$.
+
+
