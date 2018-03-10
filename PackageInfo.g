@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.8",
-Date := "08/11/2013",
+Version := "1.9",
+Date := "11/03/2018",
 
 Persons := [
   rec( 
@@ -58,7 +58,7 @@ PackageDoc := rec(
 AvailabilityTest := ReturnTrue,
 
 Dependencies := rec(
-  GAP := "4.5.3",
+  GAP := "4.8",
   NeededOtherPackages := [["LieRing", ">=2.1"]],
   SuggestedOtherPackages := [],
   ExternalConditions := []
