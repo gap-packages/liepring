@@ -32,7 +32,7 @@ CommunicatedBy   := "Leonard Soicher (London)",
 AcceptDate       := "09/2014",
 
 PackageWWWHome  := "https://gap-packages.github.io/liepring/",
-README_URL      := Concatenation( ~.PackageWWWHome, "README" ),
+README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 SourceRepository := rec(
     Type := "git",
