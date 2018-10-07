@@ -2707,4 +2707,20 @@ gap> PrintConditions(Ls);
 4733: [ "x ne 0", "" ]
 
 #
+gap> L:=Ls[3285];
+<LiePRing of dimension 7 over prime p with parameters 
+[ x, y, z, t, j, k, m, n, r, s, u, v ]>
+gap> lfam:=LiePRingsInFamily(L,3);;
+gap> Length(lfam);
+550
+
+#
+gap> L:=Ls[3286];
+<LiePRing of dimension 7 over prime p with parameters 
+[ w, x, y, z, t, j, k, m, n, r, s, u, v ]>
+gap> lfam:=LiePRingsInFamily(L,3);;
+gap> Length(lfam);
+101
+
+#
 gap> STOP_TEST("p7.tst", 1);

@@ -1,4 +1,4 @@
-LoadPackage("liepring");
+LoadPackage("liepring", false);
 
 #
 PrintConditions := function(Ls)
