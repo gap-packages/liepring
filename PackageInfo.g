@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.9",
-Date := "11/03/2018",
+Version := "1.9.1",
+Date := "07/10/2018",
 
 Persons := [
   rec( 
@@ -32,7 +32,7 @@ CommunicatedBy   := "Leonard Soicher (London)",
 AcceptDate       := "09/2014",
 
 PackageWWWHome  := "https://gap-packages.github.io/liepring/",
-README_URL      := Concatenation( ~.PackageWWWHome, "README" ),
+README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
 PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
 SourceRepository := rec(
     Type := "git",
@@ -69,6 +69,8 @@ BannerString := Concatenation(
     "Loading  LiePRing ", ~.Version, "\n",
     "by Michael Vaughan-Lee and Bettina Eick \n",
     "----------------------------------------------------------------\n" ),
+
+TestFile := "tst/testall.g",
 
 Keywords := ["", "", ""]
 

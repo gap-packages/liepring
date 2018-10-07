@@ -1,6 +1,6 @@
 name: LiePRing
-version: 1.9
-date: 2018-03-11
+version: 1.9.1
+date: 2018-10-07
 description: |
     Database and algorithms for Lie p-rings
 
@@ -24,12 +24,12 @@ needed-pkgs:
       url: "http://www.science.unitn.it/~degraaf/liering.html"
 
 www: https://gap-packages.github.io/liepring/
-readme: README
+readme: README.md
 packageinfo: https://gap-packages.github.io/liepring/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/liepring/releases/download/v1.9/liepring-1.9.tar.gz
+      url: https://github.com/gap-packages/liepring/releases/download/v1.9.1/liepring-1.9.1.tar.gz
 
 abstract: |
 
