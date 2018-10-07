@@ -777,6 +777,7 @@ NumberOfLiePRingsInFamilyNC := function( L )
         fi;
     fi;
 
+    return fail;
 end;
 
 NumberOfLiePRingsInFamily := function( L )
