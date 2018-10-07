@@ -8,17 +8,11 @@ addons:
   apt_packages:
     - libgmp-dev
     - libreadline-dev
+    - zlib1g-dev
 
 matrix:
   include:
     - env: CFLAGS="-O2"
-    - env: CFLAGS="-O2" ABI=32
-      addons:
-        apt_packages:
-          - libgmp-dev:i386
-          - libreadline-dev:i386
-          - gcc-multilib
-          - g++-multilib
 
 branches:
   only:
