@@ -246,4 +246,11 @@ gap> CountFamilies(Ls);
 75: 0, 1, 1, 1, 1, 1, 
 
 #
+gap> grps := GroupsViaLiePRings(5,5);;
+gap> Length(grps) = NrSmallGroups(5^5);
+true
+gap> Set(GroupsViaLiePRings(5,5),IdGroup) = List([1..77],i->[5^5,i]);
+true
+
+#
 gap> STOP_TEST("p12345.tst", 1);
