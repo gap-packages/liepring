@@ -1,16 +1,7 @@
-
 QuotRemInt := function( a, p )
     local q, r;
-    q := 0; r := a;
-    while not r in [0..p-1] do
-        if r < 0 then 
-            q := q-1;
-            r := r + p; 
-        else
-            q := q+1;
-            r := r - p; 
-        fi;
-    od;
+    r := a mod p;
+    q := (a - r) / p;
     return [q,r];
 end;
 
