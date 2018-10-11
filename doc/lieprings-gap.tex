@@ -66,8 +66,8 @@ The following example creates the Lie $2$-ring of order $8$ with trivial
 multiplication.  
 
 \beginexample
-gap> SC := rec( dim := 3, prime := 2, tab := [] );;
-gap> L := LiePRingBySCTable(SC);
+gap> sc := rec( dim := 3, prime := 2, tab := [] );;
+gap> L := LiePRingBySCTable(sc);
 <LiePRing of dimension 3 over prime 2>
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3 ]
@@ -83,8 +83,8 @@ The next example creates a LiePRing of order $5^4$ with non-trivial
 multiplication.
 
 \beginexample
-gap> SC := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
-gap> L := LiePRingBySCTableNC(SC);;
+gap> sc := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
+gap> L := LiePRingBySCTableNC(sc);;
 gap> ViewPCPresentation(L);
 [l2,l1] = l3
 [l3,l1] = l4

@@ -1,8 +1,8 @@
 gap> START_TEST("");
 
 #
-gap> SC := rec( dim := 3, prime := 2, tab := [] );;
-gap> L := LiePRingBySCTable(SC);
+gap> sc := rec( dim := 3, prime := 2, tab := [] );;
+gap> L := LiePRingBySCTable(sc);
 <LiePRing of dimension 3 over prime 2>
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3 ]
@@ -12,8 +12,8 @@ gap> 2*l[1];
 0
 gap> l[1] + l[2];
 l1 + l2
-gap> SC := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
-gap> L := LiePRingBySCTableNC(SC);;
+gap> sc := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
+gap> L := LiePRingBySCTableNC(sc);;
 gap> ViewPCPresentation(L);
 [l2,l1] = l3
 [l3,l1] = l4
