@@ -1,9 +1,3 @@
-QuotRemInt := function( a, p )
-    local q, r;
-    r := a mod p;
-    q := (a - r) / p;
-    return [q,r];
-end;
 
 ReduceExtRep := function( e )
     local I, i;
@@ -12,6 +6,21 @@ ReduceExtRep := function( e )
         if e[i] <> 0 then Add(I, i-1); Add(I, i); fi;
     od;
     return e{I};
+end;
+
+QuotRemInt := function( a, p )
+    local q, r;
+    q := 0; r := a;
+    while not r in [0..p-1] do
+        if r < 0 then 
+            q := q-1;
+            r := r + p; 
+        else
+            q := q+1;
+            r := r - p; 
+        fi;
+    od;
+    return [q,r];
 end;
 
 QuotRemPoly := function( f, p )
@@ -124,7 +133,7 @@ LRReduceExp := function( SC, exp )
             fi;
         fi;
     od;
-    return new;
+    return MakeInt(new);
 end;
 
 LRCollectWord := function( SC, word )

@@ -2362,12 +2362,12 @@ ValsFunction28 := function(P, case)
     if IsInt(case) and case < 24 then 
        return List(vals, x -> [x[4], x[5], x[6], x[1], x[2], x[3]]);
     elif IsInt(case) and case = 24 then 
-       return List(vals, x -> [x[4], x[5], x[6], x[1], x[2], x[3], x[7]]);
+       return List(vals, x -> [x[4], x[5], x[6], x[1], x[7], x[2], x[3]]);
     else
        for i in [1..23] do
            vals[i] := List(vals[i], x->[x[4],x[5],x[6],x[1],x[2],x[3]]);
        od;
-       vals[24] := List(vals[24], x->[x[4],x[5],x[6],x[1],x[2],x[3],x[7]]);
+       vals[24] := List(vals[24], x->[x[4],x[5],x[6],x[1],x[7],x[2],x[3]]);
        return vals;
     fi;
 end;

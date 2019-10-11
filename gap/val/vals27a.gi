@@ -89,7 +89,7 @@ ValsFunction27a := function ( P )
     #Print( "transversal done \n" );
     params := [  ];
     for i  in [ 1 .. 11 ]  do
-        A := NullMat( 4, 3, F );
+        A := MutableNullMat( 4, 3, F );
         A[3] := reps1[i][1];
         A[4] := reps1[i][2];
         Add( params, Linearise27a(A) );

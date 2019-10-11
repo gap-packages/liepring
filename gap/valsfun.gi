@@ -38,7 +38,7 @@ ValsFunction1 := function(P, range)
 end;
 
 ##
-## "1+4x not a square mod p"
+## "1+4x not a square"
 ##
 ValsFunction2 := function(P)
     local s, r;
@@ -366,15 +366,16 @@ end;
 
 ##
 ##  "t ne 0, all x,z, [x,z]~[tz,x/t]"
+## neu: "y ne 0, [x,y,z]~[zy,y,x/y]" 
 ##
 ValsFunction18 := function(P)
     local r, x, y, z, t, a, b;
     r := [];
     for x in [0..P-1] do
-        for z in [0..P-1] do
-            for t in [1..P-1] do
-                a := [x,z,t];
-                b := [t*z,x/t,t] mod P;
+        for y in [1..P-1] do
+            for z in [0..P-1] do
+                a := [x,y,z];
+                b := [z*y,y,x/y] mod P;
                 if not b in r then Add(r,a); fi;
             od;
         od;
@@ -384,16 +385,17 @@ end;
 
 ##
 ## "t ne 0,1, all x,z such that [x+t][1+z]=1 mod p, [x,z]~[tz,x/t]"
+## neu: "y ne 0,1, (x+y)(1+z)=1, [x,y,z]~[zy,y,x/y]" 
 ##
 ValsFunction18a := function(P)
     local r, x, y, z, t, a, b;
     r := [];
     for x in [0..P-1] do
-        for z in [0..P-1] do
-            for t in [2..P-1] do
-                if (((x+t)*(1+z)) mod P) = 1 then  
-                    a := [x,z,t];
-                    b := [t*z,x/t,t] mod P;
+        for y in [2..P-1] do
+            for z in [0..P-1] do
+                if (((x+y)*(1+z)) mod P) = 1 then  
+                    a := [x,y,z];
+                    b := [z*y,y,x/y] mod P;
                     if not b in r then Add(r,a); fi;
                 fi;
             od;
@@ -1408,8 +1410,8 @@ ValsFunction27 := function(P)
           x1, y1, z1, t1, l;
 
     F := GF(P);
-    A := NullMat(2, 2, F);
-    B := NullMat(2, 2, F);
+    A := MutableNullMat(2, 2, F);
+    B := MutableNullMat(2, 2, F);
     W := PrimitiveRootMod(P);
     range := Concatenation( [[0,1]], List([0..P-1], x -> [1,x]));
 

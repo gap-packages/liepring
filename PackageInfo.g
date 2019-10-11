@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.9.2",
-Date := "11/10/2018", # dd/mm/yyyy format
+Version := "2.0",
+Date := "11/10/2019", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -23,7 +23,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := true,
     Email         := "beick@tu-bs.de",
-    WWWHome       := "http://www.icm.tu-bs.de/~beick",
+    WWWHome       := "http://www.iaa.tu-bs.de/beick",
     Place         := "Braunschweig",
     Institution   := "TU Braunschweig"),
 ],
@@ -61,7 +61,7 @@ AvailabilityTest := ReturnTrue,
 Dependencies := rec(
   GAP := "4.8",
   NeededOtherPackages := [["LieRing", ">=2.1"]],
-  SuggestedOtherPackages := [],
+  SuggestedOtherPackages := [["singular", ">=2019.10.01"]],
   ExternalConditions := []
 ),
 

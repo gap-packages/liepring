@@ -170,12 +170,13 @@ InstallGlobalFunction(ViewPCPresentation, function(L)
 end ); 
 
 InstallGlobalFunction( ParametersOfLiePRing, function(L)
-    local S;
+    local S, w;
     S := SCTable(Zero(L));
+    w := IndeterminateByName("w");
     if not IsBound(S.param) then 
         return [];
     else
-        return S.param;
+        return Filtered(S.param, k -> k <> w);
     fi;
 end );
 

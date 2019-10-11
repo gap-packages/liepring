@@ -7,7 +7,7 @@ tex manual
 # ... and build its bibliography (uncomment if there is a `manual.bib')
 bibtex manual
 # TeX the manual again to incorporate the ToC ... and build the index
-tex manual; ../../../doc/manualindex manual
+tex manual; ../../../../doc/manualindex manual
 # Finally TeX the manual again to get cross-references right
 tex manual
 # Create PDF version
@@ -17,7 +17,7 @@ pdftex manual; pdftex manual
 rm -rf ../htm
 mkdir ../htm
 echo "Creating HTML documentation"
-../../../etc/convert.pl -i -u -c -n LiePRing . ../htm
+../../../../etc/convert.pl -i -u -c -n LiePRing . ../htm
 
 #############################################################################
 ##

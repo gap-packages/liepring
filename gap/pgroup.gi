@@ -65,9 +65,7 @@ PGroupByLiePRing := function( L )
    dim := Length( gens );
 
    # check
-   if dim > p and Length(LiePLowerCentralSeries(L))-1 >= p then 
-       return fail; 
-   fi;
+   if PClassOfLiePRing(L) > p-1 then return fail; fi;
 
    # compute torsion
    tors:= [ ];

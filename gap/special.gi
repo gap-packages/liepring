@@ -85,8 +85,7 @@ IsValidPrime := function(L, P)
     local c;
     if not IsPrimeInt(P) then return false; fi;
     if not HasLibraryConditions(L) then return true; fi;
-    if P=2 then return false; fi;
-    if P=3 and PClassOfLiePRing(L) > 2 then return false; fi;
+    if P=2 or PClassOfLiePRing(L) > P-1 then return false; fi;
     c := L!.LibraryConditions[2];
     if c = "p=1 mod 3" then  
         if (P mod 3) <> 1 then return false; fi;
@@ -110,6 +109,10 @@ IsValidPrime := function(L, P)
         if (P mod 4) <> 1 or (P mod 3) <> 1 then return false; fi;
     elif c = "p=3 mod 4, p=1 mod 3" then
         if (P mod 4) <> 3 or (P mod 3) <> 1 then return false; fi;
+    elif c = "p=±1 mod 8" then 
+        if not (P mod 8) in [1,7] then return false; fi;
+    elif c = "p=±3 mod 8" then 
+        if not (P mod 8) in [3,5] then return false; fi;
     fi;
     return true;
 end;
@@ -153,63 +156,66 @@ SpecialisePrimeOfLiePRingNC := function( L, P )
     return SpecialiseLiePRingNC( L, P, [], [] );
 end;
 
+##
+##
+##
+TranslatedLiePRings := function( L, P, para, vals, flag )
+    local res, i, R;
+    res := List(vals, x -> true);
+    for i in [1..Length(vals)] do
+        R := SpecialiseLiePRingNC(L, P, para, vals[i]);
+        if flag = "group" or flag = "code" then 
+            R := PGroupByLiePRing(R);
+            if flag = "code" then 
+                R := CodePcGroup(R);
+            fi;
+        fi;
+        res[i] := R;
+    od; 
+    return res;
+end;
+
 ## 
 ## Lie rings in a family
 ##
 
 LiePRingsInFamily := function( arg )
-    local L, S, d, P, W, c, para, vals, fals, res, R, i, X, Y, Z,
-          p, w, x, y, z, t, j, k, m, n, r, s, u, v, flag;
+    local L, P, W, p, w, d, c, l, para, flag, vals, fals, X, Y, Z, 
+          x, y, z, t, j, k, m, n, r, s, u, v;
+
+    # catch arguments
+    L := arg[1];
+    P := arg[2];
+    W := PrimitiveRootMod(P);
+    if IsBound(arg[3]) then flag := arg[3]; else flag := false; fi;
 
     # get Lie ring
-    L := arg[1];
-    S := SCTable(Zero(L));
+    p := PrimeOfLiePRing(L);
+    w := IndeterminateByName("w");
     d := DimensionOfLiePRing(L);
-
-    # get prime
-    if Length(arg) >= 2 then 
-        P := arg[2];
-        if IsInt(S.prime) and P <> S.prime then 
-            Print("cannot specialise prime to ",P," \n");
-            return fail;
-        elif not IsValidPrime(L,P) then 
-            return fail;
-        fi;
-    else
-        P := S.prime;
-    fi;
-
-    # get flag
-    if Length(arg) = 3 then 
-        flag := arg[3];
-    else
-        flag := false; 
-    fi;
+    c := LibraryConditions(L);
+    l := LibraryName(L);
+    para := ParametersOfLiePRing(L);
+    vals := [];
+    fals := 0;
 
     # check
-    if not IsInt(P) then 
-        Print("need to specify a prime \n");
-        return fail;
+    if IsInt(p) then return fail; fi;
+    if not IsValidPrime(L,P) then return fail; fi;
+    if not IsInt(P) then return fail; fi;
+
+    # the 0-parameters case
+    if Length(para) = 0 then 
+        return TranslatedLiePRings( L, P, [], [[]], flag );
     fi;
 
-    if not IsBound(S.param) and IsInt(S.prime) then 
-        if flag = "group" or flag = "code" then
-            L := PGroupByLiePRing(L); 
-            if flag = "code" then L := CodePcGroup(L); fi;
-        fi;
-        return [L]; 
-    elif not IsBound(S.param) then
-        L := SpecialiseLiePRingNC( L, P, [], [] );
-        if flag = "group" or flag = "code" then
-            L := PGroupByLiePRing(L);
-            if flag = "code" then L := CodePcGroup(L); fi;
-        fi;
-        return [L];
+    # the case of trivial conditions
+    if Length(c[1]) = 0 then 
+        vals := Tuples([0..P-1], Length(para));
+        return TranslatedLiePRings( L, P, para, vals, flag );
     fi;
 
     # assign variable names
-    p := IndeterminateByName("p");
-    w := IndeterminateByName("w");
     x := IndeterminateByName("x");
     y := IndeterminateByName("y");
     z := IndeterminateByName("z");
@@ -223,28 +229,168 @@ LiePRingsInFamily := function( arg )
     u := IndeterminateByName("u");
     v := IndeterminateByName("v");
 
-    para := Difference( S.param, [w] );
-    vals := [];
-    fals := 0;
-    c := L!.LibraryConditions[1];
-    W := PrimitiveRootMod(P);
-
-    # 0 parameters
-    if Length(para) = 0 then 
-        L := SpecialiseLiePRingNC( L, P, [], [] );
-        if flag = "group" or flag = "code" then
-            L := PGroupByLiePRing(L);
-            if flag = "code" then L := CodePcGroup(L); fi;
-        fi;
-        return [L];
+    # special cases with notes - include para to have better overview
+    if l = "6.178" then # See note6.178 
+        para := [x,y,z,t];
+        vals := ValsFunction8(P);
+    elif l = "6.62" then # See note6.62 
+        para := [x,y];
+        vals := ValsFunction9(P);
+    elif l = "7.62" then # See note5.38 
+        para := [x,y,z,t];
+        vals := ValsFunction12(P, 1);
+    elif l = "7.63" then # See note5.38 
+        para := [x,y,z,t];
+        vals := ValsFunction12(P, 2);
+    elif l = "7.729" then # See Notes5.12 
+        para := [x,y,z,t];
+        vals := ValsFunction22(P);
+    elif l = "7.730" then # See Notes5.12 
+        para := [x,y,z,t];
+        vals := ValsFunction22a(P);
+    elif l = "7.757" then # See Notes5.14, Case 1 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 1);
+    elif l = "7.758" then # See Notes5.14, Case 2 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 2);
+    elif l = "7.759" then # See Notes5.14, Case 3 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 3);
+    elif l = "7.760" then # See Notes5.14, Case 4 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 4);
+    elif l = "7.761" then # See Notes5.14, Case 5 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 5);
+    elif l = "7.762" then # See Notes5.14, Case 6 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 6);
+    elif l = "7.763" then # See Notes5.14, Case 7 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 7);
+    elif l = "7.764" then # See Notes5.14, Case 8 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 8);
+    elif l = "7.765" then # See Notes5.14, Case 9 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 9);
+    elif l = "7.766" then # See Notes5.14, Case 10 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 10);
+    elif l = "7.767" then # See Notes5.14, Case 11 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 11);
+    elif l = "7.768" then # See Notes5.14, Case 12 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 12);
+    elif l = "7.769" then # See Notes5.14, Case 13 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 13);
+    elif l = "7.770" then # See Notes5.14, Case 14 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 14);
+    elif l = "7.771" then # See Notes5.14, Case 15 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 15);
+    elif l = "7.772" then # See Notes5.14, Case 16 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 16);
+    elif l = "7.773" then # See Notes5.14, Case 17 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 17);
+    elif l = "7.774" then # See Notes5.14, Case 18 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 18);
+    elif l = "7.775" then # See Notes5.14, Case 19 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 19);
+    elif l = "7.776" then # See Notes5.14, Case 20 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 20);
+    elif l = "7.777" then # See Notes5.14, Case 21 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 21);
+    elif l = "7.778" then # See Notes5.14, Case 22 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 22);
+    elif l = "7.779" then # See Notes5.14, Case 23 
+        para := [x,y,z,t,u,v];
+        vals := ValsFunction28(P, 23);
+    elif l = "7.780" then # See Notes5.14, Case 24 
+        para := [x,y,z,t,s,u,v];  
+        vals := ValsFunction28(P, 24);
+    elif l = "7.1691" then # See Notes6.150, Case 3 
+        para := [x,y,z];
+        vals := ValsFunction23(P);
+    elif l = "7.1692" then # See Notes6.150, Case 4 
+        para := [x,y,z];
+        vals := ValsFunction23a(P);
+    elif l = "7.1693" then # See Notes6.150, Case 5 
+        para := [x,y,z];
+        vals := ValsFunction23b(P);
+    elif l = "7.1709" then # See Notes6.150, Case 8 
+        para := [x,y,z,t];
+        vals := ValsFunction23c(P);
+    elif l = "7.1763" then # See Notes6.163a 
+        para := [x,y,z,t,u];
+        vals := ValsFunction26(P);
+    elif l = "7.1764" then # See Notes6.163b 
+        para := [x,y,z,t,u];
+        vals := ValsFunction26a(P);
+    elif l = "7.1777" then # See Notes6.173 
+        para := [y,z,t,u,v];
+        vals := ValsFunction21(P);
+    elif l = "7.1797" then # See Notes6.178 
+        para := [x,y];
+        if fals = 0 then fals := ValsFunction24(P); fi; vals := fals[1];
+    elif l = "7.1798" then # See Notes6.178a 
+        para := [y,z,t,u,v];
+        if fals = 0 then fals := ValsFunction24(P); fi; vals := fals[2];
+    elif l = "7.1799" then # See Notes6.178b 
+        para := [y,z,t,u,v];
+        if fals = 0 then fals := ValsFunction24(P); fi; vals := fals[3];
+    elif l = "7.3068" then # See Notes4.1 Case 4 
+        para := [x,y,z,t];
+        vals := ValsFunction27(P);
+    elif l = "7.3285" then # See Notes4.1, Case 5 
+        para := [x,y,z,t,j,k,m,n,r,s,u,v];
+        vals := ValsFunction27a(P);
+    elif l = "7.3286" then # See Notes4.1, Case 6 
+        para := [x,y,z,t,j,k,m,n,r,s,u,v];
+        vals := ValsFunction27b(P);
+    elif l = "7.3387" then # See Notes5.3, Case 4 
+        para := [x,y,z,t];
+        vals := ValsFunction8a(P);
+    elif l = "7.3437" then # See Notes5.3, Case 6 
+        para := [x,y,z,t,r,s,u,v];
+        vals := ValsFunction19(P);
+    elif l = "7.3438" then # See Notes5.3, Case 7 
+        para := [x,y,z,t,r,s,u,v];
+        vals := ValsFunction19a(P);
+    elif l = "7.4670" then # See note1dec5.1 
+        para := [x,y];
+        vals := ValsFunction9(P);
+    elif l = "7.4723" then # See note2dec5.1 
+        para := [x,y,z,t];
+        vals := ValsFunction25(P);
+    elif l = "7.1389" then # See Notes6.114
+        para := [x,y];
+        vals := ValsFunction20(P);
     fi;
+    if vals <> [] then return TranslatedLiePRings( L, P, para, vals, flag ); fi;
+
+    c := c[1];
 
     # 1 parameter
     if Length(para) = 1 then 
 
-        # para = [x]
-        if (Length(c) = 0) or (c = "all x") then 
-            vals := List([0..P-1], X -> [X]);
+        if c = "1+4x not a square" then 
+            vals := List( ValsFunction2(P), X -> [X]);
+        elif c = "unique x so that 1-wx^2 is not a square" then 
+            vals := [[ValsFunction10(P,W)]];
+        elif c = "unique x so that x^2-w is not a square" then 
+            vals := [[ValsFunction10a(P,W)]];
         elif c = "x ne -1" then 
             vals := List([0..P-2], X -> [X]);
         elif c = "x ne -1,-1/2" then 
@@ -253,663 +399,323 @@ LiePRingsInFamily := function( arg )
             vals := List(Difference([0..P-1], [P-2]), X -> [X]);
         elif c = "x ne 0" then 
             vals := List([1..P-1], X -> [X]);
+        elif c = "x ne 0, equivalence classes {x,-x,1/x,-1/x}" then 
+            vals := List(ValsFunction13(P), X -> [X]);
+        elif c = "x ne 0, x~-x" then 
+            vals := List( [1..(P-1)/2], X -> [X] );
+        elif c = "x ne 0, x~x^-1" then 
+            vals := List( ValsFunction1(P, [1..P-1]), X -> [X]);
+        elif c = "x ne 0,-2, x~-x-2" then 
+            vals := List(Union([1..(P-3)/2], [P-1]), X -> [X]);
+        elif c = "x ne 0, x~ax if a^3=1" then 
+            vals := List(ValsFunction5(P, 3, 1), X -> [X]);
+        elif c = "x ne 0, x~ax if a^4=1" then 
+            vals := List(ValsFunction5(P, 4, 1), X -> [X]);
+        elif c = "x ne 0, x~ax if a^5=1" then 
+            vals := List(ValsFunction5(P, 5, 1), X -> [X]);
+        elif c = "x ne 0, x~ax if a^6=1" then 
+            vals := List(ValsFunction5(P, 6, 1), X -> [X]);
+        elif c = "x ne 0, x~ax if a^7=1" then 
+            vals := List(ValsFunction5(P, 7, 1), X -> [X]);
         elif c = "x ne 0,-1" then 
             vals := List([1..P-2], X -> [X]);
+        elif c = "x ne 0,-1, x~-1-x" then 
+            vals := List( [1..(P-1)/2], X -> [X] );
         elif c = "x ne 0,-1,2,1/2" then 
             vals := List(Difference([1..P-2], [2, (P+1)/2]), X -> [X]);
         elif c = "x ne 0,-1/4" then 
             vals := List(Difference([1..P-1], [((P-1)/4) mod P]), X -> [X]);
+        elif c = "x ne 0,-w, x~-w-x" then 
+            vals := List(Filtered([1..P-1], Y -> ((-W-Y) mod P) >= Y), X->[X]);
         elif c = "x ne 0,-w,2w,w/2" then 
             vals := List(Difference([1..P-1], ([-W,2*W,W/2] mod P)), X -> [X]);
         elif c = "x ne 0,1" then 
             vals := List([2..P-1], X -> [X]);
         elif c = "x ne 1" then 
             vals := List(Difference( [0..P-1], [1] ), X -> [X]);
+        elif c = "x~-1-x" then 
+            vals := List([0..(P-1)/2], X -> [X]);
+        elif c = "x~1-x" then 
+            vals := List([1..(P+1)/2], X -> [X]);
+        elif c = "x~-x" then 
+            vals := List( [0..(P-1)/2], X -> [X] );
+        elif c = "x~-x-2" then 
+            vals := List(Union([0..(P-3)/2], [P-1]), X -> [X]);
+        elif c = "x~w-x" then 
+            vals := List(Filtered([0..P-1], Y->((W-Y) mod P)>=Y), X -> [X]);
+        elif c = "x~ax if a^3=1" then 
+            vals := List(ValsFunction5(P, 3, 0), X -> [X]);
+        elif c = "x~ax if a^4=1" then 
+            vals := List(ValsFunction5(P, 4, 0), X -> [X]);
+        elif c = "x=0,1" then 
+            vals := List([0,1], X -> [X]);
         elif c = "x=0,1,w" then 
             vals := List([0,1,W], X -> [X]);
-        elif c = "x=1/2" then 
-            vals := List([(P+1)/2], X -> [X]);
-        elif c = "x=1/4" then 
-            vals := List([(P+1)/4], X -> [X]);
         elif c = "x=0,1,w,w^2,w^3" then 
-            vals := List(([0,1,W,W^2,W^3] mod P), X -> [X]);
-        elif c = "x=w,w^2,w^3,w^4" or c = "x=w^i, i=1,2,3,4" then 
-            vals := List(([W, W^2, W^3, W^4] mod P), X -> [X]);
-        elif c = "x=w,w^2,w^3,w^4,w^5,w^6" or c = "x=w^i, i=1,2,3,4,5,6" then 
-            vals := List(([W, W^2, W^3, W^4, W^5, W^6] mod P), X -> [X]);
-        elif c = "x=w^2,w^3,w^4,w^5" or c = "x=w^i, i=2,3,4,5" then 
-            vals := List(([W^2, W^3, W^4, W^5] mod P), X -> [X]);
+            vals := List([0,1,W,W^2,W^3], X -> [X mod P]);
+        elif c = "x=1,w,...,w^(2gcd(p-1,3)-1)" then 
+            vals := List([0..2*Gcd(P-1,3)-1], X -> [(W^X) mod P]);
+        elif c = "x=1,w,...,w^(gcd(p-1,8)-1)" then 
+            vals := List([0..Gcd(P-1,8)-1], X -> [(W^X) mod P]);
+        elif c = "x=w,w^2" then 
+            vals := List([W,W^2], X -> [X mod P]);
+        elif c = "x=w,w^2,...,w^((p-3)/2)" then 
+            vals := List([1..(P-3)/2], X -> [(W^X) mod P]);
+        elif c = "x=w,w^2,...,w^6" then 
+            vals := List([1..6], X -> [(W^X) mod P]);
+        elif c = "x=w,w^2,w^3,w^4" then 
+            vals := List([1..4], X -> [(W^X) mod P]);
+        elif c = "x=w^2,w^3,w^4,w^5" then 
+            vals := List([2..5], X -> [(W^X) mod P]);
+        elif c = "x=w^3,w^4,...,w^8" then 
+            vals := List([3..8], X -> [(W^X) mod P]);
         elif c = "x=w^4,w^5,w^6,w^7" then 
-            vals := List(([W^4, W^5, W^6, W^7] mod P), X -> [X]);
-        elif c = "x=w/2" then 
-            vals := [[W/2 mod P]];
-        elif c = "x=w^i, 0 le i lt 2gcd[p-1,3]" then 
-            vals := List([0..2*Gcd(P-1,3)-1], X -> [W^X mod P]);
-        elif c = "x=w^i, 0 le i lt gcd[p-1,8]" then 
-            vals := List([0..Gcd(P-1,8)-1], X -> [W^X mod P]);
-        elif c = "all x, x~-x" or c = "all x,x~-x" or c = "x~-x" then 
-            vals := List( [0..(P-1)/2], X -> [X] );
-        elif c = "x ne 0, x~-x" then 
-            vals := List( [1..(P-1)/2], X -> [X] );
-        elif c = "x ne 0, x~x^-1" or c = "x ne 0,x~x^-1" then 
-            vals := List( ValsFunction1(P, [1..P-1]), X -> [X]);
-        elif c = "x ne 0,1,-1, x~x^-1" then 
-            vals := List( ValsFunction1(P, [2..P-2]), X -> [X]);
-        elif c = "all x, x~1-x" then 
-            vals := List([1..(P+1)/2], X -> [X]);
-        elif c = "x ne 0,-2, x~-x-2" then 
-            vals := List(Union([1..(P-3)/2], [P-1]), X -> [X]);
-        elif c = "all x, x~w-x" then 
-            vals := List(Filtered([0..P-1], Y -> ((W-Y) mod P) >= Y), X -> [X]);
-        elif c = "x ne 0,-w, x~-w-x" then 
-            vals := List(Filtered([1..P-1], Y -> ((-W-Y) mod P) >= Y), X->[X]);
-        elif c = "1+4x not a square mod p" or
-             c = "all x, 1+4x not a square mod p" then 
-            vals := List( ValsFunction2(P), X -> [X]);
-        elif c = "x ne 0, x~x' if x^5=x'^5 mod p" then 
-            vals := List(ValsFunction5(P, 5, 1), X -> [X]);
-        elif c = "x ne 0,  x~x' if x^4=x'^4 mod p" or 
-             c = "x ne 0, x~x' if x^4=x'^4 mod p" then 
-            vals := List(ValsFunction5(P, 4, 1), X -> [X]);
-        elif c = "x ne 0, x~x' if x^3=x'^3  mod  p" or
-             c = "x ne 0, x~x' if x^3=x'^3 mod p" or
-             c = "x ne 0,x~x' if x^3=x'^3 mod p" then 
-            vals := List(ValsFunction5(P, 3, 1), X -> [X]);
-        elif c = "x~x' if x^4=x'^4 mod p" or
-             c = "all x, x~x' if x^4=x'^4 mod p" then 
-            vals := List(ValsFunction5(P, 4, 0), X -> [X]);
-        elif c = "all x, x~x' if x^3=x'^3 mod p" then 
-            vals := List(ValsFunction5(P, 3, 0), X -> [X]);
-        elif c = "x ne 0, x~x' if x^6=x'^6 mod p" then 
-            vals := List(ValsFunction5(P, 6, 1), X -> [X]);
-        elif c = "x ne 0, x~x' if x^7=x'^7 mod p" then 
-            vals := List(ValsFunction5(P, 7, 1), X -> [X]);
-        elif c = "x FIXED with x^2-w not a square mod p" then 
-            vals := [[ValsFunction10a(P,W)]];
-        elif c = "x ne 0, equivalence classes {x,-x,1/x,-1/x}" then 
-            vals := List(ValsFunction13(P), X -> [X]);
-    
-        # para = [y]
-        elif c = "all y" then 
-            vals := List([0..P-1], X -> [X]);
-        elif c = "y=0,1" then 
-            vals := List([0,1], X -> [X]);
-        elif c = "y=0,1,w" then 
-            vals := List([0,1,W], X -> [X]);
-        elif c = "y=w,w^2" then 
-            vals := List(([W,W^2] mod P), X -> [X]);
-        elif c = "y=w^3,w^4,w^5,w^6,w^7,w^8" then 
-            vals := List([3..8], X -> [W^X mod P]);
-        elif c = "y=w^i, i=1,2,3,4" then 
-            vals := List([1..4], X -> [W^X mod P]);
-        elif c = "y=w^i, i=2,3,4,5" then
-            vals := List([2..5], X -> [W^X mod P]);
-        elif c = "y=w,w^2" then
-            vals := List(([W,W^2] mod P), X -> [X]);
-        elif c = "y=w^3,w^4,w^5,w^6,w^7,w^8" then 
-            vals := List(([W^3,W^4,W^5,W^6,W^7,W^8] mod P), X -> [X]);
-        elif c = "y FIXED such that 1-wy^2 is not a square mod p" then
-            vals := [[ValsFunction10(P,W)]];
-        elif c = "all y, y~-y" then 
-            vals := List([0..(P-1)/2], X -> [X]);
-        elif c = "all y, y~-y-2" then 
-            vals := List(Union([0..(P-3)/2], [P-1]), X -> [X]);
-        elif c = "all y, y~y' if y^4=y'^4 mod p" then 
-            vals := List(ValsFunction5(P, 4, 0), X -> [X]);
-        elif c = "y ne 0, y~y' if y^3=y'^3 mod p" then 
-            vals := List(ValsFunction5(P, 3, 1), X -> [X]);
-        elif c = "y ne 0, y~y' if y^4=y'^4 mod p" then 
-            vals := List(ValsFunction5(P, 4, 1), X -> [X]);
-
-        # para = [z]
-        elif c = "all z" then 
-            vals := List([0..P-1], X -> [X]);
-        elif c = "z ne 0" then 
-            vals := List([1..P-1], X -> [X]);
-        elif c = "z ne 0, z~-z" then 
-            vals := List([1..(P-1)/2], X -> [X]);
-        elif c = "z=0,1" then 
-            vals := List([0,1], X -> [X]);
-        elif c = "z=1/2" then 
-            vals := List([(P+1)/2], X -> [X]);
-        elif c = "z=w^i, i=1,2,3,4" then 
-            vals := List([1,2,3,4], X -> [W^X mod P]);
-
-        # para = [t]
-        elif c = "all t" then 
-            vals := List([0..P-1], X -> [X]);
-        elif c = "t=0,1,w" then 
-            vals := List([0,1,W], X -> [X]);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
+            vals := List([4..7], X -> [(W^X) mod P]);
         fi;
+        if P>3 and vals = [] then Error("conditions not found - para 1"); fi;
+        return TranslatedLiePRings( L, P, para, vals, flag );
+    fi;
   
-    # 2 parameter
-    elif Length(para) = 2 then 
+    # 2 parameter 
+    if Length(para) = 2 then 
 
-        # sort parameters correctly
-        if x in para then # [x,y], [x,z], [x,t]
-            para := [x, Difference(para,[x])[1]]; 
-        elif y in para then # [y,z], [y,t]
-            para := [y, Difference(para,[y])[1]]; 
-        elif z in para then # [z, t]
-            para := [z, Difference(para,[z])[1]]; 
-        else
-            Error("parameters out of range");
-        fi;
-
-        # para = [x,y];
-        if Length(c) = 0 or c = "all x,y" then 
-            vals := Cartesian( [0..P-1], [0..P-1]);
-        elif c = "all x, y ne 0" then 
-            vals := Cartesian([0..P-1], [1..P-1]);
-        elif c = "x ne 0, all y" then 
-            vals := Cartesian([1..P-1], [0..P-1]);
-        elif c = "x ne 0, all y, y~-y" then 
-            vals := Cartesian([1..P-1], [0..(P-1)/2]);
-        elif c = "all x,y, x~-x" or c = "all x, x~-x, all y" then 
-            vals := Cartesian([0..(P-1)/2], [0..P-1]);
-        elif c = "all x, x~-x, y ne 0" then 
-            vals := Cartesian([0..(P-1)/2], [1..P-1]);
-        elif c = "x ne 0, all y, x~-x" or c = "x ne 0, x~-x, all y" then 
-            vals := Cartesian([1..(P-1)/2], [0..P-1]);
-        elif c = "x ne 0, all y, x~-x, y~-y" or 
-             c = "x ne 0, x~-x, all y, y~-y" then 
-            vals := Cartesian([1..(P-1)/2], [0..(P-1)/2]);
-        elif c = "all x,y, y~-y" or c = "all x, all y, y~-y" then 
-            vals := Cartesian([0..P-1], [0..(P-1)/2]);
-        elif c = "all x, y ne 0, y~-y" then 
-            vals := Cartesian([0..P-1], [1..(P-1)/2]);
-        elif c = "y=1,w, all x, x~-x" then 
-            vals := Cartesian([0..(P-1)/2], [1,W]);
-        elif c = "x ne 0, x~-x, y=1,w" then 
-            vals := Cartesian([1..(P-1)/2], [1,W]);
-        elif c = "all x, x~-x, y=1/2" then 
-            vals := Cartesian([0..(P-1)/2], [(P+1)/2]);
-        elif c = "x ne 0, x~-x, y=w^-1" then 
-            vals := Cartesian([1..(P-1)/2], [W^-1 mod P]);
-        elif c = "x ne 0, y ne 0,1,-1, y~y^-1" then 
-            vals := Cartesian([1..P-1], ValsFunction1(P,[2..P-2]));
-        elif c = "x ne 0, y ne 0 ,y~y^-1" then 
-            vals := Cartesian([1..P-1], ValsFunction1(P,[1..P-1]));
-        elif c = "all x, y=w^2,w^3,w^4,w^5" then 
-            vals := Cartesian([0..P-1], ([W^2, W^3, W^4, W^5] mod P));
-        elif c = "all x, y=0,1" then 
-            vals := Cartesian([0..P-1], [0,1]);
-        elif c = "all x, y ne 1/2, y~1-y" then 
-            vals := Cartesian([0..P-1], [1..(P-1)/2]);
-        elif c = "x ne -1, y=[1+x]^-1 mod p" then 
-            vals := List([0..P-2], X -> [X, (1+X)^-1 mod P]);
-        elif c = "x ne -2, all y" then 
-            vals := Cartesian( Difference([0..P-1],[P-2]), [0..P-1] );
-        elif c = "x ne -2w, all y" then 
-            vals := Cartesian( Difference([0..P-1], [(-2*W) mod P]),[0..P-1] );
-        elif c = "y=1,w,w^2, all x, x1~x2 if x1^3=x2^3 mod p" or
-             c = "y=1,w,w^2, all x, x~x' if x^3=x'^3 mod p" then 
-            vals := Cartesian( ValsFunction5(P,3,0), [1,W,W^2]);
-        elif c = "x ne 0, all y, x~x' if x^3=x'^3 mod p" then 
-            vals := Cartesian( ValsFunction5(P,3,1), [0..P-1]);
-        elif c = "all x,y, x~x' if x^3=x'^3 mod p" then 
-            vals := Cartesian(ValsFunction5(P,3,0),[0..P-1]);
-        elif c = "y=1,w, all x, x~x' if x^8=x'^8 mod p" then 
-            vals := Cartesian(ValsFunction5(P,8,0),[1,W]);
-        elif c = "y=1,w,w^2, all x, x1~x2 if x1^3=x2^3 mod p" then 
-            vals := Cartesian(ValsFunction5(P,3,0),([1,W,W^2] mod P));
-        elif c = "y=1,w,w^2,w^3,w^4,w^5, all x, x~x' if x^6=x'^6 mod p" then 
-            vals := Cartesian(ValsFunction5(P,6,0), 
-                              ([1,W,W^2,W^3,W^4,W^5] mod P));
-        elif c = "y=w^2,w^3, all x, x~x' if x^8=x'^8 mod p" then 
-            vals := Cartesian(ValsFunction5(P,8,0), ([W^2,W^3] mod P));
-        elif c = "y=w^4,w^5,w^6,w^7, all x, x~x' if x^8=x'^8 mod p" then 
-            vals := Cartesian(ValsFunction5(P,8,0), 
-                              ([W^4,W^5,W^6,W^7] mod P));
-        elif c = "x ne 0, all y, x~x' if x^3=x'^3 mod p" or 
-             c = "x ne 0, x~x' if x^3=x'^3 mod p, all y" then 
-            vals := Cartesian(ValsFunction5(P,3,1),[0..P-1]);
-        elif c = "x ne 0, x~x' if x^6=x'^6 mod p, all y" then 
-            vals := Cartesian(ValsFunction5(P,6,1),[0..P-1]);
-        elif c = "x ne 0, x~x' if x^5=x'^5 mod p, all y" then 
-            vals := Cartesian(ValsFunction5(P,5,1),[0..P-1]);
-        elif c = "y=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p" then 
-            vals := Cartesian(ValsFunction5(P,5,1),
-                              ([W, W^2, W^3, W^4] mod P));
-        elif c = "y=w^i, i=1,2,3,4,5,6, x ne 0, x~x' if x^7=x'^7 mod p" then 
-            vals := Cartesian(ValsFunction5(P,7,1),
-                              List([1..6],Y->(W^Y mod P)));
-        elif c = "y=w^i, i=2,3,4,5, x ne 0, x~x' if x^3=x'^3 mod p" then
-            vals := Cartesian(ValsFunction5(P,3,1),
-                              List([2..5],Y->(W^Y mod P)));
-        elif c = "x ne 1, all y" then 
-            vals := Cartesian(Union([0],[2..P-1]), [0..P-1]);
-        elif c = "x=0,-1, y=0,1" then 
-            vals := Cartesian([0,P-1], [0,1]);
-        elif c = "x=0,1, all y" then 
-            vals := Cartesian([0,1], [0..P-1]);
-        elif c = "x=0,1, y=0,1" then 
-            vals := Cartesian([0,1], [0,1]);
-        elif c = "x ne 1-w, x~-x+2[1-w], all y, y~-y" then 
-            vals := Cartesian(ValsFunction14(P,W,1), [0..(P-1)/2]);
-        elif c = "x ne 1-w^2, x~-x+2[1-w^2], all y, y~-y" then 
-            vals := Cartesian(ValsFunction14(P,W,2), [0..(P-1)/2]);
-        elif c = "x ne 1-w^3, x~-x+2[1-w^3], all y, y~-y" then 
-            vals := Cartesian(ValsFunction14(P,W,3), [0..(P-1)/2]);
-        elif c = "all x, y ne 0, y~y' if y^4=y'^4 mod p" then 
-            vals := Cartesian([0..P-1], ValsFunction5(P,4,1));
-        elif c = "all x, y ne 0, y~y' if y^5=y'^5 mod p" or
-             c = "all x, y ne 0, y~y' if y^5=y'^5 mod p" then 
-            vals := Cartesian([0..P-1], ValsFunction5(P,5,1));
-        elif c = "all x,y, x~-x, y~y' if y^3 eq y'^3  mod  p" or
-             c = "all x,y, x~-x, y~y' if y^3=y'^3 mod p" then 
-            vals := Cartesian([0..(P-1)/2], ValsFunction5(P,3,0));
-        elif c = "all x, y ne 0, y~y' if y^3=y'^3 mod p" or 
-             c = "y ne 0, y~y' if y^3=y'^3 mod p, all x" then 
-            vals := Cartesian([0..P-1], ValsFunction5(P,3,1));
-        elif c = "all x, y ne 0, y~y' if y^4=y'^4 mod p" then 
-            vals := Cartesian([0..P-1], ValsFunction5(P,4,1));
-        elif c = "all x,y, y~y' if y^4=y'^4 mod p" then 
-            vals := Cartesian([0..P-1], ValsFunction5(P,4,0));
-        elif c = "x=w^i, 0 le i lt 2gcd[p-1,3], y ne 0, y~y' if y^6=y'^6 mod p"
-        then 
-            vals := Cartesian(List([0..2*Gcd(P-1,3)-1], Y->((W^Y) mod P)),
-                              ValsFunction5(P,6,1));
-        elif c = "x=w^i, 0 le i lt gcd[p-1,8], y ne 0, y~y' if y^8=y'^8 mod p"
-        then 
-            vals := Cartesian(List([0..Gcd(P-1,8)-1], Y->((W^Y) mod P)),
-                              ValsFunction5(P,8,1));
-        elif c = "all x,y, [x,y]~[y,x]" then 
+        if c = "[x,y]~[-x,y]" then
+            vals := Cartesian([0..(P-1)/2], [0..(P-1)]);
+        elif c = "[x,y]~[x,-y]" then
+            vals := Cartesian([0..(P-1)], [0..(P-1)/2]);
+        elif c = "[x,y]~[y,x]" then
             vals := Concatenation(List([0..P-1], X -> List([0..X],Y->[X,Y])));
-        elif c = "x,y ne 0, x ne y, [x,y]~[y,x]" then 
-            vals := Concatenation(List([1..P-1], X -> List([1..X-1],Y->[X,Y])));
-        elif c = "all x,y such that xy ne 1, [x,y]~[y,x]" then 
+        elif c = "[x,y]~[x',y'] if y^2-wx^2=y'^2-wx'^2" then
+            vals := ValsFunction6(P);
+        elif c = "[x,y]~[ax,y] if a^3=1" then
+            vals := Cartesian( ValsFunction5(P,3,0), [0..(P-1)]);
+        elif c = "[x,y]~[x,ay] if a^4=1" then
+            vals := Cartesian( [0..(P-1)], ValsFunction5(P,4,0));
+        elif c = "[x,y]~[±x,ay] if a^3=1" then
+            vals := Cartesian( [0..(P-1)/2], ValsFunction5(P,3,0));
+        elif c = "x ne -1, (1+x)y=1" then
+            vals := List([0..(P-2)], X -> [X, (1+X)^-1 mod P]);
+        elif c = "x ne -2" then
+            vals := Cartesian( Difference([0..(P-1)], [(P-2)]), [0..(P-1)]);
+        elif c = "x ne -2w" then
+            vals := Cartesian( Difference([0..(P-1)], [(P-2*W) mod P]), [0..(P-1)]);
+        elif c = "x ne 0" then
+            vals := Cartesian( [1..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, 4x+y^2 not a square" then
+            vals := ValsFunction15(P);
+        elif c = "x ne 0, [x,y]~[-x,-y-2]" then
+            vals := Cartesian( [1..(P-1)/2], [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[-x,-y]" then
+            vals := Cartesian( [1..(P-1)/2], [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[-x,y]~[x,-y]" then
+            vals := Cartesian( [1..(P-1)/2], [0..(P-1)/2]);
+        elif c = "x ne 0, [x,y]~[a^4x,ay] if a^5=1" then
+            vals := Cartesian (ValsFunction5(P,5,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[ax,a^2y] if a^3=1" then
+            vals := Cartesian (ValsFunction5(P,3,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[ax,a^2y] if a^6=1" then
+            vals := Cartesian (ValsFunction5(P,6,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[ax,a^3y] if a^5=1" then
+            vals := Cartesian (ValsFunction5(P,5,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[ax,a^3y] if a^6=1" then
+            vals := Cartesian (ValsFunction5(P,6,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[ax,ay] if a^3=1" then
+            vals := Cartesian (ValsFunction5(P,3,1), [0..(P-1)]);
+        elif c = "x ne 0, [x,y]~[x,-y]" then
+            vals := Cartesian( [1..(P-1)], [0..(P-1)/2]);
+        elif c = "x ne 0, [x,y]~[x,-y]~[-x,iy] if i^2=-1" then
+            vals := Cartesian( [1..(P-1)/2], [0..(P-1)/2]);
+        elif c = "x ne 0, unique y so that 1-wy^2 is not a square, [x,y]~[-x,y]" then
+            vals := Cartesian([1..(P-1)/2], [ValsFunction10(P,W)]);
+        elif c = "x ne 0, unique y so that wy^2=2, [x,y]~[-x,y]" then
+            Y := IsSquareModP(P,((2/W) mod P)); if not IsInt(Y) then Error("no int"); fi;
+            vals := Cartesian([1..(P-1)/2], [Y]);;
+        elif c = "x ne 0, unique y so that y^2=2, [x,y]~[-x,y]" then
+            Y := IsSquareModP(P,2); if not IsInt(Y) then Error("no int"); fi;
+            vals := Cartesian([1..(P-1)/2], [Y]);;
+        elif c = "x ne 0, unique y so that y^2=2w^2, [x,y]~[-x,y]" then
+            Y := IsSquareModP(P,((2*W^2) mod P)); if not IsInt(Y) then Error("no int"); fi;
+            vals := Cartesian([1..(P-1)/2], [Y]);;
+        elif c = "x ne 0, unique y so that y^2=2w^3, [x,y]~[-x,y]" then
+            Y := IsSquareModP(P,((2*W^3) mod P)); if not IsInt(Y) then Error("no int"); fi;
+            if IsInt(Y) then vals := Cartesian([1..(P-1)/2], [Y]); fi;
+        elif c = "x ne 0, y=1,-1" then
+            vals := Cartesian( [1..(P-1)], [1,(P-1)]);
+        elif c = "x ne 0, y=1,-1, [x,y]~[-x,y]" then
+            vals := Cartesian( [1..(P-1)/2], [1,(P-1)]);
+        elif c = "x ne 0, y=1,w, [x,y]~[-x,y]" then
+            vals := Cartesian( [1..(P-1)/2], [1,W]);
+        elif c = "x ne 0, y=w,w^2,...,w^((p-3)/2)" then
+            vals := Cartesian( [1..(P-1)], List([1..(P-3)/2], X -> ((W^X) mod P)));
+        elif c = "x ne 0, y=w,w^2,...,w^6, [x,y]~[ax,y] if a^7=1" then
+            vals := Cartesian( ValsFunction5(P,7,1), List([1..6], X -> ((W^X) mod P)));
+        elif c = "x ne 0, y=w,w^2,w^3,w^4, [x,y]~[ax,y] if a^5=1" then
+            vals := Cartesian( ValsFunction5(P,5,1), List([1..4], X -> ((W^X) mod P)));
+        elif c = "x ne 0, y=w^2,w^3,w^4,w^5, [x,y]~[ax,y] if a^3=1" then
+            vals := Cartesian( ValsFunction5(P,3,1), List([2..5], X -> ((W^X) mod P)));
+        elif c = "x ne 1" then
+            vals := Cartesian( Difference([0..(P-1)], [1]), [0..(P-1)]);
+        elif c = "x ne 1-w, [x,y]~[x,-y]~[-x+2(1-w),iy] if i^2=-1" then
+            vals := Cartesian(ValsFunction14(P,W,1), [0..(P-1)/2]);
+        elif c = "x ne 1-w^2, [x,y]~[x,-y]~[-x+2(1-w^2),iy] if i^2=-1" then
+            vals := Cartesian(ValsFunction14(P,W,2), [0..(P-1)/2]);
+        elif c = "x ne 1-w^3, [x,y]~[x,-y]~[-x+2(1-w^3),iy] if i^2=-1" then
+            vals := Cartesian(ValsFunction14(P,W,3), [0..(P-1)/2]);
+        elif c = "x,y ne 0, [x,y]~[-x,-y]" then
+            vals := Cartesian([1..(P-1)], [1..(P-1)/2]);
+        elif c = "x,y ne 0, [x,y]~[ax,a^3y] if a^4=1" then
+            vals := Cartesian(ValsFunction5(P,4,1), [1..(P-1)]);
+        elif c = "x,y ne 0, [x,y]~[xy^-2,y^-1]" then
+            vals := Cartesian([1..(P-1)], ValsFunction1(P,[1..P-1]));
+        elif c = "x,y ne 0, [x,y]~[y,x]" then
+            vals := Concatenation(List([1..(P-1)], X -> List([1..X], Y -> [X,Y])));
+        elif c = "x,y ne 0, x ne y, [x,y]~[y,x]" then
+            vals := Concatenation(List([1..(P-1)], X -> List([1..X-1], Y -> [X,Y])));
+        elif c = "x=0,-1, y=0,1" then
+            vals := Cartesian( [0,P-1], [0,1]);
+        elif c = "x=0,1" then
+            vals := Cartesian( [0,1], [0..(P-1)]);
+        elif c = "x=0,1, y=0,1" then
+            vals := Cartesian( [0,1], [0,1]);
+        elif c = "x=0,1,w" then
+            vals := Cartesian( [0,1,W], [0..(P-1)]);
+        elif c = "x=0,1,w, y=0,1" then
+            vals := Cartesian( [0,1,W], [0,1]);
+        elif c = "x=0,1,w, y=1,-1" then
+            vals := Cartesian( [0,1,W], [1,P-1]);
+        elif c = "x=0,1,w, y=w,w^2,...,w^((p-3)/2)" then
+            vals := Cartesian( [0,1,W], List([1..(P-3)/2], X -> ((W^X) mod P)));
+        elif c = "x=1,w" then
+            vals := Cartesian( [1,W], [0..(P-1)]);
+        elif c = "x=1,w,...,w^(2gcd(p-1,3)-1), y ne 0, [x,y]~[x,ay] if a^6=1" then
+            vals := List([0..(2*Gcd(P-1,3)-1)], X -> ((W^X) mod P));
+            vals := Cartesian( vals, ValsFunction5(P,6,1));
+        elif c = "x=1,w,...,w^(gcd(p-1,8)-1), y ne 0, [x,y]~[x,ay] if a^8=1" then
+            vals := List([0..(Gcd(P-1,8)-1)], X -> ((W^X) mod P));
+            vals := Cartesian( vals, ValsFunction5(P,8,1));
+        elif c = "xy ne 1, [x,y]~[y,x]" then
             vals := Concatenation(List([0..P-1], X -> List([0..X],Y->[X,Y])));
             vals := Filtered(vals, X -> (X[1]*X[2] mod P)<>1); 
-        elif c = "all x,y, [x,y]~[x',y'] if y^2-wx^2=y'^2-wx'^2 mod p" then 
-            vals := ValsFunction6(P);
-        elif c ="x ne 0, x~-x, y FIXED such that 1-wy^2 is not a square mod p"
-        then 
-            vals := Cartesian([1..(P-1)/2], [ValsFunction10(P,W)]);
-        elif c = "x ne 0, all y, 4x+y^2 not a square mod p" then 
-            vals := ValsFunction15(P);
-        elif c = "If 2 is a square mod p and y^2=2, x ne 0, x~-x, y~-y" then 
-            Y := IsSquareModP(P,2);
-            if IsInt(Y) then vals := Cartesian([1..(P-1)/2], [Y]); fi;
-        elif c = "If 2 is a square mod p and y^2=2w^2, x ne 0, x~-x, y~-y" then
-            Y := IsSquareModP(P,2*W^2);
-            if IsInt(Y) then vals := Cartesian([1..(P-1)/2], [Y]); fi;
-        elif c = "If 2 is not a square mod p and wy^2=2, x ne 0, x~-x, y~-y" 
-        then
-            Y := IsSquareModP(P,2/W);
-            if IsInt(Y) then vals := Cartesian([1..(P-1)/2], [Y]); fi;
-        elif c = "If 2 is not a square mod p and y^2=2w^3, x ne 0, x~-x, y~-y"
-        then 
-            Y := IsSquareModP(P,2*W^3);
-            if IsInt(Y) then vals := Cartesian([1..(P-1)/2], [Y]); fi;
-        elif d = 6 and c = "See note6.62" then 
-            vals := ValsFunction9(P);
-        elif d = 7 and c = "See Notes6.178" then 
-            fals := ValsFunction24(P); vals := fals[1];
-        elif c = "See note1dec5.1" then 
-            vals := ValsFunction9(P);
-
-        # para = [x,z]
-        elif c = "all x,z" then 
-            vals := Cartesian([0..P-1], [0..P-1]);
-        elif c = "x ne 0, all z" then 
-            vals := Cartesian([1..P-1], [0..P-1]);
-        elif c = "all x, z=1,w" then
-            vals := Cartesian([0..P-1], [1,W]);
-        elif c = "x,z ne 0, [x,z]~[z,x]" then 
-            vals := Concatenation(List([1..P-1], X -> List([1..X],Y->[X,Y])));
-        elif c = "x ne 0, x~-x, z=w^-1" then 
-            vals := Cartesian([1..(P-1)/2], [W^-1]);
-        elif c = "x ne 0, x~x' if x^4=x'^4 mod p, z=w^-1" then 
-            vals := Cartesian(ValsFunction5(P,4,1),[W^-1]);
-        elif c = "x ne 0, x~x' if x^6=x'^6 mod p, all z" then 
-            vals := Cartesian(ValsFunction5(P,6,1),[0..P-1]);
-        elif c = "z=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p" then 
-            vals := Cartesian(ValsFunction5(P,5,1),
-                              List([1..4],X ->(W^X mod P)));
-        elif c = "x ne -1,3, See Notes6.114" then 
-            vals := ValsFunction20(P);
-
-        # para = [x,t]
-        elif c = "all x, t=0,1" then 
-            vals := Cartesian([0..P-1], [0,1]);
-        elif c = "t=1,-1, x ne 0" then 
-            vals := Cartesian([1..P-1], [1, P-1]);
-        elif c = "t=1,-1, x ne 0, x~-x" then 
-            vals := Cartesian([1..(P-1)/2], [1, P-1]);
-        elif c = "all x,t, [x,t]~[t,x]" then 
-            vals := UnorderedTuples([0..P-1],2);
-
-        # para = [y,z]
-        elif c = "all y, z ne 0, y~-y, z~-z" then 
-            vals := Cartesian( [0..(P-1)/2], [1..(P-1)/2]);
-        elif c = "all y, z=0,1,w" then 
-            vals := Cartesian( [0..P-1], [0,1,W] );
-        elif c = "all y,z" then 
-            vals := Cartesian( [0..P-1], [0..P-1]);
-        elif c = "y,z ne 0, y~-y" then 
-            vals := Cartesian( [1..(P-1)/2], [1..P-1]);
-        elif c = "y,z ne 0, y~y' if y^4=y'^4 mod p" then 
-            vals := Cartesian( ValsFunction5(P, 4, 1), [1..P-1]);
-        elif c = "y=0,1, all z" then 
-            vals := Cartesian( [0,1], [0..P-1]);
-        elif c = "y=0,1, z=0,1,w" then 
-            vals := Cartesian( [0,1], [0,1,W] );
-        elif c = "y=1,w, all z" then 
-            vals := Cartesian( [1,W], [0..P-1] );
-
-        # para = [y,t]
-        elif c = "all t, y=0,1" then 
-            vals := Cartesian( [0,1], [0..P-1] );
-        elif c = "all t,y" then 
-            vals := Cartesian( [0..P-1], [0..P-1] );
-        elif c = "t=0,1,w, y=0,1" then 
-            vals := Cartesian( [0,1], [0,1,W] );
-        elif c = "t=1,w, all y" then
-            vals := Cartesian( [0..P-1], [1,W] );
-
-        # para = [z,t]
-        elif c = "z=0,1,w, t ne 0,1,-1, t~t^-1" then 
-            vals := Cartesian( [0,1,W], ValsFunction1(P, [2..P-2] ));
-        elif c = "t=1,-1, z=0,1,w" then 
-            vals := Cartesian( [0,1,W], [1, P-1] );
-        elif c = "all z,t" then 
-            vals := Cartesian( [0..P-1], [0..P-1] );
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
+        elif c = "y ne 0, [x,y]~[-x,y]" then
+            vals := Cartesian([0..(P-1)/2], [1..(P-1)]);
+        elif c = "y ne 0, [x,y]~[a^2x,ay] if a^4=1" then
+            vals := Cartesian([0..(P-1)], ValsFunction5(P,4,1));
+        elif c = "y ne 0, [x,y]~[x,-y]" then
+            vals := Cartesian([0..(P-1)], [1..(P-1)/2]);
+        elif c = "y ne 0, [x,y]~[x,ay] if a^3=1" then
+            vals := Cartesian([0..(P-1)], ValsFunction5(P,3,1));
+        elif c = "y ne 0, [x,y]~[x,ay] if a^4=1" then
+            vals := Cartesian([0..(P-1)], ValsFunction5(P,4,1));
+        elif c = "y ne 0, [x,y]~[x,ay] if a^5=1" then
+            vals := Cartesian([0..(P-1)], ValsFunction5(P,5,1));
+        elif c = "y ne 1/2, [x,y]~[-x,1-y]" then
+            vals := Cartesian([0..(P-1)], [1..(P-1)/2]);
+        elif c = "y=1,w, [x,y]~[-x,y]" then
+            vals := Cartesian([0..(P-1)/2], [1,W]);
+        elif c = "y=1,w, [x,y]~[ax,y] if a^8=1" then
+            vals := Cartesian(ValsFunction5(P,8,0), [1,W]);
+        elif c = "y=1,w,...,w^5, [x,y]~[ax,y] if a^6=1" then
+            vals := List([0..5], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,6,0), vals);
+        elif c = "y=1,w,w^2, [x,y]~[ax,y] if a^3=1" then
+            vals := List([0..2], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,3,0), vals);
+        elif c = "y=w^2,w^3, [x,y]~[ax,y] if a^8=1" then
+            vals := List([2,3], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,8,0), vals);
+        elif c = "y=w^2,w^3,w^4,w^5" then
+            vals := Cartesian([0..(P-1)], List([2..5], X -> ((W^X) mod P)));
+        elif c = "y=w^4,w^5,w^6,w^7, [x,y]~[ax,y] if a^8=1" then
+            vals := List([4..7], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,8,0), vals);
         fi;
+        if P>3 and vals = [] then Error("conditions not found - para 2"); fi;
+        return TranslatedLiePRings( L, P, para, vals, flag );
+    fi;
 
-    elif Length(para) = 3 then 
-    
-        # sort para
-        if x in para and y in para and z in para then 
-            para := [x,y,z];
-        elif x in para and y in para and t in para then 
-            para := [x,y,t];
-        elif x in para and z in para and t in para then 
-            para := [x,z,t];
-        elif y in para and z in para and t in para then 
-            para := [y,z,t];
-        fi;
+    # 3 parameter 
+    if Length(para) = 3 then 
 
-        # para = [x,y,z]
-        if Length(c) = 0 or c = "all x,y,z" then 
-            vals := Tuples( [0..P-1], Length(para) );
-        elif c="all x,y, [x,y]~[y,x], z FIXED so that z^2-4 not a square mod p"
-        then 
+        if c = "[x,y,z]~[-x,-y,-z]" then
+            vals := ValsFunction17(P);
+        elif c = "[x,y,z]~[-x,y,z]" then
+            vals := Cartesian([0..(P-1)/2],[0..P-1],[0..P-1]);
+        elif c = "[x,y,z]~[x,y,-z]" then
+            vals := Cartesian([0..P-1],[0..P-1],[0..(P-1)/2]);
+        elif c = "[x,y,z]~[z,y,x]" then
+            vals := Cartesian([0..(P-1)],[0..(P-1)],[0..(P-1)]);
+            vals := Filtered(vals, X -> X[1]<=X[3]); 
+        elif c = "unique z so that z^2-4 is not a square, [x,y,z]~[y,x,z]" then
             Z := ValsFunction11(P);
             vals := Concatenation(List([0..P-1], X -> List([0..X],Y->[X,Y,Z])));
-        elif c = "all x,y, z=1,w,w^2,w^3,w^4, y~y' if y^5=y'^5 mod p" then 
-            vals := Cartesian([0..P-1],ValsFunction5(P,5,0),[1,W,W^2,W^3,W^4]);
-        elif c = "x ne 0,all y,z, x~-x" then 
-            vals := Cartesian([1..(P-1)/2],[0..P-1],[0..P-1]);
-        elif c = "all x,y,z, z~-z" then 
-            vals := Cartesian([0..P-1],[0..P-1],[0..(P-1)/2]);
-        elif c = "all x,z, y ne 0, y~-y" then 
-            vals := Cartesian([0..P-1],[1..(P-1)/2],[0..P-1]);
-        elif c = "x ne -2, all y,z, z~-z" then 
+        elif c = "x ne -2, [x,y,z]~[x,y,-z]" then
             vals := Cartesian(Difference([0..P-1],[P-2]),[0..P-1],[0..(P-1)/2]);
-        elif c = "x ne -2w, all y,z, z~-z" then 
-            vals := Cartesian(Difference([0..P-1],[(-2*W) mod P]),[0..P-1],
-                    [0..(P-1)/2]);
-        elif c = "x ne 0, all y,z" then 
-            vals := Cartesian([1..P-1],[0..P-1],[0..P-1]);
-        elif c = "x ne 0, all y,z, x~-x" then 
-            vals := Cartesian([1..(P-1)/2],[0..P-1],[0..P-1]);
-        elif c = "x,z ne 0, all y, y~-y, z~-z" then 
-            vals := Cartesian([1..P-1],[0..(P-1)/2],[1..(P-1)/2]);
-        elif c = "x=0,1, y=0,1, z ne 0,-1" then 
-            vals := Cartesian([0,1],[0,1],[1..P-2]);
-        elif c = "all x,y,z, [x,y,z]~[-x,-y,-z]" then 
-            vals := ValsFunction17(P);
-        elif c = "x ne 0, all y,z, x~x' if x^4=x'^4 mod p" then 
-            vals := Cartesian(ValsFunction5(P,4,1),[0..P-1],[0..P-1]);
-        elif c = "x ne 0, x~x' if x^3=x'^3 mod p, all y,z" then 
-            vals := Cartesian(ValsFunction5(P,3,1),[0..P-1],[0..P-1]);
-        elif c = "x ne 0, x~x' if x^5=x'^5 mod p, all y,z" then 
-            vals := Cartesian(ValsFunction5(P,5,1),[0..P-1],[0..P-1]);
-        elif c = "x=w^i, 0 le i lt 2gcd[p-1,3], y ne 0, y~y' if y^3=y'^3 mod p, all z, z~-z" then 
-            vals := Cartesian(List([0..2*Gcd(P-1,3)-1], X -> ((W^X) mod P)),
-                    ValsFunction5(P,3,1), [0..(P-1)/2]);
-        elif c = "y=w^i, i=2,3,4,5, x ne 0, x~x' if x^6=x'^6 mod p, all z" 
-        then 
-            vals := Cartesian(ValsFunction5(P,6,1),List([2,3,4,5], X -> 
-                    W^X mod P), [0..P-1]);
-        elif c = "z=w^i, i=1,2,3,4, x ne 0, x~x' if x^5=x'^5 mod p, all y" 
-        then
-            vals := Cartesian(ValsFunction5(P,5,1), [0..P-1], 
-                    List([1,2,3,4], X -> W^X mod P));
-
-        elif c = "See Notes6.150, Case 3" then 
-            vals := ValsFunction23(P);
-        elif c = "See Notes6.150, Case 4" then 
-            vals := ValsFunction23a(P);
-        elif c = "See Notes6.150, Case 5" then 
-            vals := ValsFunction23b(P);
-
-        # para = [x,y,t]
-        elif c = "all t, x=0,1, y=0,1" then 
-            vals := Cartesian([0,1],[0,1],[0..P-1]);
-        elif c = "t=0,1,w, x=0,1, y=0,1" then
+        elif c = "x ne -2w, [x,y,z]~[x,y,-z]" then
+            vals := Cartesian(Difference([0..P-1],[(-2*W) mod P]),[0..P-1],[0..(P-1)/2]);
+        elif c = "x ne 0" then
+            vals := Cartesian([1..(P-1)], [0..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, [x,y,z]~[-x,-y,z]" then
+            vals := Cartesian([1..(P-1)/2], [0..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, [x,y,z]~[a^3x,a^4y,az] if a^5=1" then
+            vals := Cartesian(ValsFunction5(P,5,1), [0..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, [x,y,z]~[ax,a^2y,az] if a^4=1" then
+            vals := Cartesian(ValsFunction5(P,4,1), [0..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, [x,y,z]~[ax,y,a^2z] if a^3=1" then
+            vals := Cartesian(ValsFunction5(P,3,1), [0..(P-1)], [0..(P-1)]);
+        elif c = "x ne 0, y=w^2,w^3,w^4,w^5, [x,y,z]~[ax,y,a^2z] if a^6=1" then
+            vals := Cartesian(ValsFunction5(P,6,1),List([2,3,4,5], X -> ((W^X) mod P)), [0..P-1]);
+        elif c = "x ne 0, z=w,w^2,w^3,w^4, [x,y,z]~[ax,a^3y,z] if a^5=1" then
+            vals := Cartesian(ValsFunction5(P,5,1), [0..P-1], List([1,2,3,4], X -> ((W^X) mod P)));
+        elif c = "x,z ne 0, [x,y,z]~[-x,y,-z]~[x,-y,z]" then
+            vals := Cartesian([1..(P-1)],[0..(P-1)/2],[1..(P-1)/2]);
+        elif c = "x=0,1" then
+            vals := Cartesian([0,1],[0..(P-1)],[0..(P-1)]);
+        elif c = "x=0,1, y=0,1" then
+            vals := Cartesian([0,1],[0,1],[0..(P-1)]);
+        elif c = "x=0,1, y=0,1, z ne 0,-1" then
+            vals := Cartesian([0,1],[0,1],[1..(P-2)]);
+        elif c = "x=0,1, y=0,1, z=0,1" then
+            vals := Cartesian([0,1],[0,1],[0,1]);
+        elif c = "x=0,1, y=0,1, z=0,1,w" then
             vals := Cartesian([0,1],[0,1],[0,1,W]);
-
-        # para = [x,z,t]
-        elif c = "t ne 0, all x,z, [x,z]~[tz,x/t]" then 
-            vals := ValsFunction18(P);
-        elif c="t ne 0,1, all x,z such that [x+t][1+z]=1 mod p, [x,z]~[tz,x/t]" 
-        then 
-            vals := ValsFunction18a(P);
-
-        # para = [y,z,t]
-        elif c = "all y,z,t" then 
-            vals := Tuples( [0..P-1], Length(para) );
-        elif c = "all y,z,t, t~-t" then 
-            vals := Cartesian([0..P-1], [0..P-1], [0..(P-1)/2]);
-        elif c = "y=0,1, all z,t" then 
-            vals := Cartesian([0,1], [0..P-1], [0..P-1]);
-        elif c = "y=0,1, z=0,1, t=0,1" then 
-            vals := Cartesian([0,1], [0,1], [0,1]);
-        elif c = "y=1,w, all z, t ne 0,1,-1, t~t^-1" then
-            vals := Cartesian([1,W], [0..P-1], ValsFunction1(P,[2..P-2]));
-        elif c = "all y,z,t, (z,t)~(t,z)" then 
-            vals := Cartesian([0..P-1],[0..P-1],[0..P-1]);
-            vals := Filtered(vals, X -> X[3]<=X[2]); 
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
+        elif c = "x=1,w,...,w^(2gcd(p-1,3)-1), y ne 0, [x,y,z]~[x,ay,±a^2z] if a^3=1" then
+            vals := Cartesian(List([0..2*Gcd(P-1,3)-1], X -> ((W^X) mod P)),
+                              ValsFunction5(P,3,1), [0..(P-1)/2]);
+        elif c = "x=w,w^2,...,w^((p-3)/2), y=1,w" then
+            vals := Cartesian(List([1..(P-3)/2], X -> ((W^X) mod P)), [1,W], [0..(P-1)]);
+        elif c = "y ne 0, [x,y,z]~[x,-y,-z]" then
+            vals := Cartesian([0..(P-1)],[1..(P-1)/2],[0..(P-1)]);
+        elif c = "y ne 0, [x,y,z]~[zy,y,x/y]" then
+            vals := ValsFunction18(P); 
+        elif c = "y ne 0,1, (x+y)(1+z)=1, [x,y,z]~[zy,y,x/y]" then
+            vals := ValsFunction18a(P); 
+        elif c = "z=1,w,w^2,w^3,w^4, [x,y,z]~[x,ay,z] if a^5=1" then
+            vals := Cartesian([0..(P-1)],ValsFunction5(P,5,0),([1,W,W^2,W^3,W^4] mod P));
         fi;
+        if P>3 and vals = [] then Error("conditions not found - para 3"); fi;
+        return TranslatedLiePRings( L, P, para, vals, flag );
+    fi;
 
-    elif Length(para) = 4 then 
- 
-        # sort para
-        para := [x,y,z,t];
+    # 4 parameters
+    if Length(para) = 4 then 
 
-        if Length(c) = 0 or c = "all x,y,z,t" then 
-            vals := Cartesian([0..P-1],[0..P-1],[0..P-1],[0..P-1]);
-        elif c = "all x,y,z,t, y~-y, if y=0 then t~-t" then 
-            vals := Concatenation( 
-                      Cartesian([0..P-1],[1..(P-1)/2],[0..P-1],[0..P-1]),
-                      Cartesian([0..P-1],[0],[0..P-1],[0..(P-1)/2]));
-        elif c = "all y,z,t, x ne 0, x~-x" or
-             c = "x ne 0, x~-x, all y,z,t" then 
-            vals := Cartesian([1..(P-1)/2],[0..P-1],[0..P-1],[0..P-1]);
-        elif c = "x ne 0, x~x' if x^5=x'^5 mod p, all y,z,t" then
-            vals := Cartesian(ValsFunction5(P,5,1),[0..P-1],[0..P-1],[0..P-1]);
-        elif c = "all x,y,z,t, [x,y,z,t]~[t+1,z+1,y-1,x-1]" then 
+        if c = "[x,y,z,t]~[t+1,z+1,y-1,x-1]" then
             vals := ValsFunction16(P);
-        elif d = 6 and c = "See note6.178" then 
-            vals := ValsFunction8(P);
-        elif d = 7 and c = "See note5.38" and not w in S.param then 
-            vals := ValsFunction12(P, 1);
-        elif d = 7 and c = "See note5.38" and w in S.param then 
-            vals := ValsFunction12(P, 2);
-        elif d = 7 and c = "See Notes5.3, Case 4" then 
-            vals := ValsFunction8a(P);
-        elif c = "See Notes5.12" and w in S.param then 
-            vals := ValsFunction22a(P);
-        elif c = "See Notes5.12" then 
-            vals := ValsFunction22(P);
-        elif c = "See Notes6.150, Case 8" then 
-            vals := ValsFunction23c(P);
-        elif c = "See note2dec5.1" then 
-            vals := ValsFunction25(P);
-        elif c = "See Notes4.1 Case 4" then 
-            vals := ValsFunction27(P);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
+        elif c = "[x,y,z,t]~[x,-y,z,-t]" then
+            vals := Cartesian([0..(P-1)],[1..(P-1)/2],[0..P-1],[0..P-1]);
+            vals := Concatenation( vals, Cartesian([0..(P-1)],[0],[0..P-1],[0..(P-1)/2]));
+        elif c = "x ne 0, [x,y,z,t]~[-x,y,t,z]" then
+            vals := Cartesian([1..(P-1)/2],[0..P-1],[0..P-1],[0..P-1]);
+        elif c = "x ne 0, [x,y,z,t]~[-x,y,z,-t]" then
+            vals := Cartesian([1..(P-1)/2],[0..P-1],[0..P-1],[0..P-1]);
+        elif c = "x ne 0, [x,y,z,t]~[ax,a^3y,a^4z,at] if a^5=1" then
+            vals := Cartesian(ValsFunction5(P,5,1),[0..P-1],[0..P-1],[0..P-1]);
+        elif c = "x ne 0, [x,y,z,t]~[ax,a^3y,a^4z,t] if a^5=1" then
+            vals := Cartesian(ValsFunction5(P,5,1),[0..P-1],[0..P-1],[0..P-1]);
         fi;
-
-    elif Length(para) = 5 then 
-
-        # sort para
-        if x in para then
-            para := [x,y,z,t,u];
-        else
-            para := [y,z,t,u,v];
-        fi;
-
-        # para = [x,y,z,t,u];
-        if Length(c) = 0 then 
-            vals := Tuples([0..P-1],5);
-        elif c = "See Notes6.163a" then  
-            vals := ValsFunction26(P);
-        elif c = "See Notes6.163b" then  
-            vals := ValsFunction26a(P);
-
-        # para = [y,z,t,u,v];
-        elif c = "See Notes6.173" then 
-            vals := ValsFunction21(P);
-        elif d = 7 and c = "See Notes6.178a" then 
-            if fals = 0 then fals := ValsFunction24(P); fi; vals := fals[2]; 
-        elif d = 7 and c = "See Notes6.178b" then 
-            if fals = 0 then fals := ValsFunction24(P); fi; vals := fals[3]; 
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
-        fi;
-
-    elif Length(para) = 6 then 
-
-        # sort para
-        para := [x,y,z,t,u,v];
-
-        # para = [x,y,z,t,u,v];
-        if Length(c) = 0 then 
-            vals := Tuples([0..P-1],6);
-        elif c = "See Notes5.14, Case 1" then 
-            vals := ValsFunction28(P, 1);
-        elif c = "See Notes5.14, Case 2" then 
-            vals := ValsFunction28(P, 2);
-        elif c = "See Notes5.14, Case 3" then 
-            vals := ValsFunction28(P, 3);
-        elif c = "See Notes5.14, Case 4" then 
-            vals := ValsFunction28(P, 4);
-        elif c = "See Notes5.14, Case 5" then 
-            vals := ValsFunction28(P, 5);
-        elif c = "See Notes5.14, Case 6" then 
-            vals := ValsFunction28(P, 6);
-        elif c = "See Notes5.14, Case 7" then 
-            vals := ValsFunction28(P, 7);
-        elif c = "See Notes5.14, Case 8" then 
-            vals := ValsFunction28(P, 8);
-        elif c = "See Notes5.14, Case 9" then
-            vals := ValsFunction28(P, 9);
-        elif c = "See Notes5.14, Case 10" then 
-            vals := ValsFunction28(P, 10);
-        elif c = "See Notes5.14, Case 11" then
-            vals := ValsFunction28(P, 11);
-        elif c = "See Notes5.14, Case 12" then 
-            vals := ValsFunction28(P, 12);
-        elif c = "See Notes5.14, Case 13" then 
-            vals := ValsFunction28(P, 13);
-        elif c = "See Notes5.14, Case 14" then 
-            vals := ValsFunction28(P, 14);
-        elif c = "See Notes5.14, Case 15" then 
-            vals := ValsFunction28(P, 15);
-        elif c = "See Notes5.14, Case 16" then 
-            vals := ValsFunction28(P, 16);
-        elif c = "See Notes5.14, Case 17" then  
-            vals := ValsFunction28(P, 17);
-        elif c = "See Notes5.14, Case 18" then 
-            vals := ValsFunction28(P, 18);
-        elif c = "See Notes5.14, Case 19" then 
-            vals := ValsFunction28(P, 19);
-        elif c = "See Notes5.14, Case 20" then 
-            vals := ValsFunction28(P, 20);
-        elif c = "See Notes5.14, Case 21" then 
-            vals := ValsFunction28(P, 21);
-        elif c = "See Notes5.14, Case 22" then 
-            vals := ValsFunction28(P, 22);
-        elif c = "See Notes5.14, Case 23" then 
-            vals := ValsFunction28(P, 23);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
-        fi;
-
-    elif Length(para) = 7 then 
-
-        # sort para
-        para := [x,y,z,t,u,v,s];
-
-        # para = [x,y,z,t,u,v,s];
-        if c = "See Notes5.14, Case 24" then 
-            vals := ValsFunction28(P, 24);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
-        fi;
-
-    elif Length(para) = 8 then 
-
-        # sort para
-        para := [x,y,z,t,r,s,u,v];
-
-        # para = [x,y,z,t,r,s,u,v];
-        if Length(c) = 0 then 
-            vals := Tuples([0..P-1],8);
-        elif c = "See Notes5.3, Case 6" then 
-            vals := ValsFunction19(P);
-        elif c = "See Notes5.3, Case 7" then
-            vals := ValsFunction19a(P);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
-        fi;
-
-    elif Length(para) = 12 then 
-
-        # sort para
-        para := [x,y,z,t,j,k,m,n,r,s,u,v];
-
-        # para = [x,y,z,t,j,k,m,n,r,s,u,v];
-        if Length(c) = 0 then 
-            vals := Tuples([0..P-1],12);
-        elif c = "See Notes4.1, Case 5" then 
-            vals := ValsFunction27a(P);
-        elif c = "See Notes4.1, Case 6" then
-            vals := ValsFunction27b(P);
-        else
-            Print("parameter ",para," case fails on condition ",c," \n");
-        fi;
-    else 
-        Error("number of parameters is not in list");
+        if P>3 and vals = [] then Error("conditions not found - para 4"); fi;
+        return TranslatedLiePRings( L, P, para, vals, flag );
     fi;
-
-    if ForAny(vals, x -> Length(x) <> Length(para)) then 
-        Error("parameters and values do not match");
-    fi;
-
-    res := List(vals, x -> true);
-    for i in [1..Length(vals)] do
-        R := SpecialiseLiePRingNC(L, P, para, vals[i]);
-        if flag = "group" or flag = "code" then 
-            R := PGroupByLiePRing(R);
-            if flag = "code" then 
-                R := CodePcGroup(R);
-            fi;
-        fi;
-        res[i] := R;
-    od; 
-
-    # got vals and para
-    return res;
+  
 end;
 

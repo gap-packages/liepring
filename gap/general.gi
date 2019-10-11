@@ -1,14 +1,3 @@
-
-#DepthVector := function ( vec )
-#    local  i;
-#    for i  in [ 1 .. Length( vec ) ]  do
-#        if vec[i] <> 0 * vec[i]  then
-#            return i;
-#        fi;
-#    od;
-#    return Length( vec ) + 1;
-#end;
-
 WordByExps := function ( exp )
     local  w, i;
     w := [  ];
@@ -49,6 +38,22 @@ ValueRatFun := function( f, para, vals )
     b := DenominatorOfRationalFunction(f);
     return Value( a, para, vals )/ Value( b, para, vals );
 end;
+
+MatPos := function(m,i,a)
+    local j, k;
+    for j in [i..Length(m)] do
+        for k in [i..Length(m[j])] do
+            if m[j][k] = a then return [j,k]; fi;
+        od;
+    od;
+    return fail;
+end;
+
+IsCRF := function(elm)
+    if IsRat(elm) then return true; fi;
+    return IsConstantRationalFunction(elm);
+end;
+
 
 
 

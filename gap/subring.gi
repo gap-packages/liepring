@@ -8,26 +8,28 @@ DensityLPR := function( list )
 end;
 
 NormedLPR := function( L, g, l )
-    local p, e, w, h;
+    local p, e, f;
 
-    w := Indeterminate(Rationals, "w");
-    h := [w, -w, w^-1, -w^-1];
     if g = 0*g then return g; fi;
     p := SCTable(g).prime;
     e := Exponents(g)[l];
 
-    if (IsPolynomial(e) or IsRationalFunction(e)) and (not e in h) then 
-        Print("WARNING: Dividing by ",e," in ",L!.LibraryName,"\n");
+    if IsInt(e) and IsInt(p) then 
+        f := e^-1 mod p;
+        return f*g;
+    elif IsInt(e) and AbsInt(e) in [1,2,3,1/2,1/3]  then  
+        f := e^-1;
+        return f*g;
+    elif IsLaurentPolynomial(e) and IsRootPower(e) then 
+        f := e^-1;
+        return f*g;
+    elif IsBound(L!.inv) and ((e in L!.inv) or (-e in L!.inv)) then 
+        f := e^-1;
+        return f*g;
+    else
+        Print("WARNING: Dividing by ",e,"\n");
+        return fail;
     fi;
-    e := e^-1; 
-
-    if IsInt(p) then 
-        e := e mod p; 
-    elif (e <> 1 and e <> -1) and (not e in h) then 
-        Print("WARNING: Dividing by ",e," in ",L!.LibraryName,"\n");
-    fi;
-
-    return e*g;
 end; 
 
 MyDepth := function(vec)
@@ -47,6 +49,7 @@ InsertLPR := function( L, list, g, k )
             return false;
         elif list[l] = true then 
             list[l] := NormedLPR( L, g, l );
+            if list[l] = fail then return fail; fi;
             return l;
         else
             g := g - e[l]*list[l];
@@ -55,17 +58,15 @@ InsertLPR := function( L, list, g, k )
 end;
 
 StripLPR := function( list )
-    local r, d, i, e, j, k;
+    local r, d, i, e, j, k, f;
     r := Length(list);
-    d := List(list, x -> PositionNonZero(Exponents(x)));
     for i in [1..r] do
         e := Exponents(list[i]);
-        for j in [d[i]+1..r] do
-            if e[j] <> 0*e[j] then 
-                k := Position( d, j );
-                if IsInt(k) then 
-                    list[i] := list[i] - e[j]*list[k];
-                fi;
+        d := DepthVector(e);
+        for j in [1..i-1] do
+            f := Exponents(list[j]);
+            if f[d] <> 0*f[d] then 
+                list[j] := list[j] - f[d]*list[i];
             fi;
         od;
     od;
@@ -73,7 +74,12 @@ StripLPR := function( list )
 end;
 
 IsIntLPR := function( g )
-    return ForAll( Exponents(g), IsInt );
+    local e, i;
+    e := Exponents(g);
+    for i in [1..Length(e)] do
+        if not IsInt(e[i]) and not IsRootPower(e[i]) then return false; fi;
+    od;
+    return true;
 end;
 
 BasisByGens := function( L, part, gens )
@@ -87,7 +93,7 @@ BasisByGens := function( L, part, gens )
 
     # fill in part
     for i in [1..Length(part)] do
-        a := PositionNonZero(Exponents(part[i]));
+        a := DepthVector(Exponents(part[i]));
         f[a] := part[i];
     od;
     k := DensityLPR(f);
@@ -102,7 +108,10 @@ BasisByGens := function( L, part, gens )
     while i <= j do
         g := t[i];
         a := InsertLPR( L, f, g, k );
-        if IsInt(a) then 
+        if a = fail then 
+            Error(" should not happen ");
+            return fail;
+        elif IsInt(a) then 
 
             # reset density
             if a = k-1 then k := DensityLPR( f ); fi;
@@ -139,7 +148,9 @@ BasisByGens := function( L, part, gens )
     while i <= j do
         g := s[i];
         a := InsertLPR( L, f, g, k );
-        if IsInt(a) then 
+        if a = fail then 
+            return fail;
+        elif IsInt(a) then 
 
             # reset density
             if a = k-1 then k := DensityLPR( f ); fi;
@@ -164,11 +175,10 @@ BasisByGens := function( L, part, gens )
 end;
 
 LiePSubringByBasis := function( L, basis )
-    local U, K;
+    local U;
 
     # get basis and parent
-    K := Parent(L);
-    if Length(basis) = DimensionOfLiePRing(K) then return K; fi;
+    if Length(basis) = DimensionOfLiePRing(L) then return L; fi;
 
     # compute
     if Length(basis) = 0 then 
@@ -178,10 +188,11 @@ LiePSubringByBasis := function( L, basis )
     fi;
 
     # add info
+    if IsBound(L!.inv) then U!.inv := L!.inv; fi;
     SetBasisOfLiePRing(U, basis);
     SetDimensionOfLiePRing(U, Length(basis));
-    SetPrimeOfLiePRing(U, PrimeOfLiePRing(K));
-    SetParent(U, K);
+    SetPrimeOfLiePRing(U, PrimeOfLiePRing(L));
+    SetParent(U, Parent(L));
     SetIsLiePRing(U, true);
     SetIsParentLiePRing(U, false);
 
@@ -190,23 +201,30 @@ LiePSubringByBasis := function( L, basis )
 end;
 
 LiePSubring := function( L, gens )
-    return LiePSubringByBasis( L, BasisByGens(L, [], gens) );
+    local b;
+    b := BasisByGens(L, [], gens);
+    if b = fail then return fail; fi;
+    return LiePSubringByBasis( L, b );
 end;
 
 LiePClosure := function( L, U, gens )
-    return LiePSubringByBasis( L, BasisByGens(L, BasisOfLiePRing(U), gens) );
+    local b;
+    b := BasisByGens(L, BasisOfLiePRing(U), gens);
+    if b = fail then return fail; fi;
+    return LiePSubringByBasis( L, b);
 end;
 
 LiePIdeal := function( L, gens )
     local K, b, w, v, c;
-    K := Parent(L);
-    b := BasisByGens( K, [], gens );
+    b := BasisByGens( L, [], gens );
+    if b = fail then return fail; fi;
     w := BasisOfLiePRing(L);
     repeat
         v := Flat(List( b, x -> List(w, y -> x*y) ));
-        c := BasisByGens( K, b, v );
-        if Length(c) = DimensionOfLiePRing(K) then return K; fi;
-        if Length(c) = Length(b) then return LiePSubringByBasis( K, b ); fi;
+        c := BasisByGens( L, b, v );
+        if c = fail then return fail; fi;
+        if Length(c) = DimensionOfLiePRing(L) then return L; fi;
+        if Length(c) = Length(b) then return LiePSubringByBasis( L, b ); fi;
         b := c;
     until false;
 end;
@@ -246,6 +264,7 @@ LiePLowerPCentralSeries := function( L )
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
         U := LiePPCommutator( s[Length(s)], L );
+        if U = fail then return fail; fi;
         Add(s, U);
     od;
     return s;
@@ -256,6 +275,7 @@ LiePLowerCentralSeries := function( L )
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
         U := LiePCommutator( L, s[Length(s)] );
+        if U = fail then return fail; fi;
         Add(s, U);
     od;
     return s;
@@ -266,6 +286,7 @@ LiePDerivedSeries := function( L )
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
         U := LiePCommutator( s[Length(s)], s[Length(s)] );
+        if U = fail then return fail; fi;
         Add(s, U);
     od;
     return s;
@@ -284,41 +305,41 @@ LiePIsIdeal := function(L, U)
     return true;
 end;
 
-LiePQuotientNC := function(L, U)
-    local K, p, bL, eL, bU, eU, eQ, bQ, T, i, j, e;
+LiePQuotientByTable := function( T, U )
+    local V, b, c, Q, i, j, e;
 
-    # check for parameters - this case is not supported
-    K := Parent(L);
-    if IsBound(SCTable(Zero(K)).param) then return fail; fi;
-    p := PrimeOfLiePRing(K);
+    # the trivial case
+    if Length(U) = 0 then return LiePRingBySCTableNC(T); fi;
 
-    # proceed
-    bL := BasisOfLiePRing(L);
-    eL := List(bL, Exponents);
-    bU := BasisOfLiePRing(U);
-    eU := List(bU, Exponents);
-    eQ := BaseSteinitzVectors(eL, eU).factorspace;
-    bQ := List(eQ, x -> x*bL);
-
-    eL := Concatenation( eQ, eU );
+    # get factor
+    V := FactorSpace(Length(U[1]), U);
+    b := Concatenation(V,U);
+    b := b*IndeterminateByName("w")^0;
+    c := MakeInt(b^-1);
 
     # set up new table
-    T := rec( dim := Length(bQ),
-              prime := PrimeOfLiePRing(U),
-              tab := [],
-              param := [] );
-
-    for i in [1..T.dim] do
+    Q := rec( dim := Length(V), prime := T.prime, tab := [], param := []);
+    if IsBound(T.param) then Q.param := T.param; fi;
+    for i in [1..Length(V)] do
         for j in [1..i-1] do
-            e := Exponents( bQ[i]*bQ[j] );
-            e := SolutionIntMat( eL, e ){[1..T.dim]};
-            Add(T.tab, WordByExps(e));
+            e := LRMultiply( T, V[i], V[j] );
+            e := e*c;
+            e := e{[1..Q.dim]};
+            Add(Q.tab, WordByExps(e));
         od;
-        e := Exponents( p*bQ[i] );
-        e := SolutionIntMat( eL, e ){[1..T.dim]};
-        Add(T.tab, WordByExps(e));
+        e := LRReduceExp( T, T.prime*V[i] );
+        e := e*c;
+        e := e{[1..Q.dim]};
+        Add(Q.tab, WordByExps(e));
     od;
-    return LiePRingBySCTableNC(T);
+    return LiePRingBySCTableNC(Q);
+end;
+
+LiePQuotientNC := function(L, U)
+    local S, u;
+    S := SCTable(Zero(L));
+    u := List(BasisOfLiePRing(U), Exponents);
+    return LiePQuotientByTable(S, u);
 end;
 
 LiePQuotient := function(L,U)

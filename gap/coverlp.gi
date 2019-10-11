@@ -1,4 +1,4 @@
-
+         
 LPRWeights := function(L)
     local d, s, t, b, w, i;
 
@@ -6,51 +6,64 @@ LPRWeights := function(L)
     if not IsParentLiePRing(L) then return fail; fi;
     d := DimensionOfLiePRing(L);
     s := LiePLowerPCentralSeries(L);
-    t := List(s, BasisOfLiePRing);
-    b := t[1];
+    b := BasisOfLiePRing(L);
 
     # get weights
     w := List(b, x -> true);
     for i in [1..d] do
-        w[i] := First([1..Length(t)], x -> not (b[i] in t[x]))-1;
-        if w[i] = fail then return fail; fi;
+        w[i] := First([1..Length(s)], x -> not (b[i] in s[x]))-1;
     od;
+
+    # return
     return w;
 end;
 
-
 LPRDefs := function(L)
-    local d, b, S, v, i, u, c, j, k;
+    local d, b, S, v, c, i, j, k, e;
 
-    # set up and check
+    # check
     if not IsParentLiePRing(L) then return fail; fi;
+    if IsBound(L!.defs) then return L!.defs; fi;
+
+    # set up
     d := DimensionOfLiePRing(L);
     b := BasisOfLiePRing(L);
     S := SCTable(Zero(L)).tab;
+    v := List(b, x -> true);
 
     # get defs
-    v := List(b, x -> true);
+    c := 0;
     for i in [1..d] do
-        u := [];
-        c := [];
-        for j in [1..Length(S)] do
-            k := Length(S[j]);
-            if k > 0 and S[j][k-1] = i then 
-                Add(u, j); 
-                Add(c, S[j][k]);
+        for j in [1..i] do
+            c := c + 1;
+            if IsBound(S[c]) and Length(S[c]) > 0 then 
+                k := S[c][Length(S[c])-1];
+                e := S[c][Length(S[c])];
+                if k > i and v[k] = true and (e in [1,-1] or IsRootPower(e)) 
+                    then 
+                    v[k] := [i,j]; 
+                elif k > i and e in [1,-1] then 
+                    v[k] := [i,j];
+                fi;
             fi;
         od;
-        if Length(c) > 0 then  
-            j := First([1..Length(c)], x -> IsInt(c[x]));
-            if IsInt(j) then v[i] := u[j]; fi;
-        fi;
     od;
-
+  
+    # add them and return
+    L!.defs := v;
     return v;
 end;
 
+InsertVec := function( T, J, d, vec )
+    local wec;
+    wec := LRReduceExp( T, vec );
+    if ForAny(wec{[1..d]}, x -> x <> 0*x) then return fail; fi;
+    if wec <> 0*wec and not wec in J and not -wec in J then Add(J, wec); fi;
+    return J;
+end;
+
 LiePCover := function(L)
-    local d, p, S, v, k, l, T, c, i, j, a, b, I, Q, J, w, u, e;
+    local d, p, S, v, T, c, r, i, j, k, I, Q, P, J, a, b, w, u, e, s, R;
 
     # check
     if not IsParentLiePRing(L) then return fail; fi;
@@ -60,81 +73,107 @@ LiePCover := function(L)
     p := PrimeOfLiePRing(L);
     S := SCTable(Zero(L));
     v := LPRDefs(L);
-    k := Length(Filtered(v, x -> IsInt(x)));
-    if not IsInt(p) then return fail; fi;
-
-    # init cover
-    l := d + d*(d-1)/2;
-    T := rec( dim := d+l-k,
-              prime := p,
-              tab := [] );
-    if IsBound(S.param) then T.param := S.param; fi;
-
-    # add powers and conjugates
-    c := d+1;
+    w := LPRWeights(L);
     for i in [1..d] do
-        k := Sum([1..i-1]);
-        for j in [1..i] do
-            l := k+j;
-            if IsBound(S.tab[l]) then 
-                a := S.tab[l];
-            else
-                a := [];
-            fi;
-            if l in v then
-                b := [];
-            else
-                b := [c,1]; c := c+1;
-            fi;
-            Add( T.tab, Concatenation( a, b ) );
+        for j in [1..i-1] do
+            if w[i]+w[j] > w[d]+1 then Add(v, [i,j]); fi;
         od;
     od;
 
-    # evaluate pairs
+    # init cover
+    T := rec( prime := p, tab := [] );
+
+    # add tails
+    c := 0; r := d;
+    for i in [1..d] do
+        for j in [1..i] do
+            c := c+1;
+            if IsBound(S.tab[c]) then 
+                T.tab[c] := StructuralCopy(S.tab[c]);
+            else
+                T.tab[c] := [];
+            fi;
+            if not [i,j] in v then
+                r := r+1;
+                Append( T.tab[c], [r,1]);
+            fi;
+        od;
+    od;
+    T.dim := r;
+
+    # evaluate powers and pairs
     I := IdentityMat(T.dim);
-    Q := NullMat( T.dim, T.dim );
+    Q := MutableNullMat( T.dim, T.dim );
+    P := [];
     for i in [1..T.dim] do
+        P[i] := LRReduceExp(T, p*I[i]);
         for j in [1..T.dim] do
             Q[i][j] := LRMultiply( T, I[i], I[j] );
         od;
     od;
 
-    # evaluate Jacobi
+    # evaluate relations
     J := [];
+
+    # test biadditivity
+    for i in [1..T.dim] do
+        c := LRMultiply(T, P[i], I[i]);
+        J := InsertVec(T, J, S.dim, c);
+        if J = fail then Error("bi-add case 1"); fi;
+
+        for j in [1..i-1] do
+            a := LRReduceExp(T, p*Q[i][j]);
+            b := LRMultiply(T, P[i], I[j]);
+            c := LRMultiply(T, I[i], P[j]);
+            J := InsertVec(T, J, S.dim, a-c);
+            if J = fail then Error("bi-add case 2"); fi;
+            J := InsertVec(T, J, S.dim, a-b);
+            if J = fail then Error("bi-add case 3"); fi;
+        od;
+    od;
+
+    # test Jacobi
     for i in [1..T.dim] do
         for j in [1..T.dim] do
             for k in [1..T.dim] do
-                a := LRMultiply( T, I[i], Q[j][k] );
-                b := LRMultiply( T, I[j], Q[k][i] );
-                c := LRMultiply( T, I[k], Q[i][j] );
-                w := LRReduceExp( T, a+b+c );
-                if w <> 0*w and not w in J and not -w in J then 
-                    AddSet(J, w); 
-                fi;
+                a := LRMultiply(T, I[i], Q[j][k]);
+                b := LRMultiply(T, I[j], Q[k][i]);
+                c := LRMultiply(T, I[k], Q[i][j]);
+                J := InsertVec(T, J, S.dim, a+b+c);
+                if J = fail then Error("Jacobi"); fi;
             od;
         od;
     od;
 
-    # get a basis
-    u := TriangulizedMat(BaseMat(J * One(GF(p)) ));
-    I := IdentityMat( T.dim, GF(p) );
-    v := BaseSteinitzVectors(I, u).factorspace;
-    b := Concatenation(v,u)^-1;
-    v := List(v, IntVecFFE);
+    # check
+    if IsBound(L!.inv) then 
+        u := MyBaseMat(J, L!.inv);
+    else
+        u := MyBaseMat(J, []);
+    fi;
+    if u = fail then return fail; fi;
 
-    # set up new table
-    Q := rec( dim := Length(v), prime := p, tab := [], param := []);
-    for i in [1..Q.dim] do
-        for j in [1..i-1] do
-            e := LRMultiply( T, v[i], v[j] );
-            e := e*b; e := e{[1..Q.dim]};
-            Add(Q.tab, WordByExps(IntVecFFE(e)));
-        od;
-        e := LRReduceExp( T, p*v[i] );
-        e := e*b; e := e{[1..Q.dim]};
-        Add(Q.tab, WordByExps(IntVecFFE(e)));
-    od; 
+    # get quotient
+    if IsBound(S.param) then T.param := S.param; fi;
+    R := LiePQuotientByTable(T, u);
 
-    return LiePRingBySCTableNC(Q);
+    # add info
+    if IsBound(L!.inv) then R!.inv := L!.inv; fi;
+    b := BasisOfLiePRing(R);
+    R!.mult := LiePSubringByBasis( R, b{[S.dim+1..Length(b)]});
+    s := LiePLowerPCentralSeries(R);
+    R!.nucl := s[PClassOfLiePRing(L)+1];
+    return R;
 end;
+
+StepSize := function(L)
+    local C;
+    C := LiePCover(L);
+    return DimensionOfLiePRing(C!.nucl);
+end;
+
+IsTerminal := function(L)
+    return StepSize(L)=0;
+end;
+
 

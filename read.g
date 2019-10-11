@@ -2,6 +2,16 @@
 ##
 ##
 ##
+
+if IsBound(GAPInfo.PackagesLoaded.singular) then 
+    StartSingular();
+    GBASIS := SINGULARGBASIS;
+    CallGroebner := GroebnerBasis;
+else
+    CallGroebner := ReducedGroebnerBasis;
+fi;
+ORDER := MonomialGrlexOrdering();
+
 OFFSET_VARS := 1000;
 
 IndeterminateByName := function( name )
@@ -338,20 +348,32 @@ LiePRing_ReadPackage( "lib/dim7/gap7.1");
 PGroupByLiePRing := false; ## dummy
 
 ReadPackage( "liepring", "gap/general.gi");
+ReadPackage( "liepring", "gap/linalg.gi");
+
 ReadPackage( "liepring", "gap/collect.gi");
 ReadPackage( "liepring", "gap/lieelms.gi");
 ReadPackage( "liepring", "gap/subring.gi");
 ReadPackage( "liepring", "gap/liering.gi");
 ReadPackage( "liepring", "gap/echelon.gi");
+
 ReadPackage( "liepring", "gap/valsfun.gi");
 ReadPackage( "liepring", "gap/val/indx27a.gi");
 ReadPackage( "liepring", "gap/val/reps27a.gi");
 ReadPackage( "liepring", "gap/val/vals27a.gi");
 ReadPackage( "liepring", "gap/val/vals27b.gi");
 ReadPackage( "liepring", "gap/val/vals28.gi");
+
 ReadPackage( "liepring", "gap/special.gi");
 ReadPackage( "liepring", "gap/pgroup.gi");
 ReadPackage( "liepring", "gap/porcpoly.gi");
+
+ReadPackage( "liepring", "gap/coverlp.gi");
+ReadPackage( "liepring", "gap/autos.gi");
+
+ReadPackage( "liepring", "gap/ringth.gi");
+ReadPackage( "liepring", "gap/schur.gi");
+ReadPackage( "liepring", "gap/number.gi");
+
 ReadPackage( "liepring", "lib/data.gi");
 ReadPackage( "liepring", "lib/table.gi");
 #ReadPackage( "liepring", "lib/check.gi"); 

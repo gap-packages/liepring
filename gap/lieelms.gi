@@ -102,9 +102,9 @@ end );
 ExponentsByBasis := function( list, elm )
     local r, d, e, f, i, k;
     d := List(list, x -> PositionNonZero(Exponents(x)));
-    e := Exponents(elm);
     f := List(d, x -> 0);
-    for i in [1..Length(e)] do
+    for i in [1..Length(d)] do
+        e := Exponents(elm);
         if e[i] <> 0*e[i] then 
             k := Position( d, i );
             if IsInt(k) then 
