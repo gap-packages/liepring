@@ -39,7 +39,7 @@ SquareFreeGB := function( polys )
         for i in [1..Length(f)] do
             while IsPolynomial(f[i]/w) do f[i] := f[i]/w; od;
         od;
-        f := ReducedGroebnerBasis(f, MonomialLexOrdering());
+        f := CallGroebner(f, MonomialLexOrdering());
     until S = f; 
     return f;
 end;

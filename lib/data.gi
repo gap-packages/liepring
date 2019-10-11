@@ -34,8 +34,9 @@ LiePRingByData := function( dim, l )
 
     # generate some info
     cond := [];
-    if IsBound(l[6]) then cond[1]  := l[6]; else cond[1] := ""; fi;
-    if IsBound(l[7]) then cond[2]  := l[7]; else cond[2] := ""; fi;
+    if IsBound(l[6]) then cond[1] := l[6]; else cond[1] := ""; fi;
+    if IsBound(l[7]) then cond[2] := l[7]; else cond[2] := ""; fi;
+    if IsBound(l[9]) then cond[3] := l[9]; fi;
 
     # add some attributes
     SetPClassOfLiePRing( L, l[3] );
@@ -56,12 +57,12 @@ NumberOfLiePRings := function( arg )
     if Length(arg) = 2 then 
         P := arg[2];
         if not IsPrimeInt(P) or P=2 then return fail; fi;
-        if P > 5 then 
+        if P < 7 then 
+            Print("prime must be at least 7\n");
+        elif dim > 7 then 
+            Print("dimension must be at most 7\n");
+        else 
             return NumberSmallGroups( arg[2]^dim );
-        elif P = 5 then 
-            return 34317;
-        elif P = 3 then 
-            return 1566;
         fi;
     fi;
 

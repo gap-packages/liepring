@@ -93,7 +93,7 @@ FindAutos := function(L)
     z := IndeterminateByName("z");
 
     # generic autos
-    A := MutableNullMat(a,d);
+    A := NullMat(a,d);
     for i in [1..a] do
         for j in [1..d] do
             A[i][j] := Indeterminate(Rationals, Concatenation("A",
@@ -148,9 +148,9 @@ FindAutos := function(L)
                 if IsPolynomial(new[i]/u) then new[i] := new[i]/u; fi;
             od;
         od;
-        Print("  -- calling groebner \n");
-        new := GroebnerBasis(new, ORDER);
-        Print("  ---- done \n");
+        #Print("  -- calling groebner \n");
+        new := CallGroebner(new, ORDER);
+        #Print("  ---- done \n");
         don := (new=rel);
         rel := new;
     until don;
@@ -177,9 +177,9 @@ FindAutos := function(L)
     rel := Filtered(rel, x -> x <> false);
     rel := Filtered(rel, x -> x <> 0*x);
     if Length(rel) > 0 then 
-        Print("  -- calling groebner \n");
-        rel := GroebnerBasis(rel, ORDER);
-        Print("  ---- done \n");
+        #Print("  -- calling groebner \n");
+        rel := CallGroebner(rel, ORDER);
+        #Print("  ---- done \n");
     fi;
             
     return rec( auto := A, eqns := rel, vars := vars);
@@ -252,7 +252,7 @@ SizeOfAutoOnFF := function( L )
     R.auto := R.auto*z;
 
     # generic autos
-    A := MutableNullMat(d,n);
+    A := NullMat(d,n);
     for i in [1..d] do
         for j in [1..n] do
             A[i][j] := Indeterminate(Rationals, Concatenation("A",

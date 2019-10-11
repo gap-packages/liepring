@@ -32,7 +32,7 @@ DeclareGlobalFunction( "ParametersOfLiePRing");
 DeclareGlobalFunction( "LiePRingsByLibrary");
 DeclareGlobalFunction( "LiePRingsDim7ByFile");
 
-DeclareAttribute( "IsLiePRing", IsRing );
+DeclareProperty( "IsLiePRing", IsRing );
 DeclareAttribute( "ClassOfLiePRing", IsLiePRing );
 DeclareAttribute( "PClassOfLiePRing", IsLiePRing );
 DeclareAttribute( "MinimalGeneratorNumberOfLiePRing", IsLiePRing );

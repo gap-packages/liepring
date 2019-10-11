@@ -103,7 +103,7 @@ LiePCover := function(L)
 
     # evaluate powers and pairs
     I := IdentityMat(T.dim);
-    Q := MutableNullMat( T.dim, T.dim );
+    Q := NullMat( T.dim, T.dim );
     P := [];
     for i in [1..T.dim] do
         P[i] := LRReduceExp(T, p*I[i]);

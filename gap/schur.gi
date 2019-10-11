@@ -441,9 +441,9 @@ SetupUZSystem := function( U, Z )
         zz := List(Z, x -> StripUnitPol(U,x));
 
         # expand zeros
-        zz := ReducedGroebnerBasis(zz, MonomialLexOrdering());
+        zz := CallGroebner(zz, MonomialLexOrdering());
         zz := List(zz, x -> Product(List(Collected(Factors(x)), y -> y[1])));
-        zz := ReducedGroebnerBasis(zz, MonomialLexOrdering());
+        zz := CallGroebner(zz, MonomialLexOrdering());
         if zz[1] = zz[1]^0 then return fail; fi;
 
         # reduce units with zeros
