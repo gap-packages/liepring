@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/liepring.svg?branch=master)](https://travis-ci.org/gap-packages/liepring)
+[![Build Status](https://travis-ci.com/gap-packages/liepring.svg?branch=master)](https://travis-ci.com/gap-packages/liepring)
 [![Code Coverage](https://codecov.io/github/gap-packages/liepring/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/liepring)
 
 # LiePRing
