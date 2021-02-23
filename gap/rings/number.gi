@@ -1,49 +1,4 @@
 
-VarsOfPoly := function( poly )
-    local e, v, i, j;
-    e := ExtRepPolynomialRatFun(poly);
-    v := [];
-    for i in [1,3..Length(e)-1] do
-        for j in [1,3..Length(e[i])-1] do
-            Add(v, e[i][j]);
-        od;
-    od;
-    v := Set(v);
-    v := List(v, x -> Indeterminate(Rationals, x));
-    v := Filtered(v, x -> x <> IndeterminateByName("w"));
-    return v;
-end;
-
-DegreeOfPoly := function( poly )
-    local e, d, i, s, j, w;
-    e := ExtRepPolynomialRatFun(poly);
-    w := ExtRepPolynomialRatFun(IndeterminateByName("w"))[1][1];
-    d := 0;
-    for i in [1,3..Length(e)-1] do
-        s := 0;
-        for j in [2,4..Length(e[i])] do
-            if e[i][j-1] <> w then s := s + e[i][j]; fi;
-        od;
-        d := Maximum(d,s);
-    od;
-    return d;
-end;
-
-SquareFreeGB := function( polys )
-    local f, S, w, i;
-    f := ShallowCopy(polys);
-    w := IndeterminateByName("w");
-    repeat
-        S := ShallowCopy(f);
-        f := List(f, pol -> Product(List(Collected(Factors(pol)),x ->x[1])));
-        for i in [1..Length(f)] do
-            while IsPolynomial(f[i]/w) do f[i] := f[i]/w; od;
-        od;
-        f := CallGroebner(f, MonomialLexOrdering());
-    until S = f; 
-    return f;
-end;
-
 ElmNumberForm := function( pp, polys )
     local f, e, p, a, b, i;
 
@@ -127,7 +82,7 @@ ElmNumberLin := function(pp, polys)
 end;
 
 ElmNumberUni := function(pp, polys)
-    local r, s, f, i, sub, res, p, w, d, x, g4, y, c, e, z;
+    local r, s, f, i, sub, res, p, w, d, x, g4, s16, y, c, e, z, v;
 
     # set up
     r := Length(pp);
@@ -136,8 +91,10 @@ ElmNumberUni := function(pp, polys)
     x := IndeterminateByName("x");
     y := IndeterminateByName("y");
     z := IndeterminateByName("z");
+    v := IndeterminateByName("v");
     w := IndeterminateByName("w");
     g4 := IndeterminateByName("(p-1,4)");
+    s16 := IndeterminateByName("(p^2-1,16)");
 
     # a trivial case
     if r = 0 and s = 0 then return 1; fi;
@@ -151,20 +108,22 @@ ElmNumberUni := function(pp, polys)
             res := res * p; 
         else
             f := Gcd(sub[i]);
-            c := Factors(f);
+            c := List(Collected(Factors(f)), x -> x[1]);
             e := List(c, DegreeOfPoly);
-            if ForAll(e, x -> x <= 1) then 
-                d := Maximum(e);
+            if Length(c)=1 and c[1] = c[1]^0 then 
+                d := 0;
+            elif ForAll(e, x -> x <= 1) then 
+                d := Length(c);
             elif f = x^2-2 or f = w^2-1/2*x^2 then 
-                d := Indeterminate(Rationals, "A2");
-            elif f = w*x^2-2 then 
-                d := Indeterminate(Rationals, "A2/w");
-            elif f = w^3-1/2*x^2 then 
-                d := Indeterminate(Rationals, "A2w");
+                d := (s16-8)/4;
+            elif f = w*x^2-2 or f = w^3-1/2*x^2 then 
+                d := 2-(s16-8)/4;
             elif f = x^2+1 then 
                 d := g4-2;
-            elif f = x^2+w or f = w^3-x^2 then 
+            elif f = w^3-x^2 then 
                 d := 0;
+            elif f = x^2+w then 
+                d := 4-g4;
             elif f = z^3-w*z or f = w^3*z-z^3 then 
                 d := 1;
             else
@@ -254,7 +213,7 @@ IsMonomSystem := function(pp, polys)
 end; 
 
 NumberOfZeros := function( pp, polys )
-    local w, f, S, p, x, y, z, t, u, g3, g4, v, r, s;
+    local w, f, S, p, x, y, z, t, u, g3, g4, s16, v, r, s;
 
     # check
     p := IndeterminateByName("p");
@@ -269,6 +228,7 @@ NumberOfZeros := function( pp, polys )
     r := IndeterminateByName("r");
     g3 := IndeterminateByName("(p-1,3)");
     g4 := IndeterminateByName("(p-1,4)");
+    s16 := IndeterminateByName("(p^2-1,16)");
     if Length(polys) = 0 then return p^Length(pp); fi;
 
     # 1. step : groebner
@@ -277,10 +237,29 @@ NumberOfZeros := function( pp, polys )
     # 2. step : check cases
 
     # no zeros
-    if 1 in f or p^0 in f or w in f then return 0; fi;
+    if 1 in f or p^0 in f or w in f or w-1 in f or w+1 in f or
+       4*w-1 in f or -x^2+w in f or -v^2+w in f or v^2-w in f or
+       -z^2+w in f or z^2-w in f then 
+        return 0; 
+    fi;
+
+    # single case
+    if Length(pp) = 1 then 
+        if f = [x^2-2,w-2] then return 0; fi;
+    fi;
 
     # quadratic cases
     if Length(pp) = 2 then
+        if f = [y^2-y, x^2-x*y-x+y, w-y] then return 0; fi;
+        if f = [x*y-x, x^2-x, w-x] then return 0; fi;
+        if f = [x*y+x, x^2-x, w-x] then return 0; fi;
+        if f = [x^2+y+1, w+y+1] then return 0; fi;
+        if f = [x^2+y^2+y, x^2+w+y] then return 0; fi;
+        if f = [2*y^2+y, 2*x^2+y, 2*w+y] then return 0; fi;
+        if f = [2*x^2+y, 2*w+y] then return 0; fi; 
+        if f = [y^2-3, x+y-1, w+2*y-4] then return 0; fi;
+        if f = [x+y-1, -y^2+w+2*y-1] then return 0; fi;
+        if f = [2*y^2+x, 2*w+x] then return 0; fi;
         if f = [x*(y-y^2)-1] or f = [-x*(y-y^2)+1] then return p-2; fi; 
         if f = [x^2-x*y+y] then return p-1; fi; 
         if f = [x*(y-1), x*(x-1)] then return p+1; fi;
@@ -297,6 +276,25 @@ NumberOfZeros := function( pp, polys )
 
     # triple cases
     if Length(pp) = 3 then 
+        if f = [-2*z^3+2*w*z-x] then return p^2; fi;
+        if f = [2*w^3*z-w^2*x-2*z^3] then return p^2; fi;
+        if f = [z^2-z, y*z-y, y^2-y, x, w-y] then return 0; fi;
+        if f = [-z^2+y, -y*z+x, w-y] then return 0; fi;
+        if f = [z^4-1, -z^2+y, -y*z+x, w-y] then return 0; fi;
+        if f = [y*z^2-1, -y*z+x, w-y] then return 0; fi;
+        if f = [-z^2+y, x, w-y] then return 0; fi;
+        if f = [-z^2+y, w-y] then return 0; fi;
+        if f = [z^5-z, -z^2+y, -y*z+x, w-y] then return 0; fi;
+        if f = [-z^2+y, x^2-y, w-y] then return 0; fi;
+        if f = [y^2*z^2-y, -y*z+x, w-y] then return 0; fi;
+        if f = [x^2-y, w-y] then return 0; fi;
+        if f = [-y*z+x, -(y-1)*(y-w)] then return 2*p; fi;
+        if f = [y^3*z^2-y^2*z^2-y^2+y, -y*z+x, -x^2+w] then return 0; fi;
+        if f = [y*z, x, y^2*z+w*z-y*z, w*y-y^2-w+y] then return 2; fi;
+        if f = [z, x+y-1, -y^2+w+2*y-1] then return 0; fi;
+        if f = [y*z^2-y+1, -y*z^2+y*z+x+y-1] then return p-2; fi;
+        if f = [y*z^2-y+1, -y*z^2+y*z+x+y-1, -y^2+w+y] then return 0; fi;
+        if f = [y*z^3-y*z+z, -y*z^2+y*z+x+y-1] then return 2*p-3; fi;
         if f = [(z+1)*(x*y-z)] then return 2*p^2-p+1; fi;
         if f = [z+1, x*y+1] then return p-1; fi;
         if f = [x*y-z] then return p^2; fi;
@@ -324,6 +322,20 @@ NumberOfZeros := function( pp, polys )
 
     # cases with 4 params
     if Length(pp) = 4 then 
+        if f = [y,x*t+t^2] then return 2*p^2-p; fi;
+        if f = [z,x*t+t^2] then return 2*p^2-p; fi;
+        if f = [z,y,x*t+t^2] then return 2*p-1; fi;
+        if f = [z,y,x*t*(x+t)] then return 3*p-2; fi;
+        if f = [z,y,x*t*(x+t)] then return 3*p-2; fi;
+        if f = [t*(z-t)] then return p^2*(2*p-1); fi;
+        if f = [t*(z-t),t*(x*t-y*t-z+t),z*(x-1)+t*(1-y)] then 
+               return 3*p^2-p; fi;
+        if f = [t*(z-t), t*(x*t-y*t-z+t), x*z-y*t-z+t, 
+           t*(x*y-y^2-x+y), x^2-x*y-x+y] then return 2*p^2-1; fi; 
+        if f = [t*(z-t), t*(y-1), x-1] then return p^2+p-1; fi;
+        if f = [t*(z-t), y-1, x-1] then return 2*p-1; fi;
+        if f = [t*(z-t), (y-1)*(z-t), x-y] then return p^2+p-1; fi;
+
         if f = [x*y-z*t] then return p^3+p^2-p; fi;
         if f = [x*t-y*z] then return p^3+p^2-p; fi;
         if f = [w*y*t-x*z] then return p^3+p^2-p; fi;
@@ -431,25 +443,52 @@ NumberOfZeros := function( pp, polys )
 end;
 
 ElementNumber := function( pp, units, zeros )
-    local r, u, t, s, W, R, T, i, w, S, p;
+    local d, x, y, u, t, z, r, U, v, s, W, R, T, i, w, S, p;
 
-    r := Length(pp);
-    if r = 0 then return 1; fi;
+    d := Length(pp);
+    if d = 0 then return 1; fi;
 
-    u := units{[r+1..Length(units)]};
-    t := Length(u);
+    w := IndeterminateByName("w");
+    x := IndeterminateByName("x");
+    y := IndeterminateByName("y");
+    z := IndeterminateByName("z");
+    t := IndeterminateByName("t");
+    v := IndeterminateByName("v");
+    u := IndeterminateByName("u");
+    s := IndeterminateByName("s");
+    r := IndeterminateByName("r");
+
+    U := units;
+    U := Filtered(U, a -> a <> x^2-w); 
+    U := Filtered(U, a -> a <> -x^2+w); 
+    U := Filtered(U, a -> a <> y^2-w); 
+    U := Filtered(U, a -> a <> -y^2+w); 
+    U := Filtered(U, a -> a <> z^2-w); 
+    U := Filtered(U, a -> a <> -z^2+w); 
+    U := Filtered(U, a -> a <> t^2-w); 
+    U := Filtered(U, a -> a <> -t^2+w); 
+    U := Filtered(U, a -> a <> v^2-w); 
+    U := Filtered(U, a -> a <> -v^2+w); 
+    U := Filtered(U, a -> a <> u^2-w); 
+    U := Filtered(U, a -> a <> -u^2+w); 
+    U := Filtered(U, a -> a <> s^2-w); 
+    U := Filtered(U, a -> a <> -s^2+w); 
+    U := Filtered(U, a -> a <> r^2-w); 
+    U := Filtered(U, a -> a <> -r^2+w); 
+
+    t := Length(U);
     s := Length(zeros);
     p := IndeterminateByName("p");
-    if t=0 and s=0 then return p^r; fi;
+    if t=0 and s=0 then return p^d; fi;
 
     W := Combinations([1..t]);
     R := List(W, x -> 0);
     T := 0;
     for i in [1..Length(W)] do
         w := W[i];
-        S := Concatenation(zeros, u{w});
+        S := Concatenation(zeros, U{w});
         R[i] := NumberOfZeros( pp, S );
-        #Print(W[i]," yields ",R[i],"\n");
+        Print(W[i]," yields ",R[i],"\n");
         if R[i]=fail then return fail; fi;
         T := T + (-1)^Length(w) * R[i];
     od;
@@ -462,8 +501,8 @@ ElementNumbers := function( pp, s )
 
     # set up and catch trivial case
     t := Set(List(s, x -> x.norm));
-    e := List(t, x -> 0);
     p := IndeterminateByName("p");
+    e := List(t, x -> 0*p^0);
     if Length(t) = 1 then 
         return rec( norms := t, numbs := [p^Length(pp)]); 
     fi;
@@ -478,133 +517,14 @@ ElementNumbers := function( pp, s )
             e[k] := e[k] + f;
         fi;
     od;
+
+    # filter
+    j := Filtered([1..Length(e)], x -> e[x] <> 0*e[x]);
+    e := e{j}; t := t{j};
+
+    # sort 
+    SortParallel(e, t);
+   
     return rec( norms := t, numbs := e);
 end;
-
-CheckNumbers := function( d, k, s )
-    local L, r, i, ss, num;
-    L := LiePRingsByLibrary(d);
-    r := [];
-    for i in [s..Length(L)] do
-        if Length(ParametersOfLiePRing(L[i]))=k then 
-            Print("compute Schu Mu of ",i,"\n");
-            ss := LiePSchurMult(L[i]);
-            num := ElementNumbers( ParametersOfLiePRing(L[i]), ss );
-            if num = fail then Add(r, i); fi;
-        fi;
-    od;
-    return r;
-end;
-
-#############################################################################
-
-CheckCaseOne := function( L, ss, num )
-    local l, n;
-
-    # set up
-    l := LibraryConditions(L)[1];
-    n := LibraryName(L);
-
-    # cases 
-    if l = "" or 
-       l = "x~-x" or
-       l = "x ne 0, x~x^-1" then 
-        return true;
-    elif n in ["6.148", "6.148A"] then 
-        return true;
-    fi;
-
-    # no answer
-    return false;
-end;
-
-CheckNumbers_2 := function( L, ss, num )
-    local pp, ff, t, e, n, a, p, z;
-
-    if num = fail then Error("???"); return fail; fi;
-
-    pp := ParametersOfLiePRing(L);
-    ff := NumberOfLiePRingsInFamily(L);
-    p := IndeterminateByName("p");
-    z := p^0;
-    t := num.norms;
-    e := num.numbs * z;
-    n := LibraryName(L);
-
-    # check cases
-    if Length(t) = 1 then 
-        return rec( norms := t, numbs := ff);
-    elif Length(t) = 2 and z in e then 
-
-        # normalize
-        if e[2] = z then 
-            a := e[2]; e[2] := e[1]; e[1] := a;
-            a := t[2]; t[2] := t[1]; t[1] := a;
-        fi;
-
-        # check case
-        if CheckCaseOne(L, ss, num) = true then 
-            e[2] := ff-1;
-            return rec( norms := t, numbs := e );
-        else
-Error("1");
-            return rec( norms := t{[2]}, numbs := [ff] );
-        fi;
-
-    else
-        return fail;
-    fi;
-
-end;
-
-
-#############################################################################
-##
-## Checking routines
-##
-#LiePSchurMultTab := function(d)
-#    local LL, res, tab, num, pp, pf, i, s, t, j, e, k, f;
-#    LL := LiePRingsByLibrary(d);
-#    res := [];
-#    tab := [];
-#    num := [];
-#    for i in [1..Length(LL)] do
-#        Print("starting ",i," of ",Length(LL),"\n");
-#        pp := ParametersOfLiePRing(LL[i]);
-#        pf := NumberOfLiePRingsInFamily(LL[i]);
-#        if Length(pp) <= 4 then
-#            s := LiePSchurMult(LL[i]);
-#            t := Set(List(s, x -> x.norm));
-#            e := List(t, x -> 0);
-#            for j in [1..Length(s)] do
-#                k := Position(t, s[j].norm);
-#                f := ElementNumber(pp, s[j].units, s[j].zeros);
-#                if f = fail or e = fail then
-#                    e := fail;
-#                else
-#                    e[k] := e[k] + f;
-#                fi;
-#            od;
-#
-#            if Length(t) = 1 then
-#                j := Position(tab, t[1]);
-#                if j = fail then
-#                    Add(tab, t[1]);
-#                    Add(num, pf);
-#                else
-#                    num[j] := num[j] + pf;
-#                fi;
-#            elif Length(t) = 2 and 1 in e then
-#                if e[1] = 1 then
-#
-#            else
-#                Error();
-#            fi;
-#        else
-#            Add(res, [i,false]);
-#        fi;
-#    od;
-#
-#    return rec( tab := tab, num := num, res := res);
-#end;
 

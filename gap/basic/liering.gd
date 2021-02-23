@@ -38,7 +38,7 @@ DeclareAttribute( "PClassOfLiePRing", IsLiePRing );
 DeclareAttribute( "MinimalGeneratorNumberOfLiePRing", IsLiePRing );
 DeclareAttribute( "DimensionOfLiePRing", IsLiePRing );
 DeclareAttribute( "PrimeOfLiePRing", IsLiePRing );
-DeclareAttribute( "IsParentLiePRing", IsLiePRing );
+DeclareProperty( "IsParentLiePRing", IsLiePRing );
 DeclareAttribute( "BasisOfLiePRing", IsLiePRing );
 
 DeclareAttribute( "LibraryConditions", IsLiePRing );

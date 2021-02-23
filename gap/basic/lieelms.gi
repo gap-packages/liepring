@@ -100,22 +100,19 @@ InstallMethod( AdditiveInverseOp, [IsLPRElement], 0, function(elm)
 end );
 
 ExponentsByBasis := function( list, elm )
-    local r, d, e, f, i, k;
-    d := List(list, x -> PositionNonZero(Exponents(x)));
-    f := List(d, x -> 0);
-    for i in [1..Length(d)] do
-        e := Exponents(elm);
-        if e[i] <> 0*e[i] then 
-            k := Position( d, i );
-            if IsInt(k) then 
-                f[k] := e[i];
-                elm := elm - e[i]*list[k];
-            else
-                return fail;
-            fi;
-        fi;
+    local dep, exp, d, j;
+    if Length(list)=0 and elm = 0*elm then return []; fi;
+    if Length(list)=0 and elm <> 0*elm then return fail; fi;
+    dep := List(list, x -> DepthVector(Exponents(x)));
+    exp := Exponents(elm);
+    while exp <> 0*exp do
+        d := DepthVector(exp);
+        j := Position(dep, d);
+        if j = fail then return fail; fi;
+        elm := elm - exp[d]*list[j];
+        exp := Exponents(elm);
     od;
-    return f;
+    return exp;
 end;
 
 InstallMethod( \in, true, [IsLPRElement, IsLiePRing], 0,
@@ -129,3 +126,14 @@ ExponentsLPR := function( L, elm )
     if IsParentLiePRing(L) then return Exponents(elm); fi;
     return ExponentsByBasis(BasisOfLiePRing(L), elm);
 end;
+
+LiePOrder := function( elm )
+    local p, i;
+    p := SCTable(elm).prime;
+    i := 0;
+    repeat
+        if p^i*elm = 0*elm then return p^i; fi;
+        i := i+1;
+    until false;
+end;
+

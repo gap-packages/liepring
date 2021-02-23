@@ -13,6 +13,9 @@ InstallGlobalFunction( CreateLiePRing, function(SC)
     SetCoefficientsFamily(fam, ElementsFamily( FamilyObj( Integers )));
     SC.fam := fam;
 
+    # check 
+    if not IsBound(SC.ring) then SC.ring := rec(units:=[],zeros:=[]); fi;
+
     # create basis and ring
     if SC.dim > 0 then 
         I := IdentityMat(SC.dim);
@@ -49,6 +52,38 @@ InstallGlobalFunction( LiePRingBySCTable, function( SC )
     if not IsLiePRing(R) then return fail; fi;
     return R;
 end );
+
+LiePRingCopyNC := function( L, units, zeros )
+    local SC;
+    SC := ShallowCopy(SCTable(Zero(L)));
+    SC.ring := rec( units := units, zeros := zeros );
+    return LiePRingBySCTableNC(SC);
+end;
+
+LiePRingCopy := function( L, units, zeros )
+    local TU;
+    TU := SetupUZSystem( ParametersOfLiePRing(L), units, zeros );
+    if TU = fail then 
+        return fail; 
+    else 
+        return LiePRingCopyNC(L, TU[1], TU[2]);
+    fi;
+end;
+
+LiePRingSplit := function( L, elm )
+    local I, L1, L2;
+    I := SCTable(Zero(L)).ring;
+    L1 := LiePRingCopy(L, Union(I.units, [elm]), I.zeros);
+    L2 := LiePRingCopy(L, I.units, Union(I.zeros, [elm]));
+    return [L1, L2];
+end;
+
+LiePImageByBasis := function( B, elm )
+    local c;
+    if Length(B) = 0 then return []; fi;
+    c := LRApplyZeros( SCTable(B[1]), Exponents(elm) );
+    return Sum(List([1..Length(c)], x -> c[x]*B[x]));
+end;
 
 CheckIsLiePRing := function(L)
     local l, p, d, a, i, j, k, c;
@@ -184,13 +219,14 @@ InstallMethod( PrimeOfLiePRing, true, [IsLiePRing], 0, function(L)
     return SCTable(Zero(L)).prime;
 end );
 
-InstallMethod( BasisOfLiePRing, true, [IsLiePRing], 0, function(L)
-    if IsParentLiePRing(L) then return GeneratorsOfRing(L); fi;
-    return BasisByGens( Parent(L), GeneratorsOfRing(L) );
-end );
-
 InstallMethod( DimensionOfLiePRing, true, [IsLiePRing], 0, function(L)
     return Length(BasisOfLiePRing(L));
 end );
+
+RingInvariants := function(L)
+    return rec( units := SCTable(Zero(L)).ring.units, 
+                zeros := SCTable(Zero(L)).ring.zeros );
+end;
+
 
 

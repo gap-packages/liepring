@@ -1,59 +1,3 @@
-         
-LPRWeights := function(L)
-    local d, s, t, b, w, i;
-
-    # set up and check
-    if not IsParentLiePRing(L) then return fail; fi;
-    d := DimensionOfLiePRing(L);
-    s := LiePLowerPCentralSeries(L);
-    b := BasisOfLiePRing(L);
-
-    # get weights
-    w := List(b, x -> true);
-    for i in [1..d] do
-        w[i] := First([1..Length(s)], x -> not (b[i] in s[x]))-1;
-    od;
-
-    # return
-    return w;
-end;
-
-LPRDefs := function(L)
-    local d, b, S, v, c, i, j, k, e;
-
-    # check
-    if not IsParentLiePRing(L) then return fail; fi;
-    if IsBound(L!.defs) then return L!.defs; fi;
-
-    # set up
-    d := DimensionOfLiePRing(L);
-    b := BasisOfLiePRing(L);
-    S := SCTable(Zero(L)).tab;
-    v := List(b, x -> true);
-
-    # get defs
-    c := 0;
-    for i in [1..d] do
-        for j in [1..i] do
-            c := c + 1;
-            if IsBound(S[c]) and Length(S[c]) > 0 then 
-                k := S[c][Length(S[c])-1];
-                e := S[c][Length(S[c])];
-                if k > i and v[k] = true and (e in [1,-1] or IsRootPower(e)) 
-                    then 
-                    v[k] := [i,j]; 
-                elif k > i and e in [1,-1] then 
-                    v[k] := [i,j];
-                fi;
-            fi;
-        od;
-    od;
-  
-    # add them and return
-    L!.defs := v;
-    return v;
-end;
-
 InsertVec := function( T, J, d, vec )
     local wec;
     wec := LRReduceExp( T, vec );
@@ -82,6 +26,7 @@ LiePCover := function(L)
 
     # init cover
     T := rec( prime := p, tab := [] );
+    T.ring := S.ring;
 
     # add tails
     c := 0; r := d;
@@ -146,34 +91,48 @@ LiePCover := function(L)
     od;
 
     # check
-    if IsBound(L!.inv) then 
-        u := MyBaseMat(J, L!.inv);
-    else
-        u := MyBaseMat(J, []);
-    fi;
-    if u = fail then return fail; fi;
+    u := MyBaseMat(J, T.ring.units);
+    if not IsList(u) then return u; fi;
 
     # get quotient
     if IsBound(S.param) then T.param := S.param; fi;
     R := LiePQuotientByTable(T, u);
 
     # add info
-    if IsBound(L!.inv) then R!.inv := L!.inv; fi;
     b := BasisOfLiePRing(R);
     R!.mult := LiePSubringByBasis( R, b{[S.dim+1..Length(b)]});
     s := LiePLowerPCentralSeries(R);
-    R!.nucl := s[PClassOfLiePRing(L)+1];
+    if s <> fail then R!.nucl := s[PClassOfLiePRing(L)+1]; fi;
     return R;
+end;
+
+IsTerminal := function(L)
+    local C;
+    C := LiePCover(L);
+    if IsLiePRing(C) and IsBound(C!.nucl) then 
+        return DimensionOfLiePRing(C!.nucl)=0;
+    else
+        return fail;
+    fi;
 end;
 
 StepSize := function(L)
     local C;
     C := LiePCover(L);
-    return DimensionOfLiePRing(C!.nucl);
+    if IsLiePRing(C) and IsBound(C!.nucl) then 
+        return DimensionOfLiePRing(C!.nucl);
+    else
+        return fail;
+    fi;
 end;
 
-IsTerminal := function(L)
-    return StepSize(L)=0;
+AutoOnMult := function( C, mat )
+    local dim, sml, new;
+    dim := DimensionOfLiePRing(C);
+    sml := dim - DimensionOfLiePRing(C!.mult);
+    new := ExtendAuto(C,mat);
+    return new{[sml+1..dim]}{[sml+1..dim]};
 end;
+
 
 

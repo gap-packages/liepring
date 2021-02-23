@@ -1,13 +1,14 @@
-RingInvariants := function( L )
-    local l, d, pp, p, w, x, y, z, t, u, v, s, g3, g4, g8, units, zeros;
+##
+## l = LibraryConditions
+## d = Dimension
+## pp = Parameters
+##
 
-    l := LibraryConditions(L)[1];
-    d := DimensionOfLiePRing(L);
-    pp := ParametersOfLiePRing(L);
+RingInvariantsByData := function( l, d, pp )
+    local p, w, x, y, z, t, u, v, s, g3, g4, g8, units, zeros;
 
     p := IndeterminateByName("p");
     w := IndeterminateByName("w");
-
     x := IndeterminateByName("x");
     y := IndeterminateByName("y");
     z := IndeterminateByName("z");
@@ -15,20 +16,17 @@ RingInvariants := function( L )
     u := IndeterminateByName("u");
     v := IndeterminateByName("v");
     s := IndeterminateByName("s");
-
     g3 := IndeterminateByName("(p-1,3)");
     g4 := IndeterminateByName("(p-1,4)");
     g8 := IndeterminateByName("(p-1,8)");
 
-    units := List(pp, a -> a^2-w);
+    units := [];
     zeros := [];
 
     if Length(pp) = 0 then 
-        L!.units := units; L!.zeros := zeros; 
-        return rec( units := units, zeros := zeros);
+        return rec( units := units, zeros := CallGroebner(zeros));
     elif Length(l)=0 then 
-        L!.units := units; L!.zeros := zeros; 
-        return rec( units := units, zeros := zeros);
+        return rec( units := units, zeros := CallGroebner(zeros));
     fi;
 
     #  special cases 
@@ -256,7 +254,7 @@ RingInvariants := function( L )
             Append(units, [x] ); 
             Append(zeros, [] ); 
         elif l = "x=w,w^2" then 
-            Append(units, [x] ); 
+            Append(units, [x, x-1, x+1] ); 
             Append(zeros, [(x-w)*(x-w^2)] ); 
         elif l = "x=w,w^2,...,w^((p-3)/2)" then 
             Append(units, [x, x-1, x+1] ); 
@@ -585,7 +583,7 @@ RingInvariants := function( L )
             Append(zeros, [] ); 
         elif l = "x=w,w^2,...,w^((p-3)/2), y=1,w" then 
             Append(units, [x, y] ); 
-            Append(zeros, [y*(y-w)] ); 
+            Append(zeros, [(y-1)*(y-w)] ); 
         elif l = "y ne 0, [x,y,z]~[x,-y,-z]" then 
             Append(units, [y] ); 
             Append(zeros, [] ); 
@@ -627,8 +625,8 @@ RingInvariants := function( L )
         fi;
     fi; 
 
-    L!.units := units; L!.zeros := zeros; 
-    return rec( units := units, zeros := zeros);
+    return rec( units := units, zeros := CallGroebner(zeros));
 end;
+
 
 

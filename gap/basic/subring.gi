@@ -1,4 +1,28 @@
 
+##
+## g is an element of L in reduced form c1 b1 + ... + cn bn
+## l is the depth of g, that is, cl <> 0
+## cl is an element of Q[x_1, ..., x_m, w]
+##
+NormedLPR := function( L, g, l )
+    local p, e, f;
+
+    if g = 0*g then return g; fi;
+    p := SCTable(g).prime;
+    e := Exponents(g)[l];
+
+    if e = e^0 then 
+        return g;
+    elif IsRat(e) and IsInt(p) then 
+        f := e^-1 mod p;
+    elif IsRat(e) or IsLiePUnit(SCTable(Zero(L)).ring.units, e) then  
+        f := e^-1;
+    else
+        return fail;
+    fi;
+    return f*g;
+end; 
+
 DensityLPR := function( list )
     local i;
     for i in Reversed([1..Length(list)]) do
@@ -7,52 +31,22 @@ DensityLPR := function( list )
     return 1;
 end;
 
-NormedLPR := function( L, g, l )
-    local p, e, f;
-
-    if g = 0*g then return g; fi;
-    p := SCTable(g).prime;
-    e := Exponents(g)[l];
-
-    if IsInt(e) and IsInt(p) then 
-        f := e^-1 mod p;
-        return f*g;
-    elif IsInt(e) and AbsInt(e) in [1,2,3,1/2,1/3]  then  
-        f := e^-1;
-        return f*g;
-    elif IsLaurentPolynomial(e) and IsRootPower(e) then 
-        f := e^-1;
-        return f*g;
-    elif IsBound(L!.inv) and ((e in L!.inv) or (-e in L!.inv)) then 
-        f := e^-1;
-        return f*g;
-    else
-        Print("WARNING: Dividing by ",e,"\n");
-        return fail;
-    fi;
-end; 
-
-MyDepth := function(vec)
-    local i;
-    for i in [1..Length(vec)] do
-        if vec[i] <> 0*vec[i] then return i; fi;
-    od;
-    return Length(vec)+1;
-end;
-
 InsertLPR := function( L, list, g, k )
-    local e, l;
+    local e, l, a;
     repeat
         e := Exponents(g);
-        l := MyDepth(e);
+        l := DepthVector(e);
         if l >= k then 
-            return false;
-        elif list[l] = true then 
-            list[l] := NormedLPR( L, g, l );
-            if list[l] = fail then return fail; fi;
-            return l;
-        else
+            return true;
+        elif list[l] <> true then 
             g := g - e[l]*list[l];
+        else
+            a := NormedLPR(L, g, l);
+            if a = fail then 
+                return [l, e[l]];
+            else
+                list[l] := a; return l;
+            fi;
         fi;
     until false;
 end;
@@ -77,13 +71,13 @@ IsIntLPR := function( g )
     local e, i;
     e := Exponents(g);
     for i in [1..Length(e)] do
-        if not IsInt(e[i]) and not IsRootPower(e[i]) then return false; fi;
+        if not IsInt(e[i]) then return false; fi;
     od;
     return true;
 end;
 
 BasisByGens := function( L, part, gens )
-    local d, p, f, i, a, k, t, s, j, g, b, h; 
+    local d, p, f, i, a, t, s, g, b, h, k;
 
     # set up
     if not IsParentLiePRing(L) then L := Parent(L); fi;
@@ -98,75 +92,33 @@ BasisByGens := function( L, part, gens )
     od;
     k := DensityLPR(f);
 
-    # init
+    # sort nicely
     t := Filtered( gens, x -> x <> Zero(L) and IsIntLPR(x) );
     s := Filtered( gens, x -> x <> Zero(L) and not IsIntLPR(x) );
-    i := 1;
-    j := Length(t);
+    t := Concatenation(t,s);
 
-    # step 1: process t (integral elements)
-    while i <= j do
-        g := t[i];
+    # loop
+    for g in t do
         a := InsertLPR( L, f, g, k );
-        if a = fail then 
-            Error(" should not happen ");
-            return fail;
-        elif IsInt(a) then 
+        if IsInt(a) then 
 
             # reset density
             if a = k-1 then k := DensityLPR( f ); fi;
 
-            # add powers 
+            # close under powers
             b := p*f[a]; 
-            if b <> Zero(L) then 
-                if IsIntLPR(b) then 
-                    Add(t, b); j := j+1; 
-                else 
-                    Add(s, b);
-                fi;
-            fi;
+            if b <> Zero(L) then Add(t, b); fi;
 
+            # close under mult
             for h in [1..d] do
                 if f[h] <> true and h <> a then  
                     b := f[h]*f[a];
-                    if b <> Zero(L) then 
-                        if IsIntLPR(b) then 
-                            Add(t, b); j := j+1; 
-                        else 
-                            Add(s, b);
-                        fi;
-                    fi;
+                    if b <> Zero(L) then Add(t, b); fi;
                 fi;
             od;
+        elif IsList(a) then 
+            return a[2];
         fi;
-        i := i + 1;
-    od;
-
-    # step 2: process s (non-integral elements)
-    i := 1;
-    j := Length(s);
-    while i <= j do
-        g := s[i];
-        a := InsertLPR( L, f, g, k );
-        if a = fail then 
-            return fail;
-        elif IsInt(a) then 
-
-            # reset density
-            if a = k-1 then k := DensityLPR( f ); fi;
-
-            # add powers 
-            b := p*f[a]; 
-            if b <> Zero(L) then Add(s, b); j := j+1; fi;
-
-            for h in [1..d] do
-                if f[h] <> true and h <> a then  
-                    b := f[h]*f[a];
-                    if b <> Zero(L) then Add(s, b); j := j+1; fi;
-                fi;
-            od;
-        fi;
-        i := i + 1;
     od;
 
     # strip and return
@@ -188,7 +140,6 @@ LiePSubringByBasis := function( L, basis )
     fi;
 
     # add info
-    if IsBound(L!.inv) then U!.inv := L!.inv; fi;
     SetBasisOfLiePRing(U, basis);
     SetDimensionOfLiePRing(U, Length(basis));
     SetPrimeOfLiePRing(U, PrimeOfLiePRing(L));
@@ -200,96 +151,86 @@ LiePSubringByBasis := function( L, basis )
     return U;
 end;
 
+InstallMethod( BasisOfLiePRing, true, [IsLiePRing], 0, function(L)
+    if IsParentLiePRing(L) then return GeneratorsOfRing(L); fi;
+    return BasisByGens( Parent(L), GeneratorsOfRing(L) );
+end );
+
 LiePSubring := function( L, gens )
     local b;
     b := BasisByGens(L, [], gens);
-    if b = fail then return fail; fi;
+    if not IsList(b) then return fail; fi;
     return LiePSubringByBasis( L, b );
 end;
 
 LiePClosure := function( L, U, gens )
     local b;
     b := BasisByGens(L, BasisOfLiePRing(U), gens);
-    if b = fail then return fail; fi;
-    return LiePSubringByBasis( L, b);
+    if not IsList(b) then return fail; fi;
+    return LiePSubringByBasis(L, b);
+end;
+
+LiePRecSubring := function( arg )
+    local L, gens, base, T, R, 
+          t, b, A, U, Z, U1, L1, B1, g1, Z1, L2, B2, g2, b1, b2;
+
+    # get arguments
+    L := arg[1];
+    gens := arg[2];
+    if Length(arg) = 3 then base := arg[3]; else base := []; fi;
+
+    # init
+    T := [[L,gens, base]];
+    R := [];
+
+    # toop
+    while Length(T) > 0 do
+        t := T[Length(T)];
+        Unbind(T[Length(T)]);
+        b := BasisByGens( t[1], t[3], t[2] );
+        if IsList(b) then 
+            Add( R, LiePSubringByBasis(t[1], b) );
+
+        elif not IsBool(b) then 
+
+            # get info
+            U := ShallowCopy(SCTable(Zero(L)).ring.units);
+            Z := ShallowCopy(SCTable(Zero(L)).ring.zeros);
+
+            # case 1
+            U1 := Concatenation(U, [b]);
+            L1 := LiePRingCopy(L, U1, Z);
+            B1 := BasisOfLiePRing(L1);
+            g1 := List(gens, x -> LiePImageByBasis(B1, x));
+            b1 := List(base, x -> LiePImageByBasis(B1, x));
+            Add(T, [L1, g1, b1]);
+
+            # case 2
+            Z1 := Concatenation(Z, [b]);
+            L2 := LiePRingCopy(L, U, Z1);
+            B2 := BasisOfLiePRing(L2);
+            g2 := List(gens, x -> LiePImageByBasis(B2, x));
+            b2 := List(base, x -> LiePImageByBasis(B2, x));
+            Add(T, [L2, g2, b2]);
+        fi;
+    od;
+
+    return R;
 end;
 
 LiePIdeal := function( L, gens )
     local K, b, w, v, c;
     b := BasisByGens( L, [], gens );
-    if b = fail then return fail; fi;
+    if not IsList(b) then return fail; fi;
     w := BasisOfLiePRing(L);
     repeat
         v := Flat(List( b, x -> List(w, y -> x*y) ));
         c := BasisByGens( L, b, v );
-        if c = fail then return fail; fi;
+        if not IsList(c) then return fail; fi;
         if Length(c) = DimensionOfLiePRing(L) then return L; fi;
-        if Length(c) = Length(b) then return LiePSubringByBasis( L, b ); fi;
+        if Length(c) = Length(b) then return LiePSubringByBasis(L,b); fi;
         b := c;
     until false;
-end;
-
-LiePCommutator := function( U, V )
-    local bU, bV, bC;
-    bU := BasisOfLiePRing(U);
-    bV := BasisOfLiePRing(V);
-    bC := Flat(List(bU, x -> List(bV, y -> x*y)));
-    return LiePSubring(U, bC);
-end;
-
-LiePPCommutator := function( U, L )
-    local C, g;
-    C := LiePCommutator( U, L );
-    g := List(BasisOfLiePRing(U), x -> PrimeOfLiePRing(U)*x);
-    return LiePClosure(L, C, g);
-end;
-
-LiePRump := function( L )
-    return LiePPCommutator(L,L);
-end;
-
-LiePMinimalGeneratingSet := function( L )
-    local U, bL, bU, eL, eU, v;
-    U := LiePRump(L);
-    bL := BasisOfLiePRing(L);
-    bU := BasisOfLiePRing(U);
-    eU := List(bU, Exponents);
-    eL := List(bL, Exponents);
-    v := BaseSteinitzVectors(eL, eU).factorspace;
-    return List(v, x -> x*BasisOfLiePRing(Parent(L)));
-end;
-
-LiePLowerPCentralSeries := function( L )
-    local s, U;
-    s := [L];
-    while DimensionOfLiePRing(s[Length(s)]) > 0 do
-        U := LiePPCommutator( s[Length(s)], L );
-        if U = fail then return fail; fi;
-        Add(s, U);
-    od;
-    return s;
-end;
-
-LiePLowerCentralSeries := function( L )
-    local s, U;
-    s := [L];
-    while DimensionOfLiePRing(s[Length(s)]) > 0 do
-        U := LiePCommutator( L, s[Length(s)] );
-        if U = fail then return fail; fi;
-        Add(s, U);
-    od;
-    return s;
-end;
-
-LiePDerivedSeries := function( L )
-    local s, U;
-    s := [L];
-    while DimensionOfLiePRing(s[Length(s)]) > 0 do
-        U := LiePCommutator( s[Length(s)], s[Length(s)] );
-        if U = fail then return fail; fi;
-        Add(s, U);
-    od;
-    return s;
 end;
 
 LiePIsIdeal := function(L, U)
