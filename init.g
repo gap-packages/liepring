@@ -1,7 +1,6 @@
 #############################################################################
 ##
 ##
-
-ReadPackage( "liepring", "gap/liering.gd");
+ReadPackage( "liepring", "gap/basic/liering.gd");
 
 

@@ -4,39 +4,22 @@
 #      structure constants of pcp,
 #      conditions,,name]
 
-FindIndets := function( list )
-    local l, r, i, e, j, k;
-    l := Flat(list);
-    if ForAll(l, x -> IsInt(x)) then return []; fi;
-    r := [];
-    for i in [1..Length(l)] do
-        if IsPolynomial(l[i]) then 
-            e := ExtRepPolynomialRatFun(l[i]);
-            for j in [1,3..Length(e)-1] do
-                for k in [1,3..Length(e[j])-1] do
-                    AddSet(r, e[j][k]);
-                od;
-            od;
-        fi;
-    od;
-    return List(r, x -> Indeterminate(Integers, x));
-end;
-
 LiePRingByData := function( dim, l )
-    local r, S, L, cond;
-
-    # create a Lie p-ring
-    r := FindIndets( l[5] );
-    S := rec( dim := dim, prime := Indeterminate(Integers,"p"), 
-              tab := l[5], param := r );
-    L := CreateLiePRing(S);
-    SetIsLiePRing(L, true);
+    local r, S, L, cond, i;
 
     # generate some info
     cond := [];
     if IsBound(l[6]) then cond[1] := l[6]; else cond[1] := ""; fi;
     if IsBound(l[7]) then cond[2] := l[7]; else cond[2] := ""; fi;
     if IsBound(l[9]) then cond[3] := l[9]; fi;
+
+    # create a Lie p-ring
+    r := VarsOfSCTab( l[5] );
+    i := RingInvariantsByData( cond[1], l[1], r ); 
+    S := rec( dim := dim, prime := Indeterminate(Integers,"p"), 
+              tab := l[5], param := r, ring := i );
+    L := CreateLiePRing(S);
+    SetIsLiePRing(L, true);
 
     # add some attributes
     SetPClassOfLiePRing( L, l[3] );

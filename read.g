@@ -3,17 +3,24 @@
 ##
 ##
 
-if IsBound(GAPInfo.PackagesLoaded.singular) then 
-    StartSingular();
-    GBASIS := SINGULARGBASIS;
-    CallGroebner := GroebnerBasis;
-else
-    CallGroebner := ReducedGroebnerBasis;
-fi;
+##
+## variables and polynomials are a problem - GAP is very slow in computing
+## with polynomials and Singular is fast, but has bugs.
+##
+
+StartSingular();
 ORDER := MonomialGrlexOrdering();
 
-OFFSET_VARS := 1000;
+CallGroebner := function( list )
+    local new;
+    if Length(list) = 0 then return list; fi;
+    GBASIS := SINGULARGBASIS;
+    new := GroebnerBasis(list, ORDER);
+    GBASIS := GAPGBASIS;
+    return ReducedGroebnerBasis(new, ORDER);
+end;
 
+OFFSET_VARS := 1000;
 IndeterminateByName := function( name )
     local l, i, v;
     l := ["p", "w", 
@@ -25,6 +32,24 @@ IndeterminateByName := function( name )
     v := Indeterminate(Integers, OFFSET_VARS+i); 
     if not HasName(v) then SetName(v,name); fi;
     return v;
+end;
+
+USE_GAP_FACS := false;
+MyFactors := function(pp, h)
+    local R, k, w, q;
+
+    if USE_GAP_FACS then return Factors(h); fi;
+
+    # singular is faster, but it has bugs ...
+    w := IndeterminateByName("w");
+    q := Concatenation(pp, [w]);
+    R := PolynomialRing(Rationals, q);
+    SingularSetBaseRing(R);
+    k := FactorsUsingSingularNC(h);
+    if Product(k) = h then return k{[2..Length(k)]}; fi;
+
+    # fall back
+    return Factors(h);
 end;
 
 LiePRing_ReadPackage := function(relpath)
@@ -347,35 +372,38 @@ LiePRing_ReadPackage( "lib/dim7/gap7.1");
 ##
 PGroupByLiePRing := false; ## dummy
 
-ReadPackage( "liepring", "gap/general.gi");
-ReadPackage( "liepring", "gap/linalg.gi");
+ReadPackage( "liepring", "gap/rings/polys.gi");
+ReadPackage( "liepring", "gap/rings/zeruni.gi");
+ReadPackage( "liepring", "gap/rings/ringth.gi");
+ReadPackage( "liepring", "gap/rings/number.gi");
 
-ReadPackage( "liepring", "gap/collect.gi");
-ReadPackage( "liepring", "gap/lieelms.gi");
-ReadPackage( "liepring", "gap/subring.gi");
-ReadPackage( "liepring", "gap/liering.gi");
-ReadPackage( "liepring", "gap/echelon.gi");
+ReadPackage( "liepring", "gap/basic/general.gi");
+ReadPackage( "liepring", "gap/basic/echelon.gi"); # used in evals
+ReadPackage( "liepring", "gap/basic/linalg.gi");  # used in cover
+ReadPackage( "liepring", "gap/basic/collect.gi");
+ReadPackage( "liepring", "gap/basic/lieelms.gi");
+ReadPackage( "liepring", "gap/basic/liering.gi");
+ReadPackage( "liepring", "gap/basic/subring.gi");
+ReadPackage( "liepring", "gap/basic/series.gi");
 
-ReadPackage( "liepring", "gap/valsfun.gi");
-ReadPackage( "liepring", "gap/val/indx27a.gi");
-ReadPackage( "liepring", "gap/val/reps27a.gi");
-ReadPackage( "liepring", "gap/val/vals27a.gi");
-ReadPackage( "liepring", "gap/val/vals27b.gi");
-ReadPackage( "liepring", "gap/val/vals28.gi");
 
-ReadPackage( "liepring", "gap/special.gi");
-ReadPackage( "liepring", "gap/pgroup.gi");
-ReadPackage( "liepring", "gap/porcpoly.gi");
+ReadPackage( "liepring", "gap/evals/valsfun.gi");
+ReadPackage( "liepring", "gap/evals/indx27a.gi");
+ReadPackage( "liepring", "gap/evals/reps27a.gi");
+ReadPackage( "liepring", "gap/evals/vals27a.gi");
+ReadPackage( "liepring", "gap/evals/vals27b.gi");
+ReadPackage( "liepring", "gap/evals/vals28.gi");
+ReadPackage( "liepring", "gap/evals/special.gi");
 
-ReadPackage( "liepring", "gap/coverlp.gi");
-ReadPackage( "liepring", "gap/autos.gi");
-
-ReadPackage( "liepring", "gap/ringth.gi");
-ReadPackage( "liepring", "gap/schur.gi");
-ReadPackage( "liepring", "gap/number.gi");
-
+ReadPackage( "liepring", "gap/class/pgroup.gi");
+ReadPackage( "liepring", "gap/class/porcpoly.gi");
 ReadPackage( "liepring", "lib/data.gi");
 ReadPackage( "liepring", "lib/table.gi");
-#ReadPackage( "liepring", "lib/check.gi"); 
+
+ReadPackage( "liepring", "gap/advan/elements.gi");
+ReadPackage( "liepring", "gap/advan/autos.gi");
+ReadPackage( "liepring", "gap/advan/schur.gi");
+ReadPackage( "liepring", "gap/advan/cover.gi");
+
 
 

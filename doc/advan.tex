@@ -13,133 +13,130 @@ generic Lie p-rings.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Schur multipliers}
 
-The package contains a method to determine the Schur multiplier of the
+The package contains a method to determine the Schur multipliers of the
 Lie p-rings in the family defined by a generic Lie p-ring. 
 
 \> LiePSchurMult( L )
 
-The function
-takes as input a generic Lie p-ring and determines a list of possible
-Schur multipliers, each described by its abelian invariants, and for each
-entry in the list there is a description of those parameters which 
+The function takes as input a generic Lie p-ring and determines a list 
+of possible Schur multipliers, each described by its abelian invariants, 
+for the Lie p-rings in the family described by L. For each entry in the 
+list of Schur multipliers there is a description of those parameters which 
 give the considered entry. This description consists of two lists 
-'units' and 'zeros' of rational functions over the parameters of the 
-Lie p-ring. The parameters described by these lists are which evaluate
+'units' and 'zeros'. Both consist of rational functions over the parameters 
+of the Lie p-ring. The parameters described by these lists are which evaluate
 to zero for each rational function in 'zeros' and evaluate not to zero
 for each rational function in 'units'.
 
 \beginexample
-gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=7)[1]; 
-<LiePRing of dimension 7 over prime p with parameters 
-[ w, x, y, z, t, s, u, v ]> 
+gap> LL := LiePRingsByLibrary(7);;
+gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=2)[1]; 
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> NumberOfLiePRingsInFamily(L);
+p^2-p
+gap> RingInvariants(L);
+rec( units := [ x ], zeros := [  ] )
 gap> ss := LiePSchurMult(L);
-[rec( norm := [ p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, w*x-s*v ], 
-   zeros := [  ] ), 
- rec( norm := [ p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, -z*s+y ],
-   zeros := [ w*x-s*v ] ), 
- rec( norm := [ p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, -1/2*u ],
-   zeros := [ -z*s+y, w*x-s*v ] ), 
- rec( norm := [ p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, -1/2*s, 
-              x*s+2*t-v ], 
-   zeros := [ u, -z*s+y, w*x-s*v ] ), 
- rec( norm := [ p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, 
-             -1/2*z-1/2*v ], 
-   zeros := [ u, -z*s+y, x*s+2*t-v, 1/2*s^2*v+w*t-1/2*w*v, w*x-s*v ] ), 
- rec( norm := [ p, p, p, p, p ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s ], 
-   zeros := [ v, u, t, z, y, x ] ), 
- rec( norm := [ p, p, p, p^2 ], 
-   units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s, -v, 2*t ], 
-   zeros := [ u, z+v, s*v+y, x*s+2*t-v, 1/2*s^2*v+w*t-1/2*w*v, w*x-s*v ] ) ]
+[ rec( norm := [ p ], units := [ x, y ], zeros := [ x*y^2-x*y+1 ] ), 
+  rec( norm := [ p^2 ], units := [ x ], zeros := [ x*y ] ), 
+  rec( norm := [ p ], units := [ x, x*y^2-x*y+1, y ], zeros := [  ] ) ]
 \endexample
 
-Note that $w$ is a primitive root and hence a polynomial $a^2-w$ for each 
-parameter $a$ is non-zero for every value of $a$. Thus, as an example, the
-above example shows that the Schur multiplier $[p,p,p,p,p]$ is obtained if 
-$s \neq 0$ and $v=u=t=z=y=x =0$.
+In this example, L defines a generic Lie p-rings with two parameters and
+the RingInvariants of L show that the parameter x should be non-zero. The
+function LiePSchurMult(L) yields that there are two possible Schur 
+multipliers for the Lie p-rings in the family defined by L: the cyclic
+groups of order $p$ and of order $p^2$. The second option only arises 
+if $xy = 0$ and thus, as $x$ is non-zero, if $y = 0$.
 
 The package also contains a function that tries to determine the numbers of 
 values of the parameters satisfying the conditions of a description of
 a Schur multiplier. This succeeds in many cases and returns a polynomial
 in $p$ in this case. If it does not succeed then it returns fail.
 
-\> ElementNumber( pp, units, zeros )
+\> ElementNumbers( pp, ss )
 
 We continue the above example.
 
 \beginexample
-gap> pp := ParametersOfLiePRing(L);
-[ x, y, z, t, s, u, v ]
-gap> numb := List(ss, x -> ElementNumber(pp, x.units, x.zeros));
-[ p^7-2*p^6+p^5, 
-  p^6-2*p^5+p^4, 
-  p^5-2*p^4+p^3, 
-  p^4-2*p^3+p^2, 
-  p^3-2*p^2+p, 
-  p-1, 
-  p^2-2*p+1 ]
-gap> Sum(numb);
-p^7-p^6
-gap> invs := RingInvariants(L);
-rec( units := [ x^2-w, y^2-w, z^2-w, t^2-w, s^2-w, u^2-w, v^2-w, s ], 
-     zeros := [  ] )
-gap> ElementNumber(pp, invs.units, invs.zeros);
-p^7-p^6
-\endexample
-
-There also is a function which automatically sums up the numbers 
-associated to a certain Schur multiplier. 
-
-\> ElementNumbers( pp, ss )
-
-In the above example this applies as follows.
-
-\beginexample
-gap> ElementNumbers(pp, ss);
-rec( norms := [ [ p, p, p, p ], [ p, p, p, p, p ], [ p, p, p, p^2 ] ], 
-     numbs := [ p^7-p^6-p^2+p, p-1, p^2-2*p+1 ] )
+gap> ElementNumbers(ParametersOfLiePRing(L), ss);
+rec( norms := [ [ p^2 ], [ p ] ], numbs := [ p-1, p^2-2*p+1 ] )
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Automorphism groups}
 
 The package contains a function that determines a description for the
-automorphism group of a generic Lie p-ring.
+automorphism groups of the Lie p-rings in the family defined by a generic
+Lie p-ring.
 
-\> FindAutos( L )
+\> AutGrpDescription( L )
 
-We start a new example using the Lie p-ring 7.38 of the library.
+Each automorphism of L is defined by its images on a generating
+set of L. If $l_1, ..., l_n$ is a basis of L and $l_1, .., l_d$ is a 
+generating set, then each automorphism is defined by the images of
+$l_1, .., l_d$ and each image is an integral linear combination of 
+the basis elements
+$l_1, .., l_n$. The function AutGrpDescription returns a matrix containing
+a description of the coefficients in each linear combination and a list
+of relations among these coefficients. We consider two examples.
 
 \beginexample
-gap> ViewPCPresentation(L);
-p*l1 = l4
-p*l2 = l5
-p*l3 = l6
-p*l4 = x*l7
-p*l5 = y*l6 + l7
-[l2,l1] = l3
-[l3,l1] = l6
-[l3,l2] = l7
-[l4,l2] = -l6
-[l5,l1] = l6
-gap> FindAutos(L);
-rec( 
-  auto := [ [ 1, 0, A13, A14, A15, A16, A17 ], 
-            [ 0, 1, A23, A24, A25, A26, A27 ] ], 
-  eqns := [  ], 
-  vars := [ A11, A12, A13, A14, A15, A16, A17, A21, A22, A23, 
-            A24, A25, A26, A27, D ] )
+gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=2)[1];
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> AutGroupDescription(L);
+rec( auto := [ [ 1, 0, A13, A14, A15, A16, A17 ], 
+               [ 0, 1, A23, A24, A25, A26, A27 ] ], 
+     eqns := [ [  ], [  ] ] )
+gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=2)[2];
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> AutGroupDescription(L);
+rec( auto := [ [ A22^3, 0, A13, A14, A15, A16, A17 ], 
+               [ 0, A22, A23, A24, A25, A26, A27 ] ], 
+     eqns := [ [ A22*A24-1/2*A23^2, A22^2*y-y, 
+                 A22*A23^2*y-2*A24*y, A22^4-1, 
+                 A23^4*y-4*A24^2*y, A22^3*A23^2-2*A24, 
+                 A22^2*A23^4-4*A24^2, A22*A23^6-8*A24^3, 
+                 A23^8-16*A24^4 ] ] )
 \endexample
 
-This description asserts that the Lie p-ring $L$ is generated by the
-first two basis elements $l1, l2$. The entry 'auto' contains the 
-possible images of these two generators, where $Aij$ are indeterminates
-that can take any value in $0, \ldots, p-1$. The entry 'eqns' contains
-additional restrictions on these indeterminates. The entry 'vars' lists
-the indeterminates occuring in the description of the automorphism group.
+In both cases, L is generated by the first two entries in its
+basis and hence the automorphism group matrix has two rows and seven 
+columns. In the first case, L has $p^{10}$ automorphisms inducing the
+identity on the Frattini-quotient of L. In the second case, the automorphism 
+group matrix shows that each automorphism induces a certain type of 
+diagonal matrix on the Frattini-quotient of L and there are further 
+equations among the coefficients of the matrix. These further equations
+are equivalent to $A22^2 = 1$ and $A24 = A22 A23^2 / 2$. Hence L has 
+$2 p^9$ automorphisms.
+
+The entry eqns is a list of lists. The equations in the ith entry of 
+this list have to be satisfied mod $p^i$. 
+
+In a few special cases, the function returns a list of possible 
+automorphisms together with related equations and conditions. 
+We exhibit an example.
+
+\beginexample
+gap> L := LiePRingsByLibrary(7)[489];
+<LiePRing of dimension 7 over prime p with parameters [ x ]>
+gap> AutGroupDescription(L);
+[ rec( auto := [ [ 1, 0, A13, A14, A15, A16, A17 ], 
+                 [ 0, 1, A23, A24, A25, A26, A27 ] ], 
+       comment := "p^8 automorphisms",
+       eqns := [ [ A13^2*x-A13*A23+2*A15*x+A14-A25, 
+              -A13*A23*x+A14*x+A23^2-A25*x-2*A24 ] ] ), 
+  rec( auto := [ [ 0, A12, A13, A14, A15, A16, A17 ], 
+                 [ -x, 0, A23, A24, A25, A26, A27 ] ], 
+      comment := "p^8 automorphisms when x <> 0 mod p", 
+      eqns := [ [ A12^2*A24*x-A12*A13*A23*x+A12*A13*x^2
+                  +2*A12*A15*x^2+A12*A14*x-A13^2*x+A13*x+A15*x-A14, 
+                  -A12^2*A23*x^3+A12*A13*x^3+A12*A23^2*x-A12*A25*x^2
+                  -2*A12*A24*x+A13*A23*x+A13*x^2-A15*x^2+A23*x+A25*x-A24 ], 
+                [ A12*x+1 ] ] ) ]
+\endexample
+
+In this example $A12 x = -1$ modulo $p^2$. We note that different choices
+for $A12$ do not give different automorphisms. Hence a single solution for
+$A12$ is sufficient to describe all automorphisms.
 
