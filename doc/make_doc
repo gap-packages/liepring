@@ -7,6 +7,7 @@
 ##  PDF, PostScript (commented out) and  HTML  (provided  you  have  tth  and
 ##  etc/convert.pl) documentation for the Example Package.
 ##
+set -e
 
 echo "TeXing documentation"
 # TeX the manual
@@ -25,7 +26,7 @@ pdftex manual; pdftex manual
 # The HTML version of the manual
 mkdir -p ../htm
 echo "Creating HTML documentation"
-./convert.pl -t -c -n LiePRing . ../htm
+../../../etc/convert.pl -t -c -n LiePRing . ../htm
 
 #############################################################################
 ##
