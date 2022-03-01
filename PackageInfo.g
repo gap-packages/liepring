@@ -5,6 +5,7 @@ PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
 Version := "2.5",
 Date := "02/02/2021",
+License := "GPL-2.0-or-later",
 
 Persons := [
   rec( 
