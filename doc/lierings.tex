@@ -116,7 +116,7 @@ gap> x := IndeterminateByName("x");;
 gap> S := rec( dim := 5, 
                param := [ x ], 
                prime := p, 
->              tab := [ [ 4, 1 ], [ 3, 1 ], [ 5, x ], [ 4, 1 ], [ 5, 1 ] ] );;
+               tab := [ [ 4, 1 ], [ 3, 1 ], [ 5, x ], [ 4, 1 ], [ 5, 1 ] ] );;
 gap> L := LiePRingBySCTable(S);
 <LiePRing of dimension 5 over prime p with parameters [ x ]>
 gap> ViewPCPresentation(L);
@@ -294,7 +294,6 @@ gap> L := LiePRingsByLibrary(6)[100];
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3, l4, l5, l6 ]
 gap> U := LiePSubring(L, [5*l[1]]);
-WARNING: Dividing by 1/5 in 6.464
 <LiePRing of dimension 3 over prime p>
 gap> BasisOfLiePRing(U);
 [ l1, l4, l6 ]
@@ -312,10 +311,10 @@ gap> K := SpecialisePrimeOfLiePRing(L, 7);
 <LiePRing of dimension 6 over prime 7>
 gap> b := BasisOfLiePRing(K);
 [ l1, l2, l3, l4, l5, l6 ]
-gap> U := LiePSubring(L, [5*b[1]]);
-<LiePRing of dimension 1 over prime p>
+gap> U := LiePSubring(K, [5*b[1]]);
+<LiePRing of dimension 3 over prime p>
 gap> BasisOfLiePRing(U);
-[ l1 + 2*l4 ]
+[ l1, l4, l6 ]
 \endexample
 
 \> LiePIdeal(L, gens)
