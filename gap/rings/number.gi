@@ -434,7 +434,7 @@ NumberOfZeros := function( pp, polys )
     if IsMonomSystem(pp, f) then return ElmNumberMon(pp,f); fi;
 
     # bad case
-    Print("cannot solve ",f,"\n");
+    #Print("cannot solve ",f,"\n");
 
 #    Error("NumberOfZeros cannot find the answer");
 
@@ -488,7 +488,7 @@ ElementNumber := function( pp, units, zeros )
         w := W[i];
         S := Concatenation(zeros, U{w});
         R[i] := NumberOfZeros( pp, S );
-        Print(W[i]," yields ",R[i],"\n");
+        #Print(W[i]," yields ",R[i],"\n");
         if R[i]=fail then return fail; fi;
         T := T + (-1)^Length(w) * R[i];
     od;
