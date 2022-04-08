@@ -1,8 +1,5 @@
-gap> START_TEST("");
-
-#
-gap> sc := rec( dim := 3, prime := 2, tab := [] );;
-gap> L := LiePRingBySCTable(sc);
+gap> SC := rec( dim := 3, prime := 2, tab := [] );;
+gap> L := LiePRingBySCTable(SC);
 <LiePRing of dimension 3 over prime 2>
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3 ]
@@ -12,8 +9,8 @@ gap> 2*l[1];
 0
 gap> l[1] + l[2];
 l1 + l2
-gap> sc := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
-gap> L := LiePRingBySCTableNC(sc);;
+gap> SC := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;
+gap> L := LiePRingBySCTableNC(SC);;
 gap> ViewPCPresentation(L);
 [l2,l1] = l3
 [l3,l1] = l4
@@ -57,7 +54,6 @@ p*l3 = x*l6 + y*l7
 [l3,l1] = l7
 [l4,l2] = l7
 [l4,l3] = w*l6
-gap> 
 gap> SpecialiseLiePRing(L, 7, [x, y], [0,0]);
 <LiePRing of dimension 7 over prime 7>
 gap> ViewPCPresentation(last);
@@ -66,7 +62,6 @@ gap> ViewPCPresentation(last);
 [l3,l1] = l7
 [l4,l2] = l7
 [l4,l3] = 3*l6
-gap> 
 gap> SpecialiseLiePRing(L, 11, [x, y], [0,10]);
 <LiePRing of dimension 7 over prime 11>
 gap> ViewPCPresentation(last);
@@ -76,12 +71,12 @@ gap> ViewPCPresentation(last);
 [l3,l1] = l7
 [l4,l2] = l7
 [l4,l3] = 2*l6
-gap> 
 gap> Cartesian([0,1],[0,1]);
 [ [ 0, 0 ], [ 0, 1 ], [ 1, 0 ], [ 1, 1 ] ]
 gap> List(last, v -> SpecialiseLiePRing(L, 2, [x,y], v));
-[ <LiePRing of dimension 7 over prime 2>, <LiePRing of dimension 7 over prime 
-    2>, <LiePRing of dimension 7 over prime 2>, 
+[ <LiePRing of dimension 7 over prime 2>,
+  <LiePRing of dimension 7 over prime 2>,
+  <LiePRing of dimension 7 over prime 2>,
   <LiePRing of dimension 7 over prime 2> ]
 gap> SpecialiseLiePRing(L, p, [x], [0]);
 <LiePRing of dimension 7 over prime p with parameters [ y, w ]>
@@ -121,11 +116,9 @@ gap> L := LiePRingsByLibrary(6)[100];
 gap> l := BasisOfLiePRing(L);
 [ l1, l2, l3, l4, l5, l6 ]
 gap> U := LiePSubring(L, [5*l[1]]);
-WARNING: Dividing by 1/5 in 6.464
 <LiePRing of dimension 3 over prime p>
 gap> BasisOfLiePRing(U);
 [ l1, l4, l6 ]
-gap> 
 gap>  K := SpecialisePrimeOfLiePRing(L, 5);
 <LiePRing of dimension 6 over prime 5>
 gap>  b := BasisOfLiePRing(K);
@@ -134,15 +127,14 @@ gap> LiePSubring(K, [5*b[1]]);
 <LiePRing of dimension 2 over prime 5>
 gap>  BasisOfLiePRing(last);
 [ l4, l6 ]
-gap> 
 gap> K := SpecialisePrimeOfLiePRing(L, 7);
 <LiePRing of dimension 6 over prime 7>
 gap> b := BasisOfLiePRing(K);
 [ l1, l2, l3, l4, l5, l6 ]
-gap> U := LiePSubring(L, [5*b[1]]);
-<LiePRing of dimension 1 over prime p>
+gap> U := LiePSubring(K, [5*b[1]]);
+<LiePRing of dimension 3 over prime 7>
 gap> BasisOfLiePRing(U);
-[ l1 + 2*l4 ]
+[ l1, l4, l6 ]
 gap> LiePIdeal(L, [l[1]]);
 <LiePRing of dimension 5 over prime p>
 gap> BasisOfLiePRing(last);
@@ -153,6 +145,3 @@ gap> LiePIdeal(K, [b[2]]);
 <LiePRing of dimension 4 over prime 7>
 gap> LiePQuotient(K,last);
 <LiePRing of dimension 2 over prime 7>
-
-#
-gap> STOP_TEST( "", 1);
