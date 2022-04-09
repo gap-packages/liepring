@@ -1,0 +1,233 @@
+# This file is GAP code which in conjunction with the GAP package 
+# LiePRing provides a database of the nilpotent Lie rings of order 
+# p^8 with maximal nilpotency class 7 for p >= 5.
+
+# The code creates a list p8maxclassrings of 69 LiePRings. For a 
+# prime p >= 5, each LiePRing L in this list defines a family of 
+# nilpotent Lie rings of order p^8 with nilpotency class 7.
+
+# The function LiePRingsInFamilyP8MC(L,p) returns this family. 
+
+# For any given prime p >= 5 the 69 families of lie rings of order 
+# p^8 provide a complete and irredundant list of the nilpotent Lie 
+# rings of order p^8 with maximal class.
+
+LIE_DATA_MC8 := [
+[8,2,7,"<a,b|bab,baaab,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass1"],
+[8,2,7,"<a,b|bab,baaab,pa-baaaaaa,pb,baaaaab,class=7>",[[8,1],[3,1],[],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass2"],
+[8,2,7,"<a,b|bab,baaab,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass3"],
+[8,2,7,"<a,b|bab,baaab-baaaaaa,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[],[],[5,1],[],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass4"],
+[8,2,7,"<a,b|bab,baaab-baaaaaa,pa-xbaaaaaa,pb,baaaaab,class=7>",[[8,x],[3,1],[],[4,1],[],[],[5,1],[],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^8",,"p8maxclass5"],
+[8,2,7,"<a,b|bab,baaab-baaaaaa,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[],[],[5,1],[],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass6"],
+[8,2,7,"<a,b|bab-baaaaaa,baaab,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[8,1],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass7"],
+[8,2,7,"<a,b|bab-baaaaaa,baaab,pa-xbaaaaaa,pb,baaaaab,class=7>",[[8,x],[3,1],[],[4,1],[8,1],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^10",,"p8maxclass8"],
+[8,2,7,"<a,b|bab-baaaaaa,baaab,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[8,1],[],[5,1],[],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass9"],
+[8,2,7,"<a,b|bab,baaab,pa,pb,baaaaaa,class=7>",[[],[3,1],[],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass10"],
+[8,2,7,"<a,b|bab,baaab,pa-baaaaab,pb,baaaaaa,class=7>",[[8,1],[3,1],[],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass11"],
+[8,2,7,"<a,b|bab,baaab,pa-wbaaaaab,pb,baaaaaa,class=7>",[[8,w],[3,1],[],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass12"],
+[8,2,7,"<a,b|bab,baaab,pa,pb-baaaaab,baaaaaa,class=7>",[[],[3,1],[8,1],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass13"],
+[8,2,7,"<a,b|bab,baaab,pa-xbaaaaab,pb-baaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,1],[4,1],[],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass14"],
+[8,2,7,"<a,b|bab,baaab-baaaaa,pa,pb,class=7>",[[],[3,1],[],[4,1],[],[],[5,1],[],[7,-1],[],[6,1],[7,1],[8,-1],[],[],[7,1],[8,2],[],[],[],[],[8,1]],,,"p8maxclass15"],
+[8,2,7,"<a,b|bab,baaab-baaaaa,pa-xbaaaaaa,pb,class=7>",[[8,x],[3,1],[],[4,1],[],[],[5,1],[],[7,-1],[],[6,1],[7,1],[8,-1],[],[],[7,1],[8,2],[],[],[],[],[8,1]],"x ne 0, x~xa^7",,"p8maxclass16"],
+[8,2,7,"<a,b|bab,baaab-baaaaa,pa,pb-xbaaaaaa,class=7>",[[],[3,1],[8,x],[4,1],[],[],[5,1],[],[7,-1],[],[6,1],[7,1],[8,-1],[],[],[7,1],[8,2],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass17"],
+[8,2,7,"<a,b|bab,baaab-baaaaa,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[],[],[5,1],[],[7,-1],[],[6,1],[7,1],[8,-1],[],[],[7,1],[8,2],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^7,ya^6]",,"p8maxclass18"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[7,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass19"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[7,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass20"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa-xbaaaaaa,pb,baaaaab,class=7>",[[8,x],[3,1],[],[4,1],[7,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0, x~xa^9",,"p8maxclass21"],
+[8,2,7,"<a,b|bab-baaaaa-baaaaaa,baaab,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[7,1,8,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass22"],
+[8,2,7,"<a,b|bab-baaaaa-baaaaaa,baaab,pa-xbaaaaaa,pb,baaaaab,class=7>",[[8,x],[3,1],[],[4,1],[7,1,8,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0",,"p8maxclass23"],
+[8,2,7,"<a,b|bab-baaaaa-baaaaaa,baaab,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[7,1,8,1],[],[5,1],[8,1],[],[],[6,1],[],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0",,"p8maxclass24"],
+[8,2,7,"<a,b|bab-baaaaa,baaab-baaaaaa,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[7,1],[],[5,1],[8,1],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass25"],
+[8,2,7,"<a,b|bab-baaaaa,baaab-baaaaaa,pa-xbaaaaaa,pb,baaaaab,class=7>",[[8,x],[3,1],[],[4,1],[7,1],[],[5,1],[8,1],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0",,"p8maxclass26"],
+[8,2,7,"<a,b|bab-baaaaa,baaab-baaaaaa,pa,pb-xbaaaaaa,baaaaab,class=7>",[[],[3,1],[8,x],[4,1],[7,1],[],[5,1],[8,1],[8,-1],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 0",,"p8maxclass27"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa,pb,baaaaaa,class=7>",[[],[3,1],[],[4,1],[7,1],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass28"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa-xbaaaaab,pb,baaaaaa,class=7>",[[8,x],[3,1],[],[4,1],[7,1],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^12",,"p8maxclass29"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa,pb-xbaaaaab,baaaaaa,class=7>",[[],[3,1],[8,x],[4,1],[7,1],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^9",,"p8maxclass30"],
+[8,2,7,"<a,b|bab-baaaaa,baaab,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[7,1],[],[5,1],[],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^12,ya^9]",,"p8maxclass31"],
+[8,2,7,"<a,b|bab-baaaa,baaab-xbaaaaaa,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[6,1],[],[5,1],[7,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass32"],
+[8,2,7,"<a,b|bab-baaaa,baaab-xbaaaaaa,pa-ybaaaaaa,pb,baaaaab,class=7>",[[8,y],[3,1],[],[4,1],[6,1],[],[5,1],[7,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],"y ne 0, [x,y]~[x,ya^8]",,"p8maxclass33"],
+[8,2,7,"<a,b|bab-baaaa,baaab-xbaaaaaa,pa,pb-ybaaaaaa,baaaaab,class=7>",[[],[3,1],[8,y],[4,1],[6,1],[],[5,1],[7,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],"y ne 0, [x,y]~[x,ya^6]",,"p8maxclass34"],
+[8,2,7,"<a,b|bab-baaaa,baaab-baaaaaa,pa-xbaaaaaa,pb-ybaaaaaa,baaaaab,class=7>",[[8,x],[3,1],[8,y],[4,1],[6,1],[],[5,1],[7,1],[],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^8,ya^6]",,"p8maxclass35"],
+[8,2,7,"<a,b|bab-baaaa,baaab,pa,pb,baaaaaa,class=7>",[[],[3,1],[],[4,1],[6,1],[],[5,1],[7,1],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass36"],
+[8,2,7,"<a,b|bab-baaaa,baaab,pa-xbaaaaab,pb,baaaaaa,class=7>",[[8,x],[3,1],[],[4,1],[6,1],[],[5,1],[7,1],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^10",,"p8maxclass37"],
+[8,2,7,"<a,b|bab-baaaa,baaab,pa,pb-xbaaaaab,baaaaaa,class=7>",[[],[3,1],[8,x],[4,1],[6,1],[],[5,1],[7,1],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^8",,"p8maxclass38"],
+[8,2,7,"<a,b|bab-baaaa,baaab,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[6,1],[],[5,1],[7,1],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^10,ya^8]",,"p8maxclass39"],
+[8,2,7,"<a,b|bab-baaaa,baaab-baaaaa,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[6,1],[],[5,1],[7,1],[7,-1,8,1],[],[6,1],[7,1],[8,-1],[],[],[7,1],[8,2],[],[],[],[],[8,1]],,,"p8maxclass40"],
+[8,2,7,"<a,b|bab-baaaa-baaaaa,baaab-xbaaaaaa,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[6,1,7,1],[],[5,1],[7,1,8,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 1",,"p8maxclass41"],
+[8,2,7,"<a,b|bab-baaaa-baaaaa,baaab-xbaaaaaa,pa-ybaaaaaa,pb,baaaaab,class=7>",[[8,y],[3,1],[],[4,1],[6,1,7,1],[],[5,1],[7,1,8,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 1, y ne 0",,"p8maxclass42"],
+[8,2,7,"<a,b|bab-baaaa-baaaaa,baaab-xbaaaaaa,pa,pb-ybaaaaaa,baaaaab,class=7>",[[],[3,1],[8,y],[4,1],[6,1,7,1],[],[5,1],[7,1,8,1],[8,-x + 1],[],[6,1],[8,x],[],[],[],[7,1],[],[],[],[],[],[8,1]],"x ne 1, y ne 0",,"p8maxclass43"],
+[8,2,7,"<a,b|bab-baaaa-baaaaa,baaab-baaaaaa,pa-xbaaaaaa,pb-ybaaaaaa,baaaaab,class=7>",[[8,x],[3,1],[8,y],[4,1],[6,1,7,1],[],[5,1],[7,1,8,1],[],[],[6,1],[8,1],[],[],[],[7,1],[],[],[],[],[],[8,1]],,,"p8maxclass44"],
+[8,2,7,"<a,b|bab-baaaa-baaaaa,baaab,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[6,1,7,1],[],[5,1],[7,1],[],[],[6,1],[],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass45"],
+[8,2,7,"<a,b|bab-baaa,baaab-baaaaa,baaaaab,pa,pb,class=7>",[[],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],,,"p8maxclass46"],
+[8,2,7,"<a,b|bab-baaa,baaab-baaaaa,baaaaab,pa-xbaaaaaa,pb,class=7>",[[8,x],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, x~xa^7",,"p8maxclass47"],
+[8,2,7,"<a,b|bab-baaa,baaab-baaaaa,baaaaab,pa,pb-xbaaaaaa,class=7>",[[],[3,1],[8,x],[4,1],[5,1],[],[5,1],[6,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, x~xa^6",,"p8maxclass48"],
+[8,2,7,"<a,b|bab-baaa,baaab-baaaaa,baaaaab,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^7,ya^6]",,"p8maxclass49"],
+[8,2,7,"<a,b|bab-baaa,baaab-baaaaa-baaaaaa,baaaaab,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[8,-1],[],[6,1],[7,1,8,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],,,"p8maxclass50"],
+[8,2,7,"<a,b|bab-baaa-xbaaaaaa,baaab-baaaaa,baaaaab,pa-ybaaaaaa,pb-zbaaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1,8,x],[],[5,1],[6,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, [x,y,z]~[xa^3,ya^7,za^6]",,"p8maxclass51"],
+[8,2,7,"<a,b|bab-baaa,baaab-xbaaaaa,pa,pb,baaaaab,class=7>",[[],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[7,-x + 1],[],[6,1],[7,x],[8,-x + 1],[],[],[7,1],[8,2*x - 1],[],[],[],[],[8,1]],"x ne 1",,"p8maxclass52"],
+[8,2,7,"<a,b|bab-baaa,baaab-xbaaaaa,pa-ybaaaaaa,pb,baaaaab,class=7>",[[8,y],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[7,-x + 1],[],[6,1],[7,x],[8,-x + 1],[],[],[7,1],[8,2*x - 1],[],[],[],[],[8,1]],"x ne 1, y ne 0, [x,y]~[x,ya^7]",,"p8maxclass53"],
+[8,2,7,"<a,b|bab-baaa,baaab-xbaaaaa,pa,pb-ybaaaaaa,baaaaab,class=7>",[[],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[7,-x + 1],[],[6,1],[7,x],[8,-x + 1],[],[],[7,1],[8,2*x - 1],[],[],[],[],[8,1]],"x ne 1, y ne 0, [x,y]~[x,ya^6]",,"p8maxclass54"],
+[8,2,7,"<a,b|bab-baaa,baaab-xbaaaaa,pa-ybaaaaaa,pb-zbaaaaaa,baaaaab,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1],[],[5,1],[6,1],[7,-x + 1],[],[6,1],[7,x],[8,-x + 1],[],[],[7,1],[8,2*x - 1],[],[],[],[],[8,1]],"x ne 1, y,z ne 0, [x,y,z]~[x,ya^7,za^6]",,"p8maxclass55"],
+[8,2,7,"<a,b|bab-baaa,baaab-xbaaaaa-baaaaaa,pa-ybaaaaaa,pb-zbaaaaaa,baaaaab,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1],[],[5,1],[6,1],[7,-x + 1,8,-1],[],[6,1],[7,x,8,1],[8,-x + 1],[],[],[7,1],[8,2*x - 1],[],[],[],[],[8,1]],"x ne 1, all y,z",,"p8maxclass56"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa,pa,pb,baaaaaa,class=7>",[[],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[7,-2],[],[6,1],[7,3],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],,,"p8maxclass57"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa,pa-xbaaaaab,pb,baaaaaa,class=7>",[[8,x],[3,1],[],[4,1],[5,1],[],[5,1],[6,1],[7,-2],[],[6,1],[7,3],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^8",,"p8maxclass58"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa,pa,pb-xbaaaaab,baaaaaa,class=7>",[[],[3,1],[8,x],[4,1],[5,1],[],[5,1],[6,1],[7,-2],[],[6,1],[7,3],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x ne 0, x~xa^7",,"p8maxclass59"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[7,-2],[],[6,1],[7,3],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"x,y ne 0, [x,y]~[xa^8,ya^7]",,"p8maxclass60"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa-baaaaab,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[7,-2,8,-1],[],[6,1],[7,3,8,1],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"[x,y]~[x,-y]",,"p8maxclass61"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa-wbaaaaab,pa-xbaaaaab,pb-ybaaaaab,baaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1],[],[5,1],[6,1],[7,-2,8,-w],[],[6,1],[7,3,8,w],[],[8,1],[],[7,1],[],[8,-1],[],[],[],[],[8,1]],"[x,y]~[x,-y]",,"p8maxclass62"],
+[8,2,7,"<a,b|bab-baaa,baaab-3baaaaa-xbaaaaaa,pa-ybaaaaaa,pb-zbaaaaaa,baaaaab-baaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1],[],[5,1],[6,1],[7,-2,8,-x],[],[6,1],[7,3,8,x],[8,-2],[8,1],[],[7,1],[8,5],[8,-1],[],[],[],[8,1],[8,1]],,,"p8maxclass63"],
+[8,2,7,"<a,b|bab-baaa-baaaaa,baaab-baaaaa,baaaaab,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1,7,1],[],[5,1],[6,1,8,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"[x,y]~[-x,y]",,"p8maxclass64"],
+[8,2,7,"<a,b|bab-baaa-baaaaa-xbaaaaaa,baaab-baaaaa,baaaaab,pa-ybaaaaaa,pb-zbaaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1,7,1,8,x],[],[5,1],[6,1,8,1],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, [x,y,z]~[-x,y,z]",,"p8maxclass65"],
+[8,2,7,"<a,b|bab-baaa-baaaaa,baaab-baaaaa-xbaaaaaa,baaaaab,pa-ybaaaaaa,pb-zbaaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1,7,1],[],[5,1],[6,1,8,1],[8,-x],[],[6,1],[7,1,8,x],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, [x,y,z]~[-x,y,z]",,"p8maxclass66"],
+[8,2,7,"<a,b|bab-baaa-wbaaaaa,baaab-baaaaa,baaaaab,pa-xbaaaaaa,pb-ybaaaaaa,class=7>",[[8,x],[3,1],[8,y],[4,1],[5,1,7,w],[],[5,1],[6,1,8,w],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"[x,y]~[-x,y]",,"p8maxclass67"],
+[8,2,7,"<a,b|bab-baaa-wbaaaaa-xbaaaaaa,baaab-baaaaa,baaaaab,pa-ybaaaaaa,pb-zbaaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1,7,w,8,x],[],[5,1],[6,1,8,w],[],[],[6,1],[7,1],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, [x,y,z]~[-x,y,z]",,"p8maxclass68"],
+[8,2,7,"<a,b|bab-baaa-wbaaaaa,baaab-baaaaa-xbaaaaaa,baaaaab,pa-ybaaaaaa,pb-zbaaaaaa,class=7>",[[8,y],[3,1],[8,z],[4,1],[5,1,7,w],[],[5,1],[6,1,8,w],[8,-x],[],[6,1],[7,1,8,x],[],[],[],[7,1],[8,1],[],[],[],[],[8,1]],"x ne 0, [x,y,z]~[-x,y,z]",,"p8maxclass69"]];
+
+InstallGlobalFunction( LiePRingsByLibraryMC8, function()
+    return List(LIE_DATA_MC8, x -> LiePRingByData(8,x));
+end);
+
+LiePRingsInFamilyMC8 := function( L, P )
+    local W, p, w, d, c, l, para, vals, X, Y, Z, 
+          x, y, z, t, j, k, m, n, r, s, u, v;
+
+    # get data
+    W := PrimitiveRootMod(P);
+    p := PrimeOfLiePRing(L);
+    w := IndeterminateByName("w");
+    d := DimensionOfLiePRing(L);
+    c := LibraryConditions(L)[1];
+    l := LibraryName(L);
+    para := ParametersOfLiePRing(L);
+    vals := [];
+
+    # check
+    if IsInt(p) then return fail; fi;
+    if not IsInt(P) then return fail; fi;
+    if P < 5 then return fail; fi;
+
+    # the 0-parameters case
+    if Length(para) = 0 then 
+        return TranslatedLiePRings( L, P, [], [[]], false );
+    fi;
+
+    # the case of trivial conditions
+    if Length(c) = 0 then 
+        vals := Tuples([0..P-1], Length(para));
+        return TranslatedLiePRings( L, P, para, vals, false );
+    fi;
+
+    # assign variable names
+    x := IndeterminateByName("x");
+    y := IndeterminateByName("y");
+    z := IndeterminateByName("z");
+
+    # 1 parameter
+    if Length(para) = 1 then 
+	# LiePRings Case 3, 6, 9, 14, 17, 20, 48
+        if c = "x ne 0, x~xa^6" then 
+            vals := List([0..Gcd(P-1,6)-1], X -> [(W^X) mod P]);
+        # Case 16, 47, 59
+        elif c = "x ne 0, x~xa^7" then
+            vals := List([0..Gcd(P-1,7)-1], X -> [(W^X) mod P]);
+        # Case 5, 38, 58
+        elif c = "x ne 0, x~xa^8" then
+            vals := List([0..Gcd(P-1,8)-1], X -> [(W^X) mod P]);
+        # Case 21, 30
+        elif c = "x ne 0, x~xa^9" then
+            vals := List([0..Gcd(P-1,9)-1], X -> [(W^X) mod P]);	
+	# Case 8, 37
+	elif c = "x ne 0, x~xa^10" then
+            vals := List([0..Gcd(P-1,10)-1], X -> [(W^X) mod P]);
+	# Case 29
+	elif c = "x ne 0, x~xa^12" then
+            vals := List([0..Gcd(P-1,12)-1], X -> [(W^X) mod P]);	
+        # Case 23, 24, 26, 27
+        elif c = "x ne 0" then 
+            vals := List([1..P-1], X -> [X]);
+        # Case 41, 52    
+        elif c = "x ne 1" then 
+            vals := List(Difference([0..P-1], [1]), X -> [X]);
+        fi;
+        if P>3 and vals = [] then Error("conditions not found - para 1"); fi;
+        return TranslatedLiePRings( L, P, para, vals, false );
+    fi;
+  
+    # 2 parameter 
+    if Length(para) = 2 then 
+
+        # Case 64, 67
+        if c = "[x,y]~[-x,y]" then
+            vals := Cartesian([0..(P-1)/2], [0..(P-1)]);
+        # Case 61, 62
+        elif c = "[x,y]~[x,-y]" then
+            vals := Cartesian([0..(P-1)], [0..(P-1)/2]);
+        # Case 42, 43    
+        elif c = "x ne 1, y ne 0" then
+            vals := Cartesian( Difference([0..(P-1)], [1]), [1..(P-1)]);
+        # Case 54
+        elif c = "x ne 1, y ne 0, [x,y]~[x,ya^6]" then
+            vals := Cartesian(Difference([0..(P-1)],[1]), 
+                      List([0..Gcd(P-1,6)-1], X -> ((W^X) mod P))); 
+        # Case 53
+        elif c = "x ne 1, y ne 0, [x,y]~[x,ya^7]" then
+            vals := Cartesian(Difference([0..(P-1)],[1]), 
+                      List([0..Gcd(P-1,7)-1], X -> ((W^X) mod P)));        
+        # Case 18, 49
+        elif c = "x,y ne 0, [x,y]~[xa^7,ya^6]" then
+            vals := List([0..(Gcd(P-1,6)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,6,1), vals);
+        # Case 35
+        elif c = "x,y ne 0, [x,y]~[xa^8,ya^6]" then
+            vals := List([0..(Gcd(P-1,6)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,3,1), vals);
+        # Case 60
+        elif c = "x,y ne 0, [x,y]~[xa^8,ya^7]" then
+            vals := List([0..(Gcd(P-1,7)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(ValsFunction5(P,7,1), vals);
+        # Case 39
+        elif c = "x,y ne 0, [x,y]~[xa^10,ya^8]" then
+            vals := List([0..(Gcd(P-1,10)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(vals, ValsFunction5(P,5,1));
+        # Case 31
+        elif c = "x,y ne 0, [x,y]~[xa^12,ya^9]" then
+            vals := List([0..(Gcd(P-1,12)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(vals, ValsFunction5(P,4,1));        
+        # Case 34
+        elif c = "y ne 0, [x,y]~[x,ya^6]" then
+            vals := Cartesian([0..(P-1)], 
+                      List([0..Gcd(P-1,6)-1], X -> ((W^X) mod P)));
+        # Case 33
+        elif c = "y ne 0, [x,y]~[x,ya^8]" then
+            vals := Cartesian([0..(P-1)], 
+                      List([0..Gcd(P-1,8)-1], X -> ((W^X) mod P)));
+        fi;
+        if P>3 and vals = [] then Error("conditions not found - para 2"); fi;
+        return TranslatedLiePRings( L, P, para, vals, false );
+    fi;
+
+    # 3 parameter 
+    if Length(para) = 3 then 
+
+        # Case 56
+        if c = "x ne 1, all y,z" then
+            vals := Cartesian(Difference([0..(P-1)],[1]),[0..(P-1)],[0..(P-1)]);
+        # Case 65, 66, 68, 69
+        elif c = "x ne 0, [x,y,z]~[-x,y,z]" then
+            vals := Cartesian([1..(P-1)/2], [0..(P-1)], [0..(P-1)]);        
+        # Case 51
+        elif c = "x ne 0, [x,y,z]~[xa^3,ya^7,za^6]" then
+            vals := List([0..Gcd(P-1,3)-1], X -> ((W^X) mod P));
+            vals := Cartesian(vals, ValsFunction5(P,3,0), [0..(P-1)]);
+        # Case 55
+        elif c = "x ne 1, y,z ne 0, [x,y,z]~[x,ya^7,za^6]" then
+            vals := List([0..(2*Gcd(P-1,3)-1)], X -> ((W^X) mod P));
+            vals := Cartesian(Difference([0..(P-1)],[1]), 
+                      ValsFunction5(P,6,1), vals);
+        fi;
+        if P>3 and vals = [] then Error("conditions not found - para 3"); fi;
+        return TranslatedLiePRings( L, P, para, vals, false );
+    fi;
+end;
+
+
