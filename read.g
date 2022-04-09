@@ -406,4 +406,9 @@ ReadPackage( "liepring", "gap/advan/schur.gi");
 ReadPackage( "liepring", "gap/advan/cover.gi");
 
 
-
+#############################################################################
+##
+## add-on: the lie-p-rings of dimension 8 and maximal class
+##
+LIE_DATA_MC8 := [];
+LiePRing_ReadPackage( "lib/dim8/maxclass");
