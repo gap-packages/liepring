@@ -297,7 +297,7 @@ gap> Filtered(L, x -> LibraryName(x) = "7.1010")[1];
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Special functions for dimension $7$}
+\Section{Special functions for dimension 7}
 
 The database of Lie $p$-rings of dimension $7$ is very large and it may
 be time-consuming (or even impossible due to storage problems) to generate
@@ -341,4 +341,19 @@ gap> LiePRingsDim7ByFile(100, 7);
   <LiePRing of dimension 7 over prime 7>, 
   <LiePRing of dimension 7 over prime 7> ]
 \endexample
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Dimension 8 and maximal class}
+
+Recently, Lee and Vaughan-Lee \cite{MC8} determined the Lie $p$-rings 
+of dimension 8 with maximal class up to isomorphism. This classification
+is now also available in the Lie $p$-ring package via the following functions.
+
+\> LiePRingsByLibraryMC8()
+
+returns a list of $69$ generic Lie $p$-rings. For each of these
+the following function returns the isomorphism types of Lie $p$-rings 
+in the family for a fixed prime $P$ with $P \geq 5$.
+
+\> LiePRingsInFamilyMC8(L, P)
 
