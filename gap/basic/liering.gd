@@ -31,6 +31,7 @@ DeclareGlobalFunction( "ViewShortPresentation");
 DeclareGlobalFunction( "ParametersOfLiePRing");
 DeclareGlobalFunction( "LiePRingsByLibrary");
 DeclareGlobalFunction( "LiePRingsDim7ByFile");
+DeclareGlobalFunction( "LiePRingsByLibraryMC8");
 
 DeclareProperty( "IsLiePRing", IsRing );
 DeclareAttribute( "ClassOfLiePRing", IsLiePRing );
