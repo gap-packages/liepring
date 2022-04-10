@@ -1,3 +1,7 @@
+#
+# This file contains the classification by Lee & Vaughan-Lee.
+# 
+
 # This file is GAP code which in conjunction with the GAP package 
 # LiePRing provides a database of the nilpotent Lie rings of order 
 # p^8 with maximal nilpotency class 7 for p >= 5.
