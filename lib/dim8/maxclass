@@ -91,7 +91,7 @@ InstallGlobalFunction( LiePRingsByLibraryMC8, function()
     return List(LIE_DATA_MC8, x -> LiePRingByData(8,x));
 end);
 
-LiePRingsInFamilyMC8 := function( L, P )
+BindGlobal( "LiePRingsInFamilyMC8", function( L, P )
     local W, p, w, d, c, l, para, vals, X, Y, Z, 
           x, y, z, t, j, k, m, n, r, s, u, v;
 
@@ -232,6 +232,6 @@ LiePRingsInFamilyMC8 := function( L, P )
         if P>3 and vals = [] then Error("conditions not found - para 3"); fi;
         return TranslatedLiePRings( L, P, para, vals, false );
     fi;
-end;
+end );
 
 
