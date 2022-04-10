@@ -69,7 +69,9 @@ BannerString := Concatenation(
     "by Bettina Eick and Michael Vaughan-Lee \n",
     "----------------------------------------------------------------\n" ),
 
-Keywords := ["", "", ""]
+Keywords := ["", "", ""],
+
+TestFile := "tst/testall.g" 
 
 ));
 
