@@ -4,62 +4,71 @@
 <h1>2 Lie p-rings</h1><p>
 <p>
 In this preliminary chapter we recall some of theoretic background
-of Lie rings and Lie <i>p</i>-rings. We refer to Chapter 5 in <a href="biblio.htm#Khu"><cite>Khu</cite></a> 
-for some further details. Throughout we assume that <i>p</i> stands for 
+of Lie rings and Lie <var>p</var>-rings. We refer to Chapter 5 in <a href="biblio.htm#Khu98"><cite>Khu98</cite></a> 
+for some further details. Throughout we assume that <var>p</var> stands for 
 a rational prime.
 <p>
 <p>
-A Lie ring <i>L</i> is an additive abelian group with a multiplication that
+A Lie ring <var>L</var> is an additive abelian group with a multiplication that
 is alternating, bilinear and satisfies the Jacobi identity. We denote 
-the product of two elements <i>g</i> and <i>h</i> of <i>L</i> with <i>g</i> <i>h</i>.
+the product of two elements <var>g</var> and <var>h</var> of <var>L</var> with <var>g h</var>.
 <p>
 <p>
-A subset <i>I</i>  &#8838; <i>L</i> is an <em>ideal</em>in the Lie ring <i>L</i> if it
-is a subgroup of the additive group of <i>L</i> and it satisfies <i>a</i> <i>l</i>  &#8712; <i>I</i> for all <i>a</i>  &#8712; <i>I</i> and <i>l</i>  &#8712; <i>L</i>. As the multiplication in <i>L</i> is
-alternating, it follows that <i>l</i> <i>a</i>  &#8712; <i>I</i> for all <i>l</i>  &#8712; <i>L</i> and <i>a</i>  &#8712; <i>I</i>. Note that if <i>I</i> and <i>J</i> are ideals in <i>L</i>, then <i>I</i> + <i>J</i> = { <i>a</i> + <i>b</i>  | <i>a</i>  &#8712; <i>I</i>, <i>b</i>  &#8712; <i>J</i>} and <i>I</i> <i>J</i> = &#9001;<i>a</i> <i>b</i>  | <i>a</i>  &#8712; <i>I</i>, <i>b</i>  &#8712; <i>J</i> &#9002;<sub>+</sub> are ideals in <i>L</i>.
+A subset <var>I subseteqL</var> is an <em>ideal</em>in the Lie ring <var>L</var> if it
+is a subgroup of the additive group of <var>L</var> and it satisfies <var>a l in
+I</var> for all <var>a inI</var> and <var>l inL</var>. As the multiplication in <var>L</var> is
+alternating, it follows that <var>l a inI</var> for all <var>l inL</var> and <var>a in
+I</var>. Note that if <var>I</var> and <var>J</var> are ideals in <var>L</var>, then <var>I + J = {
+a + b mida inI, b inJ}</var> and <var>I J = langlea b mid
+a inI, b inJ rangle<sub>+</sub></var> are ideals in <var>L</var>.
 <p>
 <p>
-A subset <i>U</i>  &#8838; <i>L</i> is a <em>subring</em>of the Lie ring <i>L</i> if <i>U</i>
-is a Lie ring with respect to the addition and the multiplication of <i>L</i>.
-Every ideal in <i>L</i> is also a subring of <i>L</i>. As usual, for an ideal <i>I</i> in
-<i>L</i> the quotient <i>L</i>/<i>I</i> has the structure of a Lie ring, but this does not
+A subset <var>U subseteqL</var> is a <em>subring</em>of the Lie ring <var>L</var> if <var>U</var>
+is a Lie ring with respect to the addition and the multiplication of <var>L</var>.
+Every ideal in <var>L</var> is also a subring of <var>L</var>. As usual, for an ideal <var>I</var> in
+<var>L</var> the quotient <var>L/I</var> has the structure of a Lie ring, but this does not
 hold for subrings.
 <p>
 <p>
-The <em>lower central series</em>of the Lie ring <i>L</i> is the series of ideals 
-<i>L</i> = &#947;<sub>1</sub>(<i>L</i>)  &#8805; &#947;<sub>2</sub>(<i>L</i>)  &#8805; &#8230; defined by &#947;<sub><i>i</i></sub>(<i>L</i>) = &#947;<sub><i>i</i>&#8722;1</sub>(<i>L</i>) <i>L</i>. We say that <i>L</i> is <em>nilpotent</em>if there exists a 
-natural number <i>c</i> with &#947;<sub><i>c</i>+1</sub>(<i>L</i>) = {0}. The smallest natural number 
-with this property is the <em>class</em>of <i>L</i>.
+The <em>lower central series</em>of the Lie ring <var>L</var> is the series of ideals 
+<var>L = gamma<sub>1</sub>(L) geqgamma<sub>2</sub>(L) geq...</var> defined by <var>gamma<sub>i</sub>(L)
+= gamma<sub>i-1</sub>(L) L</var>. We say that <var>L</var> is <em>nilpotent</em>if there exists a 
+natural number <var>c</var> with <var>gamma<sub>c+1</sub>(L) = {0}</var>. The smallest natural number 
+with this property is the <em>class</em>of <var>L</var>.
 <p>
 <p>
 The notion of nilpotence now allows to state the central definition of 
 this package. A <hr>Lie p-ring is a Lie ring that is nilpotent and has 
-<i>p</i><sup><i>n</i></sup> elements for some natural number <i>n</i>. 
+<var>p<sup>n</sup></var> elements for some natural number <var>n</var>. 
 <p>
 <p>
-Every finite dimensional Lie algebra over a field with <i>p</i> elements 
-is an example for a Lie ring with <i>p</i><sup><i>n</i></sup> elements. Note that there exist
+Every finite dimensional Lie algebra over a field with <var>p</var> elements 
+is an example for a Lie ring with <var>p<sup>n</sup></var> elements. Note that there exist
 non-nilpotent Lie algebras of this type: the Lie algebra consisting of 
-all <i>n</i> &times;<i>n</i> matrices with trace 0 and <i>n</i>  &#8805; 3 is an example. 
-Thus not every Lie ring with <i>p</i><sup><i>n</i></sup> elements is nilpotent. (In contrast
-to the group case, where every group with <i>p</i><sup><i>n</i></sup> elements is nilpotent!)
+all <var>n timesn</var> matrices with trace <var>0</var> and <var>n geq3</var> is an example. 
+Thus not every Lie ring with <var>p<sup>n</sup></var> elements is nilpotent. (In contrast
+to the group case, where every group with <var>p<sup>n</sup></var> elements is nilpotent!)
 <p>
 <p>
-For a Lie <i>p</i>-ring <i>L</i> we define the series <i>L</i> = &#955;<sub>1</sub>(<i>L</i>)  &#8805; &#955;<sub>2</sub>(<i>L</i>)  &#8805; &#8230; 
-via &#955;<sub><i>i</i>+1</sub>(<i>L</i>) = &#955;<sub><i>i</i></sub>(<i>L</i>) <i>L</i> + <i>p</i> &#955;<sub><i>i</i></sub>(<i>L</i>). This 
-series is the <em>lower exponent-<i>p</i> central series</em>of <i>L</i>. Its length 
-is the <em><i>p</i>-class</em>of <i>L</i>. If &#124;<i>L</i>/&#955;<sub>2</sub>(<i>L</i>)&#124; = <i>p</i><sup><i>d</i></sup>, then <i>d</i> is 
-the <em>minimal generator number</em>of <i>L</i>. Similar to the <i>p</i>-group case, 
+For a Lie <var>p</var>-ring <var>L</var> we define the series <var>L = lambda<sub>1</sub>(L) geq
+lambda<sub>2</sub>(L) geq...</var> 
+via <var>lambda<sub>i+1</sub>(L) = lambda<sub>i</sub>(L) L + p lambda<sub>i</sub>(L)</var>. This 
+series is the <em>lower exponent-<var>p</var> central series</em>of <var>L</var>. Its length 
+is the <em><var>p</var>-class</em>of <var>L</var>. If <var>|L/lambda<sub>2</sub>(L)| = p<sup>d</sup></var>, then <var>d</var> is 
+the <em>minimal generator number</em>of <var>L</var>. Similar to the <var>p</var>-group case, 
 one can observe that this is indeed the cardinality of a generating set 
 of smallest possible size.
 <p>
 <p>
-Each Lie <i>p</i>-ring <i>L</i> has a central series <i>L</i> = <i>L</i><sub>1</sub>  &#8805; &#8230; &#8805; <i>L</i><sub><i>n</i></sub>  &#8805; {0} with quotients of order <i>p</i>. Choose <i>l</i><sub><i>i</i></sub>  &#8712; <i>L</i><sub><i>i</i></sub> \<i>L</i><sub><i>i</i>+1</sub> for 1  &#8804; <i>i</i>  &#8804; <i>n</i>. Then (<i>l</i><sub>1</sub>, &#8230;, <i>l</i><sub><i>n</i></sub>) is a generating 
-set of <i>L</i> satisfying that <i>p</i> <i>l</i><sub><i>i</i></sub>  &#8712; <i>L</i><sub><i>i</i>+1</sub> and <i>l</i><sub><i>i</i></sub> <i>l</i><sub><i>j</i></sub>  &#8712; <i>L</i><sub><i>i</i>+1</sub> for 1  &#8804; <i>j</i>  &lt;  <i>i</i>  &#8804; <i>n</i>. We call such a generating sequence 
-a <em>basis</em>for <i>L</i> and we say that <i>L</i> has <em>dimension</em><i>n</i>.
+Each Lie <var>p</var>-ring <var>L</var> has a central series <var>L = L<sub>1</sub> geq...geqL<sub>n</sub> 
+geq{0}</var> with quotients of order <var>p</var>. Choose <var>l<sub>i</sub> inL<sub>i</sub> setminus
+L<sub>i+1</sub></var> for <var>1 leqi leqn</var>. Then <var>(l<sub>1</sub>, ..., l<sub>n</sub>)</var> is a generating 
+set of <var>L</var> satisfying that <var>p l<sub>i</sub> inL<sub>i+1</sub></var> and <var>l<sub>i</sub> l<sub>j</sub> 
+inL<sub>i+1</sub></var> for <var>1 leqj &lt; i leqn</var>. We call such a generating sequence 
+a <em>basis</em>for <var>L</var> and we say that <var>L</var> has <em>dimension</em><var>n</var>.
 <p>
 <p>
 [<a href = "chapters.htm">Up</a>] [<a href ="CHAP001.htm">Previous</a>] [<a href ="CHAP003.htm">Next</a>] [<a href = "theindex.htm">Index</a>]
 <P>
-<address>LiePRing manual<br>October 2018
+<address>LiePRing manual<br>April 2022
 </address></body></html>

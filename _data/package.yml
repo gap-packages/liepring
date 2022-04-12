@@ -1,27 +1,30 @@
 name: LiePRing
-version: 1.9.2
-date: 2018-10-11
+version: 2.6
+date: 2022-04-11
 description: |
     Database and algorithms for Lie p-rings
 
 authors:
-    - name: Michael Vaughan-Lee
-      url: http://users.ox.ac.uk/~vlee
     - name: Bettina Eick
       url: http://www.icm.tu-bs.de/~beick
+    - name: Michael Vaughan-Lee
+      url: http://users.ox.ac.uk/~vlee
 
 maintainers:
-    - name: Michael Vaughan-Lee
-      url: http://users.ox.ac.uk/~vlee
     - name: Bettina Eick
       url: http://www.icm.tu-bs.de/~beick
+    - name: Michael Vaughan-Lee
+      url: http://users.ox.ac.uk/~vlee
 
 GAP: "4.8"
 
 needed-pkgs:
     - name: "LieRing"
       version: ">=2.1"
-      url: "http://www.science.unitn.it/~degraaf/liering.html"
+      url: "https://gap-packages.github.io/liering/"
+    - name: "Singular"
+      version: ">=10"
+      url: "https://gap-packages.github.io/singular/"
 
 www: https://gap-packages.github.io/liepring/
 readme: README.md
@@ -29,7 +32,7 @@ packageinfo: https://gap-packages.github.io/liepring/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/liepring/releases/download/v1.9.2/liepring-1.9.2.tar.gz
+      url: https://github.com/gap-packages/liepring/releases/download/v2.6/liepring-2.6.tar.gz
 
 abstract: |
 

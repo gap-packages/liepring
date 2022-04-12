@@ -3,19 +3,11 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "1.9.2",
-Date := "11/10/2018",
+Version := "2.6",
+Date := "11/04/2022",
+License := "GPL-2.0-or-later",
 
 Persons := [
-  rec( 
-    LastName      := "Vaughan-Lee",
-    FirstNames    := "Michael",
-    IsAuthor      := true,
-    IsMaintainer  := true,
-    Email         := "michael.vaughan-lee@chch.ox.ac.uk",
-    WWWHome       := "http://users.ox.ac.uk/~vlee",
-    Place         := "Oxford",
-    Institution   := "Oxford University"),
   rec( 
     LastName      := "Eick",
     FirstNames    := "Bettina",
@@ -23,8 +15,15 @@ Persons := [
     IsMaintainer  := true,
     Email         := "beick@tu-bs.de",
     WWWHome       := "http://www.icm.tu-bs.de/~beick",
-    Place         := "Braunschweig",
-    Institution   := "TU Braunschweig"),
+    Place         := "TU Braunschweig" ),
+  rec( 
+    LastName      := "Vaughan-Lee",
+    FirstNames    := "Michael",
+    IsAuthor      := true,
+    IsMaintainer  := true,
+    Email         := "michael.vaughan-lee@chch.ox.ac.uk",
+    WWWHome       := "http://users.ox.ac.uk/~vlee",
+    place         := "Oxford"),
 ],
 
 Status           := "accepted",
@@ -59,7 +58,7 @@ AvailabilityTest := ReturnTrue,
 
 Dependencies := rec(
   GAP := "4.8",
-  NeededOtherPackages := [["LieRing", ">=2.1"]],
+  NeededOtherPackages := [["LieRing", ">=2.1"], ["Singular", ">=10"]],
   SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
@@ -67,12 +66,12 @@ Dependencies := rec(
 BannerString := Concatenation( 
     "----------------------------------------------------------------\n",
     "Loading  LiePRing ", ~.Version, "\n",
-    "by Michael Vaughan-Lee and Bettina Eick \n",
+    "by Bettina Eick and Michael Vaughan-Lee \n",
     "----------------------------------------------------------------\n" ),
 
-TestFile := "tst/testall.g",
+Keywords := ["", "", ""],
 
-Keywords := ["", "", ""]
+TestFile := "tst/testall.g" 
 
 ));
 
