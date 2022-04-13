@@ -6,7 +6,7 @@ InsertVec := function( T, J, d, vec )
     return J;
 end;
 
-LiePCover := function(L)
+BindGlobal( "LiePCover", function(L)
     local d, p, S, v, T, c, r, i, j, k, I, Q, P, J, a, b, w, u, e, s, R;
 
     # check
@@ -104,9 +104,9 @@ LiePCover := function(L)
     s := LiePLowerPCentralSeries(R);
     if s <> fail then R!.nucl := s[PClassOfLiePRing(L)+1]; fi;
     return R;
-end;
+end );
 
-IsTerminal := function(L)
+BindGlobal( "IsTerminalLiePRing", function(L)
     local C;
     C := LiePCover(L);
     if IsLiePRing(C) and IsBound(C!.nucl) then 
@@ -114,9 +114,9 @@ IsTerminal := function(L)
     else
         return fail;
     fi;
-end;
+end );
 
-StepSize := function(L)
+BindGlobal( "StepSizeLiePRing", function(L)
     local C;
     C := LiePCover(L);
     if IsLiePRing(C) and IsBound(C!.nucl) then 
@@ -124,15 +124,15 @@ StepSize := function(L)
     else
         return fail;
     fi;
-end;
+end );
 
-AutoOnMult := function( C, mat )
+BindGlobal( "AutoOnMult", function( C, mat )
     local dim, sml, new;
     dim := DimensionOfLiePRing(C);
     sml := dim - DimensionOfLiePRing(C!.mult);
     new := ExtendAuto(C,mat);
     return new{[sml+1..dim]}{[sml+1..dim]};
-end;
+end );
 
 
 
