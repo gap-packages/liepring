@@ -13,33 +13,33 @@
 <li> <A HREF="CHAP004.htm#SECT006">Dimension 8 and maximal class</a>
 </ol><p>
 <p>
-This package gives access to the database of Lie <var>p</var>-rings of order at most
-<var>p<sup>7</sup></var> as determined by Mike Newman, Eamonn O'Brien and Michael Vaughan-Lee,
+This package gives access to the database of Lie <i>p</i>-rings of order at most
+<i>p</i><sup>7</sup> as determined by Mike Newman, Eamonn O'Brien and Michael Vaughan-Lee,
 see <a href="biblio.htm#NOV04"><cite>NOV04</cite></a> and <a href="biblio.htm#OVL05"><cite>OVL05</cite></a>. A description of the database can also be 
 found in <a href="biblio.htm#Notes"><cite>Notes</cite></a>.
 <p>
 <p>
-For each <var>n in{1, ..., 7}</var> this package contains a (finite) list of 
-generic presentations of Lie <var>p</var>-rings. For each prime <var>p geq5</var>, each
-of the generic Lie <var>p</var>-rings gives rise to a family of Lie <var>p</var>-rings over
-the considered prime <var>p</var> by specialising the indeterminates to a certain list
-of values. The resulting lists of Lie <var>p</var>-rings provides a complete and
-irredundant set of isomorphism type representatives of the Lie <var>p</var>-rings of
-order <var>p<sup>n</sup></var>. The generic Lie <var>p</var>-rings of <var>p</var>-class at most 2 can also be
-considered for the prime <var>p=3</var> and yield a list of isomorphism type
-representatives for the Lie <var>p</var>-rings of order <var>3<sup>n</sup></var> and <var>p</var>-class at most 
-<var>2</var>.
+For each <i>n</i>  &#8712; {1, &#8230;, 7} this package contains a (finite) list of 
+generic presentations of Lie <i>p</i>-rings. For each prime <i>p</i>  &#8805; 5, each
+of the generic Lie <i>p</i>-rings gives rise to a family of Lie <i>p</i>-rings over
+the considered prime <i>p</i> by specialising the indeterminates to a certain list
+of values. The resulting lists of Lie <i>p</i>-rings provides a complete and
+irredundant set of isomorphism type representatives of the Lie <i>p</i>-rings of
+order <i>p</i><sup><i>n</i></sup>. The generic Lie <i>p</i>-rings of <i>p</i>-class at most 2 can also be
+considered for the prime <i>p</i>=3 and yield a list of isomorphism type
+representatives for the Lie <i>p</i>-rings of order 3<sup><i>n</i></sup> and <i>p</i>-class at most 
+2.
 <p>
 <p>
 The Lazard correspondence has been used to check the correctness of the
-database of Lie <var>p</var>-rings: for various small primes it has been checked
-that the Lie <var>p</var>-rings of this database define non-isomorphic finite
-<var>p</var>-groups.
+database of Lie <i>p</i>-rings: for various small primes it has been checked
+that the Lie <i>p</i>-rings of this database define non-isomorphic finite
+<i>p</i>-groups.
 <p>
 <p>
 In the following we describe functions to access the database. Throughout 
-this chapter, we assume that <var>dim in{1, ..., 7}</var> and <var>P</var> is a prime 
-with <var>P neq2</var>.
+this chapter, we assume that <i>dim</i>  &#8712; {1, &#8230;, 7} and <i>P</i> is a prime 
+with <i>P</i>  &#8800; 2.
 <p>
 <p>
 <h2><a name="SECT001">4.1 Accessing Lie p-rings</a></h2>
@@ -48,20 +48,20 @@ with <var>P neq2</var>.
 <li><code>LiePRingsByLibrary( dim )</code>
 <li><code>LiePRingsByLibrary( dim, gen, cl )</code>
 <p>
-returns the generic Lie <var>p</var>-rings of dimension <var>dim</var> in the database. The
-second form returns the Lie <var>p</var>-rings of minimal generator number <var>gen</var> 
-and <var>p</var>-class <var>cl</var> only. 
+returns the generic Lie <i>p</i>-rings of dimension <i>dim</i> in the database. The
+second form returns the Lie <i>p</i>-rings of minimal generator number <i>gen</i> 
+and <i>p</i>-class <i>cl</i> only. 
 <p>
 <li><code>LiePRingsByLibrary( dim, P )</code>
 <li><code>LiePRingsByLibrary( dim, P, gen, cl )</code>
 <p>
-returns isomorphism type representatives of ordinary Lie <var>p</var>-rings of 
-dimension <var>dim</var> for the prime <var>P</var>. The second form returns the Lie <var>p</var>-rings 
-of minimal generator number <var>gen</var> and <var>p</var>-class <var>cl</var> only. The function 
-assumes <var>P geq3</var> and for <var>P = 3</var> there are only the Lie <var>p</var>-rings of 
-<var>p</var>-class at most 2 available.
+returns isomorphism type representatives of ordinary Lie <i>p</i>-rings of 
+dimension <i>dim</i> for the prime <i>P</i>. The second form returns the Lie <i>p</i>-rings 
+of minimal generator number <i>gen</i> and <i>p</i>-class <i>cl</i> only. The function 
+assumes <i>P</i>  &#8805; 3 and for <i>P</i> = 3 there are only the Lie <i>p</i>-rings of 
+<i>p</i>-class at most 2 available.
 <p>
-The first example yields the generic Lie <var>p</var>-rings of dimension <var>4</var>.
+The first example yields the generic Lie <i>p</i>-rings of dimension 4.
 <p>
 <pre>
 gap&gt; LiePRingsByLibrary(4);
@@ -83,7 +83,7 @@ gap&gt; LiePRingsByLibrary(4);
 </pre>
 <p>
 The next example yields the isomorphism type representatives of Lie 
-<var>p</var>-rings of dimension <var>3</var> for the prime <var>5</var>.
+<i>p</i>-rings of dimension 3 for the prime 5.
 <p>
 <pre>
 gap&gt; LiePRingsByLibrary(3, 5);
@@ -94,8 +94,8 @@ gap&gt; LiePRingsByLibrary(3, 5);
   &lt;LiePRing of dimension 3 over prime 5&gt; ]
 </pre>
 <p>
-The following example extracts the generic Lie <var>p</var>-rings of dimension
-<var>5</var> with minimal generator number <var>2</var> and <var>p</var>-class <var>4</var>.
+The following example extracts the generic Lie <i>p</i>-rings of dimension
+5 with minimal generator number 2 and <i>p</i>-class 4.
 <p>
 <pre>
 gap&gt; LiePRingsByLibrary(5, 2, 4);
@@ -117,8 +117,8 @@ gap&gt; LiePRingsByLibrary(5, 2, 4);
 </pre>
 <p>
 Finally, we determine the isomorphism type representatives of Lie
-<var>p</var>-rings of dimension <var>5</var>, minimal generator number <var>2</var> and <var>p</var>-class
-<var>4</var> for the prime <var>7</var>.
+<i>p</i>-rings of dimension 5, minimal generator number 2 and <i>p</i>-class
+4 for the prime 7.
 <p>
 <pre>
 gap&gt; LiePRingsByLibrary(5, 7, 2, 4);
@@ -143,8 +143,8 @@ gap&gt; LiePRingsByLibrary(5, 7, 2, 4);
 <a name = "SSEC002.2"></a>
 <li><code>NumberOfLiePRings( dim )</code>
 <p>
-returns the number of generic Lie <var>p</var>-rings in the database of the
-considered dimension for <var>dim { 1, ..., 7}</var>.
+returns the number of generic Lie <i>p</i>-rings in the database of the
+considered dimension for <i>dim</i> { 1, &#8230;, 7}.
 <p>
 <pre>
 gap&gt; List([1..7], x -&gt; NumberOfLiePRings(x));
@@ -153,17 +153,17 @@ gap&gt; List([1..7], x -&gt; NumberOfLiePRings(x));
 <p>
 <li><code>NumberOfLiePRings( dim, P )</code>
 <p>
-returns the number of isomorphism types of ordinary Lie <var>p</var>-rings of order
-<var>P<sup>dim</sup></var> in the database. If <var>P geq5</var>, then this is the number of all
-isomorphism types of Lie <var>p</var>-rings of order <var>P<sup>dim</sup></var> and if <var>P = 3</var> then
-this is the number of all isomorphism types of Lie <var>p</var>-rings of <var>p</var>-class
-at most <var>2</var>. If <var>P geq7</var>, then this number coincides with
-NumberSmallGroups(<var>P<sup>dim</sup></var>).
+returns the number of isomorphism types of ordinary Lie <i>p</i>-rings of order
+<i>P</i><sup><i>dim</i></sup> in the database. If <i>P</i>  &#8805; 5, then this is the number of all
+isomorphism types of Lie <i>p</i>-rings of order <i>P</i><sup><i>dim</i></sup> and if <i>P</i> = 3 then
+this is the number of all isomorphism types of Lie <i>p</i>-rings of <i>p</i>-class
+at most 2. If <i>P</i>  &#8805; 7, then this number coincides with
+NumberSmallGroups(<i>P</i><sup><i>dim</i></sup>).
 <p>
 <a name = "SSEC002.3"></a>
 <li><code>NumberOfLiePRingsInFamily( L )</code>
 <p>
-returns the number of Lie <var>p</var>-rings associated to <var>L</var> as a polynomial in
+returns the number of Lie <i>p</i>-rings associated to <i>L</i> as a polynomial in
 <var>p</var> and possibly some residue classes.
 <p>
 <pre>
@@ -178,17 +178,17 @@ gap&gt; NumberOfLiePRingsInFamily(L);
 <p>
 <h2><a name="SECT003">4.3 Searching the database</a></h2>
 <p><p>
-We now consider a generic Lie <var>p</var>-ring <var>L</var> from the database and consider
-the family of ordinary Lie <var>p</var>-rings that arise from it.
+We now consider a generic Lie <i>p</i>-ring <var>L</var> from the database and consider
+the family of ordinary Lie <i>p</i>-rings that arise from it.
 <p>
 <a name = "SSEC003.1"></a>
 <li><code>LiePRingsInFamily( L, P )</code>
 <p>
-takes as input a generic Lie <var>p</var>-ring <var>L</var> from the database and a prime <var>P</var> 
-and returns all Lie <var>p</var>-rings determined by <var>L</var> and <var>P</var> up to isomorphism. 
-This function returns fail if the generic Lie <var>p</var>-ring does not exist for 
+takes as input a generic Lie <i>p</i>-ring <var>L</var> from the database and a prime <var>P</var> 
+and returns all Lie <i>p</i>-rings determined by <var>L</var> and <var>P</var> up to isomorphism. 
+This function returns fail if the generic Lie <i>p</i>-ring does not exist for 
 the special prime <var>P</var>; this may be due to the conditions on the prime or
-(if <var>P=3</var>) to the <var>p</var>-class of the Lie <var>p</var>-ring. 
+(if <i>P</i>=3) to the <i>p</i>-class of the Lie <i>p</i>-ring. 
 <p>
 <pre>
 gap&gt; L := LiePRingsByLibrary(7)[118];
@@ -203,8 +203,8 @@ gap&gt; 13^2;
 169
 </pre>
 <p>
-The following example shows how to determine all Lie <var>p</var>-rings of dimension
-<var>5</var> and <var>p</var>-class <var>4</var> over the prime <var>29</var> up to isomorphism.
+The following example shows how to determine all Lie <i>p</i>-rings of dimension
+5 and <i>p</i>-class 4 over the prime 29 up to isomorphism.
 <p>
 <pre>
 gap&gt; L := LiePRingsByLibrary(5);;
@@ -253,36 +253,36 @@ gap&gt; K := Filtered(Flat(K), x -&gt; x&lt;&gt;fail);
 <p>
 <h2><a name="SECT004">4.4 More details</a></h2>
 <p><p>
-Let <var>L</var> be a Lie <var>p</var>-ring from the database. Then the following additional
+Let <i>L</i> be a Lie <i>p</i>-ring from the database. Then the following additional
 attributes are available. 
 <p>
 <a name = "SSEC004.1"></a>
 <li><code>LibraryName(L)</code>
 <p>
-returns a string with the name of <var>L</var> in the database. See p567.pdf for
+returns a string with the name of <i>L</i> in the database. See p567.pdf for
 further background.
 <p>
 <a name = "SSEC004.2"></a>
 <li><code>ShortPresentation(L)</code>
 <p>
-returns a string exhibiting a short presentation of <var>L</var>.
+returns a string exhibiting a short presentation of <i>L</i>.
 <p>
 <a name = "SSEC004.3"></a>
 <li><code>LibraryConditions(L)</code>
 <p>
-returns the conditions on <var>L</var>. This is a list of two strings. The first
-string exhibits the conditions on the parameters of <var>L</var>, the second shows
+returns the conditions on <i>L</i>. This is a list of two strings. The first
+string exhibits the conditions on the parameters of <i>L</i>, the second shows
 the conditions on primes.
 <p>
 <a name = "SSEC004.4"></a>
 <li><code>MinimalGeneratorNumberOfLiePRing(L)</code>
 <p>
-returns the minimial generator number of <var>L</var>.
+returns the minimial generator number of <i>L</i>.
 <p>
 <a name = "SSEC004.5"></a>
 <li><code>PClassOfLiePRing(L)</code>
 <p>
-returns the <var>p</var>-class of <var>L</var>.
+returns the <i>p</i>-class of <i>L</i>.
 <p>
 <pre>
 gap&gt; L := LiePRingsByLibrary(7)[118];
@@ -293,7 +293,7 @@ gap&gt; LibraryConditions(L);
 [ "[x,y]~[x,-y]", "p=1 mod 4" ]
 </pre>
 <p>
-All of the information listed in this section is inherited when <var>L</var>
+All of the information listed in this section is inherited when <i>L</i>
 is specialised.
 <p>
 <pre>
@@ -307,7 +307,7 @@ gap&gt; LibraryConditions(K);
 [ "[x,y]~[x,-y]", "p=1 mod 4" ]
 </pre>
 <p>
-The following example shows how to find a Lie <var>p</var>-ring with a 
+The following example shows how to find a Lie <i>p</i>-ring with a 
 given name in the database.
 <p>
 <pre>
@@ -319,28 +319,28 @@ gap&gt; Filtered(L, x -&gt; LibraryName(x) = "7.1010")[1];
 <p>
 <h2><a name="SECT005">4.5 Special functions for dimension 7</a></h2>
 <p><p>
-The database of Lie <var>p</var>-rings of dimension <var>7</var> is very large and it may
+The database of Lie <i>p</i>-rings of dimension 7 is very large and it may
 be time-consuming (or even impossible due to storage problems) to generate
-all Lie <var>p</var>-rings of dimension <var>7</var> for a given prime <var>P</var>. 
+all Lie <i>p</i>-rings of dimension 7 for a given prime <i>P</i>. 
 <p>
 Thus there are some special functions available that can be used to access
-a particular set of Lie <var>p</var>-rings of dimension <var>7</var> only. In particular, it
-is possible to consider the descendants of a single Lie <var>p</var>-ring of smaller
-dimension by itself. The Lie <var>p</var>-rings of this type are all stored in one
+a particular set of Lie <i>p</i>-rings of dimension 7 only. In particular, it
+is possible to consider the descendants of a single Lie <i>p</i>-ring of smaller
+dimension by itself. The Lie <i>p</i>-rings of this type are all stored in one
 file of the library. Thus, equivalently, it is possible to access the Lie
-<var>p</var>-rings in one single file only.
+<i>p</i>-rings in one single file only.
 <p>
 The table LIE_TABLE contains a list of all possible files together with
-the number of Lie <var>p</var>-rings generated by their corresponding Lie <var>p</var>-rings. 
+the number of Lie <i>p</i>-rings generated by their corresponding Lie <i>p</i>-rings. 
 <p>
 <a name = "SSEC005.2"></a>
 <li><code>LiePRingsDim7ByFile( nr )</code>
 <p>
-returns the generic Lie <var>p</var>-rings in file number <var>nr</var>.
+returns the generic Lie <i>p</i>-rings in file number <i>nr</i>.
 <p>
 <li><code>LiePRingsDim7ByFile( nr, P )</code>
 <p>
-returns the isomorphism types of Lie <var>p</var>-rings in file number <var>nr</var> for
+returns the isomorphism types of Lie <i>p</i>-rings in file number <i>nr</i> for
 the prime <var>P</var>.
 <p>
 <pre>
@@ -366,16 +366,16 @@ gap&gt; LiePRingsDim7ByFile(100, 7);
 <p>
 <h2><a name="SECT006">4.6 Dimension 8 and maximal class</a></h2>
 <p><p>
-Recently, Lee and Vaughan-Lee <a href="biblio.htm#MC8"><cite>MC8</cite></a> determined the Lie <var>p</var>-rings 
+Recently, Lee and Vaughan-Lee <a href="biblio.htm#MC8"><cite>MC8</cite></a> determined the Lie <i>p</i>-rings 
 of dimension 8 with maximal class up to isomorphism. This classification
-is now also available in the Lie <var>p</var>-ring package via the following functions.
+is now also available in the Lie <i>p</i>-ring package via the following functions.
 <p>
 <a name = "SSEC006.1"></a>
 <li><code>LiePRingsByLibraryMC8()</code>
 <p>
-returns a list of <var>69</var> generic Lie <var>p</var>-rings. For each of these
-the following function returns the isomorphism types of Lie <var>p</var>-rings 
-in the family for a fixed prime <var>P</var> with <var>P geq5</var>.
+returns a list of 69 generic Lie <i>p</i>-rings. For each of these
+the following function returns the isomorphism types of Lie <i>p</i>-rings 
+in the family for a fixed prime <i>P</i> with <i>P</i>  &#8805; 5.
 <p>
 <a name = "SSEC006.2"></a>
 <li><code>LiePRingsInFamilyMC8(L, P)</code>
