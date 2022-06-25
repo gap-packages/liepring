@@ -14,7 +14,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := true,
     Email         := "beick@tu-bs.de",
-    WWWHome       := "http://www.icm.tu-bs.de/~beick",
+    WWWHome       := "http://www.iaa.tu-bs.de/beick",
     Place         := "TU Braunschweig" ),
   rec( 
     LastName      := "Vaughan-Lee",
