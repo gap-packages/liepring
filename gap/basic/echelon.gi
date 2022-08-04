@@ -1,5 +1,5 @@
 
-EchelonForm := function(M)
+BindGlobal( "EchelonForm", function(M)
     local A, n, m, F, B, c, i, j, C, r, k;
 
     # copy, get dims and field and get rid off some trivial cases
@@ -55,6 +55,6 @@ EchelonForm := function(M)
    
     if B*M <> A then Error("echelon form wrong"); fi;
     return [A,B];
-end;
+end );
                 
                      

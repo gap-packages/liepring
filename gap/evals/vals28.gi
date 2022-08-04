@@ -1,5 +1,5 @@
 
-ValsPreFunction28 := function(P, case)
+BindGlobal( "ValsPreFunction28", function(P, case)
 local W, F, SQ, i, CU, x, y, z, t, u, v, k, ii,  
 transversal3, sofar, transversal4, transversal5, transversal6, params, 
 xrange, yrange, zrange, urange, vrange, mats, y5, y6, y3, y4, A, y1, y2, 
@@ -2354,9 +2354,9 @@ for i in [1..Length(params)] do
 od;
 
 return params;
-end;
+end );
 
-ValsFunction28 := function(P, case)
+BindGlobal( "ValsFunction28", function(P, case)
     local vals, i;
     vals := ValsPreFunction28(P, case);
     if IsInt(case) and case < 24 then 
@@ -2370,5 +2370,5 @@ ValsFunction28 := function(P, case)
        vals[24] := List(vals[24], x->[x[4],x[5],x[6],x[1],x[7],x[2],x[3]]);
        return vals;
     fi;
-end;
+end );
 

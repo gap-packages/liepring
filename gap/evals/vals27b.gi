@@ -1,16 +1,16 @@
 
-Leading27b:=function(A)
+BindGlobal( "Leading27b", function(A)
   if A[1][1] <> 0*A[1][1] then return A[1][1]; fi;
   if A[1][2] <> 0*A[1][1] then return A[1][2]; fi;
   if A[2][1] <> 0*A[1][1] then return A[2][1]; fi;
   return A[2][2];
-end;
+end );
 
-Linearise27b := function(list)
+BindGlobal( "Linearise27b", function(list)
    return list{[10,11,12,7,1,2,3,4,5,6,8,9]};
-end;
+end );
 
-ValsFunction27b := function(P)
+BindGlobal( "ValsFunction27b", function(P)
 local W, F, SQ, x, y, i, range, y1, y2, y3, y4, y4range, y3range, new, index,
       A, r, a, d, b, c, B, C, k, D, z1, z2, z3, z4, ind1, l, 
       y5, y6, A2, D2, n, D3, params, mats, k2, k1, s, c1, b1, u, lns, v,
@@ -392,5 +392,5 @@ od;
 l := (P^4+P^3+6*P^2+9*P+13)/2;
 if Length(params) <> l then Error("wrong number"); fi;
 return params;
-end;
+end );
 

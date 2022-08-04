@@ -2,7 +2,7 @@
 ##
 ## determine variables in polynomial or list of polynomials
 ##
-VarsOfPoly := function( poly )
+BindGlobal( "VarsOfPoly", function( poly )
     local e, v, i, j;
     e := ExtRepPolynomialRatFun(poly);
     v := [];
@@ -15,41 +15,41 @@ VarsOfPoly := function( poly )
     v := List(v, x -> Indeterminate(Rationals, x));
     v := Filtered(v, x -> x <> IndeterminateByName("w"));
     return v;
-end;
+end );
 
-VarsOfSCTab := function( list )
+BindGlobal( "VarsOfSCTab", function( list )
     local l;
     l := Filtered(Flat(list), x -> IsPolynomial(x) );
     l := Set(Flat(List(l, VarsOfPoly)));
     l := List(l, x -> IndeterminateNumberOfUnivariateRationalFunction(x));
     return List(Set(l), x -> Indeterminate(Rationals, x));
-end;
+end );
 
 ##
 ## get coeffs
 ##
-CoefficientsOfPolynomial := function( f )
+BindGlobal( "CoefficientsOfPolynomial", function( f )
     local e;
     e := ExtRepPolynomialRatFun(f);
     return e{[2,4..Length(e)]};
-end;
+end );
 
 ##
 ## split rat fun a/b into a and b so that a and b have int coeffs
 ##
-SplitRatFun := function( rf )
+BindGlobal( "SplitRatFun", function( rf )
     local a, b, u, v;
     a := NumeratorOfRationalFunction(rf);
     b := DenominatorOfRationalFunction(rf);
     u := Lcm(List(CoefficientsOfPolynomial(a), DenominatorRat));
     v := Lcm(List(CoefficientsOfPolynomial(b), DenominatorRat));
     return Lcm(u,v)*[a,b];
-end;
+end );
 
 ##
 ## reduce mod zeros
 ##
-RedPol := function( zeros, elm )
+BindGlobal( "RedPol", function( zeros, elm )
     local u, v, a, b;
 
     # set up
@@ -63,13 +63,13 @@ RedPol := function( zeros, elm )
     if b[1] = 0*b[1] then Error("division by zero"); fi;
 
     return a[1]/b[1];
-end;
+end );
 
 
 ##
 ## degree of multivariate poly
 ##
-DegreeOfPoly := function( poly )
+BindGlobal( "DegreeOfPoly", function( poly )
     local e, d, i, s, j, w;
     e := ExtRepPolynomialRatFun(poly);
     w := ExtRepPolynomialRatFun(IndeterminateByName("w"))[1][1];
@@ -82,32 +82,33 @@ DegreeOfPoly := function( poly )
         d := Maximum(d,s);
     od;
     return d;
-end;
+end );
 
 ##
 ## factors of poly
 ##
-SQPart := function(pp, h)
+BindGlobal( "SQPart", function(pp, h)
     local f;
     f := Collected(MyFactors(pp, h));
     return Product(List(f, x -> x[1]));
-end;
+end );
 
-SQParts := function(pp, h)
+BindGlobal( "SQParts", function(pp, h)
     local f;
     f := Collected(MyFactors(pp, h));
     return List(f, x -> x[1]);
-end;
+end );
 
 ##
 ## constant poly versus int
 ##
-IsCRF := function ( elm )
+BindGlobal( "IsCRF", function ( elm )
     if IsRat( elm )  then return true; fi;
     return IsConstantRationalFunction( elm );
-end;
+end );
 
-MakeInt := function(M)
+DeclareGlobalFunction( "MakeInt" );
+InstallGlobalFunction( "MakeInt", function(M)
     local i, j;
     if IsList(M) then
         return List(M, x -> MakeInt(x));
@@ -120,12 +121,12 @@ MakeInt := function(M)
     else
         return M;
     fi;
-end;
+end );
 
 ##
 ## groebner square free
 ##
-SquareFreeGB := function( polys )
+BindGlobal( "SquareFreeGB", function( polys )
     local f, S, w, i;
     f := ShallowCopy(polys);
     w := IndeterminateByName("w");
@@ -138,21 +139,21 @@ SquareFreeGB := function( polys )
         f := CallGroebner(f);
     until S = f; 
     return f;
-end;
+end );
 
 #############################################################################
 ##
 ## Valuation and Degree
 ##
-PValuePol := function(elm)
+BindGlobal( "PValuePol", function(elm)
     local p, c, j;
     p := IndeterminateByName("p");
     c := PolynomialCoefficientsOfPolynomial( elm*p^0, p );
     j := 1; while c[j] = 0*c[j] do j := j + 1; od;
     return j-1;
-end;
+end );
 
-PValue := function( elm )
+BindGlobal( "PValue", function( elm )
     local a, b;
     if elm = 0*elm then return fail; fi;
     if IsCRF(elm) then return 0; fi;
@@ -160,9 +161,9 @@ PValue := function( elm )
     b := PValuePol(DenominatorOfRationalFunction(elm));
     if b <> 0 then Error("check this out"); fi;
     return a-b;
-end;
+end );
 
-PDegree := function( elm )
+BindGlobal( "PDegree", function( elm )
     local p, a, b, c, d;
     if elm = 0*elm then return fail; fi;
     if IsCRF(elm) then return 0; fi;
@@ -172,9 +173,9 @@ PDegree := function( elm )
     c := Length(PolynomialCoefficientsOfPolynomial( a, p ))-1;
     d := Length(PolynomialCoefficientsOfPolynomial( b, p ))-1;
     return c-d;
-end;
+end );
 
-FDegree := function(elm)
+BindGlobal( "FDegree", function(elm)
     local p, a, b, e, m;
     if elm=0*elm then return -infinity; fi;
     if IsCRF(elm) then return 0; fi;
@@ -185,9 +186,9 @@ FDegree := function(elm)
     e := e{[1,3..Length(e)-1]};
     m := List(e, x -> Sum(x{[2,4..Length(x)]}));
     return Maximum(m);
-end;
+end );
 
-FSummands := function(elm)
+BindGlobal( "FSummands", function(elm)
     local a, b, p, e;
     if elm=0*elm then return 0; fi;
     if IsCRF(elm) then return 1; fi;
@@ -196,6 +197,6 @@ FSummands := function(elm)
     b := DenominatorOfRationalFunction(elm)*p^0;
     e := ExtRepPolynomialRatFun(a);
     return Length(e)/2;
-end;
+end );
 
 

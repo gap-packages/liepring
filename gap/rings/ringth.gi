@@ -4,7 +4,7 @@
 ## pp = Parameters
 ##
 
-RingInvariantsByData := function( l, d, pp )
+BindGlobal( "RingInvariantsByData", function( l, d, pp )
     local p, w, x, y, z, t, u, v, s, g3, g4, g8, units, zeros;
 
     p := IndeterminateByName("p");
@@ -626,7 +626,7 @@ RingInvariantsByData := function( l, d, pp )
     fi; 
 
     return rec( units := units, zeros := CallGroebner(zeros));
-end;
+end );
 
 
 

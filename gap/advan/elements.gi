@@ -1,5 +1,5 @@
          
-LPRWeights := function(L)
+BindGlobal( "LPRWeights", function(L)
     local d, s, t, b, w, i;
 
     # set up and check
@@ -17,9 +17,9 @@ LPRWeights := function(L)
 
     # return
     return w;
-end;
+end );
 
-LPRDefs := function(L)
+BindGlobal( "LPRDefs", function(L)
     local d, b, T, S, U, v, c, i, j, k, e;
 
     # check
@@ -54,5 +54,5 @@ LPRDefs := function(L)
     # add them and return
     L!.defs := v;
     return v;
-end;
+end );
 

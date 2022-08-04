@@ -1,5 +1,5 @@
 
-EvaluatePorcPoly := function( f, P )
+BindGlobal( "EvaluatePorcPoly", function( f, P )
     local inds, vals, p, g3, g4, g5, g6, g7, g8, g9, h3, s16;
 
     if not IsPrimeInt(P) or P = 2 then return false; fi;
@@ -27,9 +27,9 @@ EvaluatePorcPoly := function( f, P )
 
     # return
     return Value( f, inds, vals );
-end;
+end );
 
-DegreePorcPoly := function( f )
+BindGlobal( "DegreePorcPoly", function( f )
     local p, a, b;
     if IsInt(f) then return 0; fi;
     p := IndeterminateByName("p");
@@ -37,9 +37,9 @@ DegreePorcPoly := function( f )
     b := DegreeIndeterminate(DenominatorOfRationalFunction(f),p);
     if b <> 0 then Error("something wrong with degrees "); fi;
     return a;
-end;
+end );
 
-EliminateDenominator := function( f )
+BindGlobal( "EliminateDenominator", function( f )
     local g3, g4, g5, g7, g8, a, b;
    
     # check the easy case
@@ -61,9 +61,9 @@ EliminateDenominator := function( f )
     if b = g8 then return a*(b^2/64 - 7*b/32 + 7/8); fi;
  
     Error("unknown denominator");
-end;
+end );
 
-SimplifyPorcPoly := function( f )
+BindGlobal( "SimplifyPorcPoly", function( f )
     local g, g3, g4, g5, g7, o, g8, g9, p, h3, s16;
 
     if IsInt(f) then return f; fi;
@@ -109,9 +109,9 @@ SimplifyPorcPoly := function( f )
     fi;
 
     return f;
-end;
+end );
     
-CharFunctionByIsomRestrictions := function( L )
+BindGlobal( "CharFunctionByIsomRestrictions", function( L )
     local d, c, p, l, para, w, x, y, z, t, j, k, m, n, r, s, u, v, 
           g3, h3, g4, g5, g7, g8, g9, s16, a;
 
@@ -567,9 +567,9 @@ CharFunctionByIsomRestrictions := function( L )
             return p^3*(p-1)/g5;
         fi;
     fi;
-end;
+end );
 
-CharFunctionByPrimeRestrictions := function( L )
+BindGlobal( "CharFunctionByPrimeRestrictions", function( L )
 
     local g3, g4, g5, g7, g8, g9, s16, h3, c;
 
@@ -614,12 +614,12 @@ CharFunctionByPrimeRestrictions := function( L )
         return (16-s16)/8;
     fi;
     return 1;
-end;
+end );
 
-NumberOfLiePRingsInFamily := function( L )
+BindGlobal( "NumberOfLiePRingsInFamily", function( L )
     local a, b, f;
     a := CharFunctionByIsomRestrictions(L);
     b := CharFunctionByPrimeRestrictions(L);
     f := EliminateDenominator(a*b);
     return SimplifyPorcPoly(f);
-end;
+end );

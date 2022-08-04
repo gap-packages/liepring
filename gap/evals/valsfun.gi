@@ -3,11 +3,11 @@
 ## Valuationfunctions
 ##
 
-SquaresModP := function(P)
+BindGlobal( "SquaresModP", function(P)
     return Set(List([0..P-1], X -> X^2 mod P));
-end;
+end );
 
-IsSquareModP := function(P, r)
+BindGlobal( "IsSquareModP", function(P, r)
     local i;
     r := r mod P;
     if r = 0 then return 0; fi;
@@ -15,42 +15,42 @@ IsSquareModP := function(P, r)
         if r = (i^2 mod P) then return i; fi;
     od;
     return false;
-end;
+end );
 
-LeastNonSquareModP := function(P)
+BindGlobal( "LeastNonSquareModP", function(P)
     local S, i;
     S := Set(List([1..(P-1)/2], X -> (X^2) mod P));
     for i in [2..P-1] do
         if not i in S then return i; fi;
     od;
-end;
+end );
 
 ##
 ## "x ne 0,x~x^-1" 
 ##
-ValsFunction1 := function(P, range)
+BindGlobal( "ValsFunction1", function(P, range)
     local r, i;
     r := [];
     for i in range do
         if ForAll(r, j -> (i*j mod P) <> 1) then Add(r, i); fi;
     od;
     return r;
-end;
+end );
 
 ##
 ## "1+4x not a square"
 ##
-ValsFunction2 := function(P)
+BindGlobal( "ValsFunction2", function(P)
     local s, r;
     s := SquaresModP(P);
     r := Filtered( [0..P-1], j -> not (((1+4*j) mod P) in s) );
     return r;
-end;
+end );
 
 ##
 ## "x ne 0, x~x' if x^5=x'^5 mod p"
 ##
-ValsFunction5 := function(P, e, v)
+BindGlobal( "ValsFunction5", function(P, e, v)
     local r, i, k, l;
     r := [1];
     l := [1];
@@ -63,45 +63,45 @@ ValsFunction5 := function(P, e, v)
     od;
     if v = 0 then Add(r, 0); fi;
     return r;
-end;
+end );
 
 ##
 ##  "y FIXED such that 1-wy^2 is not a square mod p"
 ##
-ValsFunction10 := function(P, W)
+BindGlobal( "ValsFunction10", function(P, W)
     local s, i, j;
     s := SquaresModP(P);
     for i in [1..P-1] do
         j := (1-W*i^2) mod P;
         if not j in s then return i; fi;
     od;
-end;
+end );
 
-ValsFunction10a := function(P, W)
+BindGlobal( "ValsFunction10a", function(P, W)
     local s, i, j;
     s := SquaresModP(P);
     for i in [1..P-1] do
         j := (i^2-W) mod P;
         if not j in s then return i; fi;
     od;
-end;
+end );
 
 ##
 ##  z FIXED so that z^2-4 not a square mod p"
 ##
-ValsFunction11 := function(P)
+BindGlobal( "ValsFunction11", function(P)
     local s, i, j;
     s := SquaresModP(P);
     for i in [0..P-1] do
         j := (i^2-4) mod P;
         if not j in s then return i; fi;
     od;
-end;
+end );
 
 ##
 ##  "all x,y, [x,y]~[x',y'] if y^2-wx^2=y'^2-wx'^2 mod p"
 ##
-ValsFunction6 := function(P)
+BindGlobal( "ValsFunction6", function(P)
     local W, r, l, i, j, k;
     W := PrimitiveRootMod(P);
     r := [];
@@ -116,12 +116,12 @@ ValsFunction6 := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ##  "See note6.178" and "See Notes5.3, Case 4
 ##
-Subgroup6178 := function( P )
+BindGlobal( "Subgroup6178", function( P )
     local U, W, a, b, m;
     U := Subgroup(GL(2,P), []);
     W := PrimitiveRootMod(P);
@@ -136,9 +136,9 @@ Subgroup6178 := function( P )
             if Size(U) = 2*(P^2-1) then return U; fi;
         od;
     od;
-end;
+end );
 
-Orbits6178 := function( P )
+BindGlobal( "Orbits6178", function( P )
     local G, U, f, e;
     G := GL(2,P);
     U := Subgroup6178(P);
@@ -150,26 +150,26 @@ Orbits6178 := function( P )
         Error("wrong number of orbits for 6.178");
     fi;
     return List(e, X -> X[1]);
-end;
+end );
 
-ValsFunction8 := function(P)
+BindGlobal( "ValsFunction8", function(P)
     local e;
     e := Orbits6178( P );
     return List( e, X -> Permuted(IntVecFFE(Flat(X)),(1,4,3,2)) );
-end;
+end );
 
-ValsFunction8a := function(P)
+BindGlobal( "ValsFunction8a", function(P)
     local e;
     e := Orbits6178( P );
     return List( e, X -> IntVecFFE(Flat(X)));
-end;
+end );
 
 
 
 ##
 ## See note6.62
 ##
-Subgroup662 := function( P )
+BindGlobal( "Subgroup662", function( P )
     local U, W, a, b, m;
     U := Subgroup(GL(2,P), []);
     W := PrimitiveRootMod(P);
@@ -183,9 +183,9 @@ Subgroup662 := function( P )
         od;
     od;
     return U;
-end;
+end );
 
-Orbits662 := function( P )
+BindGlobal( "Orbits662", function( P )
     local G, U, W, f, e;
     G := GL(2,P);
     U := Subgroup662(P);
@@ -204,19 +204,19 @@ Orbits662 := function( P )
         Error("wrong number of orbits for 6.62");
     fi;
     return List(e, X -> X[1]);
-end;
+end );
 
-ValsFunction9 := function(P)
+BindGlobal( "ValsFunction9", function(P)
     local e;
     e := Orbits662( P );
     return List( e, X -> IntVecFFE(X[2]) );
-end;
+end );
 
 ##
 ## See note5.38
 ##
 
-Orbits538Case1 := function(P)
+BindGlobal( "Orbits538Case1", function(P)
     local e, o, r, f, i, a, b, c, d, B, C, D, j;
     e := Elements(MatrixSpace(GF(P),2,2));
     o := List(e, X-> true);
@@ -248,9 +248,9 @@ Orbits538Case1 := function(P)
             od;
         fi;
     od;
-end;
+end );
 
-Orbits538Case2 := function(P)
+BindGlobal( "Orbits538Case2", function(P)
     local e, o, r, f, i, a, b, c, d, B, C, D, j, W;
     e := Elements(MatrixSpace(GF(P),2,2));
     W := PrimitiveRootMod(P);
@@ -283,14 +283,14 @@ Orbits538Case2 := function(P)
             od;
         fi;
     od;
-end;
+end );
 
-ValsFunction12 := function(P, case)
+BindGlobal( "ValsFunction12", function(P, case)
     if case = 1 then return Orbits538Case1(P); fi;
     if case = 2 then return Orbits538Case2(P); fi;
-end;
+end );
 
-ValsFunction13 := function(P)
+BindGlobal( "ValsFunction13", function(P)
     local o, r, i;
     o := [];
     r := [];
@@ -301,12 +301,12 @@ ValsFunction13 := function(P)
         fi;
     od;
     return r;
-end;
+end );
 
 ##
 ## "x ne 1-w^i, x~-x+2[1-w^i]"
 ##
-ValsFunction14 := function(P,W,i)
+BindGlobal( "ValsFunction14", function(P,W,i)
    local r, o, j;
    r := [];
    o := (1-W^i) mod P;
@@ -316,12 +316,12 @@ ValsFunction14 := function(P,W,i)
        fi;
    od;
    return r;
-end;
+end );
 
 ##
 ## "x ne 0, all y, 4x+y^2 not a square mod p",
 ##
-ValsFunction15 := function(P)
+BindGlobal( "ValsFunction15", function(P)
     local s, r, X, Y;
     s := SquaresModP(P);
     r := [];
@@ -331,12 +331,12 @@ ValsFunction15 := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ##  "all x,y,z,t, [x,y,z,t]~[t+1,z+1,y-1,x-1]"
 ##
-ValsFunction16 := function(P)
+BindGlobal( "ValsFunction16", function(P)
     local r, x, y, z, t, a, b;
     r := [];
     for x in [0..P-1] do
@@ -351,24 +351,24 @@ ValsFunction16 := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ##  "all x,y,z, [x,y,z]~[-x,-y,-z]"  
 ##
-ValsFunction17 := function(P)
+BindGlobal( "ValsFunction17", function(P)
     local a, b, c;
     a := Cartesian([1..(P-1)/2], [0..P-1], [0..P-1]);
     b := Cartesian([0], [1..(P-1)/2], [0..P-1]);
     c := Cartesian([0],[0],[0..(P-1)/2]);
     return Concatenation(a,b,c);
-end;
+end );
 
 ##
 ##  "t ne 0, all x,z, [x,z]~[tz,x/t]"
 ## neu: "y ne 0, [x,y,z]~[zy,y,x/y]" 
 ##
-ValsFunction18 := function(P)
+BindGlobal( "ValsFunction18", function(P)
     local r, x, y, z, t, a, b;
     r := [];
     for x in [0..P-1] do
@@ -381,13 +381,13 @@ ValsFunction18 := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ## "t ne 0,1, all x,z such that [x+t][1+z]=1 mod p, [x,z]~[tz,x/t]"
 ## neu: "y ne 0,1, (x+y)(1+z)=1, [x,y,z]~[zy,y,x/y]" 
 ##
-ValsFunction18a := function(P)
+BindGlobal( "ValsFunction18a", function(P)
     local r, x, y, z, t, a, b;
     r := [];
     for x in [0..P-1] do
@@ -402,12 +402,12 @@ ValsFunction18a := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ## See Notes5.3, Case 6 and 7
 ##
-CanoForm53 := function(A, F)
+BindGlobal( "CanoForm53", function(A, F)
     local A2, A1, r2, a, b, B;
 
     # cut
@@ -434,17 +434,17 @@ CanoForm53 := function(A, F)
     B[1] := SolutionMat([b,a],A[1])[1] * b;
     B[2] := SolutionMat([b,a],A[2])[1] * b;
     return Concatenation(B,A2);
-end;
+end );
 
-QuotElms := function(a, F)
+BindGlobal( "QuotElms", function(a, F)
     if a[1] <> 0*a[1] then 
         return List(Elements(F), X -> X*[0,1]);
     else
         return List(Elements(F), X -> X*[1,0]);
     fi;
-end;
+end );
 
-CanoForms53 := function(A2, F)
+BindGlobal( "CanoForms53", function(A2, F)
     local c, a, e, w, v;
 
     c := [];
@@ -461,9 +461,9 @@ CanoForms53 := function(A2, F)
     od;
 
     return c;
-end;
+end );
 
-Elms53Case6 := function(P)
+BindGlobal( "Elms53Case6", function(P)
     local F, e, a, b, c, W, V, U;
 
     F := GF(P);
@@ -485,9 +485,9 @@ Elms53Case6 := function(P)
         od; 
     od;
     return e;
-end;
+end );
 
-Elms53Case7 := function(P)
+BindGlobal( "Elms53Case7", function(P)
     local F, e, W, a, b, c, Z, V, U;
 
     F := GF(P);
@@ -510,9 +510,9 @@ Elms53Case7 := function(P)
         od; 
     od;
     return e;
-end;
+end );
 
-Orbits53 := function(P, E)
+BindGlobal( "Orbits53", function(P, E)
     local F, N, e, t, i, g, h, j, k, c1, c2, c3, B, C, l, r, m, s;
 
     F := GF(P);
@@ -580,9 +580,9 @@ Orbits53 := function(P, E)
     od;
 
     return Concatenation(c1, c2, c3);
-end;
+end );
 
-ValsFunction19 := function(P)
+BindGlobal( "ValsFunction19", function(P)
     local E, e, l, r;
 
     # acting group and orbits
@@ -604,9 +604,9 @@ ValsFunction19 := function(P)
 
     # permute and return
     return List( e, X -> IntVecFFE(Flat(X){[6,7,8,3,1,2,4,5]}));
-end;
+end );
 
-ValsFunction19a := function(P)
+BindGlobal( "ValsFunction19a", function(P)
     local E, e, l, r;
 
     # acting group and orbits
@@ -628,12 +628,12 @@ ValsFunction19a := function(P)
 
     # permute and return
     return List( e, X -> IntVecFFE(Flat(X){[6,7,8,3,1,2,4,5]}));
-end;
+end );
 
 ##
 ## "x ne -1,3, See Notes6.114"
 ##
-ValsFunction20 := function(P)
+BindGlobal( "ValsFunction20", function(P)
     local r, x, m, c, z, t, A, M, B, y, w;
     r := [];
     for x in Difference([0..P-2],[3]) do
@@ -669,12 +669,12 @@ ValsFunction20 := function(P)
         od;
     od;
     return r;
-end;
+end );
 
 ##
 ## "See Notes 6.173"
 ##
-Mats6173 := function(P, W)
+BindGlobal( "Mats6173", function(P, W)
     local mats, rang, l, m, n, r, s1, s2, a, b, x, y, z, u, v, w;
     mats := [];
     rang := List([0..P-1], x -> [1,x]); Add(rang, [0,1]);
@@ -706,9 +706,9 @@ Mats6173 := function(P, W)
     od;
     if Length(mats) <> P+1 then Error("wrong number of mats"); fi;
     return mats;
-end;
+end );
 
-ValsFunction21 := function(P)
+BindGlobal( "ValsFunction21", function(P)
     local W, R, M, T, y, z, t, l, n, A, B, C, D, a, b, m, u, v, r, c;
 
     # set up
@@ -806,13 +806,13 @@ ValsFunction21 := function(P)
     if l <> Length(R) then Error("wrong number in case 2"); fi;
 
     return R;
-end;
+end );
  
 
 ##
 ##  "See notes5.12"
 ##
-Subgroup512Case1 := function( P )
+BindGlobal( "Subgroup512Case1", function( P )
     local U, a, b, m, l;
     U := Subgroup(GL(2,P), []);
     for a in [0..P-1] do
@@ -826,9 +826,9 @@ Subgroup512Case1 := function( P )
         od;
     od;
     return U;
-end;
+end );
 
-Subgroup512Case2 := function( P )
+BindGlobal( "Subgroup512Case2", function( P )
     local U, W, a, b, m, l;
     U := Subgroup(GL(2,P), []);
     W := PrimitiveRootMod(P);
@@ -843,9 +843,9 @@ Subgroup512Case2 := function( P )
         od;
     od;
     return U;
-end;
+end );
 
-Orbits512 := function(P, case)
+BindGlobal( "Orbits512", function(P, case)
     local U, A, f, o, l;
     if case = 1 then 
         U := Subgroup512Case1(P);
@@ -865,25 +865,25 @@ Orbits512 := function(P, case)
         if Length(o) <> l then Error("wrong number of orbits"); fi;
     fi;
     return List(o, X -> IntVecFFE(Flat(X[1])));
-end;
+end );
 
-ValsFunction22 := function(P)
+BindGlobal( "ValsFunction22", function(P)
     return Orbits512(P, 1);
-end;
+end );
 
-ValsFunction22a := function(P)
+BindGlobal( "ValsFunction22a", function(P)
     return Orbits512(P, 2);
-end;
+end );
 
 ##
 ## "See Notes6.150
 ##
-Less6150 := function( P, A, D )
+BindGlobal( "Less6150", function( P, A, D )
     return P^2*A[3]+P*A[1]+A[2] > P^2*D[3]+P*D[1]+D[2];
-end;
+end );
 
 # case 3
-ValsFunction23 := function(P)
+BindGlobal( "ValsFunction23", function(P)
     local m, k, x, l, y, z, A, n, a, c, B, C, D;
     m := [[0,0,0]];
     k := LeastNonSquareModP(P);
@@ -916,10 +916,10 @@ ValsFunction23 := function(P)
     l := (P+1+(P+3)*Gcd(P-1,3)+Gcd(P-1,4))/2;
     if Length(m) <> l then Error("wrong number"); fi;
     return m;
-end;
+end );
 
 # case 4
-ValsFunction23a := function(P)
+BindGlobal( "ValsFunction23a", function(P)
     local m, k, x, l, y, z, A, n, a, b, c, B, C, D;
     m := [[0,0,0]];
     k := LeastNonSquareModP(P);
@@ -952,10 +952,10 @@ ValsFunction23a := function(P)
     l := 3+Gcd(P-1,3)*(P+3+Gcd(P-1,4))/4;
     if Length(m) <> l then Error("wrong number"); fi;
     return m;
-end;
+end );
 
 # case 5
-ValsFunction23b := function(P)
+BindGlobal( "ValsFunction23b", function(P)
     local W, m, k, x, l, y, z, A, n, a, b, c, B, C, D;
     W := PrimitiveRootMod(P);
     m := [[0,0,0]];
@@ -988,10 +988,10 @@ ValsFunction23b := function(P)
     l := 2+Gcd(P-1,3)*(P+7-Gcd(P-1,4))/4;
     if Length(m) <> l then Error("wrong number"); fi;
     return m;
-end;
+end );
 
 # case 8
-ValsFunction23c := function(P)
+BindGlobal( "ValsFunction23c", function(P)
     local o, m, k, x, l, y, z, t, A, n, a, c, B, C, D;
     o := One(GF(P));
     k := LeastNonSquareModP(P);
@@ -1026,12 +1026,12 @@ ValsFunction23c := function(P)
     l := (5*P-7+(P^2-5)*Gcd(P-1,3)-Gcd(P-1,4))/2;
     if Length(m) <> l then Error("wrong number"); fi;
     return m;
-end;
+end );
 
 ##
 ## "See Notes6.178
 ##
-Mats6178 := function(P)
+BindGlobal( "Mats6178", function(P)
     local W, mats, y1, y2, y3, y4, A, B, n, a, b, c, Q, C, D, E, l;
     W := PrimitiveRootMod(P);
     mats:=[];
@@ -1065,9 +1065,9 @@ Mats6178 := function(P)
     l := (3*P-1)/2;
     if Length(mats) <> l then Error("wrong number"); fi;
     return mats;
-end;
+end );
 
-ValsFunction24 := function(P)
+BindGlobal( "ValsFunction24", function(P)
     local W, S, mats, A, x, y, z, r, s, u, t, u1, val, res, res1, res2, l;
 
     W := PrimitiveRootMod(P);
@@ -1160,12 +1160,12 @@ ValsFunction24 := function(P)
     if Length(res1)+Length(res2) <> l then Error("wrong number case 5/6"); fi;
 
     return [res, res1, res2];
-end;
+end );
 
 ##
 ## "See note2dec5.1"
 ##
-Range51 := function(P)
+BindGlobal( "Range51", function(P)
     local SQ, ns, t, x, y, z, delta, zend, r;
     SQ := SquaresModP(P);
     ns := LeastNonSquareModP(P);
@@ -1188,9 +1188,9 @@ Range51 := function(P)
         od;
     od;
     return r;
-end;
+end );
     
-ValsFunction25 := function(P)
+BindGlobal( "ValsFunction25", function(P)
     local mats, F, l, A, t, x, y, z, t1, x1, z1, y1, new, d, test1, test2,
           brange, arange, a, b, e, k, f, t2, x2, y2, z2;
 
@@ -1245,12 +1245,12 @@ ValsFunction25 := function(P)
         if new = 1 then Add(mats, [x,y,z,t]); fi;
         if Length(mats) = l then return mats; fi;
     od;
-end;
+end );
 
 ##
 ## "See Notes6.163a/b"
 ##
-ValsFunction26 := function(P)
+BindGlobal( "ValsFunction26", function(P)
     local SQ, lns, mats1, mats, u, x, n, A, u1, x1, l, yrange, zrange, 
           t, y, z, new, a, c, e, y1, z1, t1;  
 
@@ -1332,9 +1332,9 @@ ValsFunction26 := function(P)
     l := 2*P^2-(5*P-1)/2;
     if l <> Length(mats1) then Error("wrong number"); fi;
     return mats1;
-end;
+end );
 
-ValsFunction26a := function(P)
+BindGlobal( "ValsFunction26a", function(P)
     local SQ, lns, mats2, mats, u, x, n, A, u1, x1, l, yrange, zrange,
           t, z, y, new, a, c, e, y1, z1, t1;
 
@@ -1400,12 +1400,12 @@ ValsFunction26a := function(P)
     l := (P^3-5*P+P*Gcd(P-1,4))/2;
     if Length(mats2) <> l then Error("wrong number"); fi;
     return mats2;
-end;
+end );
 
 ##
 ## "See Notes4.1"
 ##
-ValsFunction27 := function(P)
+BindGlobal( "ValsFunction27", function(P)
     local F, A, B, W, range, mats, s, x, y, z, t, AA, new, r, a, b, C, u, 
           x1, y1, z1, t1, l;
 
@@ -1473,5 +1473,5 @@ ValsFunction27 := function(P)
     l := (P+1)^2/2;
     if Length(mats) <> l then Error("wrong number"); fi;
     return mats;
-end;
+end );
 

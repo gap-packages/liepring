@@ -7,7 +7,7 @@
 ## of the Lie ring L
 ##
 
-NewEvalBCH := function( A, tors, x, y )
+BindGlobal( "NewEvalBCH", function( A, tors, x, y )
    local a, k, val, coef, e, T, T0, i, vall, valr;
 
    a := x + y;
@@ -44,12 +44,12 @@ NewEvalBCH := function( A, tors, x, y )
       T := T0;
    od;
    return a;
-end;
+end );
 
 ##
 ## Determine the p-group corresponding to L
 ##
-PGroupByLiePRing := function( L )
+BindGlobal( "PGroupByLiePRing", function( L )
    local G_BCH, p, dim, F, rels, i, u, c, l, x0, y0, z0, w, j, G, g, GtoL, 
          LtoG, v1, v2, v3, gens, tors, k, s;
  
@@ -115,9 +115,9 @@ PGroupByLiePRing := function( L )
    od;
 
    return PcGroupFpGroupNC( F/rels );
-end;
+end );
 
-GroupToLiePRing := function( L, G, g0 )
+BindGlobal( "GroupToLiePRing", function( L, G, g0 )
     local b, cf, x0, i;
     b := BasisOfLiePRing(L);
     cf:= ExponentsOfPcElement( Pcgs(G), g0 );
@@ -126,9 +126,9 @@ GroupToLiePRing := function( L, G, g0 )
         x0:= NewEvalBCH(LRPrivateFunctions.LAZARDTrec.G_BCH,L,x0,cf[i]*b[i]);
     od;
     return x0;
-end;
+end );
 
-LiePRingToGroup := function( L, G, x0 )
+BindGlobal( "LiePRingToGroup", function( L, G, x0 )
     local b, g, cf, exps, i;
     b := BasisOfLiePRing(L);
     g := Pcgs(G);
@@ -140,9 +140,9 @@ LiePRingToGroup := function( L, G, x0 )
         cf:= ExponentsLPR(L, x0);
     od;
     return PcElementByExponents(g, exps);
-end;
+end );
 
-PGroupByLiePRing_Old := function( L )
+BindGlobal( "PGroupByLiePRing_Old", function( L )
     local d, p, l, F, f, r, i, j, K;
 
     d := DimensionOfLiePRing(L);
@@ -167,9 +167,9 @@ PGroupByLiePRing_Old := function( L )
     K := FpLieRing( F, r );
 
     return LieRingToPGroup(K).pgroup;
-end;
+end );
 
-GroupsViaLiePRings := function( arg )
+BindGlobal( "GroupsViaLiePRings", function( arg )
     local d, P, L, G, i;
     d := arg[1];
     P := arg[2];
@@ -188,9 +188,9 @@ GroupsViaLiePRings := function( arg )
     G := Flat(G);
     G := Filtered(G, x -> not IsBool(x));
     return G;
-end;
+end );
 
-PrintGroupsViaLiePRings := function( arg )
+BindGlobal( "PrintGroupsViaLiePRings", function( arg )
     local d, P, L, G, i, j;
     d := arg[1];
     P := arg[2];
@@ -210,9 +210,9 @@ PrintGroupsViaLiePRings := function( arg )
         fi;
         G := false;
     od;
-end;
+end );
 
-Print2GenGroupsViaLiePRings := function( arg )
+BindGlobal( "Print2GenGroupsViaLiePRings", function( arg )
     local d, P, L, G, i, j;
     d := arg[1];
     P := arg[2];
@@ -235,5 +235,5 @@ Print2GenGroupsViaLiePRings := function( arg )
         G := false;
         fi;
     od;
-end;
+end );
 

@@ -1,24 +1,26 @@
 
-LiePCommutator := function( U, V )
+BindGlobal( "LiePCommutator", function( U, V )
     local bU, bV, bC, sr;
     bU := BasisOfLiePRing(U);
     bV := BasisOfLiePRing(V);
     bC := Flat(List(bU, x -> List(bV, y -> x*y)));
     return LiePRecSubring(Parent(U), bC);
-end;
+end );
 
-LiePPCommutator := function( U, V )
+BindGlobal( "LiePPCommutator", function( U, V )
     local bU, bV, b, g;
     bU := BasisOfLiePRing(U);
     bV := BasisOfLiePRing(V);
     b := Flat(List(bU, x -> List(bV, y -> x*y)));
     g := List(BasisOfLiePRing(V), x -> PrimeOfLiePRing(V)*x);
     return LiePRecSubring(Parent(U), Concatenation(b,g));
-end;
+end );
 
-LiePRump := function( L ) return LiePPCommutator(L,L); end;
+BindGlobal( "LiePRump", function( L )
+    return LiePPCommutator(L,L);
+end );
 
-LiePMinimalGeneratingSet := function( L )
+BindGlobal( "LiePMinimalGeneratingSet", function( L )
     local U, bL, bU, eL, eU, v;
     U := LiePRump(L);
     bL := BasisOfLiePRing(L);
@@ -27,9 +29,9 @@ LiePMinimalGeneratingSet := function( L )
     eL := List(bL, Exponents);
     v := BaseSteinitzVectors(eL, eU).factorspace;
     return List(v, x -> x*BasisOfLiePRing(Parent(L)));
-end;
+end );
 
-LiePLowerPCentralSeries := function( L )
+BindGlobal( "LiePLowerPCentralSeries", function( L )
     local s, U;
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
@@ -37,9 +39,9 @@ LiePLowerPCentralSeries := function( L )
         if Length(U) = 1 then Add(s, U[1]); else return fail; fi;
     od;
     return s;
-end;
+end );
 
-LiePLowerCentralSeries := function( L )
+BindGlobal( "LiePLowerCentralSeries", function( L )
     local s, U;
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
@@ -47,9 +49,9 @@ LiePLowerCentralSeries := function( L )
         if Length(U) = 1 then Add(s, U[1]); else return fail; fi;
     od;
     return s;
-end;
+end );
 
-LiePDerivedSeries := function( L )
+BindGlobal( "LiePDerivedSeries", function( L )
     local s, U;
     s := [L];
     while DimensionOfLiePRing(s[Length(s)]) > 0 do
@@ -57,6 +59,6 @@ LiePDerivedSeries := function( L )
         if Length(U) = 1 then Add(s, U[1]); else return fail; fi;
     od;
     return s;
-end;
+end );
 
 

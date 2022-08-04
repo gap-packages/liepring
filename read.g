@@ -11,17 +11,17 @@
 StartSingular();
 ORDER := MonomialGrlexOrdering();
 
-CallGroebner := function( list )
+BindGlobal( "CallGroebner", function( list )
     local new;
     if Length(list) = 0 then return list; fi;
     GBASIS := SINGULARGBASIS;
     new := GroebnerBasis(list, ORDER);
     GBASIS := GAPGBASIS;
     return ReducedGroebnerBasis(new, ORDER);
-end;
+end );
 
 OFFSET_VARS := 1000;
-IndeterminateByName := function( name )
+BindGlobal( "IndeterminateByName", function( name )
     local l, i, v;
     l := ["p", "w", 
           "x", "y", "z", "t", "j", "k", "m", "n", "r", "s", "u", "v", 
@@ -32,10 +32,10 @@ IndeterminateByName := function( name )
     v := Indeterminate(Integers, OFFSET_VARS+i); 
     if not HasName(v) then SetName(v,name); fi;
     return v;
-end;
+end );
 
 USE_GAP_FACS := false;
-MyFactors := function(pp, h)
+BindGlobal( "MyFactors", function(pp, h)
     local R, k, w, q;
 
     if USE_GAP_FACS then return Factors(h); fi;
@@ -50,9 +50,9 @@ MyFactors := function(pp, h)
 
     # fall back
     return Factors(h);
-end;
+end );
 
-LiePRing_ReadPackage := function(relpath)
+BindGlobal( "LiePRing_ReadPackage", function(relpath)
     local preamble, code, c, filename, func;
 
     preamble := "local p, w, x, y, z, t, j, k, m, n, r, s, u, v;\n";
@@ -73,7 +73,7 @@ LiePRing_ReadPackage := function(relpath)
 
     # Execute the function to populate LIE_DATA
     func();
-end;
+end );
 
 #############################################################################
 ##

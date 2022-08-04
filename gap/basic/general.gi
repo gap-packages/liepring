@@ -1,4 +1,4 @@
-WordByExps := function ( exp )
+BindGlobal( "WordByExps@", function ( exp )
     local  w, i;
     w := [  ];
     for i  in [ 1 .. Length( exp ) ]  do
@@ -8,9 +8,9 @@ WordByExps := function ( exp )
         fi;
     od;
     return w;
-end;
+end );
 
-MyCutVector := function ( vec, l )
+BindGlobal( "MyCutVector", function ( vec, l )
     local  d, new, i;
     if Length( vec ) = 0  then
         return [  ];
@@ -21,25 +21,25 @@ MyCutVector := function ( vec, l )
         Add( new, vec{[ d * (i - 1) + 1 .. d * i ]} );
     od;
     return new;
-end;
+end );
 
-ExpsByWord := function( n, w )
+BindGlobal( "ExpsByWord", function( n, w )
     local v, i;
     v := List([1..n], X -> 0);
     for i in [1,3..Length(w)-1] do
         v[w[i]] := v[w[i]] + w[i+1];
     od;
     return v;
-end;
+end );
 
-ValueRatFun := function( f, para, vals )
+BindGlobal( "ValueRatFun", function( f, para, vals )
     local a, b;
     a := NumeratorOfRationalFunction(f);
     b := DenominatorOfRationalFunction(f);
     return Value( a, para, vals )/ Value( b, para, vals );
-end;
+end );
 
-MatPos := function(m,i,a)
+BindGlobal( "MatPos", function(m,i,a)
     local j, k;
     for j in [i..Length(m)] do
         for k in [i..Length(m[j])] do
@@ -47,15 +47,15 @@ MatPos := function(m,i,a)
         od;
     od;
     return fail;
-end;
+end );
 
-DepthVector := function(vec)
+BindGlobal( "DepthVector", function(vec)
     local i;
     for i in [1..Length(vec)] do
         if vec[i] <> 0*vec[i] then return i; fi;
     od;
     return Length(vec)+1;
-end;
+end );
 
 
 

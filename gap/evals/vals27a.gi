@@ -1,10 +1,10 @@
-Linearise27a := function(A)
+BindGlobal( "Linearise27a", function(A)
     return IntVecFFE( [ A[4][1], A[4][2], A[4][3], A[3][1], 
                         A[1][1], A[1][2], A[1][3], A[2][1],
                         A[2][2], A[2][3], A[3][2], A[3][3] ] );   
-end;
+end );
 
-ValsFunction27a := function ( P )
+BindGlobal( "ValsFunction27a", function ( P )
     local  F, W, curoots, reps1, reps2, reps3, reps4, reps5, reps6, reps7, 
     reps8, reps9, reps10, reps11, repstable, Btable, Ctable, x, v, y, z, t, 
     u, G, A, B, C, D, a, b, c, d, n, params, l, ind1, ind, index, i, j, new, 
@@ -619,4 +619,4 @@ ValsFunction27a := function ( P )
         Error( "duplicate params" );
     fi;
     return params;
-end;
+end );

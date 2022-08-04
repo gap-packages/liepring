@@ -1,5 +1,5 @@
 
-ElmNumberForm := function( pp, polys )
+BindGlobal( "ElmNumberForm", function( pp, polys )
     local f, e, p, a, b, i;
 
     f := polys[1];
@@ -31,9 +31,9 @@ ElmNumberForm := function( pp, polys )
     od;
  
     if b=a then return 2*p-1; else return p-1; fi;
-end;
+end );
     
-ElmNumberLin := function(pp, polys) 
+BindGlobal( "ElmNumberLin", function(pp, polys) 
     local r, s, v, A, t, i, e, j, b, p, k, a, w, W;
 
     # set up
@@ -79,9 +79,9 @@ ElmNumberLin := function(pp, polys)
     b := Length(TriangulizedNullspaceMat(A));
     p := IndeterminateByName("p");
     return p^b;
-end;
+end );
 
-ElmNumberUni := function(pp, polys)
+BindGlobal( "ElmNumberUni", function(pp, polys)
     local r, s, f, i, sub, res, p, w, d, x, g4, s16, y, c, e, z, v;
 
     # set up
@@ -133,9 +133,10 @@ ElmNumberUni := function(pp, polys)
         fi;
     od;
     return res;
-end;
+end );
 
-ElmNumberMon := function(pp, polys)
+DeclareGlobalFunction( "ElmNumberMon" );
+InstallGlobalFunction( "ElmNumberMon", function(pp, polys)
     local f, a, b, c, r, p;
 
     p := IndeterminateByName("p");
@@ -171,21 +172,21 @@ ElmNumberMon := function(pp, polys)
     else
         return ElmNumberMon(b,r)+(p-1)*ElmNumberMon(b, Concatenation(r,c/a));
     fi;
-end;
+end );
 
-IsLinearSystem := function( pp, polys )
+BindGlobal( "IsLinearSystem", function( pp, polys )
     local ee;
     ee := List(polys, x -> DegreeOfPoly(x));
     return ForAll(ee, x -> x <= 1);
-end;
+end );
 
-IsUnivarSystem := function( pp, polys )
+BindGlobal( "IsUnivarSystem", function( pp, polys )
     local ee;
     ee := List(polys, x -> VarsOfPoly(x));
     return ForAll(ee, x -> Length(x) = 1);
-end;
+end );
 
-IsFormSystem := function( pp, polys )
+BindGlobal( "IsFormSystem", function( pp, polys )
     local e, t, i, j;
     if Length(polys) <> 1 or Length(pp) <> 2 then return false; fi;
     e := ExtRepPolynomialRatFun(polys[1]);
@@ -198,9 +199,9 @@ IsFormSystem := function( pp, polys )
         if Length(e[i]) = 4 then t := true; fi;
     od;
     return t;
-end;
+end );
 
-IsMonomSystem := function(pp, polys)
+BindGlobal( "IsMonomSystem", function(pp, polys)
     local f, e;
     for f in polys do
         e := ExtRepPolynomialRatFun(f);
@@ -210,9 +211,9 @@ IsMonomSystem := function(pp, polys)
         if ForAny(e[1]{[2,4..Length(e[1])]},x->x<>1) then return false; fi;
     od;
     return true;
-end; 
+end ); 
 
-NumberOfZeros := function( pp, polys )
+BindGlobal( "NumberOfZeros", function( pp, polys )
     local w, f, S, p, x, y, z, t, u, g3, g4, s16, v, r, s;
 
     # check
@@ -440,9 +441,9 @@ NumberOfZeros := function( pp, polys )
 
     # cannot find the answer
     return fail;
-end;
+end );
 
-ElementNumber := function( pp, units, zeros )
+BindGlobal( "ElementNumber", function( pp, units, zeros )
     local d, x, y, u, t, z, r, U, v, s, W, R, T, i, w, S, p;
 
     d := Length(pp);
@@ -494,9 +495,9 @@ ElementNumber := function( pp, units, zeros )
     od;
     
     return T;
-end;
+end );
 
-ElementNumbers := function( pp, s )
+BindGlobal( "ElementNumbers", function( pp, s )
     local t, e, p, j, k, f;
 
     # set up and catch trivial case
@@ -526,5 +527,5 @@ ElementNumbers := function( pp, s )
     SortParallel(e, t);
    
     return rec( norms := t, numbs := e);
-end;
+end );
 

@@ -1,10 +1,10 @@
-InsertVec := function( T, J, d, vec )
+BindGlobal( "InsertVec", function( T, J, d, vec )
     local wec;
     wec := LRReduceExp( T, vec );
     if ForAny(wec{[1..d]}, x -> x <> 0*x) then return fail; fi;
     if wec <> 0*wec and not wec in J and not -wec in J then Add(J, wec); fi;
     return J;
-end;
+end );
 
 BindGlobal( "LiePCover", function(L)
     local d, p, S, v, T, c, r, i, j, k, I, Q, P, J, a, b, w, u, e, s, R;

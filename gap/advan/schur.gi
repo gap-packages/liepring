@@ -3,7 +3,7 @@
 ##
 ## 
 ##
-FindNiceElm := function( units, elms )
+BindGlobal( "FindNiceElm", function( units, elms )
     local d, m, u, p, a;
 
     p := IndeterminateByName("p");
@@ -36,13 +36,13 @@ FindNiceElm := function( units, elms )
         return [elms[1], false];
     od;
 
-end;
+end );
 
 #############################################################################
 ##
 ## Next pivot in matrix
 ##
-FindPivot := function( R, m, i )
+BindGlobal( "FindPivot", function( R, m, i )
     local j, k, f, d, g, n, u;
 
     # reduce entries in m with zeros and filter non-zero elms
@@ -75,13 +75,13 @@ FindPivot := function( R, m, i )
         fi;
         d := d+1;
     od;
-end;
+end );
 
 #############################################################################
 ##
 ## SNF for the matrix determined by L - use units and zeros
 ##
-GenericSNF := function(R, m)
+BindGlobal( "GenericSNF", function(R, m)
     local n, d, p, u, i, e, j, k, w, a, A;
 
     # catch arguments
@@ -136,15 +136,15 @@ GenericSNF := function(R, m)
     m := Filtered(m, x -> x <> 0*x);
     m := Filtered(m, x -> x <> x^0);
     return rec(norm := m);
-end;
+end );
     
 #############################################################################
 ##
 ## Some helpers
 ##
-Pos := function(i,j) return i*(i-1)/2 + j; end;
+BindGlobal( "Pos", function(i,j) return i*(i-1)/2 + j; end );
 
-MakeIntPoly := function(R, vec)
+BindGlobal( "MakeIntPoly", function(R, vec)
     local p, i, u, e, f, uni;
 
     # set up
@@ -172,13 +172,13 @@ MakeIntPoly := function(R, vec)
     od;
 
     return vec;
-end;
+end );
 
 #############################################################################
 ##
 ## Create matrix from structure constants
 ##
-SetUpSchurMultSystem := function(L)
+BindGlobal( "SetUpSchurMultSystem", function(L)
     local R, d, p, l, n, a, b, i, j, h, k, v, w, u, s;
 
     # catch arguments
@@ -286,13 +286,13 @@ SetUpSchurMultSystem := function(L)
 
     # add and return
     return Concatenation(b.vecs, b.ppps);
-end;
+end );
     
 #############################################################################
 ##
 ## Main function
 ##
-LiePSchurMult := function(L)
+BindGlobal( "LiePSchurMult", function(L)
     local S, b, c, R, T, i, V, W, h, w, pp;
 
     # set up
@@ -326,22 +326,22 @@ LiePSchurMult := function(L)
           
     # that's it
     return S;
-end;
+end );
 
 #############################################################################
 ##
 ## Checking routines
 ##
-LiePSchurMultByPrime := function(L, p)
+BindGlobal( "LiePSchurMultByPrime", function(L, p)
     local F, G, c;
     F := LiePRingsInFamily(L,p);
     if F = fail then return F; fi;
     G := List(F, x -> PcGroupToPcpGroup(PGroupByLiePRing(x)));
     c := Collected(List(G, SchurMultPcpGroup));
     return List(c, x -> [List(x[1], y -> Length(Factors(y))),x[2]]);
-end;
+end );
 
-CheckLiePSM := function(L)
+BindGlobal( "CheckLiePSM", function(L)
     local fix, gen, p;
 
     p := 7;
@@ -359,9 +359,9 @@ CheckLiePSM := function(L)
     #Print(gen,"\n");
 
     return fix = gen;
-end;
+end );
 
-CheckOrderPSM := function(d, k)
+BindGlobal( "CheckOrderPSM", function(d, k)
     local LL, res, i, t;
     LL := LiePRingsByLibrary(d);
     res := [];
@@ -373,6 +373,6 @@ CheckOrderPSM := function(d, k)
         #Print(i, "  done \n");
     od;
     return res;
-end;
+end );
 
 

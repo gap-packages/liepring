@@ -1,46 +1,46 @@
 
 LoadPackage("anupq");
 
-SCodeByGroup := function( G )
+BindGlobal( "SCodeByGroup", function( G )
     local F, S, K; 
     F := FpGroupPcGroup(G);
     S := StandardPresentation( F : Prime := PrimePGroup(G) );
     K := PcGroupFpGroup(S);
     return CodePcGroup(K);
-end;
+end );
 
-CheckNumberLiePRings := function(dim, P)
+BindGlobal( "CheckNumberLiePRings", function(dim, P)
     local L;
     L := LiePRingsByLibrary(dim,P);
     return Length(L) = NumberSmallGroups(P^dim);
-end;
+end );
 
-FingerPrintLCS := function( G )
+BindGlobal( "FingerPrintLCS", function( G )
     local s, t;
     s := LowerCentralSeries(G);
     t := List([1..Length(s)-1], x -> AbelianInvariants(s[x]/s[x+1]));
     return t;
-end;
+end );
 
-FingerPrintJen := function( G )
+BindGlobal( "FingerPrintJen", function( G )
     local s, t;
     s := JenningsSeries(G);
     t := List([1..Length(s)-1], x -> AbelianInvariants(s[x]/s[x+1]));
     return t;
-end;
+end );
 
-FingerPrintPCS := function(G)
+BindGlobal( "FingerPrintPCS", function(G)
     local s, t;
     s := PCentralSeries(G);
     t := List([1..Length(s)-1], x -> Size(s[x]/s[x+1]));
     return t;
-end;
+end );
 
-FingerPrintAut := function(G)
+BindGlobal( "FingerPrintAut", function(G)
     return AutomorphismGroupPGroup(G).size;
-end;
+end );
 
-FingerPrintCQ := function(G)
+BindGlobal( "FingerPrintCQ", function(G)
     local c, Q;
     c := Center(G);
     Q := G/c;
@@ -49,9 +49,9 @@ FingerPrintCQ := function(G)
     else
         return Size(Q);
     fi;
-end;
+end );
 
-FingerPrintPRump := function(G)
+BindGlobal( "FingerPrintPRump", function(G)
     local U;
     U := PRump(G, PrimePGroup(G));
     if Length(Factors(Size(U))) <= 4 then 
@@ -59,9 +59,9 @@ FingerPrintPRump := function(G)
     else
         return Size(U);
     fi;
-end;
+end );
       
-FingerPrintDerived := function(G)
+BindGlobal( "FingerPrintDerived", function(G)
     local U;
     U := DerivedSubgroup(G);
     if Length(Factors(Size(U))) <= 4 then 
@@ -69,9 +69,9 @@ FingerPrintDerived := function(G)
     else
         return Size(U);
     fi;
-end;
+end );
 
-FingerPrintClasses := function(G)
+BindGlobal( "FingerPrintClasses", function(G)
     local H, cl, rs, i, a, b, c, g, e;
     H := PcGroupCode(CodePcGroup(G),Size(G));
     cl := ConjugacyClasses(H);
@@ -83,9 +83,9 @@ FingerPrintClasses := function(G)
         rs[i] := [a,b];
     od;
     return rs;
-end;
+end );
 
-FingerPrintMaxSub := function(G)
+BindGlobal( "FingerPrintMaxSub", function(G)
     local n, t, i;
     n := Length(Factors(Size(G)));
     t := [G];
@@ -93,16 +93,16 @@ FingerPrintMaxSub := function(G)
         t := Set(Flat(List(t, MaximalSubgroups)));
     od;
     return Collected(List(t, IdGroup));
-end;
+end );
 
-RefineBin := function(list, func)
+BindGlobal( "RefineBin", function(list, func)
     local val, spl;
     val := List(list, x -> func(x));
     spl := List(Set(val), x -> Filtered([1..Length(val)], y->val[y]=x));
     return List(spl, x -> list{x});
-end;
+end );
    
-BinsByGroups := function(grps)
+BindGlobal( "BinsByGroups", function(grps)
     local bins, abel, invs, s; 
 
     # abelian groups
@@ -171,9 +171,9 @@ BinsByGroups := function(grps)
 #    Print("  ",SortedList(s),"\n");
 
     return bins;
-end;
+end );
 
-CheckLiePRings := function( P, dim, gen, pcl )
+BindGlobal( "CheckLiePRings", function( P, dim, gen, pcl )
     local L, G, A, S, i, T;
 
     # get groups
@@ -197,9 +197,9 @@ CheckLiePRings := function( P, dim, gen, pcl )
 
     T := Filtered(S, x -> x <> true);
     return Length(T) = Length(Set(T));
-end;
+end );
 
-CheckLiePRingsDim7ByFilePlus := function( nr, P )
+BindGlobal( "CheckLiePRingsDim7ByFilePlus", function( nr, P )
     local L, spe, v, r, i, G, S;
 
     # read the desired lie p-rings
@@ -232,9 +232,9 @@ CheckLiePRingsDim7ByFilePlus := function( nr, P )
         Print("    ",i," of ",Length(spe)," done \n");
     od;
     return Length(r) = Length(Set(r));
-end;
+end );
 
-CheckLiePRingsDim7Gen2 := function( P )
+BindGlobal( "CheckLiePRingsDim7Gen2", function( P )
     local t, i;
     t := [];
     for i in [2..59] do
@@ -243,5 +243,5 @@ CheckLiePRingsDim7Gen2 := function( P )
         Print("-- got ",t[i],"\n");
     od;
     return t;
-end;
+end );
 

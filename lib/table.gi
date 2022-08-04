@@ -276,7 +276,7 @@ InstallGlobalFunction( LiePRingsDim7ByFile, function( arg )
     return spe;
 end );
 
-GetDim7FileByNumber := function( P, nr )
+BindGlobal( "GetDim7FileByNumber", function( P, nr )
     local i, j, v;
     i := 0;
     j := 0;
@@ -286,5 +286,5 @@ GetDim7FileByNumber := function( P, nr )
         j := j + v;
     od;
     return [i, nr-j+v];
-end;
+end );
 
