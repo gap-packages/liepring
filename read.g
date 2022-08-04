@@ -370,8 +370,6 @@ LiePRing_ReadPackage( "lib/dim7/gap7.1");
 ##
 ## read functions
 ##
-PGroupByLiePRing := false; ## dummy
-
 ReadPackage( "liepring", "gap/rings/polys.gi");
 ReadPackage( "liepring", "gap/rings/zeruni.gi");
 ReadPackage( "liepring", "gap/rings/ringth.gi");
