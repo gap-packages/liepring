@@ -48,14 +48,3 @@ BindGlobal( "MatPos", function(m,i,a)
     od;
     return fail;
 end );
-
-BindGlobal( "DepthVector", function(vec)
-    local i;
-    for i in [1..Length(vec)] do
-        if vec[i] <> 0*vec[i] then return i; fi;
-    od;
-    return Length(vec)+1;
-end );
-
-
-

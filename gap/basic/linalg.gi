@@ -63,7 +63,7 @@ BindGlobal( "MyBaseMat", function(J, units)
         # get positions
         k := k+1;
         if k > Length(J) then return J; fi;
-        d := Minimum(List(J{[k..l]}, DepthVector));
+        d := Minimum(List(J{[k..l]}, PositionNonZero));
         if d = m+1 then return J{[1..k-1]}; fi;
 
         # move pivot
@@ -80,7 +80,7 @@ BindGlobal( "MyBaseMat", function(J, units)
 end );
 
 BindGlobal( "FactorSpace", function( d, sub )
-    return IdentityMat(d){Difference([1..d], List(sub, DepthVector))};
+    return IdentityMat(d){Difference([1..d], List(sub, PositionNonZero))};
 end );
 
 
