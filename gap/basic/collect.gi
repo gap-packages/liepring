@@ -4,7 +4,7 @@
 ## return a list [quotient, remainder] with a = quotient*p + remainder
 ##      and remainder is a polynomial with coeffs in [0..p-1]
 ##
-QuotRemInt := function( a, p, flag )
+BindGlobal( "QuotRemInt", function( a, p, flag )
     local u, v, e, b, r, i, l;
     
     if IsRat(a) then 
@@ -48,7 +48,7 @@ QuotRemInt := function( a, p, flag )
     else
         Error("case not found"); 
     fi;
-end;
+end );
 
 ##
 ## quotient remainder case 2: 
@@ -56,7 +56,7 @@ end;
 ## return a list [quotient, remainder] with a = quotient*p + remainder
 ##      and remainder is a polynomial with leading coeff in [0..p-1]
 ##
-QuotRemPoly := function( f, p, flag )
+BindGlobal( "QuotRemPoly", function( f, p, flag )
     local u, v, c;
 
     if IsRat(f) or 0*f=f then return [0*f, f]; fi;
@@ -73,13 +73,13 @@ QuotRemPoly := function( f, p, flag )
         return [(u-c)/p, c]/v;
     fi;
 
-end;
+end );
 
 ##
 ## extract entries from SC table
 ##
 
-GetEntryMult := function( SC, i, j )
+BindGlobal( "GetEntryMult", function( SC, i, j )
     local k, e;
     if i = j then return [1,[]]; fi;
     if i < j then 
@@ -94,9 +94,9 @@ GetEntryMult := function( SC, i, j )
     else
         return [e, []];
     fi;
-end;
+end );
 
-GetEntryPow := function( SC, i )
+BindGlobal( "GetEntryPow", function( SC, i )
     local k;
     k := Sum([1..i]);
     if IsBound(SC.tab[k]) then 
@@ -104,7 +104,7 @@ GetEntryPow := function( SC, i )
     else
         return [];
     fi;
-end;
+end );
 
 ##
 ## exp is a list of coefficients [c1, ..., cn]
@@ -112,7 +112,7 @@ end;
 ## word is a list [i1, c1, i2, c2, ...] with i1 an index in [1..n] and
 ##    c1 is typically an entry from the SCTable
 ##
-AddWordToExp := function( exp, a, word )
+BindGlobal( "AddWordToExp", function( exp, a, word )
     local i; 
     if a = 0 then return exp; fi;
     for i in [1,3..Length(word)-1] do
@@ -122,19 +122,19 @@ AddWordToExp := function( exp, a, word )
             exp[word[i]] := exp[word[i]] + a * word[i+1];
         fi;
     od;
-end;
+end );
 
 ## 
 ## apply zeros
 ##
-LRApplyZeros := function( SC, exp )
+BindGlobal( "LRApplyZeros", function( SC, exp )
     return List(exp, x -> RedPol(SC.ring.zeros, x));
-end;
+end );
 
 ## 
 ## apply the relations p bi and zeros
 ##
-LRReduceExp := function( SC, exp )
+BindGlobal( "LRReduceExp", function( SC, exp )
     local p, n, a, b, i, new, u, v;
     p := SC.prime;
     n := SC.dim;
@@ -151,22 +151,22 @@ LRReduceExp := function( SC, exp )
     od;
 
     return MakeInt(new);
-end;
+end );
 
 ##
 ## determine a reduced word
 ##
-LRCollectWord := function( SC, word )
+BindGlobal( "LRCollectWord", function( SC, word )
     local exp;
     exp := List([1..SC.dim], x -> 0);
     AddWordToExp( exp, 1, word );
     return LRReduceExp( SC, exp );
-end;
+end );
 
 ##
 ## multiply
 ##
-LRMultiply := function( SC, exp1, exp2 )
+BindGlobal( "LRMultiply", function( SC, exp1, exp2 )
     local exp, k, i, j, a, b;
   
     exp := List([1..SC.dim], x -> 0);
@@ -180,6 +180,6 @@ LRMultiply := function( SC, exp1, exp2 )
         od;
     od;
     return LRReduceExp( SC, exp );
-end;
+end );
 
 

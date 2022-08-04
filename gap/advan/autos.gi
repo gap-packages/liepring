@@ -1,4 +1,4 @@
-ExtendAuto := function(L, mat)
+BindGlobal( "ExtendAuto", function(L, mat)
     local p, dim, def, bas, img, i, j, k, h, e, new;
     p := PrimeOfLiePRing(L);
     dim := DimensionOfLiePRing(L);
@@ -32,22 +32,22 @@ ExtendAuto := function(L, mat)
         fi;
     od;
     return List(img, Exponents);
-end;
+end );
 
-MyVals := function( pol, vars, vals )
+BindGlobal( "MyVals", function( pol, vars, vals )
     if IsBool(pol) or IsInt(pol) then return pol; fi;
     return Value(pol, vars, vals);
-end;
+end );
 
-EliminateVars := function( pol, eli )
+BindGlobal( "EliminateVars", function( pol, eli )
     local i;
     for i in [1..Length(eli)] do
         pol := MyVals( pol, [eli[i][1]], [eli[i][2]]);
     od;
     return pol;
-end;
+end );
    
-TryEliminate := function( pol )
+BindGlobal( "TryEliminate", function( pol )
     local x, q;
     if pol = 0*pol then return fail; fi;
     for x in VarsOfPoly(pol) do
@@ -57,9 +57,9 @@ TryEliminate := function( pol )
         fi;
     od;
     return fail;
-end;
+end );
  
-CheckForElimination := function( tod, new, h )
+BindGlobal( "CheckForElimination", function( tod, new, h )
     local rel, var, eli, don, i, j, e;
     
     rel := new;
@@ -94,9 +94,9 @@ CheckForElimination := function( tod, new, h )
 
     # result
     tod.eli := eli; return rel;
-end;
+end );
 
-AddByExpo := function (k, rel, c, r)
+BindGlobal( "AddByExpo", function (k, rel, c, r)
     local i, j, f, d;
     for i in [1..Length(r)] do
         if r[i] <> 0*r[i] then 
@@ -106,9 +106,9 @@ AddByExpo := function (k, rel, c, r)
             if not f in rel[j] then rel[j][d+1] := f; fi;
         fi;
     od;
-end;
+end );
 
-FindWord := function( tod, elm )
+BindGlobal( "FindWord", function( tod, elm )
     local w, i, v;
 
     # eliminate
@@ -123,9 +123,9 @@ FindWord := function( tod, elm )
 
     # no solution
     return fail;
-end;
+end );
 
-AutGroupDescription := function(arg)
+BindGlobal( "AutGroupDescription", function(arg)
     local L, flag, p, b, d, a, q, c, k, D, A, i, j, img, rel, var, e, r, U, 
           don, new, tod, old, uni, wd, w, v, try, M, B, m, l,
           lname, auto1, auto2, auto3, auto4, eqns1, eqns2, eqns3, eqns4,
@@ -800,13 +800,13 @@ fi;
     # mrvl change
     #return rec( auto := A, eqns := tod.rel, mods := M, word := wd);
     return rec( auto := A, eqns := tod.rel);
-end;
+end );
 
-SizeOfGL := function(n, p)
+BindGlobal( "SizeOfGL", function(n, p)
     return Product(List([0..n-1], x -> (p^n - p^x)));
-end;
+end );
 
-SizeByBlocks := function(b, p)
+BindGlobal( "SizeByBlocks", function(b, p)
     local e, d, c, i;
     e := 1;
     d := Sum(b);
@@ -817,9 +817,9 @@ SizeByBlocks := function(b, p)
         e := e * p^(b[i]*(d-c));
     od;
     return e;
-end;
+end );
 
-BlockForm := function( M, A )
+BindGlobal( "BlockForm", function( M, A )
     local d, b, i, j;
 
     # set up
@@ -841,10 +841,10 @@ BlockForm := function( M, A )
 
     # determine block sizes
     return List(Collected(b), x -> x[2]);
-end;
+end );
 
 CHECKCASE := false;
-SizeOfAutoOnFF := function( L )
+BindGlobal( "SizeOfAutoOnFF", function( L )
     local R, d, n, x, p, z, A, i, j, D, a, e, b, w, g3, g4, h3, g5, g7, g8, g9;
 
     # determine autos
@@ -1173,9 +1173,9 @@ SizeOfAutoOnFF := function( L )
 
     return fail;
 
-end;
+end );
 
-CheckAGDescription := function(arg)
+BindGlobal( "CheckAGDescription", function(arg)
     local L, p, b, d, a, q, c, k, D, A, i, j, img, rel, e, r, U, 
           new, tod;
 
@@ -1234,5 +1234,5 @@ CheckAGDescription := function(arg)
 #    od;
 
     return rel;
-end;
+end );
 

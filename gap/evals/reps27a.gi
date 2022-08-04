@@ -1,4 +1,4 @@
-GetReps1Slow := function(F, W, A1)
+BindGlobal( "GetReps1Slow", function(F, W, A1)
     local A, B, C, D, E, R, n, a, c, x;
 
     B := [[1,0],[0,1]] * One(F);
@@ -67,9 +67,9 @@ GetReps1Slow := function(F, W, A1)
     if A[2][2] <> Zero(F) and A[1][1] <> Zero(F) then return [4,B,C]; fi;
     if A[2][2] <> Zero(F) then return [3,B,C]; fi;
     return [2,B,C];
-end;
+end );
 
-GetReps1 := function(P, A, repstable)
+BindGlobal( "GetReps1", function(P, A, repstable)
    local E, F, B, index;
    E := NullMat(2, 3, GF(P));
    E[1]:=A[1]; E[2]:=A[2];
@@ -77,11 +77,11 @@ GetReps1 := function(P, A, repstable)
    B := F[2]; F := List(F[1], IntVecFFE);
    index:=1+P^3*(2*F[1][1]+F[2][2])+P^2*F[1][2]+P*F[1][3]+F[2][3];
    return [repstable[index],index,B];
-end;
+end );
 
 #############################################################################
 
-GetReps2 := function(P)
+BindGlobal( "GetReps2", function(P)
 local reps2, W, F, A, B, q, x, l;
 reps2:=[];
 F:=GF(P);
@@ -152,11 +152,11 @@ l := P^2+7*P+4;
 if Length(reps2) <> l then Error("reps2 wrong"); fi;
 #if Length(reps2) <> Length(Set(reps2)) then Error("reps2 has duplicates"); fi;
 return reps2;
-end;
+end );
 
 #############################################################################
 
-GetReps3 := function(P)
+BindGlobal( "GetReps3", function(P)
 local reps3, F, A, B, x, q, y, z, l, W; 
 reps3:=[];
 W := PrimitiveRootMod(P);
@@ -253,11 +253,11 @@ l := P^3+3*P^2+10*P+3;
 if Length(reps3) <> l then Error("reps3 wrong"); fi;
 #if Length(reps3) <> Length(Set(reps3)) then Error("reps3 has duplicates"); fi;
 return reps3;
-end;
+end );
 
 #############################################################################
 
-GetReps4 := function(P)
+BindGlobal( "GetReps4", function(P)
 local reps4, F, W, A, B, x, y, z, t, l;
 reps4:=[];
 W:=PrimitiveRootMod(P);
@@ -370,7 +370,7 @@ l := P^4+P^3+3*P^2+P;
 if Length(reps4) <> l then Error("reps4 wrong"); fi;
 #if Length(reps4) <> Length(Set(reps4)) then Error("reps4 has duplicates"); fi;
 return reps4;
-end;
+end );
 
 #############################################################################
 
@@ -383,7 +383,7 @@ end;
 #//order I Would have to generate the Whole list and then sort it.
 #//At p=19 this Would take 2 minutes on my laptop
 
-GetReps5 := function(P)
+BindGlobal( "GetReps5", function(P)
 local reps5, W, x, y, u, t, z, l, xrange;
 reps5:=[];
 W := PrimitiveRootMod(P);
@@ -436,11 +436,11 @@ l := P^5+P^4+P^3+P^2+2*P+P*Gcd(P-1,3);
 if Length(reps5) <> l then Error("reps5 wrong"); fi;
 #if Length(reps5) <> Length(Set(reps5)) then Error("reps5 has duplicates"); fi;
 return reps5;
-end;
+end );
 
 #############################################################################
 
-GetReps6 := function(P)
+BindGlobal( "GetReps6", function(P)
 local reps6, F, W, A, B, x, y, z, l;
 reps6:=[];
 W:=PrimitiveRootMod(P);
@@ -598,11 +598,11 @@ l := P^3+3*P^2+5*P+8+3*Gcd(P-1,3);
 if Length(reps6) <> l then Error("reps6 wrong"); fi;
 #if Length(reps6) <> Length(Set(reps6)) then Error("reps6 has duplicates"); fi;
 return reps6;
-end;
+end );
 
 #############################################################################
 
-GetReps7 := function(P)
+BindGlobal( "GetReps7", function(P)
 local reps7, F, W, A, B, x, y, z, t, l;
 reps7:=[];
 W:=PrimitiveRootMod(P);
@@ -710,11 +710,11 @@ l := (P^2+1)*(P+1)^2/2;
 if Length(reps7) <> l then Error("reps7 wrong"); fi;
 #if Length(reps7) <> Length(Set(reps7)) then Error("reps7 has duplicates"); fi;
 return reps7;
-end;
+end );
 
 #############################################################################
 
-GetReps8 := function(P)
+BindGlobal( "GetReps8", function(P)
 local reps8, W, F, A, B, x, y, z, t, l;
 reps8:=[];
 W:=PrimitiveRootMod(P);
@@ -823,7 +823,7 @@ l := (P^2+1)*(P+1)^2/2;
 if Length(reps8) <> l then Error("reps8 wrong"); fi;
 #if Length(reps8) <> Length(Set(reps8)) then Error("reps8 has duplicates"); fi;
 return reps8;
-end;
+end );
 
 #############################################################################
 #//Just to be perverse, we want these to be listed in a rather
@@ -835,7 +835,7 @@ end;
 #//order I would have to generate the whole list and then sort it.
 #//At p=19 sorting a list of this size takes two minutes on my laptop
 
-GetReps9 := function(P)
+BindGlobal( "GetReps9", function(P)
 local reps9, W, xrange, x, v, t, y, l, u;
 reps9:=[];
 W := PrimitiveRootMod(P);
@@ -890,11 +890,11 @@ l := P^5+P^4+P^3+2*P^2+2*P+P*Gcd(P-1,3);
 if Length(reps9) <> l then Error("reps9 wrong"); fi;
 #if Length(reps9) <> Length(Set(reps9)) then Error("reps9 has duplicates"); fi;
 return reps9;
-end;
+end );
 
 #############################################################################
 
-GetReps10 := function(P)
+BindGlobal( "GetReps10", function(P)
 local reps10, x, zrange, y, z, urange, t, u, v, l; 
 reps10:=[];
 for x in [0..(P-1)/2] do
@@ -919,11 +919,11 @@ l := P^3*(P^3+1)/2;
 if Length(reps10) <> l then Error("reps10 wrong"); fi;
 #if Length(reps10)<>Length(Set(reps10)) then Error("reps10 has duplicates"); fi;
 return reps10;
-end;
+end );
 
 #############################################################################
 
-GetReps11 := function(P)
+BindGlobal( "GetReps11", function(P)
 local reps11, W, x, zrange, y, z, urange, t, u, v, l;
 reps11:=[];
 W := PrimitiveRootMod(P);
@@ -949,5 +949,5 @@ l := P^3*(P^3+1)/2;
 if Length(reps11) <> l then Error("reps11 wrong"); fi;
 #if Length(reps11)<>Length(Set(reps11)) then Error("reps11 has duplicates"); fi;
 return reps11;
-end;
+end );
 

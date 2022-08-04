@@ -4,7 +4,7 @@
 ## l is the depth of g, that is, cl <> 0
 ## cl is an element of Q[x_1, ..., x_m, w]
 ##
-NormedLPR := function( L, g, l )
+BindGlobal( "NormedLPR", function( L, g, l )
     local p, e, f;
 
     if g = 0*g then return g; fi;
@@ -21,17 +21,17 @@ NormedLPR := function( L, g, l )
         return fail;
     fi;
     return f*g;
-end; 
+end ); 
 
-DensityLPR := function( list )
+BindGlobal( "DensityLPR", function( list )
     local i;
     for i in Reversed([1..Length(list)]) do
         if list[i] = true then return i+1; fi;
     od;
     return 1;
-end;
+end );
 
-InsertLPR := function( L, list, g, k )
+BindGlobal( "InsertLPR", function( L, list, g, k )
     local e, l, a;
     repeat
         e := Exponents(g);
@@ -49,9 +49,9 @@ InsertLPR := function( L, list, g, k )
             fi;
         fi;
     until false;
-end;
+end );
 
-StripLPR := function( list )
+BindGlobal( "StripLPR", function( list )
     local r, d, i, e, j, k, f;
     r := Length(list);
     for i in [1..r] do
@@ -65,18 +65,18 @@ StripLPR := function( list )
         od;
     od;
     return list;
-end;
+end );
 
-IsIntLPR := function( g )
+BindGlobal( "IsIntLPR", function( g )
     local e, i;
     e := Exponents(g);
     for i in [1..Length(e)] do
         if not IsInt(e[i]) then return false; fi;
     od;
     return true;
-end;
+end );
 
-BasisByGens := function( L, part, gens )
+BindGlobal( "BasisByGens", function( L, part, gens )
     local d, p, f, i, a, t, s, g, b, h, k;
 
     # set up
@@ -124,9 +124,9 @@ BasisByGens := function( L, part, gens )
     # strip and return
     f := Filtered(f, x -> x <> true);
     return StripLPR(f);
-end;
+end );
 
-LiePSubringByBasis := function( L, basis )
+BindGlobal( "LiePSubringByBasis", function( L, basis )
     local U;
 
     # get basis and parent
@@ -149,28 +149,28 @@ LiePSubringByBasis := function( L, basis )
 
     # return
     return U;
-end;
+end );
 
 InstallMethod( BasisOfLiePRing, true, [IsLiePRing], 0, function(L)
     if IsParentLiePRing(L) then return GeneratorsOfRing(L); fi;
     return BasisByGens( Parent(L), GeneratorsOfRing(L) );
 end );
 
-LiePSubring := function( L, gens )
+BindGlobal( "LiePSubring", function( L, gens )
     local b;
     b := BasisByGens(L, [], gens);
     if not IsList(b) then return fail; fi;
     return LiePSubringByBasis( L, b );
-end;
+end );
 
-LiePClosure := function( L, U, gens )
+BindGlobal( "LiePClosure", function( L, U, gens )
     local b;
     b := BasisByGens(L, BasisOfLiePRing(U), gens);
     if not IsList(b) then return fail; fi;
     return LiePSubringByBasis(L, b);
-end;
+end );
 
-LiePRecSubring := function( arg )
+BindGlobal( "LiePRecSubring", function( arg )
     local L, gens, base, T, R, 
           t, b, A, U, Z, U1, L1, B1, g1, Z1, L2, B2, g2, b1, b2;
 
@@ -216,9 +216,9 @@ LiePRecSubring := function( arg )
     od;
 
     return R;
-end;
+end );
 
-LiePIdeal := function( L, gens )
+BindGlobal( "LiePIdeal", function( L, gens )
     local K, b, w, v, c;
     b := BasisByGens( L, [], gens );
     if not IsList(b) then return fail; fi;
@@ -231,9 +231,9 @@ LiePIdeal := function( L, gens )
         if Length(c) = Length(b) then return LiePSubringByBasis(L,b); fi;
         b := c;
     until false;
-end;
+end );
 
-LiePIsIdeal := function(L, U)
+BindGlobal( "LiePIsIdeal", function(L, U)
     local bL, bU, a, b;
     bL := BasisOfLiePRing(L);
     bU := BasisOfLiePRing(U);
@@ -244,9 +244,9 @@ LiePIsIdeal := function(L, U)
         od;
     od;
     return true;
-end;
+end );
 
-LiePQuotientByTable := function( T, U )
+BindGlobal( "LiePQuotientByTable", function( T, U )
     local V, b, c, Q, i, j, e;
 
     # the trivial case
@@ -266,25 +266,25 @@ LiePQuotientByTable := function( T, U )
             e := LRMultiply( T, V[i], V[j] );
             e := e*c;
             e := e{[1..Q.dim]};
-            Add(Q.tab, WordByExps(e));
+            Add(Q.tab, WordByExps@(e));
         od;
         e := LRReduceExp( T, T.prime*V[i] );
         e := e*c;
         e := e{[1..Q.dim]};
-        Add(Q.tab, WordByExps(e));
+        Add(Q.tab, WordByExps@(e));
     od;
     return LiePRingBySCTableNC(Q);
-end;
+end );
 
-LiePQuotientNC := function(L, U)
+BindGlobal( "LiePQuotientNC", function(L, U)
     local S, u;
     S := SCTable(Zero(L));
     u := List(BasisOfLiePRing(U), Exponents);
     return LiePQuotientByTable(S, u);
-end;
+end );
 
-LiePQuotient := function(L,U)
+BindGlobal( "LiePQuotient", function(L,U)
     if not LiePIsIdeal(L,U) then return false; fi;
     return LiePQuotientNC(L,U);
-end;
+end );
    

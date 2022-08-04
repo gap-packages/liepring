@@ -6,7 +6,7 @@
 ## para : a list of parameters (not p or w)
 ## vals : the values of the parameters
 ##
-SpecialiseLiePRingNC := function( L, P, para, vals )
+BindGlobal( "SpecialiseLiePRingNC", function( L, P, para, vals )
     local S, T, W, p, w, sp, sx, i, j, K;
 
     # get table
@@ -51,7 +51,7 @@ SpecialiseLiePRingNC := function( L, P, para, vals )
 
     # get entries in normal form
     for i in Reversed([1..Length(T.tab)]) do
-        T.tab[i] := WordByExps(LRReduceExp(T,ExpsByWord(T.dim,T.tab[i])));
+        T.tab[i] := WordByExps@(LRReduceExp(T,ExpsByWord(T.dim,T.tab[i])));
     od;
 
     # create new Lie ring
@@ -76,12 +76,12 @@ SpecialiseLiePRingNC := function( L, P, para, vals )
                     MinimalGeneratorNumberOfLiePRing(L) ); fi;
     SetLiePValues(K, [para,vals]);
     return K;
-end;
+end );
 
 ##
 ## check if P satisfies conditions of L and if cl(L) < P
 ##
-IsValidPrime := function(L, P)
+BindGlobal( "IsValidPrime", function(L, P)
     local c;
     if not IsPrimeInt(P) then return false; fi;
     if not HasLibraryConditions(L) then return true; fi;
@@ -115,12 +115,12 @@ IsValidPrime := function(L, P)
         if not (P mod 8) in [3,5] then return false; fi;
     fi;
     return true;
-end;
+end );
 
 ##
 ## Specialize with checking 
 ##
-SpecialiseLiePRing := function( L, P, para, vals )
+BindGlobal( "SpecialiseLiePRing", function( L, P, para, vals )
     local S, p, w;
 
     # get table
@@ -144,22 +144,22 @@ SpecialiseLiePRing := function( L, P, para, vals )
     fi;
    
     return SpecialiseLiePRingNC( L, P, para, vals );
-end;
+end );
 
 ##
 ## Specialize prime only
 ##
-SpecialisePrimeOfLiePRing := function( L, P )
+BindGlobal( "SpecialisePrimeOfLiePRing", function( L, P )
     return SpecialiseLiePRing( L, P, [], [] );
-end;
-SpecialisePrimeOfLiePRingNC := function( L, P )
+end );
+BindGlobal( "SpecialisePrimeOfLiePRingNC", function( L, P )
     return SpecialiseLiePRingNC( L, P, [], [] );
-end;
+end );
 
 ##
 ##
 ##
-TranslatedLiePRings := function( L, P, para, vals, flag )
+BindGlobal( "TranslatedLiePRings", function( L, P, para, vals, flag )
     local res, i, R;
     res := List(vals, x -> true);
     for i in [1..Length(vals)] do
@@ -173,13 +173,13 @@ TranslatedLiePRings := function( L, P, para, vals, flag )
         res[i] := R;
     od; 
     return res;
-end;
+end );
 
 ## 
 ## Lie rings in a family
 ##
 
-LiePRingsInFamily := function( arg )
+BindGlobal( "LiePRingsInFamily", function( arg )
     local L, P, W, p, w, d, c, l, para, flag, vals, fals, X, Y, Z, 
           x, y, z, t, j, k, m, n, r, s, u, v;
 
@@ -717,5 +717,5 @@ LiePRingsInFamily := function( arg )
         return TranslatedLiePRings( L, P, para, vals, flag );
     fi;
   
-end;
+end );
 

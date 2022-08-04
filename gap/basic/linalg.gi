@@ -1,14 +1,14 @@
 
-Swapped := function( J, k, j, d )
+BindGlobal( "Swapped", function( J, k, j, d )
     local t;
     t := J[k];
     J[k] := J[j];
     J[j] := t;
     J[k] := J[k][d]^-1 * J[k];
     return J;
-end;
+end );
 
-MyMinimum := function( list )
+BindGlobal( "MyMinimum", function( list )
     local d, i;
     d := list[1];
     for i in [2..Length(list)] do
@@ -19,9 +19,9 @@ MyMinimum := function( list )
         fi;
     od;
     return d;
-end;
+end );
 
-Pivot := function(J, d, k, units)
+BindGlobal( "Pivot", function(J, d, k, units)
     local v, m, j, l;
 
     # cut out relevant part
@@ -47,9 +47,9 @@ Pivot := function(J, d, k, units)
     # finally print a statement
     Print("need invertible in ", v,"\n");
     return Random(m);
-end;
+end );
 
-MyBaseMat := function(J, units)
+BindGlobal( "MyBaseMat", function(J, units)
     local k, d, i, l, m;
 
     if Length(J) = 0 then return J; fi;
@@ -77,10 +77,10 @@ MyBaseMat := function(J, units)
             fi;
         od;
     until false;
-end;
+end );
 
-FactorSpace := function( d, sub )
+BindGlobal( "FactorSpace", function( d, sub )
     return IdentityMat(d){Difference([1..d], List(sub, DepthVector))};
-end;
+end );
 
 

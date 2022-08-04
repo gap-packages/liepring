@@ -22,7 +22,7 @@
 ## Zeros 
 ##
 
-ReduceCoeffsByZeros := function( zeros, elm )
+BindGlobal( "ReduceCoeffsByZeros", function( zeros, elm )
     local p, a, c, b;
 
     if elm = 0*elm then return elm; fi;
@@ -40,14 +40,14 @@ ReduceCoeffsByZeros := function( zeros, elm )
     b := Sum(List([1..Length(c)], x -> c[x]*p^(x-1)));
 
     return a/b;
-end;
+end );
 
 #############################################################################
 ##
 ## Units 
 ##
 
-ReduceByUnits := function( units, elm )
+BindGlobal( "ReduceByUnits", function( units, elm )
     local w, U, u, t, f;
 
     # the denominator is always a unit
@@ -69,30 +69,30 @@ ReduceByUnits := function( units, elm )
     od;
 
     return elm;
-end;
+end );
 
-IsLiePUnit := function( uni, elm )
+BindGlobal( "IsLiePUnit", function( uni, elm )
     local a, b;
     if elm = 0*elm then return false; fi;
     if IsRat(elm) then return true; fi;
     if PDegree(elm)<>0 then return false; fi;
     a := NumeratorOfRationalFunction(elm);
     return IsCRF(ReduceByUnits(uni, a));
-end;
+end );
 
-LeadingUnit := function( elm )
+BindGlobal( "LeadingUnit", function( elm )
     local p;
     if elm = 0*elm then return elm; fi;
     p := IndeterminateByName("p");
     return elm / p^PValue(elm);
-end;
+end );
 
 #############################################################################
 ##
 ## Expand input to a system of units and zeros
 ## Returns either [U,Z] or fail if an inconsistency is detected
 ##
-SetupUZSystem := function( pp, U, Z )
+BindGlobal( "SetupUZSystem", function( pp, U, Z )
     local done, zz, uu, x, y, z, w;
 
     # set up
@@ -135,17 +135,17 @@ SetupUZSystem := function( pp, U, Z )
 
     # now return result
     return [U,Z];
-end;
+end );
 
 #############################################################################
 ##
 ## Create units and zeros
 ##
-CreateUnits := function( pp, A, B )
+BindGlobal( "CreateUnits", function( pp, A, B )
     return SetupUZSystem(pp, Unique(Concatenation(A[1],B)), A[2]);
-end;
+end );
 
-CreateZeros := function( pp, A, B )
+BindGlobal( "CreateZeros", function( pp, A, B )
     return SetupUZSystem( pp, A[1], Concatenation(A[2],[Product(B)]) );
-end;
+end );
 

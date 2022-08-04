@@ -1,14 +1,14 @@
 
-IsSquareGF := function( F, a )
+BindGlobal( "IsSquareGF", function( F, a )
     local e;
     for e in Elements(F) do
         if e^2 = a then return e; fi;
     od;
     return false;
-end;
+end );
 
 #############################################################################
-GetIndex2:=function(P,W,A)
+BindGlobal( "GetIndex2", function(P,W,A)
 local F, x, y, z, t, u, v;
 F:=GF(P);
 x:=A[3][1];
@@ -54,10 +54,10 @@ if y <> One(F) or x = Zero(F) then return P^4*IntFFE(y); fi;
 
 return P^5+P^4;
 
-end;
+end );
 
 #############################################################################
-GetIndex3:=function(P,W,A)
+BindGlobal( "GetIndex3", function(P,W,A)
 local F, x, y, z, t, u, v, c, e;
 F:=GF(P);
 x:=A[3][1];
@@ -122,10 +122,10 @@ if x = Zero(F) then return P^3*IntFFE(z); fi;
 if IsSquareGF(GF(P),x)<>false then return P^5+P^3*IntFFE(z); fi;
 return P^5*W+P^3*IntFFE(z);
 
-end;
+end );
 
 #############################################################################
-GetIndex4:=function(P,W,A)
+BindGlobal( "GetIndex4", function(P,W,A)
 local F, x, y, z, t, u, v, c, e;
 F:=GF(P);
 x:=A[3][1];
@@ -171,10 +171,10 @@ if x = Zero(F) then return P^3*IntFFE(z)+P*IntFFE(u); fi;
 if IsSquareGF(GF(P),x)<>false then return P^5+P^3*IntFFE(z)+P*IntFFE(u); fi;
 return P^5*W+P^3*IntFFE(z)+P*IntFFE(u);
 
-end;
+end );
 
 #############################################################################
-GetIndex5:=function(P,W,A, curoots)
+BindGlobal( "GetIndex5", function(P,W,A, curoots)
 local F, x, y, z, t, u, v, c, e, a;
 F:=GF(P);
 x:=A[3][1];
@@ -217,10 +217,10 @@ x:=One(F);
 if curoots[IntFFE(e)] = 0 then e:=e/W; x:=W*One(F); fi;
 if curoots[IntFFE(e)] = 0 then x:=x^2; fi;
 return P*IntFFE(x)+IntFFE(u);
-end;
+end );
 
 #############################################################################
-GetIndex6:=function(P,W,A, curoots)
+BindGlobal( "GetIndex6", function(P,W,A, curoots)
 local F, x, y, z, t, u, v, c, e, x1, y1, z1, t1, u1, v1, a;
 F:=GF(P);
 x:=A[3][1];
@@ -326,10 +326,10 @@ x:=One(F);
 if curoots[IntFFE(e)] = 0 then e:=e/W; x:=W*One(F); fi;
 if curoots[IntFFE(e)] = 0 then x:=x^2; fi;
 return P^5*IntFFE(x);
-end;
+end );
 
 #############################################################################
-GetIndex7:=function(P,W,A)
+BindGlobal( "GetIndex7", function(P,W,A)
 local F, x, y, z, t, u, v, c, e, x1, y1, z1, t1, u1, v1;
 F:=GF(P);
 x:=A[3][1];
@@ -377,10 +377,10 @@ x1:=-x;
 z1:=-z;
 if [IntFFE(z1),IntFFE(x1)] < [IntFFE(z),IntFFE(x)] then x:=x1; z:=z1; fi;
 return P^5*IntFFE(x)+P^4*IntFFE(y)+P^3*IntFFE(z);
-end;
+end );
 
 #############################################################################
-GetIndex9:=function(P,W,A,curoots)
+BindGlobal( "GetIndex9", function(P,W,A,curoots)
 local F, x, y, z, t, u, v, c, e, a;
 F:=GF(P);
 x:=A[3][1];
@@ -428,10 +428,10 @@ x:=One(F);
 if curoots[IntFFE(e)] = 0 then e:=e/W; x:=W*One(F); fi;
 if curoots[IntFFE(e)] = 0 then x:=x^2; fi;
 return P*IntFFE(x)+IntFFE(v);
-end;
+end );
 
 #############################################################################
-GetIndex10:=function(P,W,A)
+BindGlobal( "GetIndex10", function(P,W,A)
 local x, y, z, t, u, v, c, e, x1, z1, u1;
 x:=IntFFE(A[3][1]);
 y:=IntFFE(A[3][2]);
@@ -446,5 +446,5 @@ if [x1,z1,u1] < [x,z,u] then
   x:=x1; z:=z1; u:=u1;
 fi;
 return P^5*x+P^4*y+P^3*z+P^2*t+P*u+v;
-end;
+end );
 

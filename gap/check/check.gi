@@ -3,7 +3,7 @@
 RequirePackage("liepring");
 RequirePackage("anupq");
 
-CheckFamily := function(L, P)
+BindGlobal( "CheckFamily", function(L, P)
     local f, a, b;
     if P = 3 and PClassOfLiePRing(L) > 2 then return true; fi;
     f := NumberOfLiePRingsInFamily(L);
@@ -11,9 +11,9 @@ CheckFamily := function(L, P)
     b := LiePRingsInFamily(L,P);
     if b = fail then b := 0; else b := Length(b); fi;
     return a=b;
-end;
+end );
 
-CheckPorc := function(d, P)
+BindGlobal( "CheckPorc", function(d, P)
     local LL, cc, L1, L2, f1, f2, a, b1, b2, i, L;
 
     LL := LiePRingsByLibrary(d);
@@ -45,7 +45,7 @@ CheckPorc := function(d, P)
             Print("dim ",d," num ",i," prime ",P," done \n");
         fi;
     od;
-end;
+end );
 
 #for d in [2..7] do
 #    for P in [3,5,7,11,13,17,19] do
@@ -53,7 +53,7 @@ end;
 #    od;
 #od;
 
-CheckCodes := function(d, P)
+BindGlobal( "CheckCodes", function(d, P)
     local LL, cc, dd, i, c, j, k;
     LL := LiePRingsByLibrary(d);
     cc := List(LL, x -> []);
@@ -78,10 +78,10 @@ CheckCodes := function(d, P)
     cc := Sum(List(cc, Length));
     dd := NumberSmallGroups(P^d);
     Print(" number Lie rings ",cc," -- number groups ",dd,"\n");
-end;
+end );
 
 
-NrZerosByPrime := function( arg )
+BindGlobal( "NrZerosByPrime", function( arg )
     local pp, vars, polys, p, l, z, v, a, b, e, w, W;
     if Length(arg) = 3 then 
         pp := arg[1];
@@ -103,9 +103,9 @@ NrZerosByPrime := function( arg )
         if a = 0*a then z := z + 1; fi;
     od;
     return p^(l-e)*z;
-end;
+end );
 
-TryInterpol := function( pp, polys, n )
+BindGlobal( "TryInterpol", function( pp, polys, n )
     local pr, wt, i, p, r, a;
 
     # get values
@@ -125,9 +125,9 @@ TryInterpol := function( pp, polys, n )
         r := r + wt[i]*a;
     od;
     return r;
-end;
+end );
 
-Check2 := function(p)
+BindGlobal( "Check2", function(p)
     local w, z, a, o;
 
     w := PrimitiveRootMod(p)*One(GF(p));
@@ -173,9 +173,9 @@ Check2 := function(p)
     a := Length(Filtered(GF(p)^2, x -> (w*x[1]-x[2])*(x[2]+o)=z));
     if a <> 2*p-1 then Error("hier"); fi;
 
-end;
+end );
 
-Check3 := function(p)
+BindGlobal( "Check3", function(p)
     local w, v, o, a;
 
     w := PrimitiveRootMod(p)*One(GF(p));
@@ -241,10 +241,10 @@ Check3 := function(p)
     a := Length(Filtered(GF(p)^3, x -> x[2]=o and (x[1]+1)*(x[3]+1)=o));
     if a <> p-1 then Error("hier 19"); fi;
 
-end;
+end );
 
 
-Check4 := function(p)
+BindGlobal( "Check4", function(p)
     local w, v, o, a;
 
     w := PrimitiveRootMod(p)*One(GF(p));
@@ -303,5 +303,5 @@ Check4 := function(p)
 
 
 
-end;
+end );
 

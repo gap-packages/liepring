@@ -4,7 +4,7 @@
 #      structure constants of pcp,
 #      conditions,,name]
 
-LiePRingByData := function( dim, l )
+BindGlobal( "LiePRingByData", function( dim, l )
     local r, S, L, cond, i;
 
     # generate some info
@@ -30,9 +30,9 @@ LiePRingByData := function( dim, l )
     SetLibraryConditions( L, cond );
     
     return L;
-end;
+end );
 
-NumberOfLiePRings := function( arg )
+BindGlobal( "NumberOfLiePRings", function( arg )
     local dim, P;
     dim := arg[1];
 
@@ -65,7 +65,7 @@ NumberOfLiePRings := function( arg )
     elif dim = 7 then 
         return 4773;
     fi;
-end;
+end );
 
 ##
 ## dim

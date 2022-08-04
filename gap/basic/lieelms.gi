@@ -99,7 +99,7 @@ InstallMethod( AdditiveInverseOp, [IsLPRElement], 0, function(elm)
     return LPRElementByExponents( SCTable(elm), -Exponents(elm) );
 end );
 
-ExponentsByBasis := function( list, elm )
+BindGlobal( "ExponentsByBasis", function( list, elm )
     local dep, exp, d, j;
     if Length(list)=0 and elm = 0*elm then return []; fi;
     if Length(list)=0 and elm <> 0*elm then return fail; fi;
@@ -113,7 +113,7 @@ ExponentsByBasis := function( list, elm )
         exp := Exponents(elm);
     od;
     return exp;
-end;
+end );
 
 InstallMethod( \in, true, [IsLPRElement, IsLiePRing], 0,
 function(elm, L)
@@ -122,12 +122,12 @@ function(elm, L)
     return ExponentsByBasis( BasisOfLiePRing(L), elm ) <> fail;
 end );
     
-ExponentsLPR := function( L, elm )
+BindGlobal( "ExponentsLPR", function( L, elm )
     if IsParentLiePRing(L) then return Exponents(elm); fi;
     return ExponentsByBasis(BasisOfLiePRing(L), elm);
-end;
+end );
 
-LiePOrder := function( elm )
+BindGlobal( "LiePOrder", function( elm )
     local p, i;
     p := SCTable(elm).prime;
     i := 0;
@@ -135,5 +135,5 @@ LiePOrder := function( elm )
         if p^i*elm = 0*elm then return p^i; fi;
         i := i+1;
     until false;
-end;
+end );
 

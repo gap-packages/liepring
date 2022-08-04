@@ -53,14 +53,14 @@ InstallGlobalFunction( LiePRingBySCTable, function( SC )
     return R;
 end );
 
-LiePRingCopyNC := function( L, units, zeros )
+BindGlobal( "LiePRingCopyNC", function( L, units, zeros )
     local SC;
     SC := ShallowCopy(SCTable(Zero(L)));
     SC.ring := rec( units := units, zeros := zeros );
     return LiePRingBySCTableNC(SC);
-end;
+end );
 
-LiePRingCopy := function( L, units, zeros )
+BindGlobal( "LiePRingCopy", function( L, units, zeros )
     local TU;
     TU := SetupUZSystem( ParametersOfLiePRing(L), units, zeros );
     if TU = fail then 
@@ -68,24 +68,24 @@ LiePRingCopy := function( L, units, zeros )
     else 
         return LiePRingCopyNC(L, TU[1], TU[2]);
     fi;
-end;
+end );
 
-LiePRingSplit := function( L, elm )
+BindGlobal( "LiePRingSplit", function( L, elm )
     local I, L1, L2;
     I := SCTable(Zero(L)).ring;
     L1 := LiePRingCopy(L, Union(I.units, [elm]), I.zeros);
     L2 := LiePRingCopy(L, I.units, Union(I.zeros, [elm]));
     return [L1, L2];
-end;
+end );
 
-LiePImageByBasis := function( B, elm )
+BindGlobal( "LiePImageByBasis", function( B, elm )
     local c;
     if Length(B) = 0 then return []; fi;
     c := LRApplyZeros( SCTable(B[1]), Exponents(elm) );
     return Sum(List([1..Length(c)], x -> c[x]*B[x]));
-end;
+end );
 
-CheckIsLiePRing := function(L)
+BindGlobal( "CheckIsLiePRing", function(L)
     local l, p, d, a, i, j, k, c;
 
     # get gens and table
@@ -128,7 +128,7 @@ CheckIsLiePRing := function(L)
     od;
     
     return true;
-end;
+end );
 
 InstallMethod( IsLiePRing, true, [IsRing], 0, function(L)
     return CheckIsLiePRing(L);
@@ -149,7 +149,7 @@ InstallMethod( ViewObj, true, [IsLiePRing], SUM_FLAGS, function(L)
     fi;
 end );
 
-PrintExp := function( n, e )
+BindGlobal( "PrintExp", function( n, e )
     local d, i;
     d := First([1..n], x -> e[x] <> 0*e[x]);
     if d = fail then Print(0,"\n"); return; fi;
@@ -173,7 +173,7 @@ PrintExp := function( n, e )
         fi;
     od;
     Print("\n");
-end;
+end );
 
 InstallGlobalFunction(ViewShortPresentation, function(L)
     if not IsBound(L!.ShortPresentation) then return; fi;
@@ -223,10 +223,10 @@ InstallMethod( DimensionOfLiePRing, true, [IsLiePRing], 0, function(L)
     return Length(BasisOfLiePRing(L));
 end );
 
-RingInvariants := function(L)
+BindGlobal( "RingInvariants", function(L)
     return rec( units := SCTable(Zero(L)).ring.units, 
                 zeros := SCTable(Zero(L)).ring.zeros );
-end;
+end );
 
 
 
