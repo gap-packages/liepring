@@ -20,7 +20,7 @@ tex manual; ../../../doc/manualindex manual
 tex manual
 # Create the PostScript version (uncomment next line, if needed)
 #dvips -D300 manual -o
-# Create PDF version
+echo "Creating PDF version"
 pdftex manual; pdftex manual 
 
 # The HTML version of the manual
