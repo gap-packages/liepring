@@ -103,10 +103,10 @@ BindGlobal( "ExponentsByBasis", function( list, elm )
     local dep, exp, d, j;
     if Length(list)=0 and elm = 0*elm then return []; fi;
     if Length(list)=0 and elm <> 0*elm then return fail; fi;
-    dep := List(list, x -> DepthVector(Exponents(x)));
+    dep := List(list, x -> PositionNonZero(Exponents(x)));
     exp := Exponents(elm);
     while exp <> 0*exp do
-        d := DepthVector(exp);
+        d := PositionNonZero(exp);
         j := Position(dep, d);
         if j = fail then return fail; fi;
         elm := elm - exp[d]*list[j];

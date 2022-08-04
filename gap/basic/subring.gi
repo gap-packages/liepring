@@ -35,7 +35,7 @@ BindGlobal( "InsertLPR", function( L, list, g, k )
     local e, l, a;
     repeat
         e := Exponents(g);
-        l := DepthVector(e);
+        l := PositionNonZero(e);
         if l >= k then 
             return true;
         elif list[l] <> true then 
@@ -56,7 +56,7 @@ BindGlobal( "StripLPR", function( list )
     r := Length(list);
     for i in [1..r] do
         e := Exponents(list[i]);
-        d := DepthVector(e);
+        d := PositionNonZero(e);
         for j in [1..i-1] do
             f := Exponents(list[j]);
             if f[d] <> 0*f[d] then 
@@ -87,7 +87,7 @@ BindGlobal( "BasisByGens", function( L, part, gens )
 
     # fill in part
     for i in [1..Length(part)] do
-        a := DepthVector(Exponents(part[i]));
+        a := PositionNonZero(Exponents(part[i]));
         f[a] := part[i];
     od;
     k := DensityLPR(f);
