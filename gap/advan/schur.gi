@@ -142,8 +142,6 @@ end );
 ##
 ## Some helpers
 ##
-BindGlobal( "Pos", function(i,j) return i*(i-1)/2 + j; end );
-
 BindGlobal( "MakeIntPoly", function(R, vec)
     local p, i, u, e, f, uni;
 
@@ -179,7 +177,7 @@ end );
 ## Create matrix from structure constants
 ##
 BindGlobal( "SetUpSchurMultSystem", function(L)
-    local R, d, p, l, n, a, b, i, j, h, k, v, w, u, s;
+    local R, d, p, l, n, a, b, i, j, h, k, v, w, u, s, Pos;
 
     # catch arguments
     R := RingInvariants(L);
@@ -191,6 +189,8 @@ BindGlobal( "SetUpSchurMultSystem", function(L)
 
     # a special case
     if d = 1 then return rec( norm := [], unit := []); fi;
+
+    Pos := {i,j} -> i*(i-1)/2 + j;
 
     # precompute structure constants
     a := NullMat(d,d);
