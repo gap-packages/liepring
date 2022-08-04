@@ -49,7 +49,7 @@ end );
 ##
 ## Determine the p-group corresponding to L
 ##
-BindGlobal( "PGroupByLiePRing", function( L )
+InstallGlobalFunction( "PGroupByLiePRing", function( L )
    local G_BCH, p, dim, F, rels, i, u, c, l, x0, y0, z0, w, j, G, g, GtoL, 
          LtoG, v1, v2, v3, gens, tors, k, s;
  
