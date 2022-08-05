@@ -253,7 +253,7 @@ BindGlobal( "LiePQuotientByTable", function( T, U )
     if Length(U) = 0 then return LiePRingBySCTableNC(T); fi;
 
     # get factor
-    V := FactorSpace(Length(U[1]), U);
+    V := FactorSpace@(Length(U[1]), U);
     b := Concatenation(V,U);
     b := b*IndeterminateByName("w")^0;
     c := MakeInt(b^-1);

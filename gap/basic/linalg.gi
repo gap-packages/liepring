@@ -49,7 +49,7 @@ BindGlobal( "Pivot", function(J, d, k, units)
     return Random(m);
 end );
 
-BindGlobal( "MyBaseMat", function(J, units)
+BindGlobal( "MyBaseMat@", function(J, units)
     local k, d, i, l, m;
 
     if Length(J) = 0 then return J; fi;
@@ -79,7 +79,7 @@ BindGlobal( "MyBaseMat", function(J, units)
     until false;
 end );
 
-BindGlobal( "FactorSpace", function( d, sub )
+BindGlobal( "FactorSpace@", function( d, sub )
     return IdentityMat(d){Difference([1..d], List(sub, PositionNonZero))};
 end );
 

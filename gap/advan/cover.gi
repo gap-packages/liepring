@@ -91,7 +91,7 @@ BindGlobal( "LiePCover", function(L)
     od;
 
     # check
-    u := MyBaseMat(J, T.ring.units);
+    u := MyBaseMat@(J, T.ring.units);
     if not IsList(u) then return u; fi;
 
     # get quotient
