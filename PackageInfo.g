@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "2.6",
-Date := "11/04/2022",
+Version := "2.7",
+Date := "05/08/2022",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -14,7 +14,7 @@ Persons := [
     IsAuthor      := true,
     IsMaintainer  := true,
     Email         := "beick@tu-bs.de",
-    WWWHome       := "http://www.icm.tu-bs.de/~beick",
+    WWWHome       := "http://www.iaa.tu-bs.de/beick",
     Place         := "TU Braunschweig" ),
   rec( 
     LastName      := "Vaughan-Lee",

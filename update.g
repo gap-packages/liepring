@@ -20,7 +20,7 @@
 
 # Parse PackageInfo.g and regenerate _data/package.yml from it.
 
-PrintPeopleList := function(stream, people)
+BindGlobal( "PrintPeopleList", function(stream, people)
     local p;
     for p in people do
         AppendTo(stream, "    - name: ", p.FirstNames, " ", p.LastName, "\n");
@@ -31,9 +31,9 @@ PrintPeopleList := function(stream, people)
         fi;
     od;
     AppendTo(stream, "\n");
-end;
+end );
 
-PrintPackageList := function(stream, pkgs)
+BindGlobal( "PrintPackageList", function(stream, pkgs)
     local p, pkginfo;
     for p in pkgs do
         AppendTo(stream, "    - name: \"", p[1], "\"\n");
@@ -44,10 +44,10 @@ PrintPackageList := function(stream, pkgs)
         fi;
     od;
     AppendTo(stream, "\n");
-end;
+end );
 
 # verify date is of the form YYYY-MM-DD
-IsValidISO8601Date := function(date)
+BindGlobal( "IsValidISO8601Date", function(date)
     local day, month, year;
     if Length(date) <> 10 then return false; fi;
     if date[5] <> '-' or date[8] <> '-' then return false; fi;
@@ -59,9 +59,9 @@ IsValidISO8601Date := function(date)
     month := date[2];
     year := date[1];
     return month in [1..12] and day in [1..DaysInMonth(month, year)];
-end;
+end );
 
-GeneratePackageYML:=function(pkg)
+BindGlobal( "GeneratePackageYML", function(pkg)
     local stream, date, authors, maintainers, contributors, formats, f, tmp;
 
     stream := OutputTextFile("_data/package.yml", false);
@@ -171,7 +171,7 @@ GeneratePackageYML:=function(pkg)
     # TODO: use Keywords?
 
     CloseStream(stream);
-end;
+end );
 Read("PackageInfo.g");
 GeneratePackageYML(GAPInfo.PackageInfoCurrent);
 QUIT;
