@@ -20,7 +20,7 @@
 
 # Parse PackageInfo.g and regenerate _data/package.yml from it.
 
-BindGlobal( "PrintPeopleList", function(stream, people)
+PrintPeopleList := function(stream, people)
     local p;
     for p in people do
         AppendTo(stream, "    - name: ", p.FirstNames, " ", p.LastName, "\n");
@@ -31,9 +31,9 @@ BindGlobal( "PrintPeopleList", function(stream, people)
         fi;
     od;
     AppendTo(stream, "\n");
-end );
+end;
 
-BindGlobal( "PrintPackageList", function(stream, pkgs)
+PrintPackageList := function(stream, pkgs)
     local p, pkginfo;
     for p in pkgs do
         AppendTo(stream, "    - name: \"", p[1], "\"\n");
@@ -44,10 +44,10 @@ BindGlobal( "PrintPackageList", function(stream, pkgs)
         fi;
     od;
     AppendTo(stream, "\n");
-end );
+end;
 
 # verify date is of the form YYYY-MM-DD
-BindGlobal( "IsValidISO8601Date", function(date)
+IsValidISO8601Date := function(date)
     local day, month, year;
     if Length(date) <> 10 then return false; fi;
     if date[5] <> '-' or date[8] <> '-' then return false; fi;
@@ -59,16 +59,19 @@ BindGlobal( "IsValidISO8601Date", function(date)
     month := date[2];
     year := date[1];
     return month in [1..12] and day in [1..DaysInMonth(month, year)];
-end );
+end;
 
-BindGlobal( "GeneratePackageYML", function(pkg)
+GeneratePackageYML:=function(pkg)
     local stream, date, authors, maintainers, contributors, formats, f, tmp;
 
     stream := OutputTextFile("_data/package.yml", false);
     SetPrintFormattingStatus(stream, false);
     
     AppendTo(stream, "name: ", pkg.PackageName, "\n");
-    AppendTo(stream, "version: ", pkg.Version, "\n");
+    AppendTo(stream, "version: \"", pkg.Version, "\"\n");
+    if IsBound(pkg.License) then
+        AppendTo(stream, "license: \"", pkg.License, "\"\n");
+    fi;
 
     # convert date from DD/MM/YYYY to ISO 8601, i.e. YYYY-MM-DD
     #
@@ -168,10 +171,26 @@ BindGlobal( "GeneratePackageYML", function(pkg)
         fi;
     fi;
 
-    # TODO: use Keywords?
+    if IsBound(pkg.Keywords) and
+        Length(pkg.Keywords) > 0 then
+        AppendTo(stream, "keywords: |\n");
+        AppendTo(stream, "    ", JoinStringsWithSeparator(pkg.Keywords,", "),".\n");
+    fi;
+
+    AppendTo(stream, "citeas: |\n");
+    for tmp in SplitString(StringBibXMLEntry(ParseBibXMLextString(BibEntry(pkg)).entries[1],"HTML"),"\n") do
+        AppendTo(stream, "    ", tmp, "\n");
+    od;
+    AppendTo(stream, "\n");
+
+    AppendTo(stream, "bibtex: |\n");
+    for tmp in SplitString(StringBibXMLEntry(ParseBibXMLextString(BibEntry(pkg)).entries[1],"BibTeX"),"\n") do
+        AppendTo(stream, "    ", tmp, "\n");
+    od;
+    AppendTo(stream, "\n");
 
     CloseStream(stream);
-end );
+end;
 Read("PackageInfo.g");
 GeneratePackageYML(GAPInfo.PackageInfoCurrent);
 QUIT;

@@ -1,5 +1,6 @@
 name: LiePRing
-version: 2.8
+version: "2.8"
+license: "GPL-2.0-or-later"
 date: 2022-10-21
 description: |
     Database and algorithms for Lie p-rings
@@ -39,3 +40,31 @@ abstract: |
 status: accepted
 doc-html: htm/chapters.htm
 doc-pdf: doc/manual.pdf
+keywords: |
+    , , .
+citeas: |
+    <p class='BibEntry'>
+    [<span class='BibKey'>EV22</span>]   <b class='BibAuthor'>Eick, B. and Vaughan-Lee, M.</b>,
+     <i class='BibTitle'>LiePRing, Database and algorithms for Lie p-rings,
+             Version 2.8</i>
+     (<span class='BibYear'>2022</span>)<br />
+    (<span class='BibNote'>Refereed GAP package</span>),
+    <span class='BibHowpublished'><a href="https://gap-packages.github.io/liepring/">https://gap-packages.github.io/liepring/</a></span>.
+    </p>
+    
+
+bibtex: |
+    @misc{ LiePRing2.8,
+      author =           {Eick, B. and Vaughan-Lee, M.},
+      title =            {{LiePRing},  Database  and algorithms for Lie p-rings,
+                          {V}ersion 2.8},
+      month =            {Oct},
+      year =             {2022},
+      note =             {Refereed GAP package},
+      howpublished =     {\href       {https://gap-packages.github.io/liepring/}
+                          {\texttt{https://gap-packages.github.io/}\discretionary
+                          {}{}{}\texttt{liepring/}}},
+      keywords =         {; ;},
+      printedkey =       {EV22}
+    }
+
