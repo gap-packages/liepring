@@ -54,7 +54,31 @@ PackageDoc := rec(
   LongTitle := "LiePRing Package",
 ),
 
-AvailabilityTest := ReturnTrue,
+AvailabilityTest := function()
+  # When LiePRing gets loaded, the Singular package will be loaded,
+  # and then 'StartSingular()' will be called in read.g,
+  # without modifying the variable 'sing_exec'.
+  # Thus we use the code from Singular's
+  # 'CheckSingularExecutableAndTempDir' in order to determine
+  # whether a Singular executable will be found by the Singular package.
+  # If not then LiePRing cannot be loaded,
+  # because otherwise the call of 'StartSingular()' would run into an error.
+  local IsExec, sing_exec;
+
+  IsExec:= path -> IsString( path ) and not IsDirectoryPath( path )
+                   and IsExecutableFile( path );
+
+  sing_exec:= "singular";
+  if IsDirectoryPath( sing_exec ) then
+    sing_exec:= Filename( Directory( sing_exec ), "Singular" );
+  elif not IsExecutableFile( sing_exec ) then
+    sing_exec:= Filename( DirectoriesSystemPrograms(), sing_exec );
+  fi;
+  if not IsExec( sing_exec ) then
+    sing_exec:= Filename( DirectoriesSystemPrograms(), "Singular" );
+  fi;
+  return IsExec( sing_exec );
+end,
 
 Dependencies := rec(
   GAP := "4.8",
