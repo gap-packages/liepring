@@ -68,7 +68,12 @@ AvailabilityTest := function()
   IsExec:= path -> IsString( path ) and not IsDirectoryPath( path )
                    and IsExecutableFile( path );
 
-  sing_exec:= "singular";
+  if IsBoundGlobal( "sing_exec" ) then
+    # The Singular package has been loaded.
+    sing_exec:= ValueGlobal( "sing_exec" );
+  else
+    sing_exec:= "singular";
+  fi;
   if IsDirectoryPath( sing_exec ) then
     sing_exec:= Filename( Directory( sing_exec ), "Singular" );
   elif not IsExecutableFile( sing_exec ) then
