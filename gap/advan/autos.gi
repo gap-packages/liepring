@@ -802,10 +802,6 @@ fi;
     return rec( auto := A, eqns := tod.rel);
 end );
 
-BindGlobal( "SizeOfGL", function(n, p)
-    return Product(List([0..n-1], x -> (p^n - p^x)));
-end );
-
 BindGlobal( "SizeByBlocks", function(b, p)
     local e, d, c, i;
     e := 1;
@@ -813,7 +809,7 @@ BindGlobal( "SizeByBlocks", function(b, p)
     c := 0;
     for i in [1..Length(b)] do
         c := c + b[i];
-        e := e * SizeOfGL(b[i], p);
+        e := e * SizeGL(b[i], p);
         e := e * p^(b[i]*(d-c));
     od;
     return e;
