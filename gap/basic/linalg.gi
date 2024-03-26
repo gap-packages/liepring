@@ -1,3 +1,11 @@
+# DepthVector differs from PositionNonZero in that it also works on
+# inhomogeneous lists
+DepthVector := function( vec )
+    local k;
+    k := PositionProperty(vec, k -> not IsZero(k));
+    if k = fail then return Length(vec) + 1; fi;
+    return k;
+end;
 
 BindGlobal( "Swapped", function( J, k, j, d )
     local t;
@@ -63,7 +71,7 @@ BindGlobal( "MyBaseMat@", function(J, units)
         # get positions
         k := k+1;
         if k > Length(J) then return J; fi;
-        d := Minimum(List(J{[k..l]}, PositionNonZero));
+        d := Minimum(List(J{[k..l]}, DepthVector));
         if d = m+1 then return J{[1..k-1]}; fi;
 
         # move pivot
@@ -80,7 +88,5 @@ BindGlobal( "MyBaseMat@", function(J, units)
 end );
 
 BindGlobal( "FactorSpace@", function( d, sub )
-    return IdentityMat(d){Difference([1..d], List(sub, PositionNonZero))};
+    return IdentityMat(d){Difference([1..d], List(sub, DepthVector))};
 end );
-
-
