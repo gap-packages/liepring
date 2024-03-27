@@ -58,8 +58,8 @@ AvailabilityTest := ReturnTrue,
 
 Dependencies := rec(
   GAP := "4.8",
-  NeededOtherPackages := [["LieRing", ">=2.1"], ["Singular", ">=10"]],
-  SuggestedOtherPackages := [],
+  NeededOtherPackages := [["LieRing", ">=2.1"]],
+  SuggestedOtherPackages := [["Singular", ">=10"]],
   ExternalConditions := []
 ),
 
