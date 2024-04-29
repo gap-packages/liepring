@@ -3,54 +3,23 @@
 ##
 ##
 
-##
-## variables and polynomials are a problem - GAP is very slow in computing
-## with polynomials and Singular is fast, but has bugs.
-##
-
-StartSingular();
-ORDER := MonomialGrlexOrdering();
-
-BindGlobal( "CallGroebner", function( list )
-    local new;
-    if Length(list) = 0 then return list; fi;
-    GBASIS := SINGULARGBASIS;
-    new := GroebnerBasis(list, ORDER);
-    GBASIS := GAPGBASIS;
-    return ReducedGroebnerBasis(new, ORDER);
-end );
-
 OFFSET_VARS := 1000;
 BindGlobal( "IndeterminateByName", function( name )
     local l, i, v;
-    l := ["p", "w", 
-          "x", "y", "z", "t", "j", "k", "m", "n", "r", "s", "u", "v", 
-          "(p-1,3)", "(p-1,4)", "(p-1,5)", "(p-1,7)", "(p-1,8)", "(p-1,9)", 
+    l := ["p", "w",
+          "x", "y", "z", "t", "j", "k", "m", "n", "r", "s", "u", "v",
+          "(p-1,3)", "(p-1,4)", "(p-1,5)", "(p-1,7)", "(p-1,8)", "(p-1,9)",
           "(p+1,3)", "(p^2-1,16)", "a"];
     i := Position( l, name );
     if i = fail then return fail; fi;
-    v := Indeterminate(Integers, OFFSET_VARS+i); 
+    v := Indeterminate(Integers, OFFSET_VARS+i);
     if not HasName(v) then SetName(v,name); fi;
     return v;
 end );
 
-USE_GAP_FACS := false;
-BindGlobal( "MyFactors", function(pp, h)
-    local R, k, w, q;
 
-    if USE_GAP_FACS then return Factors(h); fi;
+ReadPackage( "liepring", "gap/singular.gi");
 
-    # singular is faster, but it has bugs ...
-    w := IndeterminateByName("w");
-    q := Concatenation(pp, [w]);
-    R := PolynomialRing(Rationals, q);
-    SingularSetBaseRing(R);
-    k := FactorsUsingSingularNC(h);
-    if Product(k) = h then return k{[2..Length(k)]}; fi;
-
-    # fall back
-    return Factors(h);
-end );
 
 BindGlobal( "LiePRing_ReadPackage", function(relpath)
     local preamble, code, c, filename, func;
