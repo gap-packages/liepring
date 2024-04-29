@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "2.8",
-Date := "21/10/2022",
+Version := "2.9",
+Date := "29/04/2024",
 License := "GPL-2.0-or-later",
 
 Persons := [
