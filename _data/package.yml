@@ -1,7 +1,7 @@
 name: LiePRing
-version: "2.8"
+version: "2.9"
 license: "GPL-2.0-or-later"
-date: 2022-10-21
+date: 2024-04-29
 description: |
     Database and algorithms for Lie p-rings
 
@@ -23,6 +23,8 @@ needed-pkgs:
     - name: "LieRing"
       version: ">=2.1"
       url: "https://gap-packages.github.io/liering/"
+
+suggested-pkgs:
     - name: "Singular"
       version: ">=10"
       url: "https://gap-packages.github.io/singular/"
@@ -33,7 +35,7 @@ packageinfo: https://gap-packages.github.io/liepring/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/liepring/releases/download/v2.8/liepring-2.8.tar.gz
+      url: https://github.com/gap-packages/liepring/releases/download/v2.9/liepring-2.9.tar.gz
 
 abstract: |
 
@@ -44,27 +46,27 @@ keywords: |
     , , .
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>EV22</span>]   <b class='BibAuthor'>Eick, B. and Vaughan-Lee, M.</b>,
+    [<span class='BibKey'>EV24</span>]   <b class='BibAuthor'>Eick, B. and Vaughan-Lee, M.</b>,
      <i class='BibTitle'>LiePRing, Database and algorithms for Lie p-rings,
-             Version 2.8</i>
-     (<span class='BibYear'>2022</span>)<br />
-    (<span class='BibNote'>Refereed GAP package</span>),
+             Version 2.9</i>
+     (<span class='BibYear'>2024</span>)<br />
+    (<span class='BibNote'>GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/liepring/">https://gap-packages.github.io/liepring/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ LiePRing2.8,
-      author =           {Eick, B. and Vaughan-Lee, M.},
-      title =            {{LiePRing},  Database  and algorithms for Lie p-rings,
-                          {V}ersion 2.8},
-      month =            {Oct},
-      year =             {2022},
-      note =             {Refereed GAP package},
+    @misc{ LiePRing,
+      author =           {Eick, B. and Vaughan\texttt{\symbol{45}}Lee, M.},
+      title =            {{LiePRing},    Database   and   algorithms   for   Lie
+                          p\texttt{\symbol{45}}rings, {V}ersion 2.9},
+      month =            {Apr},
+      year =             {2024},
+      note =             {GAP package},
       howpublished =     {\href       {https://gap-packages.github.io/liepring/}
-                          {\texttt{https://gap-packages.github.io/}\discretionary
+                          {\texttt{https://gap\texttt{\symbol{45}}packages.github.io/}\discretionary
                           {}{}{}\texttt{liepring/}}},
       keywords =         {; ;},
-      printedkey =       {EV22}
+      printedkey =       {EV24}
     }
 

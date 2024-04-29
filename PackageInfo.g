@@ -3,8 +3,8 @@
 SetPackageInfo( rec(
 PackageName := "LiePRing",
 Subtitle := "Database and algorithms for Lie p-rings",
-Version := "2.8",
-Date := "21/10/2022",
+Version := "2.9",
+Date := "29/04/2024",
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -47,7 +47,7 @@ AbstractHTML := "",
 
 PackageDoc := rec(
   BookName  := "LiePRing",
-  ArchiveURLSubset := ["doc"],
+  ArchiveURLSubset := ["doc","htm"],
   HTMLStart := "htm/chapters.htm",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
@@ -58,8 +58,8 @@ AvailabilityTest := ReturnTrue,
 
 Dependencies := rec(
   GAP := "4.8",
-  NeededOtherPackages := [["LieRing", ">=2.1"], ["Singular", ">=10"]],
-  SuggestedOtherPackages := [],
+  NeededOtherPackages := [["LieRing", ">=2.1"]],
+  SuggestedOtherPackages := [["Singular", ">=10"]],
   ExternalConditions := []
 ),
 
