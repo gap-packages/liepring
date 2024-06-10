@@ -131,6 +131,7 @@ BindGlobal( "SetupUZSystem", function( pp, U, Z )
 
     U := Unique(Concatenation(List(U, x -> SQParts(pp,x))));
     U := Filtered(U, x -> not IsCRF(x));
+    U := List(U, x -> x / LeadingCoefficient(x));
     U := Filtered(U, x -> x <> w);
 
     # now return result
