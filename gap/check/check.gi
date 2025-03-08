@@ -1,7 +1,7 @@
 
 
-RequirePackage("liepring");
-RequirePackage("anupq");
+LoadPackage("liepring");
+LoadPackage("anupq");
 
 BindGlobal( "CheckFamily", function(L, P)
     local f, a, b;
