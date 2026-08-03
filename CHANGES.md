@@ -1,6 +1,6 @@
 This file describes changes in the LiePRing package.
 
-## Unreleased
+## 2.9.2 (2026-08-03)
 
   - Make the SmallGrp package an optional instead of a required dependency
   - Various janitorial changes
