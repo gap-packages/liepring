@@ -15,7 +15,6 @@ AutoDoc(rec(
     extract_examples := true,
     scaffold := rec(
         includes := [
-            "preamble.xml",
             "intro.xml",
             "lierings.xml",
             "database.xml",
