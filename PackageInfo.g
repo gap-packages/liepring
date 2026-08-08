@@ -74,7 +74,39 @@ BannerString := Concatenation(
 
 Keywords := ["Lie ring", "Lie p-ring", "p-group", "classification"],
 
-TestFile := "tst/testall.g" 
+TestFile := "tst/testall.g",
+
+AutoDoc := rec(
+  TitlePage := rec(
+    Abstract := [
+      "&LiePRing; gives access to the database of Lie <M>p</M>-rings of order",
+      "at most <M>p^7</M> as determined by Mike Newman, Eamonn O'Brien and",
+      "Michael Vaughan-Lee, see <Cite Key=\"NOV04\"/> and <Cite Key=\"OVL05\"/>,",
+      "and it provides some functionality to work with these Lie <M>p</M>-rings.",
+      "<P/>",
+      "If you use &LiePRing;, then please cite it as:",
+      "<E>Bettina Eick and Michael Vaughan-Lee</E>, LiePRing -- A GAP Package",
+      "for computing with nilpotent Lie rings of prime-power order (2014), see",
+      "<URL>https://www.gap-system.org/Packages/liepring.html</URL>",
+    ],
+    Copyright := [
+      "&LiePRing; is free software; you can redistribute it under the terms of",
+      "the <URL Text=\"GNU General Public License\">https://www.fsf.org/licenses/gpl.html</URL>",
+      "as published by the Free Software Foundation; either version 2 of the",
+      "License, or (at your option) any later version. &LiePRing; is distributed",
+      "in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even",
+      "the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR",
+      "PURPOSE. See the GNU General Public License for more details.",
+    ],
+    Acknowledgements := [
+      "The Lazard correspondence induces a one-to-one correspondence between the",
+      "Lie <M>p</M>-rings of order <M>p^n</M> and class less than <M>p</M> and",
+      "the <M>p</M>-groups of order <M>p^n</M> and class less than <M>p</M>.",
+      "&LiePRing; provides a function to evaluate this correspondence; this",
+      "function has been implemented and given to us by Willem de Graaf.",
+    ],
+  ),
+),
 
 ));
 
