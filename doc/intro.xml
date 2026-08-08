@@ -1,6 +1,6 @@
 <!-- W  intro.tex             GAP documentation                  Bettina Eick -->
 <Chapter Label="Lie p-rings">
-<Heading>Lie p-rings</Heading>
+<Heading>Lie <M>p</M>-rings</Heading>
 In this preliminary chapter we recall some of the theoretic background
 of Lie rings and Lie <M>p</M>-rings. We refer to Chapter 5 in <Cite Key="Khu98"/> 
 for some further details. Throughout we assume that <M>p</M> stands for 
@@ -31,7 +31,7 @@ natural number <M>c</M> with <M>\gamma_{c+1}(L) = \{0\}</M>. The smallest natura
 with this property is the <E>class</E> of <M>L</M>.
 <P/>
 The notion of nilpotence now allows us to state the central definition of
-this package. A <B>Lie p-ring</B> is a Lie ring that is nilpotent and has
+this package. A <E>Lie <M>p</M>-ring</E> is a Lie ring that is nilpotent and has
 <M>p^n</M> elements for some natural number <M>n</M>.
 <P/>
 Every finite dimensional Lie algebra over a field with <M>p</M> elements 

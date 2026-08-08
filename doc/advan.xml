@@ -1,22 +1,22 @@
 <!-- W  advan.tex             GAP documentation                  Bettina Eick -->
 <Chapter Label="Advanced functions for Lie p-rings">
-<Heading>Advanced functions for Lie p-rings</Heading>
+<Heading>Advanced functions for Lie <M>p</M>-rings</Heading>
 This chapter describes a few more advanced functions available for
-generic Lie p-rings.
+generic Lie <M>p</M>-rings.
 <Section Label="Schur multipliers">
 <Heading>Schur multipliers</Heading>
 The package contains a method to determine the Schur multipliers of the
-Lie p-rings in the family defined by a generic Lie p-ring.
+Lie <M>p</M>-rings in the family defined by a generic Lie <M>p</M>-ring.
 <ManSection>
 <Func Name="LiePSchurMult" Arg="L"/>
 <Description>
-The function takes as input a generic Lie p-ring and determines a list 
+The function takes as input a generic Lie <M>p</M>-ring and determines a list 
 of possible Schur multipliers, each described by its abelian invariants, 
-for the Lie p-rings in the family described by L. For each entry in the 
+for the Lie <M>p</M>-rings in the family described by L. For each entry in the 
 list of Schur multipliers there is a description of those parameters which 
 give the considered entry. This description consists of two lists 
 'units' and 'zeros'. Both consist of rational functions over the parameters
-of the Lie p-ring. The parameters described by these lists are those which
+of the Lie <M>p</M>-ring. The parameters described by these lists are those which
 evaluate to zero for each rational function in 'zeros' and do not evaluate
 to zero for each rational function in 'units'.
 <Example><![CDATA[
@@ -32,10 +32,10 @@ gap> ss := LiePSchurMult(L);
   rec( norm := [ p^2 ], units := [ x ], zeros := [ x*y ] ), 
   rec( norm := [ p ], units := [ x, x*y^2-x*y+1, y ], zeros := [  ] ) ]
 ]]></Example>
-In this example, L defines a generic Lie p-ring with two parameters and
+In this example, L defines a generic Lie <M>p</M>-ring with two parameters and
 the RingInvariants of L show that the parameter x should be non-zero. The
 function LiePSchurMult(L) yields that there are two possible Schur 
-multipliers for the Lie p-rings in the family defined by L: the cyclic
+multipliers for the Lie <M>p</M>-rings in the family defined by L: the cyclic
 groups of order <M>p</M> and of order <M>p^2</M>. The second option only arises 
 if <M>xy = 0</M> and thus, as <M>x</M> is non-zero, if <M>y = 0</M>.
 <P/>
@@ -59,8 +59,8 @@ rec( norms := [ [ p^2 ], [ p ] ], numbs := [ p-1, p^2-2*p+1 ] )
 <Section Label="Automorphism groups">
 <Heading>Automorphism groups</Heading>
 The package contains a function that determines a description for the
-automorphism groups of the Lie p-rings in the family defined by a generic
-Lie p-ring.
+automorphism groups of the Lie <M>p</M>-rings in the family defined by a generic
+Lie <M>p</M>-ring.
 <ManSection>
 <Func Name="AutGroupDescription" Arg="L"/>
 <Description>

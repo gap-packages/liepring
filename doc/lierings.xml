@@ -7,7 +7,7 @@ prime <M>p</M> with given structure constants. Then we show how this datastructu
 can also be used to define so-called 'generic' Lie <M>p</M>-rings; that is, 
 Lie <M>p</M>-rings with indeterminate prime <M>p</M>.
 <Section Label="Ordinary Lie p-rings">
-<Heading>Ordinary Lie p-rings</Heading>
+<Heading>Ordinary Lie <M>p</M>-rings</Heading>
 Let <M>p</M> be a prime and let <M>L</M> be a Lie <M>p</M>-ring of order <M>p^n</M>. Let 
 <M>(l_1, \ldots, l_n)</M> be a basis for <M>L</M>. Then there exist coefficients 
 <M>c_{i,j,k} \in \{0, \ldots, p-1\}</M> so that the following relations hold
@@ -85,7 +85,7 @@ gap> ViewPCPresentation(L);
 </ManSection>
 </Section>
 <Section Label="Generic Lie p-rings">
-<Heading>Generic Lie p-rings</Heading>
+<Heading>Generic Lie <M>p</M>-rings</Heading>
 In a generic Lie <M>p</M>-ring, <M>p</M> is allowed to be an indeterminate and 
 the structure constants are allowed to be rational functions over a 
 polynomial ring in a finite set of 
@@ -258,7 +258,7 @@ gap> LiePValues(K);
 </ManSection>
 </Section>
 <Section Label="Subrings of Lie p-rings">
-<Heading>Subrings of Lie p-rings</Heading>
+<Heading>Subrings of Lie <M>p</M>-rings</Heading>
 Let <M>L</M> be a Lie <M>p</M>-ring with basis <M>(l_1, \ldots, l_n)</M> and let <M>U</M> be a 
 subring of <M>L</M>. Then <M>U</M> is a Lie <M>p</M>-ring and thus also has a basis <M>(u_1, 
 \ldots, u_m)</M>. For <M>1 \leq i \leq m</M> we define the coefficients <M>a_{i,j}

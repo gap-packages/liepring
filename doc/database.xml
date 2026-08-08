@@ -25,7 +25,7 @@ In the following we describe functions to access the database. Throughout
 this chapter, we assume that <M>\dim \in \{1, \ldots, 7\}</M> and <M>P</M> is a prime
 with <M>P \neq 2</M>.
 <Section Label="Accessing Lie p-rings">
-<Heading>Accessing Lie p-rings</Heading>
+<Heading>Accessing Lie <M>p</M>-rings</Heading>
 <ManSection>
 <Func Name="LiePRingsByLibrary" Arg="dim[, gen][, cl]"/>
 <Description>
@@ -115,7 +115,7 @@ gap> LiePRingsByLibrary(5, 7, 2, 4);
 </ManSection>
 </Section>
 <Section Label="Numbers of Lie p-rings">
-<Heading>Numbers of Lie p-rings</Heading>
+<Heading>Numbers of Lie <M>p</M>-rings</Heading>
 <ManSection>
 <Func Name="NumberOfLiePRings" Arg="dim"/>
 <Description>
