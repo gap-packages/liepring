@@ -1,0 +1,361 @@
+<Chapter Label="The Database">
+<Heading>The Database</Heading>
+This package gives access to the database of Lie <M>p</M>-rings of order at most
+<M>p^7</M> as determined by Mike Newman, Eamonn O'Brien and Michael Vaughan-Lee,
+see <Cite Key="NOV04"/> and <Cite Key="OVL05"/>. A description of the database can also be 
+found in <Cite Key="Notes"/>.
+<P/>
+For each <M>n \in {1, \ldots, 7}</M> this package contains a (finite) list of 
+generic presentations of Lie <M>p</M>-rings. For each prime <M>p \geq 5</M>, each
+of the generic Lie <M>p</M>-rings gives rise to a family of Lie <M>p</M>-rings over
+the considered prime <M>p</M> by specialising the indeterminates to a certain list
+of values. The resulting lists of Lie <M>p</M>-rings provides a complete and
+irredundant set of isomorphism type representatives of the Lie <M>p</M>-rings of
+order <M>p^n</M>. The generic Lie <M>p</M>-rings of <M>p</M>-class at most 2 can also be
+considered for the prime <M>p=3</M> and yield a list of isomorphism type
+representatives for the Lie <M>p</M>-rings of order <M>3^n</M> and <M>p</M>-class at most 
+<M>2</M>.
+<P/>
+The Lazard correspondence has been used to check the correctness of the
+database of Lie <M>p</M>-rings: for various small primes it has been checked
+that the Lie <M>p</M>-rings of this database define non-isomorphic finite
+<M>p</M>-groups.
+<P/>
+In the following we describe functions to access the database. Throughout 
+this chapter, we assume that <M>\dim \in {1, \ldots, 7}</M> and <M>P</M> is a prime 
+with <M>P \neq 2</M>.
+<Section Label="Accessing Lie p-rings">
+<Heading>Accessing Lie p-rings</Heading>
+<ManSection>
+<Func Name="LiePRingsByLibrary" Arg="dim[, gen][, cl]"/>
+<Description>
+returns the generic Lie <M>p</M>-rings of dimension <M>\dim</M> in the database. The
+second form returns the Lie <M>p</M>-rings of minimal generator number <M>gen</M> 
+and <M>p</M>-class <M>cl</M> only.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="LiePRingsByLibrary" Label="for a prime" Arg="dim, P[, gen][, cl]"/>
+<Description>
+returns isomorphism type representatives of ordinary Lie <M>p</M>-rings of 
+dimension <M>\dim</M> for the prime <M>P</M>. The second form returns the Lie <M>p</M>-rings 
+of minimal generator number <M>gen</M> and <M>p</M>-class <M>cl</M> only. The function 
+assumes <M>P \geq 3</M> and for <M>P = 3</M> there are only the Lie <M>p</M>-rings of 
+<M>p</M>-class at most 2 available.
+<P/>
+The first example yields the generic Lie <M>p</M>-rings of dimension <M>4</M>.
+<Example><![CDATA[
+gap> LiePRingsByLibrary(4);
+[ <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>,
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p>, 
+  <LiePRing of dimension 4 over prime p> ]
+]]></Example>
+The next example yields the isomorphism type representatives of Lie 
+<M>p</M>-rings of dimension <M>3</M> for the prime <M>5</M>.
+<Example><![CDATA[
+gap> LiePRingsByLibrary(3, 5);
+[ <LiePRing of dimension 3 over prime 5>, 
+  <LiePRing of dimension 3 over prime 5>, 
+  <LiePRing of dimension 3 over prime 5>, 
+  <LiePRing of dimension 3 over prime 5>, 
+  <LiePRing of dimension 3 over prime 5> ]
+]]></Example>
+The following example extracts the generic Lie <M>p</M>-rings of dimension
+<M>5</M> with minimal generator number <M>2</M> and <M>p</M>-class <M>4</M>.
+<Example><![CDATA[
+gap> LiePRingsByLibrary(5, 2, 4);
+[ <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p> ]
+]]></Example>
+Finally, we determine the isomorphism type representatives of Lie
+<M>p</M>-rings of dimension <M>5</M>, minimal generator number <M>2</M> and <M>p</M>-class
+<M>4</M> for the prime <M>7</M>.
+<Example><![CDATA[
+gap> LiePRingsByLibrary(5, 7, 2, 4);
+[ <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7>, 
+  <LiePRing of dimension 5 over prime 7> ]
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Numbers of Lie p-rings">
+<Heading>Numbers of Lie p-rings</Heading>
+<ManSection>
+<Func Name="NumberOfLiePRings" Arg="dim"/>
+<Description>
+returns the number of generic Lie <M>p</M>-rings in the database of the
+considered dimension for <M>\dim { 1, \ldots, 7}</M>.
+<Example><![CDATA[
+gap> List([1..7], x -> NumberOfLiePRings(x));
+[ 1, 2, 5, 15, 75, 542, 4773 ]
+]]></Example>
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="NumberOfLiePRings" Label="for a prime" Arg="dim, P"/>
+<Description>
+returns the number of isomorphism types of ordinary Lie <M>p</M>-rings of order
+<M>P^{\dim}</M> in the database. If <M>P \geq 5</M>, then this is the number of all
+isomorphism types of Lie <M>p</M>-rings of order <M>P^{\dim}</M> and if <M>P = 3</M> then
+this is the number of all isomorphism types of Lie <M>p</M>-rings of <M>p</M>-class
+at most <M>2</M>. If <M>P \geq 7</M>, then this number coincides with
+NumberSmallGroups(<M>P^{\dim}</M>).
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="NumberOfLiePRingsInFamily" Arg="L"/>
+<Description>
+returns the number of Lie <M>p</M>-rings associated to <M>L</M> as a polynomial in
+<A>p</A> and possibly some residue classes.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(7)[780];
+<LiePRing of dimension 7 over prime p with parameters
+[ x, y, z, t, s, u, v ]>
+gap> NumberOfLiePRingsInFamily(L);
+-1/3*p^5*(p-1,3)+p^5-1/3*p^4*(p-1,3)+p^4-1/3*p^3*(p-1,3)+p^3-1/3*p^2*(p-1,3)
++p^2-p*(p-1,3)+3*p-3/2*(p-1,3)+9/2
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Searching the database">
+<Heading>Searching the database</Heading>
+We now consider a generic Lie <M>p</M>-ring <A>L</A> from the database and consider
+the family of ordinary Lie <M>p</M>-rings that arise from it.
+<ManSection>
+<Func Name="LiePRingsInFamily" Arg="L, P"/>
+<Description>
+takes as input a generic Lie <M>p</M>-ring <A>L</A> from the database and a prime <A>P</A> 
+and returns all Lie <M>p</M>-rings determined by <A>L</A> and <A>P</A> up to isomorphism. 
+This function returns fail if the generic Lie <M>p</M>-ring does not exist for 
+the special prime <A>P</A>; this may be due to the conditions on the prime or
+(if <M>P=3</M>) to the <M>p</M>-class of the Lie <M>p</M>-ring.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(7)[118];
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> LibraryConditions(L);
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+gap> LiePRingsInFamily(L, 7);
+fail
+gap> Length(LiePRingsInFamily(L,13));
+91
+gap> 13^2;
+169
+]]></Example>
+The following example shows how to determine all Lie <M>p</M>-rings of dimension
+<M>5</M> and <M>p</M>-class <M>4</M> over the prime <M>29</M> up to isomorphism.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(5);;
+gap> L := Filtered(L, x -> PClassOfLiePRing(x)=4);
+[ <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p>, 
+  <LiePRing of dimension 5 over prime p> ]
+gap> K := List(L, x-> LiePRingsInFamily(x, 29));
+[ [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], fail, fail, 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ], fail, fail, 
+  [ <LiePRing of dimension 5 over prime 29> ], 
+  [ <LiePRing of dimension 5 over prime 29> ] ]
+gap> K := Filtered(Flat(K), x -> x<>fail);
+[ <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29>, 
+  <LiePRing of dimension 5 over prime 29> ]
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="More details">
+<Heading>More details</Heading>
+Let <M>L</M> be a Lie <M>p</M>-ring from the database. Then the following additional
+attributes are available.
+<ManSection>
+<Attr Name="LibraryName" Arg="L"/>
+<Description>
+returns a string with the name of <M>L</M> in the database. See p567.pdf for
+further background.
+</Description>
+</ManSection>
+<ManSection>
+<Attr Name="ShortPresentation" Arg="L"/>
+<Description>
+returns a string exhibiting a short presentation of <M>L</M>.
+</Description>
+</ManSection>
+<ManSection>
+<Attr Name="LibraryConditions" Arg="L"/>
+<Description>
+returns the conditions on <M>L</M>. This is a list of two strings. The first
+string exhibits the conditions on the parameters of <M>L</M>, the second shows
+the conditions on primes.
+</Description>
+</ManSection>
+<ManSection>
+<Attr Name="MinimalGeneratorNumberOfLiePRing" Arg="L"/>
+<Description>
+returns the minimial generator number of <M>L</M>.
+</Description>
+</ManSection>
+<ManSection>
+<Attr Name="PClassOfLiePRing" Arg="L"/>
+<Description>
+returns the <M>p</M>-class of <M>L</M>.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(7)[118];
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> LibraryName(L);
+"7.118"
+gap> LibraryConditions(L);
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+]]></Example>
+All of the information listed in this section is inherited when <M>L</M>
+is specialised.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(7)[118];
+<LiePRing of dimension 7 over prime p with parameters [ x, y ]>
+gap> K := SpecialiseLiePRing(L, 13, ParametersOfLiePRing(L), [0,0]);
+<LiePRing of dimension 7 over prime 13>
+gap> LibraryName(K);
+"7.118"
+gap> LibraryConditions(K);
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+]]></Example>
+The following example shows how to find a Lie <M>p</M>-ring with a 
+given name in the database.
+<Example><![CDATA[
+gap> L := LiePRingsByLibrary(7);;
+gap> Filtered(L, x -> LibraryName(x) = "7.1010")[1];
+<LiePRing of dimension 7 over prime p> 
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Special functions for dimension 7">
+<Heading>Special functions for dimension 7</Heading>
+The database of Lie <M>p</M>-rings of dimension <M>7</M> is very large and it may
+be time-consuming (or even impossible due to storage problems) to generate
+all Lie <M>p</M>-rings of dimension <M>7</M> for a given prime <M>P</M>.
+<P/>
+Thus there are some special functions available that can be used to access
+a particular set of Lie <M>p</M>-rings of dimension <M>7</M> only. In particular, it
+is possible to consider the descendants of a single Lie <M>p</M>-ring of smaller
+dimension by itself. The Lie <M>p</M>-rings of this type are all stored in one
+file of the library. Thus, equivalently, it is possible to access the Lie
+<M>p</M>-rings in one single file only.
+<P/>
+The table LIE_TABLE contains a list of all possible files together with
+the number of Lie <M>p</M>-rings generated by their corresponding Lie <M>p</M>-rings.
+<ManSection>
+<Func Name="LiePRingsDim7ByFile" Arg="nr"/>
+<Description>
+returns the generic Lie <M>p</M>-rings in file number <M>nr</M>.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="LiePRingsDim7ByFile" Label="for a prime" Arg="nr, P"/>
+<Description>
+returns the isomorphism types of Lie <M>p</M>-rings in file number <M>nr</M> for
+the prime <A>P</A>.
+<Example><![CDATA[
+gap> LIE_TABLE[100];
+[ "3gen/gapdec6.139", 1/2*p+(p-1,3)+3/2 ]
+gap> LiePRingsDim7ByFile(100);
+[ <LiePRing of dimension 7 over prime p>, 
+  <LiePRing of dimension 7 over prime p>, 
+  <LiePRing of dimension 7 over prime p>,
+  <LiePRing of dimension 7 over prime p>,
+  <LiePRing of dimension 7 over prime p with parameters [ x ]> ]
+gap> LiePRingsDim7ByFile(100, 7);
+[ <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7>, 
+  <LiePRing of dimension 7 over prime 7> ]
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Dimension 8 and maximal class">
+<Heading>Dimension 8 and maximal class</Heading>
+Recently, Lee and Vaughan-Lee <Cite Key="MC8"/> determined the Lie <M>p</M>-rings 
+of dimension 8 with maximal class up to isomorphism. This classification
+is now also available in the Lie <M>p</M>-ring package via the following functions.
+<ManSection>
+<Func Name="LiePRingsByLibraryMC8" Arg=""/>
+<Description>
+returns a list of <M>69</M> generic Lie <M>p</M>-rings. For each of these
+the following function returns the isomorphism types of Lie <M>p</M>-rings 
+in the family for a fixed prime <M>P</M> with <M>P \geq 5</M>.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="LiePRingsInFamilyMC8" Arg="L, P"/>
+<Description>
+</Description>
+</ManSection>
+</Section>
+</Chapter>

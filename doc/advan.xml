@@ -1,23 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%W  advan.tex             GAP documentation                  Bettina Eick
-%%
-%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Chapter{Advanced functions for Lie p-rings}
-
+<!-- W  advan.tex             GAP documentation                  Bettina Eick -->
+<Chapter Label="Advanced functions for Lie p-rings">
+<Heading>Advanced functions for Lie p-rings</Heading>
 This chapter described a few more advanced functions available for 
-generic Lie p-rings. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Schur multipliers}
-
+generic Lie p-rings.
+<Section Label="Schur multipliers">
+<Heading>Schur multipliers</Heading>
 The package contains a method to determine the Schur multipliers of the
-Lie p-rings in the family defined by a generic Lie p-ring. 
-
-\> LiePSchurMult( L )
-
+Lie p-rings in the family defined by a generic Lie p-ring.
+<ManSection>
+<Func Name="LiePSchurMult" Arg="L"/>
+<Description>
 The function takes as input a generic Lie p-ring and determines a list 
 of possible Schur multipliers, each described by its abelian invariants, 
 for the Lie p-rings in the family described by L. For each entry in the 
@@ -27,8 +19,7 @@ give the considered entry. This description consists of two lists
 of the Lie p-ring. The parameters described by these lists are which evaluate
 to zero for each rational function in 'zeros' and evaluate not to zero
 for each rational function in 'units'.
-
-\beginexample
+<Example><![CDATA[
 gap> LL := LiePRingsByLibrary(7);;
 gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=2)[1]; 
 <LiePRing of dimension 7 over prime p with parameters [ x, y ]>
@@ -40,48 +31,48 @@ gap> ss := LiePSchurMult(L);
 [ rec( norm := [ p ], units := [ x, y ], zeros := [ x*y^2-x*y+1 ] ), 
   rec( norm := [ p^2 ], units := [ x ], zeros := [ x*y ] ), 
   rec( norm := [ p ], units := [ x, x*y^2-x*y+1, y ], zeros := [  ] ) ]
-\endexample
-
+]]></Example>
 In this example, L defines a generic Lie p-rings with two parameters and
 the RingInvariants of L show that the parameter x should be non-zero. The
 function LiePSchurMult(L) yields that there are two possible Schur 
 multipliers for the Lie p-rings in the family defined by L: the cyclic
-groups of order $p$ and of order $p^2$. The second option only arises 
-if $xy = 0$ and thus, as $x$ is non-zero, if $y = 0$.
-
+groups of order <M>p</M> and of order <M>p^2</M>. The second option only arises 
+if <M>xy = 0</M> and thus, as <M>x</M> is non-zero, if <M>y = 0</M>.
+<P/>
 The package also contains a function that tries to determine the numbers of 
 values of the parameters satisfying the conditions of a description of
 a Schur multiplier. This succeeds in many cases and returns a polynomial
-in $p$ in this case. If it does not succeed then it returns fail.
-
-\> ElementNumbers( pp, ss )
-
+in <M>p</M> in this case. If it does not succeed then it returns fail.
+</Description>
+</ManSection>
+<ManSection>
+<Func Name="ElementNumbers" Arg="pp, ss"/>
+<Description>
 We continue the above example.
-
-\beginexample
+<Example><![CDATA[
 gap> ElementNumbers(ParametersOfLiePRing(L), ss);
 rec( norms := [ [ p^2 ], [ p ] ], numbs := [ p-1, p^2-2*p+1 ] )
-\endexample
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Automorphism groups}
-
+]]></Example>
+</Description>
+</ManSection>
+</Section>
+<Section Label="Automorphism groups">
+<Heading>Automorphism groups</Heading>
 The package contains a function that determines a description for the
 automorphism groups of the Lie p-rings in the family defined by a generic
 Lie p-ring.
-
-\> AutGrpDescription( L )
-
+<ManSection>
+<Func Name="AutGroupDescription" Arg="L"/>
+<Description>
 Each automorphism of L is defined by its images on a generating
-set of L. If $l_1, ..., l_n$ is a basis of L and $l_1, .., l_d$ is a 
+set of L. If <M>l_1, ..., l_n</M> is a basis of L and <M>l_1, .., l_d</M> is a 
 generating set, then each automorphism is defined by the images of
-$l_1, .., l_d$ and each image is an integral linear combination of 
+<M>l_1, .., l_d</M> and each image is an integral linear combination of 
 the basis elements
-$l_1, .., l_n$. The function AutGrpDescription returns a matrix containing
+<M>l_1, .., l_n</M>. The function <C>AutGroupDescription</C> returns a matrix containing
 a description of the coefficients in each linear combination and a list
 of relations among these coefficients. We consider two examples.
-
-\beginexample
+<Example><![CDATA[
 gap> L := Filtered(LL, x -> Length(ParametersOfLiePRing(x))=2)[1];
 <LiePRing of dimension 7 over prime p with parameters [ x, y ]>
 gap> AutGroupDescription(L);
@@ -98,26 +89,24 @@ rec( auto := [ [ A22^3, 0, A13, A14, A15, A16, A17 ],
                  A23^4*y-4*A24^2*y, A22^3*A23^2-2*A24, 
                  A22^2*A23^4-4*A24^2, A22*A23^6-8*A24^3, 
                  A23^8-16*A24^4 ] ] )
-\endexample
-
+]]></Example>
 In both cases, L is generated by the first two entries in its
 basis and hence the automorphism group matrix has two rows and seven 
-columns. In the first case, L has $p^{10}$ automorphisms inducing the
+columns. In the first case, L has <M>p^{10}</M> automorphisms inducing the
 identity on the Frattini-quotient of L. In the second case, the automorphism 
 group matrix shows that each automorphism induces a certain type of 
 diagonal matrix on the Frattini-quotient of L and there are further 
 equations among the coefficients of the matrix. These further equations
-are equivalent to $A22^2 = 1$ and $A24 = A22 A23^2 / 2$. Hence L has 
-$2 p^9$ automorphisms.
-
+are equivalent to <M>A22^2 = 1</M> and <M>A24 = A22 A23^2 / 2</M>. Hence L has 
+<M>2 p^9</M> automorphisms.
+<P/>
 The entry eqns is a list of lists. The equations in the ith entry of 
-this list have to be satisfied mod $p^i$. 
-
+this list have to be satisfied mod <M>p^i</M>.
+<P/>
 In a few special cases, the function returns a list of possible 
 automorphisms together with related equations and conditions. 
 We exhibit an example.
-
-\beginexample
+<Example><![CDATA[
 gap> L := LiePRingsByLibrary(7)[489];
 <LiePRing of dimension 7 over prime p with parameters [ x ]>
 gap> AutGroupDescription(L);
@@ -134,9 +123,11 @@ gap> AutGroupDescription(L);
                   -A12^2*A23*x^3+A12*A13*x^3+A12*A23^2*x-A12*A25*x^2
                   -2*A12*A24*x+A13*A23*x+A13*x^2-A15*x^2+A23*x+A25*x-A24 ], 
                 [ A12*x+1 ] ] ) ]
-\endexample
-
-In this example $A12 x = -1$ modulo $p^2$. We note that different choices
-for $A12$ do not give different automorphisms. Hence a single solution for
-$A12$ is sufficient to describe all automorphisms.
-
+]]></Example>
+In this example <M>A12 x = -1</M> modulo <M>p^2</M>. We note that different choices
+for <M>A12</M> do not give different automorphisms. Hence a single solution for
+<M>A12</M> is sufficient to describe all automorphisms.
+</Description>
+</ManSection>
+</Section>
+</Chapter>
