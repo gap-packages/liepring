@@ -1,9 +1,15 @@
-/htm/
-
+/doc/*.css
+/doc/*.js
+/doc/_*.xml
+/doc/chap*.html
+/doc/chap*.txt
+/doc/chap*_mj.html
+/doc/chap*_mj.txt
+/doc/chooser.html
+/doc/main.*
 /doc/manual.aux
 /doc/manual.bbl
 /doc/manual.blg
-/doc/manual.dvi
 /doc/manual.idx
 /doc/manual.ilg
 /doc/manual.ind
@@ -12,10 +18,11 @@
 /doc/manual.pdf
 /doc/manual.six
 /doc/manual.toc
-/doc/manual.*.tst
-/doc/tthin
-/doc/tthmacros.tex
-/doc/tthout
+/doc/title.xml
+
+# Output of the old plain-TeX manual; kept ignored until the leftover
+# directory is removed for good.
+/htm/
 
 /gh-pages/
 /tmp/

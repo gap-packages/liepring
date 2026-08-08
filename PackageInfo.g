@@ -47,8 +47,8 @@ AbstractHTML := "",
 
 PackageDoc := rec(
   BookName  := "LiePRing",
-  ArchiveURLSubset := ["doc","htm"],
-  HTMLStart := "htm/chapters.htm",
+  ArchiveURLSubset := ["doc"],
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "LiePRing Package",
