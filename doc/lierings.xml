@@ -1,6 +1,6 @@
 <Chapter Label="LiePRings in GAP">
 <Heading>LiePRings in GAP</Heading>
-This package introduces a new datastructure that allows to define and
+This package introduces a new datastructure that allows one to define and
 compute with Lie <M>p</M>-rings in GAP. We first describe this datastructure
 in the case of ordinary Lie <M>p</M>-rings; that is, Lie <M>p</M>-rings for a fixed
 prime <M>p</M> with given structure constants. Then we show how this datastructure
@@ -10,7 +10,7 @@ Lie <M>p</M>-rings with indeterminate prime <M>p</M>.
 <Heading>Ordinary Lie p-rings</Heading>
 Let <M>p</M> be a prime and let <M>L</M> be a Lie <M>p</M>-ring of order <M>p^n</M>. Let 
 <M>(l_1, \ldots, l_n)</M> be a basis for <M>L</M>. Then there exist coefficients 
-<M>c_{i,j,k} \in {0, \ldots, p-1}</M> so that the following relations hold 
+<M>c_{i,j,k} \in \{0, \ldots, p-1\}</M> so that the following relations hold
 in <M>L</M> for <M>1 \leq i,j \leq n</M> with <M>i \neq j</M>:
 <P/>
 <Display> l_i \cdot l_j = \sum_{k=i+1}^n c_{i,j,k} l_k, </Display>
@@ -21,7 +21,7 @@ in a Lie <M>p</M>-ring is anticommutative, it follows that <M>c_{i,j,k} = -c_{j,
 holds for each <M>k</M> and each <M>i \neq j</M>. Thus the structure constants 
 <M>c_{i,j,k}</M> for <M>i \geq j</M> are sufficient to define the Lie <M>p</M>-ring <M>L</M>.
 <P/>
-This package contains the new datastructure <A>LiePRing</A> that allows to 
+This package contains the new datastructure <A>LiePRing</A> that allows one to
 define Lie <M>p</M>-rings via their structure constants <M>c_{i,j,k}</M>. To use
 this datastructure, we first collect all relevant information into a 
 record as follows:
@@ -36,7 +36,7 @@ record as follows:
 </List>
 Each entry <M>c_{i,j}</M> in the list <A>tab</A> is a list <M>[k_1, c_{i,j,k_1}, k_2, 
 c_{i,j,k_2}, \ldots]</M> so that <M>k_1 &lt; k_2 &lt; \ldots</M> and the entries 
-<M>c_{i,j,k_1}, c_{i,j,k_2}, \ldots</M> are the non-zero structure contants 
+<M>c_{i,j,k_1}, c_{i,j,k_2}, \ldots</M> are the non-zero structure constants
 in the product <M>l_i \cdot l_j</M>. Thus if <M>l_i \cdot l_j = 0</M>, then <M>c_{i,j}</M>
 is the empty list. If an entry in the list <A>tab</A> is not bound, then it is
 assumed to be the empty list.
@@ -46,7 +46,7 @@ assumed to be the empty list.
 <Description>
 These functions create a <A>LiePRing</A> from the structure constants table
 record <M>SC</M>. The first version checks that the multiplication defined by
-<A>tab</A> is alternating and satisfies the Jacobi-identity, the second version
+<A>tab</A> is alternating and satisfies the Jacobi identity, the second version
 assumes that this is the case and omits these checks. These checks can
 also be carried out independently via the following function.
 </Description>
@@ -98,6 +98,8 @@ in the database of Lie <M>p</M>-rings and they can be obtained via
 <ManSection>
 <Func Name="IndeterminateByName" Arg="string"/>
 <Description>
+returns the indeterminate with the name <A>string</A>.
+<P/>
 The structure constants records for generic Lie <M>p</M>-rings are similar to
 those for ordinary Lie <M>p</M>-rings, but have the additional entry <A>param</A>
 which is a list containing all indeterminates used in the considered Lie
@@ -129,32 +131,32 @@ gap> l[1]*l[2];
 </Description>
 </ManSection>
 </Section>
-<Section Label="Specialising Lie $p$-rings">
+<Section Label="Specialising Lie p-rings">
 <Heading>Specialising Lie <M>p</M>-rings</Heading>
 A generic Lie <M>p</M>-ring defines a family of ordinary Lie <M>p</M>-rings by 
 evaluating the parameters contained in its presentation. It is generally 
 assumed that the indeterminate <M>p</M> is evaluated to a rational prime <M>P</M> 
 and the indeterminate <M>w</M> is evaluated to the smallest primitive root 
-modulo <M>P</M> (this can be determined via &lt;PrimitiveRootMod(P)&gt;). All other 
+modulo <M>P</M> (this can be determined via <C>PrimitiveRootMod(P)</C>). All other
 indeterminates can take arbitrary integer values (usually these values are
-in <M>{0, \ldots, P-1}</M>, but other choices are possible as well). The 
-following functions allow to evaluate the indeterminates.
+in <M>\{0, \ldots, P-1\}</M>, but other choices are possible as well). The
+following functions allow one to evaluate the indeterminates.
 <ManSection>
 <Func Name="SpecialiseLiePRing" Arg="L, P, para, vals"/>
 <Description>
 takes as input a generic Lie <M>p</M>-ring <A>L</A>, a rational prime <A>P</A>, 
 a list of indeterminates <A>para</A> and a corresponding list of values
 <A>vals</A>. The function returns a new Lie <M>p</M>-ring in which the prime 
-<A>p</A> is evaluated to <A>P</A>, the parameter <A>w</A> is evaluated to 
-&lt;PrimitiveRootMod(P)&gt; and the parameters in <A>para</A> are evaluated
+<A>p</A> is evaluated to <A>P</A>, the parameter <A>w</A> is evaluated to
+<C>PrimitiveRootMod(P)</C> and the parameters in <A>para</A> are evaluated
 to <A>vals</A>.
 </Description>
 </ManSection>
 <ManSection>
 <Func Name="SpecialisePrimeOfLiePRing" Arg="L, P"/>
 <Description>
-this is a shortcut for &lt;SpecialiseLiePRing(L, P, [], [])&gt;. We exhibit
-a some example applications.
+this is a shortcut for <C>SpecialiseLiePRing(L, P, [], [])</C>. We exhibit
+some example applications.
 <Example><![CDATA[
 gap> p := IndeterminateByName("p");;
 gap> w := IndeterminateByName("w");;
@@ -200,7 +202,7 @@ gap> List(last, v -> SpecialiseLiePRing(L, 2, [x,y], v));
   <LiePRing of dimension 7 over prime 2> ]
 ]]></Example>
 It is not necessary to specialise all parameters at once. In particular,
-it is possible to leave the prime <A>p</A> as indeterminate and specialize only
+it is possible to leave the prime <A>p</A> as indeterminate and specialise only
 some of the parameters. (Except for <A>w</A> which is linked to <A>p</A>.)
 <Example><![CDATA[
 gap> SpecialiseLiePRing(L, p, [x], [0]);
@@ -259,12 +261,12 @@ gap> LiePValues(K);
 <Heading>Subrings of Lie p-rings</Heading>
 Let <M>L</M> be a Lie <M>p</M>-ring with basis <M>(l_1, \ldots, l_n)</M> and let <M>U</M> be a 
 subring of <M>L</M>. Then <M>U</M> is a Lie <M>p</M>-ring and thus also has a basis <M>(u_1, 
-\ldots, u_m)</M>. For <M>1 \leq i \leq m</M> we define the coefficients <M>a_{i,j} 
-\in {0, \ldots, p-1}</M> via 
-<Display> u_i = \sum_{j=1}^n a_{i,j} l_i </Display>
-and we denote with <M>A</M> the matrix with entries <M>a_{i,j}</M>. We say that the 
-basis <M>(u_1, \ldots, u_m)</M> is  induced if <M>A</M> is in upper triangular 
-form. Further, the basis <M>(u_1, \ldots, u_m)</M> is  canonical if <M>A</M> is 
+\ldots, u_m)</M>. For <M>1 \leq i \leq m</M> we define the coefficients <M>a_{i,j}
+\in \{0, \ldots, p-1\}</M> via
+<Display> u_i = \sum_{j=1}^n a_{i,j} l_j </Display>
+and we denote with <M>A</M> the matrix with entries <M>a_{i,j}</M>. We say that the
+basis <M>(u_1, \ldots, u_m)</M> is <E>induced</E> if <M>A</M> is in upper triangular
+form. Further, the basis <M>(u_1, \ldots, u_m)</M> is <E>canonical</E> if <M>A</M> is
 in upper echelon form; that is, it is upper triangular, each row in <M>A</M> has 
 leading entry <M>1</M> and there are <M>0</M>'s above the leading entry. Note that a
 canonical basis is unique for the subring.
@@ -307,7 +309,7 @@ gap> BasisOfLiePRing(U);
 <ManSection>
 <Func Name="LiePIdeal" Arg="L, gens"/>
 <Description>
-return the ideal of <M>L</M> generated by <M>gens</M>. This function computes a
+return the ideal of <A>L</A> generated by <A>gens</A>. This function computes
 an induced basis for the ideal.
 <Example><![CDATA[
 gap> LiePIdeal(L, [l[1]]);
@@ -373,7 +375,7 @@ prints the presentation for <M>L</M> with respect to its basis.
 </Section>
 <Section Label="Series of subrings">
 <Heading>Series of subrings</Heading>
-Let <A>L</A> be a generic or ordinary Lie <M>p</M>-ring or a subring of such such
+Let <A>L</A> be a generic or ordinary Lie <M>p</M>-ring or a subring of such
 a Lie <M>p</M>-ring.
 <ManSection>
 <Func Name="LiePLowerCentralSeries" Arg="L"/>

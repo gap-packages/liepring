@@ -30,7 +30,7 @@ gap> ViewPCPresentation(L);
 [l2,l1] = l3
 [l3,l1] = l4
 
-# doc/lierings.xml:105-128
+# doc/lierings.xml:107-130
 gap> p := IndeterminateByName("p");;
 gap> x := IndeterminateByName("x");;
 gap> S := rec( dim := 5, 
@@ -54,7 +54,7 @@ l1 + l2
 gap> l[1]*l[2];
 -1*l3
 
-# doc/lierings.xml:158-201
+# doc/lierings.xml:160-203
 gap> p := IndeterminateByName("p");;
 gap> w := IndeterminateByName("w");;
 gap> x := IndeterminateByName("x");;
@@ -98,7 +98,7 @@ gap> List(last, v -> SpecialiseLiePRing(L, 2, [x,y], v));
   <LiePRing of dimension 7 over prime 2>, 
   <LiePRing of dimension 7 over prime 2> ]
 
-# doc/lierings.xml:205-224
+# doc/lierings.xml:207-226
 gap> SpecialiseLiePRing(L, p, [x], [0]);
 <LiePRing of dimension 7 over prime p with parameters [ y, w ]>
 gap> ViewPCPresentation(last);
@@ -118,7 +118,7 @@ p*l3 = x*l6 + 3*l7
 [l4,l2] = l7
 [l4,l3] = w*l6
 
-# doc/lierings.xml:229-239
+# doc/lierings.xml:231-241
 gap> SpecialisePrimeOfLiePRing(L, 29);
 <LiePRing of dimension 7 over prime 29 with parameters [ y, x ]>
 gap> ViewPCPresentation(last);
@@ -129,7 +129,7 @@ gap> ViewPCPresentation(last);
 [l4,l2] = l7
 [l4,l3] = 2*l6
 
-# doc/lierings.xml:247-254
+# doc/lierings.xml:249-256
 gap>  L := LiePRingsByLibrary(6)[14];
 <LiePRing of dimension 6 over prime p with parameters [ x ]>
 gap>  K := SpecialisePrimeOfLiePRing(L, 5);
@@ -137,7 +137,7 @@ gap>  K := SpecialisePrimeOfLiePRing(L, 5);
 gap> LiePValues(K);
 [ [ p, w ], [ 5, 2 ] ]
 
-# doc/lierings.xml:279-304
+# doc/lierings.xml:281-306
 gap> L := LiePRingsByLibrary(6)[100];
 <LiePRing of dimension 6 over prime p>
 gap> l := BasisOfLiePRing(L);
@@ -163,13 +163,13 @@ gap> U := LiePSubring(K, [5*b[1]]);
 gap> BasisOfLiePRing(U);
 [ l1, l4, l6 ]
 
-# doc/lierings.xml:312-317
+# doc/lierings.xml:314-319
 gap> LiePIdeal(L, [l[1]]);
 <LiePRing of dimension 5 over prime p>
 gap> BasisOfLiePRing(last);
 [ l1, l3, l4, l5, l6 ]
 
-# doc/lierings.xml:325-332
+# doc/lierings.xml:327-334
 gap> LiePIdeal(K, [b[1]]);
 <LiePRing of dimension 5 over prime 7>
 gap> LiePIdeal(K, [b[2]]);

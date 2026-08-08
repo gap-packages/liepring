@@ -23,7 +23,7 @@ Persons := [
     IsMaintainer  := true,
     Email         := "michael.vaughan-lee@chch.ox.ac.uk",
     WWWHome       := "http://users.ox.ac.uk/~vlee",
-    place         := "Oxford"),
+    Place         := "Oxford"),
 ],
 
 Status           := "accepted",
@@ -43,7 +43,9 @@ ArchiveURL      := Concatenation( ~.SourceRepository.URL,
                                  "/liepring-", ~.Version ),
 ArchiveFormats := ".tar.gz",
 
-AbstractHTML := "",
+AbstractHTML := "The <span class=\"pkgname\">LiePRing</span> package provides \
+access to a database of nilpotent Lie rings of order p^n for p > 2 and n &lt;= 7, \
+together with algorithms for computing with them.",
 
 PackageDoc := rec(
   BookName  := "LiePRing",
@@ -70,7 +72,7 @@ BannerString := Concatenation(
     "by Bettina Eick and Michael Vaughan-Lee \n",
     "----------------------------------------------------------------\n" ),
 
-Keywords := ["", "", ""],
+Keywords := ["Lie ring", "Lie p-ring", "p-group", "classification"],
 
 TestFile := "tst/testall.g" 
 

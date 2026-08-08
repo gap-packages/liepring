@@ -1,7 +1,7 @@
 <!-- W  intro.tex             GAP documentation                  Bettina Eick -->
 <Chapter Label="Lie p-rings">
 <Heading>Lie p-rings</Heading>
-In this preliminary chapter we recall some of theoretic background
+In this preliminary chapter we recall some of the theoretic background
 of Lie rings and Lie <M>p</M>-rings. We refer to Chapter 5 in <Cite Key="Khu98"/> 
 for some further details. Throughout we assume that <M>p</M> stands for 
 a rational prime.
@@ -10,32 +10,32 @@ A Lie ring <M>L</M> is an additive abelian group with a multiplication that
 is alternating, bilinear and satisfies the Jacobi identity. We denote 
 the product of two elements <M>g</M> and <M>h</M> of <M>L</M> with <M>g h</M>.
 <P/>
-A subset <M>I \subseteq L</M> is an  ideal in the Lie ring <M>L</M> if it
-is a subgroup of the additive group of <M>L</M> and it satisfies <M>a l \in 
+A subset <M>I \subseteq L</M> is an <E>ideal</E> in the Lie ring <M>L</M> if it
+is a subgroup of the additive group of <M>L</M> and it satisfies <M>a l \in
 I</M> for all <M>a \in I</M> and <M>l \in L</M>. As the multiplication in <M>L</M> is
-alternating, it follows that <M>l a \in I</M> for all <M>l \in L</M> and <M>a \in 
-I</M>. Note that if <M>I</M> and <M>J</M> are ideals in <M>L</M>, then <M>I + J = {
-a + b \mid a \in I, b \in J}</M> and <M>I J = \langle a b \mid 
+alternating, it follows that <M>l a \in I</M> for all <M>l \in L</M> and <M>a \in
+I</M>. Note that if <M>I</M> and <M>J</M> are ideals in <M>L</M>, then <M>I + J = \{
+a + b \mid a \in I, b \in J\}</M> and <M>I J = \langle a b \mid 
 a \in I, b \in J \rangle_+</M> are ideals in <M>L</M>.
 <P/>
-A subset <M>U \subseteq L</M> is a  subring of the Lie ring <M>L</M> if <M>U</M>
+A subset <M>U \subseteq L</M> is a <E>subring</E> of the Lie ring <M>L</M> if <M>U</M>
 is a Lie ring with respect to the addition and the multiplication of <M>L</M>.
 Every ideal in <M>L</M> is also a subring of <M>L</M>. As usual, for an ideal <M>I</M> in
 <M>L</M> the quotient <M>L/I</M> has the structure of a Lie ring, but this does not
 hold for subrings.
 <P/>
-The  lower central series of the Lie ring <M>L</M> is the series of ideals 
+The <E>lower central series</E> of the Lie ring <M>L</M> is the series of ideals
 <M>L = \gamma_1(L) \geq \gamma_2(L) \geq \ldots</M> defined by <M>\gamma_i(L)
-= \gamma_{i-1}(L) L</M>. We say that <M>L</M> is  nilpotent if there exists a 
-natural number <M>c</M> with <M>\gamma_{c+1}(L) = {0}</M>. The smallest natural number 
-with this property is the  class of <M>L</M>.
+= \gamma_{i-1}(L) L</M>. We say that <M>L</M> is <E>nilpotent</E> if there exists a
+natural number <M>c</M> with <M>\gamma_{c+1}(L) = \{0\}</M>. The smallest natural number
+with this property is the <E>class</E> of <M>L</M>.
 <P/>
-The notion of nilpotence now allows to state the central definition of 
-this package. A  Lie p-ring is a Lie ring that is nilpotent and has 
+The notion of nilpotence now allows us to state the central definition of
+this package. A <B>Lie p-ring</B> is a Lie ring that is nilpotent and has
 <M>p^n</M> elements for some natural number <M>n</M>.
 <P/>
 Every finite dimensional Lie algebra over a field with <M>p</M> elements 
-is an example for a Lie ring with <M>p^n</M> elements. Note that there exist
+is an example of a Lie ring with <M>p^n</M> elements. Note that there exist
 non-nilpotent Lie algebras of this type: the Lie algebra consisting of 
 all <M>n \times n</M> matrices with trace <M>0</M> and <M>n \geq 3</M> is an example. 
 Thus not every Lie ring with <M>p^n</M> elements is nilpotent. (In contrast
@@ -44,16 +44,16 @@ to the group case, where every group with <M>p^n</M> elements is nilpotent!)
 For a Lie <M>p</M>-ring <M>L</M> we define the series <M>L = \lambda_1(L) \geq 
 \lambda_2(L) \geq \ldots</M> 
 via <M>\lambda_{i+1}(L) = \lambda_i(L) L + p \lambda_i(L)</M>. This 
-series is the  lower exponent-<M>p</M> central series of <M>L</M>. Its length 
-is the  <M>p</M>-class of <M>L</M>. If <M>|L/\lambda_2(L)| = p^d</M>, then <M>d</M> is 
-the  minimal generator number of <M>L</M>. Similar to the <M>p</M>-group case, 
+series is the <E>lower exponent-<M>p</M> central series</E> of <M>L</M>. Its length
+is the <E><M>p</M>-class</E> of <M>L</M>. If <M>|L/\lambda_2(L)| = p^d</M>, then <M>d</M> is
+the <E>minimal generator number</E> of <M>L</M>. Similar to the <M>p</M>-group case,
 one can observe that this is indeed the cardinality of a generating set 
 of smallest possible size.
 <P/>
-Each Lie <M>p</M>-ring <M>L</M> has a central series <M>L = L_1 \geq \ldots \geq L_n 
-\geq {0}</M> with quotients of order <M>p</M>. Choose <M>l_i \in L_i \setminus 
+Each Lie <M>p</M>-ring <M>L</M> has a central series <M>L = L_1 \geq \ldots \geq L_n
+\geq \{0\}</M> with quotients of order <M>p</M>. Choose <M>l_i \in L_i \setminus 
 L_{i+1}</M> for <M>1 \leq i \leq n</M>. Then <M>(l_1, \ldots, l_n)</M> is a generating 
 set of <M>L</M> satisfying that <M>p l_i \in L_{i+1}</M> and <M>l_i l_j 
 \in L_{i+1}</M> for <M>1 \leq j &lt; i \leq n</M>. We call such a generating sequence 
-a  basis for <M>L</M> and we say that <M>L</M> has  dimension <M>n</M>.
+a <E>basis</E> for <M>L</M> and we say that <M>L</M> has <E>dimension</E> <M>n</M>.
 </Chapter>
