@@ -163,7 +163,7 @@ the family of ordinary Lie <M>p</M>-rings that arise from it.
 <Description>
 takes as input a generic Lie <M>p</M>-ring <A>L</A> from the database and a prime <A>P</A> 
 and returns all Lie <M>p</M>-rings determined by <A>L</A> and <A>P</A> up to isomorphism. 
-This function returns fail if the generic Lie <M>p</M>-ring does not exist for 
+This function returns <K>fail</K> if the generic Lie <M>p</M>-ring does not exist for
 the special prime <A>P</A>; this may be due to the conditions on the prime or
 (if <M>P=3</M>) to the <M>p</M>-class of the Lie <M>p</M>-ring.
 <Example><![CDATA[

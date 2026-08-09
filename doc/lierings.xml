@@ -45,7 +45,7 @@ assumed to be the empty list.
 <Func Name="LiePRingBySCTableNC" Arg="SC"/>
 <Description>
 These functions create a <A>LiePRing</A> from the structure constants table
-record <M>SC</M>. The first version checks that the multiplication defined by
+record <A>SC</A>. The first version checks that the multiplication defined by
 <A>tab</A> is alternating and satisfies the Jacobi identity, the second version
 assumes that this is the case and omits these checks. These checks can
 also be carried out independently via the following function.
