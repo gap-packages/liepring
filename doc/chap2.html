@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (LiePRing) - Chapter 2: LiePRings in GAP</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
+<p><a id="X84F845BC80C254B2" name="X84F845BC80C254B2"></a></p>
+<div class="ChapSects"><a href="chap2.html#X84F845BC80C254B2">2 <span class="Heading">LiePRings in GAP</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7EC08C4D7C42B70A">2.1 <span class="Heading">Ordinary Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7BDD139D878F7DF7">2.1-1 LiePRingBySCTable</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7901822B85270708">2.1-2 CheckIsLiePRing</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X81F62F1D8614D823">2.2 <span class="Heading">Generic Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B035C478035B047">2.2-1 IndeterminateByName</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X861398987EE260C8">2.3 <span class="Heading">Specialising Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C76A465839F1376">2.3-1 SpecialiseLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7CDD8B0C86B08C0D">2.3-2 SpecialisePrimeOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D10D6D47D61EF3B">2.3-3 LiePValues</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X800FDBE280C86C30">2.4 <span class="Heading">Subrings of Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7BB35C4883970FB3">2.4-1 LiePSubring</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X83BC715C867C7043">2.4-2 LiePIdeal</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81FB1FA47AC22F50">2.4-3 LiePQuotient</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7AC1BE7378F2BDDF">2.5 <span class="Heading">Elementary functions</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7BB3607E7D3A9ABC">2.5-1 PrimeOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7861CC588308C48C">2.5-2 BasisOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80EE242B7FDF7811">2.5-3 DimensionOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F66C4C982A906A1">2.5-4 ParametersOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84830036799BB9D4">2.5-5 ViewPCPresentation</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X805DB29F7A3AD8BA">2.6 <span class="Heading">Series of subrings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8276427B7CAC6D6F">2.6-1 LiePLowerCentralSeries</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81BAB998868CB647">2.6-2 LiePLowerPCentralSeries</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X85BE45B97D2A237B">2.6-3 LiePDerivedSeries</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A73CCD381634F14">2.6-4 LiePMinimalGeneratingSet</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7994DA6587ABDA2D">2.7 <span class="Heading">The Lazard correspondence</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81F2CA897BC22D1D">2.7-1 PGroupByLiePRing</a></span>
+</div></div>
+</div>
+
+<h3>2 <span class="Heading">LiePRings in GAP</span></h3>
+
+<p>This package introduces a new datastructure that allows one to define and compute with Lie <span class="SimpleMath">p</span>-rings in GAP. We first describe this datastructure in the case of ordinary Lie <span class="SimpleMath">p</span>-rings; that is, Lie <span class="SimpleMath">p</span>-rings for a fixed prime <span class="SimpleMath">p</span> with given structure constants. Then we show how this datastructure can also be used to define so-called 'generic' Lie <span class="SimpleMath">p</span>-rings; that is, Lie <span class="SimpleMath">p</span>-rings with indeterminate prime <span class="SimpleMath">p</span>.</p>
+
+<p><a id="X7EC08C4D7C42B70A" name="X7EC08C4D7C42B70A"></a></p>
+
+<h4>2.1 <span class="Heading">Ordinary Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p>Let <span class="SimpleMath">p</span> be a prime and let <span class="SimpleMath">L</span> be a Lie <span class="SimpleMath">p</span>-ring of order <span class="SimpleMath">p^n</span>. Let <span class="SimpleMath">(l_1, ..., l_n)</span> be a basis for <span class="SimpleMath">L</span>. Then there exist coefficients <span class="SimpleMath">c_i,j,k ∈ {0, ..., p-1}</span> so that the following relations hold in <span class="SimpleMath">L</span> for <span class="SimpleMath">1 ≤ i,j ≤ n</span> with <span class="SimpleMath">i ≠ j</span>:</p>
+
+<p class="pcenter"> l_i \cdot l_j = \sum_{k=i+1}^n c_{i,j,k} l_k, </p>
+
+<p class="pcenter"> p l_i = \sum_{k=i+1}^n c_{i,i,k} l_k. </p>
+
+<p>These structure constants define the Lie <span class="SimpleMath">p</span>-ring <span class="SimpleMath">L</span>. As the multiplication in a Lie <span class="SimpleMath">p</span>-ring is anticommutative, it follows that <span class="SimpleMath">c_i,j,k = -c_j,i,k</span> holds for each <span class="SimpleMath">k</span> and each <span class="SimpleMath">i ≠ j</span>. Thus the structure constants <span class="SimpleMath">c_i,j,k</span> for <span class="SimpleMath">i ≥ j</span> are sufficient to define the Lie <span class="SimpleMath">p</span>-ring <span class="SimpleMath">L</span>.</p>
+
+<p>This package contains the new datastructure <var class="Arg">LiePRing</var> that allows one to define Lie <span class="SimpleMath">p</span>-rings via their structure constants <span class="SimpleMath">c_i,j,k</span>. To use this datastructure, we first collect all relevant information into a record as follows:</p>
+
+
+<dl>
+<dt><strong class="Mark"><var class="Arg">dim</var></strong></dt>
+<dd><p>the dimension <span class="SimpleMath">n</span> of <span class="SimpleMath">L</span>;</p>
+
+</dd>
+<dt><strong class="Mark"><var class="Arg">prime</var></strong></dt>
+<dd><p>the prime <span class="SimpleMath">p</span> of <span class="SimpleMath">L</span>;</p>
+
+</dd>
+<dt><strong class="Mark"><var class="Arg">tab</var></strong></dt>
+<dd><p>a list with structure constants <span class="SimpleMath">[c_1,1, c_2,1, c_2,2, c_3,1, c_3,2, c_3,3, ...]</span>.</p>
+
+</dd>
+</dl>
+<p>Each entry <span class="SimpleMath">c_i,j</span> in the list <var class="Arg">tab</var> is a list <span class="SimpleMath">[k_1, c_i,j,k_1, k_2, c_i,j,k_2, ...]</span> so that <span class="SimpleMath">k_1 &lt; k_2 &lt; ...</span> and the entries <span class="SimpleMath">c_i,j,k_1, c_i,j,k_2, ...</span> are the non-zero structure constants in the product <span class="SimpleMath">l_i ⋅ l_j</span>. Thus if <span class="SimpleMath">l_i ⋅ l_j = 0</span>, then <span class="SimpleMath">c_i,j</span> is the empty list. If an entry in the list <var class="Arg">tab</var> is not bound, then it is assumed to be the empty list.</p>
+
+<p><a id="X7BDD139D878F7DF7" name="X7BDD139D878F7DF7"></a></p>
+
+<h5>2.1-1 LiePRingBySCTable</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingBySCTable</code>( <var class="Arg">SC</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingBySCTableNC</code>( <var class="Arg">SC</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>These functions create a <var class="Arg">LiePRing</var> from the structure constants table record <var class="Arg">SC</var>. The first version checks that the multiplication defined by <var class="Arg">tab</var> is alternating and satisfies the Jacobi identity, the second version assumes that this is the case and omits these checks. These checks can also be carried out independently via the following function.</p>
+
+<p><a id="X7901822B85270708" name="X7901822B85270708"></a></p>
+
+<h5>2.1-2 CheckIsLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CheckIsLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>This function takes as input an object <var class="Arg">L</var> created via <var class="Arg">LiePRingBySCTableNC</var> and checks that the Jacobi identity holds in this ring.</p>
+
+<p>The following example creates the Lie <span class="SimpleMath">2</span>-ring of order <span class="SimpleMath">8</span> with trivial multiplication.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SC := rec( dim := 3, prime := 2, tab := [] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingBySCTable(SC);</span>
+&lt;LiePRing of dimension 3 over prime 2&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := BasisOfLiePRing(L);</span>
+[ l1, l2, l3 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l[1]*l[2];</span>
+0
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">2*l[1];</span>
+0
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l[1] + l[2];</span>
+l1 + l2
+</pre></div>
+
+<p>The next example creates a LiePRing of order <span class="SimpleMath">5^4</span> with non-trivial multiplication.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SC := rec( dim := 4, prime := 5, tab := [ [], [3, 1], [], [4, 1]]);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingBySCTableNC(SC);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(L);</span>
+[l2,l1] = l3
+[l3,l1] = l4
+</pre></div>
+
+<p><a id="X81F62F1D8614D823" name="X81F62F1D8614D823"></a></p>
+
+<h4>2.2 <span class="Heading">Generic Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p>In a generic Lie <span class="SimpleMath">p</span>-ring, <span class="SimpleMath">p</span> is allowed to be an indeterminate and the structure constants are allowed to be rational functions over a polynomial ring in a finite set of commuting indeterminates. It is generally assumed that the indeterminate with name <var class="Arg">p</var> represents the prime, the indeterminate with name <var class="Arg">w</var> represents the smallest primitive root modulo the prime and there are further predefined indeterminates with the names <var class="Arg">x</var>, <var class="Arg">y</var>, <var class="Arg">z</var>, <var class="Arg">t</var>, <var class="Arg">j</var>, <var class="Arg">k</var>, <var class="Arg">m</var>, <var class="Arg">n</var>, <var class="Arg">r</var>, <var class="Arg">s</var>, <var class="Arg">u</var> and <var class="Arg">v</var>. These indeterminates are used in the database of Lie <span class="SimpleMath">p</span>-rings and they can be obtained via</p>
+
+<p><a id="X7B035C478035B047" name="X7B035C478035B047"></a></p>
+
+<h5>2.2-1 IndeterminateByName</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IndeterminateByName</code>( <var class="Arg">string</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the indeterminate with the name <var class="Arg">string</var>.</p>
+
+<p>The structure constants records for generic Lie <span class="SimpleMath">p</span>-rings are similar to those for ordinary Lie <span class="SimpleMath">p</span>-rings, but have the additional entry <var class="Arg">param</var> which is a list containing all indeterminates used in the considered Lie <span class="SimpleMath">p</span>-ring. We exhibit an example.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p := IndeterminateByName("p");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := IndeterminateByName("x");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S := rec( dim := 5, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             param := [ x ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             prime := p, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             tab := [ [ 4, 1 ], [ 3, 1 ], [ 5, x ], [ 4, 1 ], [ 5, 1 ] ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingBySCTable(S);</span>
+&lt;LiePRing of dimension 5 over prime p with parameters [ x ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(L);</span>
+p*l1 = l4
+p*l2 = x*l5
+[l2,l1] = l3
+[l3,l1] = l4
+[l3,l2] = l5
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := BasisOfLiePRing(L);</span>
+[ l1, l2, l3, l4, l5 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p*l[1];</span>
+l4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l[1]+l[2];</span>
+l1 + l2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l[1]*l[2];</span>
+-1*l3
+</pre></div>
+
+<p><a id="X861398987EE260C8" name="X861398987EE260C8"></a></p>
+
+<h4>2.3 <span class="Heading">Specialising Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p>A generic Lie <span class="SimpleMath">p</span>-ring defines a family of ordinary Lie <span class="SimpleMath">p</span>-rings by evaluating the parameters contained in its presentation. It is generally assumed that the indeterminate <span class="SimpleMath">p</span> is evaluated to a rational prime <span class="SimpleMath">P</span> and the indeterminate <span class="SimpleMath">w</span> is evaluated to the smallest primitive root modulo <span class="SimpleMath">P</span> (this can be determined via <code class="code">PrimitiveRootMod(P)</code>). All other indeterminates can take arbitrary integer values (usually these values are in <span class="SimpleMath">{0, ..., P-1}</span>, but other choices are possible as well). The following functions allow one to evaluate the indeterminates.</p>
+
+<p><a id="X7C76A465839F1376" name="X7C76A465839F1376"></a></p>
+
+<h5>2.3-1 SpecialiseLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SpecialiseLiePRing</code>( <var class="Arg">L</var>, <var class="Arg">P</var>, <var class="Arg">para</var>, <var class="Arg">vals</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>takes as input a generic Lie <span class="SimpleMath">p</span>-ring <var class="Arg">L</var>, a rational prime <var class="Arg">P</var>, a list of indeterminates <var class="Arg">para</var> and a corresponding list of values <var class="Arg">vals</var>. The function returns a new Lie <span class="SimpleMath">p</span>-ring in which the prime <var class="Arg">p</var> is evaluated to <var class="Arg">P</var>, the parameter <var class="Arg">w</var> is evaluated to <code class="code">PrimitiveRootMod(P)</code> and the parameters in <var class="Arg">para</var> are evaluated to <var class="Arg">vals</var>.</p>
+
+<p><a id="X7CDD8B0C86B08C0D" name="X7CDD8B0C86B08C0D"></a></p>
+
+<h5>2.3-2 SpecialisePrimeOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SpecialisePrimeOfLiePRing</code>( <var class="Arg">L</var>, <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>this is a shortcut for <code class="code">SpecialiseLiePRing(L, P, [], [])</code>. We exhibit some example applications.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p := IndeterminateByName("p");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w := IndeterminateByName("w");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := IndeterminateByName("x");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">y := IndeterminateByName("y");;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">S := rec( dim := 7, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             param := [ w, x, y ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             prime := p, </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">             tab := [ [  ], [ 6, 1 ], [ 6, 1 ], [ 7, 1 ], [  ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">                      [ 6, x, 7, y ], [  ], [ 7, 1 ], [ 6, w ] ] );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingBySCTable(S);</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ w, x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(L);</span>
+p*l2 = l6
+p*l3 = x*l6 + y*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = w*l6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SpecialiseLiePRing(L, 7, [x, y], [0,0]);</span>
+&lt;LiePRing of dimension 7 over prime 7&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(last);</span>
+7*l2 = l6
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 3*l6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SpecialiseLiePRing(L, 11, [x, y], [0,10]);</span>
+&lt;LiePRing of dimension 7 over prime 11&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(last);</span>
+11*l2 = l6
+11*l3 = 10*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 2*l6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Cartesian([0,1],[0,1]);</span>
+[ [ 0, 0 ], [ 0, 1 ], [ 1, 0 ], [ 1, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(last, v -&gt; SpecialiseLiePRing(L, 2, [x,y], v));</span>
+[ &lt;LiePRing of dimension 7 over prime 2&gt;, 
+  &lt;LiePRing of dimension 7 over prime 2&gt;, 
+  &lt;LiePRing of dimension 7 over prime 2&gt;, 
+  &lt;LiePRing of dimension 7 over prime 2&gt; ]
+</pre></div>
+
+<p>It is not necessary to specialise all parameters at once. In particular, it is possible to leave the prime <var class="Arg">p</var> as indeterminate and specialise only some of the parameters. (Except for <var class="Arg">w</var> which is linked to <var class="Arg">p</var>.)</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SpecialiseLiePRing(L, p, [x], [0]);</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ y, w ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(last);</span>
+p*l2 = l6
+p*l3 = y*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = w*l6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SpecialiseLiePRing(L, p, [y], [3]);</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, w ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(last);</span>
+p*l2 = l6
+p*l3 = x*l6 + 3*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = w*l6
+</pre></div>
+
+<p>It is also possible to specialise the prime only, but leave all or some of the parameters indeterminate. Note that specialising <var class="Arg">p</var> also specialises <var class="Arg">w</var>. Again, we continue to use the generic Lie <span class="SimpleMath">p</span>-ring <span class="SimpleMath">L</span> as above.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SpecialisePrimeOfLiePRing(L, 29);</span>
+&lt;LiePRing of dimension 7 over prime 29 with parameters [ y, x ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ViewPCPresentation(last);</span>
+29*l2 = l6
+29*l3 = x*l6 + y*l7
+[l2,l1] = l6
+[l3,l1] = l7
+[l4,l2] = l7
+[l4,l3] = 2*l6
+</pre></div>
+
+<p><a id="X7D10D6D47D61EF3B" name="X7D10D6D47D61EF3B"></a></p>
+
+<h5>2.3-3 LiePValues</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePValues</code>( <var class="Arg">K</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>if <span class="SimpleMath">K</span> is obtained by specialising, then this attribute is set and contains the parameters that have been specialised and their values.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> L := LiePRingsByLibrary(6)[14];</span>
+&lt;LiePRing of dimension 6 over prime p with parameters [ x ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> K := SpecialisePrimeOfLiePRing(L, 5);</span>
+&lt;LiePRing of dimension 6 over prime 5 with parameters [ x ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePValues(K);</span>
+[ [ p, w ], [ 5, 2 ] ]
+</pre></div>
+
+<p><a id="X800FDBE280C86C30" name="X800FDBE280C86C30"></a></p>
+
+<h4>2.4 <span class="Heading">Subrings of Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p>Let <span class="SimpleMath">L</span> be a Lie <span class="SimpleMath">p</span>-ring with basis <span class="SimpleMath">(l_1, ..., l_n)</span> and let <span class="SimpleMath">U</span> be a subring of <span class="SimpleMath">L</span>. Then <span class="SimpleMath">U</span> is a Lie <span class="SimpleMath">p</span>-ring and thus also has a basis <span class="SimpleMath">(u_1, ..., u_m)</span>. For <span class="SimpleMath">1 ≤ i ≤ m</span> we define the coefficients <span class="SimpleMath">a_i,j ∈ {0, ..., p-1}</span> via</p>
+
+<p class="pcenter"> u_i = \sum_{j=1}^n a_{i,j} l_j </p>
+
+<p>and we denote with <span class="SimpleMath">A</span> the matrix with entries <span class="SimpleMath">a_i,j</span>. We say that the basis <span class="SimpleMath">(u_1, ..., u_m)</span> is <em>induced</em> if <span class="SimpleMath">A</span> is in upper triangular form. Further, the basis <span class="SimpleMath">(u_1, ..., u_m)</span> is <em>canonical</em> if <span class="SimpleMath">A</span> is in upper echelon form; that is, it is upper triangular, each row in <span class="SimpleMath">A</span> has leading entry <span class="SimpleMath">1</span> and there are <span class="SimpleMath">0</span>'s above the leading entry. Note that a canonical basis is unique for the subring.</p>
+
+<p><a id="X7BB35C4883970FB3" name="X7BB35C4883970FB3"></a></p>
+
+<h5>2.4-1 LiePSubring</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePSubring</code>( <var class="Arg">L</var>, <var class="Arg">gens</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Let <var class="Arg">L</var> be a (generic or ordinary) Lie <span class="SimpleMath">p</span>-ring and let <var class="Arg">gens</var> be a set of elements in <var class="Arg">L</var>. This function determines a canonical basis for the subring generated by <var class="Arg">gens</var> in <var class="Arg">L</var> and returns the LiePSubring of <var class="Arg">L</var> generated by <var class="Arg">gens</var>. Note that this function may have strange effects for generic Lie <span class="SimpleMath">p</span>-rings as the following example shows.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(6)[100];</span>
+&lt;LiePRing of dimension 6 over prime p&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := BasisOfLiePRing(L);</span>
+[ l1, l2, l3, l4, l5, l6 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U := LiePSubring(L, [5*l[1]]);</span>
+&lt;LiePRing of dimension 3 over prime p&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BasisOfLiePRing(U);</span>
+[ l1, l4, l6 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> K := SpecialisePrimeOfLiePRing(L, 5);</span>
+&lt;LiePRing of dimension 6 over prime 5&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> b := BasisOfLiePRing(K);</span>
+[ l1, l2, l3, l4, l5, l6 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePSubring(K, [5*b[1]]);</span>
+&lt;LiePRing of dimension 2 over prime 5&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> BasisOfLiePRing(last);</span>
+[ l4, l6 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := SpecialisePrimeOfLiePRing(L, 7);</span>
+&lt;LiePRing of dimension 6 over prime 7&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">b := BasisOfLiePRing(K);</span>
+[ l1, l2, l3, l4, l5, l6 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U := LiePSubring(K, [5*b[1]]);</span>
+&lt;LiePRing of dimension 3 over prime 7&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BasisOfLiePRing(U);</span>
+[ l1, l4, l6 ]
+</pre></div>
+
+<p><a id="X83BC715C867C7043" name="X83BC715C867C7043"></a></p>
+
+<h5>2.4-2 LiePIdeal</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePIdeal</code>( <var class="Arg">L</var>, <var class="Arg">gens</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>return the ideal of <var class="Arg">L</var> generated by <var class="Arg">gens</var>. This function computes an induced basis for the ideal.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePIdeal(L, [l[1]]);</span>
+&lt;LiePRing of dimension 5 over prime p&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BasisOfLiePRing(last);</span>
+[ l1, l3, l4, l5, l6 ]
+</pre></div>
+
+<p><a id="X81FB1FA47AC22F50" name="X81FB1FA47AC22F50"></a></p>
+
+<h5>2.4-3 LiePQuotient</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePQuotient</code>( <var class="Arg">L</var>, <var class="Arg">U</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>return a Lie <span class="SimpleMath">p</span>-ring isomorphic to <span class="SimpleMath">L/U</span> where <span class="SimpleMath">U</span> must be an ideal of <span class="SimpleMath">L</span>. This function requires that <span class="SimpleMath">L</span> is an ordinary Lie <span class="SimpleMath">p</span>-ring.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePIdeal(K, [b[1]]);</span>
+&lt;LiePRing of dimension 5 over prime 7&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePIdeal(K, [b[2]]);</span>
+&lt;LiePRing of dimension 4 over prime 7&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePQuotient(K,last);</span>
+&lt;LiePRing of dimension 2 over prime 7&gt;
+</pre></div>
+
+<p><a id="X7AC1BE7378F2BDDF" name="X7AC1BE7378F2BDDF"></a></p>
+
+<h4>2.5 <span class="Heading">Elementary functions</span></h4>
+
+<p>The functions described in this section work for ordinary and generic Lie <span class="SimpleMath">p</span>-rings and their subrings.</p>
+
+<p><a id="X7BB3607E7D3A9ABC" name="X7BB3607E7D3A9ABC"></a></p>
+
+<h5>2.5-1 PrimeOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimeOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the underlying prime. This can either be an integer or an indeterminate.</p>
+
+<p><a id="X7861CC588308C48C" name="X7861CC588308C48C"></a></p>
+
+<h5>2.5-2 BasisOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; BasisOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a basis for <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X80EE242B7FDF7811" name="X80EE242B7FDF7811"></a></p>
+
+<h5>2.5-3 DimensionOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DimensionOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the dimension of <var class="Arg">L</var>.</p>
+
+<p><a id="X7F66C4C982A906A1" name="X7F66C4C982A906A1"></a></p>
+
+<h5>2.5-4 ParametersOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ParametersOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the list of indeterminates involved in <span class="SimpleMath">L</span>. If <span class="SimpleMath">L</span> is a subring of a Lie <span class="SimpleMath">p</span>-ring defined by structure constants, then the parameters of the parent are returned.</p>
+
+<p><a id="X84830036799BB9D4" name="X84830036799BB9D4"></a></p>
+
+<h5>2.5-5 ViewPCPresentation</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ViewPCPresentation</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>prints the presentation for <span class="SimpleMath">L</span> with respect to its basis.</p>
+
+<p><a id="X805DB29F7A3AD8BA" name="X805DB29F7A3AD8BA"></a></p>
+
+<h4>2.6 <span class="Heading">Series of subrings</span></h4>
+
+<p>Let <var class="Arg">L</var> be a generic or ordinary Lie <span class="SimpleMath">p</span>-ring or a subring of such a Lie <span class="SimpleMath">p</span>-ring.</p>
+
+<p><a id="X8276427B7CAC6D6F" name="X8276427B7CAC6D6F"></a></p>
+
+<h5>2.6-1 LiePLowerCentralSeries</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePLowerCentralSeries</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the lower central series of <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X81BAB998868CB647" name="X81BAB998868CB647"></a></p>
+
+<h5>2.6-2 LiePLowerPCentralSeries</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePLowerPCentralSeries</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the lower exponent-<span class="SimpleMath">p</span> central series of <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X85BE45B97D2A237B" name="X85BE45B97D2A237B"></a></p>
+
+<h5>2.6-3 LiePDerivedSeries</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePDerivedSeries</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the derived series of <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X7A73CCD381634F14" name="X7A73CCD381634F14"></a></p>
+
+<h5>2.6-4 LiePMinimalGeneratingSet</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePMinimalGeneratingSet</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a minimal generating set of <span class="SimpleMath">L</span>; that is, a generating set of smallest possible size.</p>
+
+<p><a id="X7994DA6587ABDA2D" name="X7994DA6587ABDA2D"></a></p>
+
+<h4>2.7 <span class="Heading">The Lazard correspondence</span></h4>
+
+<p>The following function has been implemented by Willem de Graaf. It uses the Baker-Campbell-Hausdorff formula as described in <a href="chapBib.html#biBCGV12">[CdV12]</a> and it is based on the Liering package <a href="chapBib.html#biBCdG10">[Cd10]</a>.</p>
+
+<p><a id="X81F2CA897BC22D1D" name="X81F2CA897BC22D1D"></a></p>
+
+<h5>2.7-1 PGroupByLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PGroupByLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Let <var class="Arg">L</var> be an ordinary Lie <span class="SimpleMath">p</span>-ring with <span class="SimpleMath">cl(L) &lt; p</span>. Then this function returns the <span class="SimpleMath">p</span>-group <span class="SimpleMath">G</span> obtained from <span class="SimpleMath">L</span> via the Lazard correspondence.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

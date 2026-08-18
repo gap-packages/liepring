@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (LiePRing) - Chapter 4: Advanced functions for Lie p-rings</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap4"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap4_mj.html">[MathJax on]</a></p>
+<p><a id="X80DC60388689795F" name="X80DC60388689795F"></a></p>
+<div class="ChapSects"><a href="chap4.html#X80DC60388689795F">4 <span class="Heading">Advanced functions for Lie <span class="SimpleMath">p</span>-rings</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X852BA9AD82D485FB">4.1 <span class="Heading">Schur multipliers</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X78C99D2681396BAA">4.1-1 LiePSchurMult</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X847ED68883684108">4.1-2 ElementNumbers</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X7A007A0C80D26351">4.2 <span class="Heading">Automorphism groups</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X873D92738327732C">4.2-1 AutGroupDescription</a></span>
+</div></div>
+</div>
+
+<h3>4 <span class="Heading">Advanced functions for Lie <span class="SimpleMath">p</span>-rings</span></h3>
+
+<p>This chapter describes a few more advanced functions available for generic Lie <span class="SimpleMath">p</span>-rings.</p>
+
+<p><a id="X852BA9AD82D485FB" name="X852BA9AD82D485FB"></a></p>
+
+<h4>4.1 <span class="Heading">Schur multipliers</span></h4>
+
+<p>The package contains a method to determine the Schur multipliers of the Lie <span class="SimpleMath">p</span>-rings in the family defined by a generic Lie <span class="SimpleMath">p</span>-ring.</p>
+
+<p><a id="X78C99D2681396BAA" name="X78C99D2681396BAA"></a></p>
+
+<h5>4.1-1 LiePSchurMult</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePSchurMult</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>The function takes as input a generic Lie <span class="SimpleMath">p</span>-ring <var class="Arg">L</var> and determines a list of possible Schur multipliers, each described by its abelian invariants, for the Lie <span class="SimpleMath">p</span>-rings in the family described by <var class="Arg">L</var>. For each entry in the list of Schur multipliers there is a description of those parameters which give the considered entry. This description consists of two lists <code class="code">units</code> and <code class="code">zeros</code>. Both consist of rational functions over the parameters of the Lie <span class="SimpleMath">p</span>-ring. The parameters described by these lists are those which evaluate to zero for each rational function in <code class="code">zeros</code> and do not evaluate to zero for each rational function in <code class="code">units</code>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LL := LiePRingsByLibrary(7);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := Filtered(LL, x -&gt; Length(ParametersOfLiePRing(x))=2)[1]; </span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NumberOfLiePRingsInFamily(L);</span>
+p^2-p
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RingInvariants(L);</span>
+rec( units := [ x ], zeros := [  ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ss := LiePSchurMult(L);</span>
+[ rec( norm := [ p ], units := [ x, y ], zeros := [ x*y^2-x*y+1 ] ), 
+  rec( norm := [ p^2 ], units := [ x ], zeros := [ x*y ] ), 
+  rec( norm := [ p ], units := [ x, x*y^2-x*y+1, y ], zeros := [  ] ) ]
+</pre></div>
+
+<p>In this example, <var class="Arg">L</var> defines a generic Lie <span class="SimpleMath">p</span>-ring with two parameters and the <code class="code">RingInvariants</code> of <var class="Arg">L</var> show that the parameter <span class="SimpleMath">x</span> should be non-zero. The function <code class="code">LiePSchurMult(L)</code> yields that there are two possible Schur multipliers for the Lie <span class="SimpleMath">p</span>-rings in the family defined by <var class="Arg">L</var>: the cyclic groups of order <span class="SimpleMath">p</span> and of order <span class="SimpleMath">p^2</span>. The second option only arises if <span class="SimpleMath">xy = 0</span> and thus, as <span class="SimpleMath">x</span> is non-zero, if <span class="SimpleMath">y = 0</span>.</p>
+
+<p>The package also contains a function that tries to determine the numbers of values of the parameters satisfying the conditions of a description of a Schur multiplier. This succeeds in many cases and returns a polynomial in <span class="SimpleMath">p</span> in this case. If it does not succeed then it returns <code class="keyw">fail</code>.</p>
+
+<p><a id="X847ED68883684108" name="X847ED68883684108"></a></p>
+
+<h5>4.1-2 ElementNumbers</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ElementNumbers</code>( <var class="Arg">pp</var>, <var class="Arg">ss</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>We continue the above example.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ElementNumbers(ParametersOfLiePRing(L), ss);</span>
+rec( norms := [ [ p^2 ], [ p ] ], numbs := [ p-1, p^2-2*p+1 ] )
+</pre></div>
+
+<p><a id="X7A007A0C80D26351" name="X7A007A0C80D26351"></a></p>
+
+<h4>4.2 <span class="Heading">Automorphism groups</span></h4>
+
+<p>The package contains a function that determines a description for the automorphism groups of the Lie <span class="SimpleMath">p</span>-rings in the family defined by a generic Lie <span class="SimpleMath">p</span>-ring.</p>
+
+<p><a id="X873D92738327732C" name="X873D92738327732C"></a></p>
+
+<h5>4.2-1 AutGroupDescription</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AutGroupDescription</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Each automorphism of <var class="Arg">L</var> is defined by its images on a generating set of <var class="Arg">L</var>. If <span class="SimpleMath">l_1, ..., l_n</span> is a basis of <var class="Arg">L</var> and <span class="SimpleMath">l_1, ..., l_d</span> is a generating set, then each automorphism is defined by the images of <span class="SimpleMath">l_1, ..., l_d</span> and each image is an integral linear combination of the basis elements <span class="SimpleMath">l_1, ..., l_n</span>. The function <code class="code">AutGroupDescription</code> returns a matrix containing a description of the coefficients in each linear combination and a list of relations among these coefficients. We consider two examples.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := Filtered(LL, x -&gt; Length(ParametersOfLiePRing(x))=2)[1];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AutGroupDescription(L);</span>
+rec( auto := [ [ 1, 0, A13, A14, A15, A16, A17 ], 
+               [ 0, 1, A23, A24, A25, A26, A27 ] ], 
+     eqns := [ [  ], [  ] ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := Filtered(LL, x -&gt; Length(ParametersOfLiePRing(x))=2)[2];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AutGroupDescription(L);</span>
+rec( auto := [ [ A22^3, 0, A13, A14, A15, A16, A17 ], 
+               [ 0, A22, A23, A24, A25, A26, A27 ] ], 
+     eqns := [ [ A22*A24-1/2*A23^2, A22^2*y-y, 
+                 A22*A23^2*y-2*A24*y, A22^4-1, 
+                 A23^4*y-4*A24^2*y, A22^3*A23^2-2*A24, 
+                 A22^2*A23^4-4*A24^2, A22*A23^6-8*A24^3, 
+                 A23^8-16*A24^4 ] ] )
+</pre></div>
+
+<p>In both cases, <var class="Arg">L</var> is generated by the first two entries in its basis and hence the automorphism group matrix has two rows and seven columns. In the first case, <var class="Arg">L</var> has <span class="SimpleMath">p^10</span> automorphisms inducing the identity on the Frattini-quotient of <var class="Arg">L</var>. In the second case, the automorphism group matrix shows that each automorphism induces a certain type of diagonal matrix on the Frattini-quotient of <var class="Arg">L</var> and there are further equations among the coefficients of the matrix. These further equations are equivalent to <span class="SimpleMath">A22^2 = 1</span> and <span class="SimpleMath">A24 = A22 A23^2 / 2</span>. Hence <var class="Arg">L</var> has <span class="SimpleMath">2 p^9</span> automorphisms.</p>
+
+<p>The entry <code class="code">eqns</code> is a list of lists. The equations in the <span class="SimpleMath">i</span>-th entry of this list have to be satisfied mod <span class="SimpleMath">p^i</span>.</p>
+
+<p>In a few special cases, the function returns a list of possible automorphisms together with related equations and conditions. We exhibit an example.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7)[489];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AutGroupDescription(L);</span>
+[ rec( auto := [ [ 1, 0, A13, A14, A15, A16, A17 ], 
+                 [ 0, 1, A23, A24, A25, A26, A27 ] ], 
+       comment := "p^8 automorphisms",
+       eqns := [ [ A13^2*x-A13*A23+2*A15*x+A14-A25, 
+              -A13*A23*x+A14*x+A23^2-A25*x-2*A24 ] ] ), 
+  rec( auto := [ [ 0, A12, A13, A14, A15, A16, A17 ], 
+                 [ -x, 0, A23, A24, A25, A26, A27 ] ], 
+      comment := "p^8 automorphisms when x &lt;&gt; 0 mod p", 
+      eqns := [ [ A12^2*A24*x-A12*A13*A23*x+A12*A13*x^2
+                  +2*A12*A15*x^2+A12*A14*x-A13^2*x+A13*x+A15*x-A14, 
+                  -A12^2*A23*x^3+A12*A13*x^3+A12*A23^2*x-A12*A25*x^2
+                  -2*A12*A24*x+A13*A23*x+A13*x^2-A15*x^2+A23*x+A25*x-A24 ], 
+                [ A12*x+1 ] ] ) ]
+</pre></div>
+
+<p>In this example <span class="SimpleMath">A12 x = -1</span> modulo <span class="SimpleMath">p^2</span>. We note that different choices for <span class="SimpleMath">A12</span> do not give different automorphisms. Hence a single solution for <span class="SimpleMath">A12</span> is sufficient to describe all automorphisms.</p>
+
+<p> </p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

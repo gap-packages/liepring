@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<title>GAP (LiePRing) - Chapter 1: Lie \(p\)-rings</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap1.html">[MathJax off]</a></p>
+<p><a id="X8168999E79554442" name="X8168999E79554442"></a></p>
+<div class="ChapSects"><a href="chap1_mj.html#X8168999E79554442">1 <span class="Heading">Lie <span class="SimpleMath">\(p\)</span>-rings</span></a>
+</div>
+
+<h3>1 <span class="Heading">Lie <span class="SimpleMath">\(p\)</span>-rings</span></h3>
+
+<p>In this preliminary chapter we recall some of the theoretic background of Lie rings and Lie <span class="SimpleMath">\(p\)</span>-rings. We refer to Chapter 5 in <a href="chapBib_mj.html#biBKhu98">[Khu98]</a> for some further details. Throughout we assume that <span class="SimpleMath">\(p\)</span> stands for a rational prime.</p>
+
+<p>A Lie ring <span class="SimpleMath">\(L\)</span> is an additive abelian group with a multiplication that is alternating, bilinear and satisfies the Jacobi identity. We denote the product of two elements <span class="SimpleMath">\(g\)</span> and <span class="SimpleMath">\(h\)</span> of <span class="SimpleMath">\(L\)</span> with <span class="SimpleMath">\(g h\)</span>.</p>
+
+<p>A subset <span class="SimpleMath">\(I \subseteq L\)</span> is an <em>ideal</em> in the Lie ring <span class="SimpleMath">\(L\)</span> if it is a subgroup of the additive group of <span class="SimpleMath">\(L\)</span> and it satisfies <span class="SimpleMath">\(a l \in I\)</span> for all <span class="SimpleMath">\(a \in I\)</span> and <span class="SimpleMath">\(l \in L\)</span>. As the multiplication in <span class="SimpleMath">\(L\)</span> is alternating, it follows that <span class="SimpleMath">\(l a \in I\)</span> for all <span class="SimpleMath">\(l \in L\)</span> and <span class="SimpleMath">\(a \in I\)</span>. Note that if <span class="SimpleMath">\(I\)</span> and <span class="SimpleMath">\(J\)</span> are ideals in <span class="SimpleMath">\(L\)</span>, then <span class="SimpleMath">\(I + J = \{ a + b \mid a \in I, b \in J\}\)</span> and <span class="SimpleMath">\(I J = \langle a b \mid a \in I, b \in J \rangle_+\)</span> are ideals in <span class="SimpleMath">\(L\)</span>.</p>
+
+<p>A subset <span class="SimpleMath">\(U \subseteq L\)</span> is a <em>subring</em> of the Lie ring <span class="SimpleMath">\(L\)</span> if <span class="SimpleMath">\(U\)</span> is a Lie ring with respect to the addition and the multiplication of <span class="SimpleMath">\(L\)</span>. Every ideal in <span class="SimpleMath">\(L\)</span> is also a subring of <span class="SimpleMath">\(L\)</span>. As usual, for an ideal <span class="SimpleMath">\(I\)</span> in <span class="SimpleMath">\(L\)</span> the quotient <span class="SimpleMath">\(L/I\)</span> has the structure of a Lie ring, but this does not hold for subrings.</p>
+
+<p>The <em>lower central series</em> of the Lie ring <span class="SimpleMath">\(L\)</span> is the series of ideals <span class="SimpleMath">\(L = \gamma_1(L) \geq \gamma_2(L) \geq \ldots\)</span> defined by <span class="SimpleMath">\(\gamma_i(L) = \gamma_{i-1}(L) L\)</span>. We say that <span class="SimpleMath">\(L\)</span> is <em>nilpotent</em> if there exists a natural number <span class="SimpleMath">\(c\)</span> with <span class="SimpleMath">\(\gamma_{c+1}(L) = \{0\}\)</span>. The smallest natural number with this property is the <em>class</em> of <span class="SimpleMath">\(L\)</span>.</p>
+
+<p>The notion of nilpotence now allows us to state the central definition of this package. A <em>Lie <span class="SimpleMath">\(p\)</span>-ring</em> is a Lie ring that is nilpotent and has <span class="SimpleMath">\(p^n\)</span> elements for some natural number <span class="SimpleMath">\(n\)</span>.</p>
+
+<p>Every finite dimensional Lie algebra over a field with <span class="SimpleMath">\(p\)</span> elements is an example of a Lie ring with <span class="SimpleMath">\(p^n\)</span> elements. Note that there exist non-nilpotent Lie algebras of this type: the Lie algebra consisting of all <span class="SimpleMath">\(n \times n\)</span> matrices with trace <span class="SimpleMath">\(0\)</span> and <span class="SimpleMath">\(n \geq 3\)</span> is an example. Thus not every Lie ring with <span class="SimpleMath">\(p^n\)</span> elements is nilpotent. (In contrast to the group case, where every group with <span class="SimpleMath">\(p^n\)</span> elements is nilpotent!)</p>
+
+<p>For a Lie <span class="SimpleMath">\(p\)</span>-ring <span class="SimpleMath">\(L\)</span> we define the series <span class="SimpleMath">\(L = \lambda_1(L) \geq \lambda_2(L) \geq \ldots\)</span> via <span class="SimpleMath">\(\lambda_{i+1}(L) = \lambda_i(L) L + p \lambda_i(L)\)</span>. This series is the <em>lower exponent-<span class="SimpleMath">\(p\)</span> central series</em> of <span class="SimpleMath">\(L\)</span>. Its length is the <em><span class="SimpleMath">\(p\)</span>-class</em> of <span class="SimpleMath">\(L\)</span>. If <span class="SimpleMath">\(|L/\lambda_2(L)| = p^d\)</span>, then <span class="SimpleMath">\(d\)</span> is the <em>minimal generator number</em> of <span class="SimpleMath">\(L\)</span>. Similar to the <span class="SimpleMath">\(p\)</span>-group case, one can observe that this is indeed the cardinality of a generating set of smallest possible size.</p>
+
+<p>Each Lie <span class="SimpleMath">\(p\)</span>-ring <span class="SimpleMath">\(L\)</span> has a central series <span class="SimpleMath">\(L = L_1 \geq \ldots \geq L_n \geq \{0\}\)</span> with quotients of order <span class="SimpleMath">\(p\)</span>. Choose <span class="SimpleMath">\(l_i \in L_i \setminus L_{i+1}\)</span> for <span class="SimpleMath">\(1 \leq i \leq n\)</span>. Then <span class="SimpleMath">\((l_1, \ldots, l_n)\)</span> is a generating set of <span class="SimpleMath">\(L\)</span> satisfying that <span class="SimpleMath">\(p l_i \in L_{i+1}\)</span> and <span class="SimpleMath">\(l_i l_j \in L_{i+1}\)</span> for <span class="SimpleMath">\(1 \leq j &lt; i \leq n\)</span>. We call such a generating sequence a <em>basis</em> for <span class="SimpleMath">\(L\)</span> and we say that <span class="SimpleMath">\(L\)</span> has <em>dimension</em> <span class="SimpleMath">\(n\)</span>.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0_mj.html">Top</a>  <a href="chap1_mj.html">1</a>  <a href="chap2_mj.html">2</a>  <a href="chap3_mj.html">3</a>  <a href="chap4_mj.html">4</a>  <a href="chapBib_mj.html">Bib</a>  <a href="chapInd_mj.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (LiePRing) - Chapter 3: The Database</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap3_mj.html">[MathJax on]</a></p>
+<p><a id="X78576F1F875FCEA4" name="X78576F1F875FCEA4"></a></p>
+<div class="ChapSects"><a href="chap3.html#X78576F1F875FCEA4">3 <span class="Heading">The Database</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X86E541767E2A534D">3.1 <span class="Heading">Accessing Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X78C017FF86A4F293">3.1-1 LiePRingsByLibrary</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X85F634DE841EAE61">3.1-2 LiePRingsByLibrary</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X86801A0085B8EB2B">3.2 <span class="Heading">Numbers of Lie <span class="SimpleMath">p</span>-rings</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X79BF45647BBDF997">3.2-1 NumberOfLiePRings</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7ED9280B7AA4A29C">3.2-2 NumberOfLiePRings</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7C50E514853CBCAE">3.2-3 NumberOfLiePRingsInFamily</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7EF859BD7F67F602">3.3 <span class="Heading">Searching the database</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7D6972697C643254">3.3-1 LiePRingsInFamily</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7D6C6802817480A9">3.4 <span class="Heading">More details</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B6FA3E87D75D9DE">3.4-1 LibraryName</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X8225E525790FC029">3.4-2 ShortPresentation</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B28232981E86910">3.4-3 LibraryConditions</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X86DF00A67ECA7F48">3.4-4 MinimalGeneratorNumberOfLiePRing</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X832C76D57E3B128D">3.4-5 PClassOfLiePRing</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7F05B1C2830D519B">3.5 <span class="Heading">Special functions for dimension 7</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X85D6DEDE78570FE0">3.5-1 LiePRingsDim7ByFile</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X781021568503B1A2">3.5-2 LiePRingsDim7ByFile</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7E261FAB7C023F7B">3.6 <span class="Heading">Dimension 8 and maximal class</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X842AAAFC81EB764E">3.6-1 LiePRingsByLibraryMC8</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X871724DB78FDC64C">3.6-2 LiePRingsInFamilyMC8</a></span>
+</div></div>
+</div>
+
+<h3>3 <span class="Heading">The Database</span></h3>
+
+<p>This package gives access to the database of Lie <span class="SimpleMath">p</span>-rings of order at most <span class="SimpleMath">p^7</span> as determined by Mike Newman, Eamonn O'Brien and Michael Vaughan-Lee, see <a href="chapBib.html#biBNOV04">[NOV03]</a> and <a href="chapBib.html#biBOVL05">[OV05]</a>. A description of the database can also be found in <a href="chapBib.html#biBNotes">[Vau13]</a>.</p>
+
+<p>For each <span class="SimpleMath">n ∈ {1, ..., 7}</span> this package contains a (finite) list of generic presentations of Lie <span class="SimpleMath">p</span>-rings. For each prime <span class="SimpleMath">p ≥ 5</span>, each of the generic Lie <span class="SimpleMath">p</span>-rings gives rise to a family of Lie <span class="SimpleMath">p</span>-rings over the considered prime <span class="SimpleMath">p</span> by specialising the indeterminates to a certain list of values. The resulting lists of Lie <span class="SimpleMath">p</span>-rings provide a complete and irredundant set of isomorphism type representatives of the Lie <span class="SimpleMath">p</span>-rings of order <span class="SimpleMath">p^n</span>. The generic Lie <span class="SimpleMath">p</span>-rings of <span class="SimpleMath">p</span>-class at most 2 can also be considered for the prime <span class="SimpleMath">p=3</span> and yield a list of isomorphism type representatives for the Lie <span class="SimpleMath">p</span>-rings of order <span class="SimpleMath">3^n</span> and <span class="SimpleMath">p</span>-class at most <span class="SimpleMath">2</span>.</p>
+
+<p>The Lazard correspondence has been used to check the correctness of the database of Lie <span class="SimpleMath">p</span>-rings: for various small primes it has been checked that the Lie <span class="SimpleMath">p</span>-rings of this database define non-isomorphic finite <span class="SimpleMath">p</span>-groups.</p>
+
+<p>In the following we describe functions to access the database. Throughout this chapter, we assume that <span class="SimpleMath">dim ∈ {1, ..., 7}</span> and <span class="SimpleMath">P</span> is a prime with <span class="SimpleMath">P ≠ 2</span>.</p>
+
+<p><a id="X86E541767E2A534D" name="X86E541767E2A534D"></a></p>
+
+<h4>3.1 <span class="Heading">Accessing Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p><a id="X78C017FF86A4F293" name="X78C017FF86A4F293"></a></p>
+
+<h5>3.1-1 LiePRingsByLibrary</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsByLibrary</code>( <var class="Arg">dim</var>[, <var class="Arg">gen</var>][, <var class="Arg">cl</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the generic Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">dim</span> in the database. The second form returns the Lie <span class="SimpleMath">p</span>-rings of minimal generator number <span class="SimpleMath">gen</span> and <span class="SimpleMath">p</span>-class <span class="SimpleMath">cl</span> only.</p>
+
+<p><a id="X85F634DE841EAE61" name="X85F634DE841EAE61"></a></p>
+
+<h5>3.1-2 LiePRingsByLibrary</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsByLibrary</code>( <var class="Arg">dim</var>, <var class="Arg">P</var>[, <var class="Arg">gen</var>][, <var class="Arg">cl</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns isomorphism type representatives of ordinary Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">dim</span> for the prime <span class="SimpleMath">P</span>. The second form returns the Lie <span class="SimpleMath">p</span>-rings of minimal generator number <span class="SimpleMath">gen</span> and <span class="SimpleMath">p</span>-class <span class="SimpleMath">cl</span> only. The function assumes <span class="SimpleMath">P ≥ 3</span> and for <span class="SimpleMath">P = 3</span> there are only the Lie <span class="SimpleMath">p</span>-rings of <span class="SimpleMath">p</span>-class at most 2 available.</p>
+
+<p>The first example yields the generic Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">4</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsByLibrary(4);</span>
+[ &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;,
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt;, 
+  &lt;LiePRing of dimension 4 over prime p&gt; ]
+</pre></div>
+
+<p>The next example yields the isomorphism type representatives of Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">3</span> for the prime <span class="SimpleMath">5</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsByLibrary(3, 5);</span>
+[ &lt;LiePRing of dimension 3 over prime 5&gt;, 
+  &lt;LiePRing of dimension 3 over prime 5&gt;, 
+  &lt;LiePRing of dimension 3 over prime 5&gt;, 
+  &lt;LiePRing of dimension 3 over prime 5&gt;, 
+  &lt;LiePRing of dimension 3 over prime 5&gt; ]
+</pre></div>
+
+<p>The following example extracts the generic Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">5</span> with minimal generator number <span class="SimpleMath">2</span> and <span class="SimpleMath">p</span>-class <span class="SimpleMath">4</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsByLibrary(5, 2, 4);</span>
+[ &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt; ]
+</pre></div>
+
+<p>Finally, we determine the isomorphism type representatives of Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">5</span>, minimal generator number <span class="SimpleMath">2</span> and <span class="SimpleMath">p</span>-class <span class="SimpleMath">4</span> for the prime <span class="SimpleMath">7</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsByLibrary(5, 7, 2, 4);</span>
+[ &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt;, 
+  &lt;LiePRing of dimension 5 over prime 7&gt; ]
+</pre></div>
+
+<p><a id="X86801A0085B8EB2B" name="X86801A0085B8EB2B"></a></p>
+
+<h4>3.2 <span class="Heading">Numbers of Lie <span class="SimpleMath">p</span>-rings</span></h4>
+
+<p><a id="X79BF45647BBDF997" name="X79BF45647BBDF997"></a></p>
+
+<h5>3.2-1 NumberOfLiePRings</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NumberOfLiePRings</code>( <var class="Arg">dim</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the number of generic Lie <span class="SimpleMath">p</span>-rings in the database of the considered dimension for <span class="SimpleMath">dim ∈ {1, ..., 7}</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([1..7], x -&gt; NumberOfLiePRings(x));</span>
+[ 1, 2, 5, 15, 75, 542, 4773 ]
+</pre></div>
+
+<p><a id="X7ED9280B7AA4A29C" name="X7ED9280B7AA4A29C"></a></p>
+
+<h5>3.2-2 NumberOfLiePRings</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NumberOfLiePRings</code>( <var class="Arg">dim</var>, <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the number of isomorphism types of ordinary Lie <span class="SimpleMath">p</span>-rings of order <span class="SimpleMath">P^dim</span> in the database. If <span class="SimpleMath">P ≥ 5</span>, then this is the number of all isomorphism types of Lie <span class="SimpleMath">p</span>-rings of order <span class="SimpleMath">P^dim</span> and if <span class="SimpleMath">P = 3</span> then this is the number of all isomorphism types of Lie <span class="SimpleMath">p</span>-rings of <span class="SimpleMath">p</span>-class at most <span class="SimpleMath">2</span>. If <span class="SimpleMath">P ≥ 7</span>, then this number coincides with <code class="code">NumberSmallGroups</code>(<span class="SimpleMath">P^dim</span>).</p>
+
+<p><a id="X7C50E514853CBCAE" name="X7C50E514853CBCAE"></a></p>
+
+<h5>3.2-3 NumberOfLiePRingsInFamily</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NumberOfLiePRingsInFamily</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the number of Lie <span class="SimpleMath">p</span>-rings associated to <span class="SimpleMath">L</span> as a polynomial in <var class="Arg">p</var> and possibly some residue classes.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7)[780];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters
+[ x, y, z, t, s, u, v ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NumberOfLiePRingsInFamily(L);</span>
+-1/3*p^5*(p-1,3)+p^5-1/3*p^4*(p-1,3)+p^4-1/3*p^3*(p-1,3)+p^3-1/3*p^2*(p-1,3)
++p^2-p*(p-1,3)+3*p-3/2*(p-1,3)+9/2
+</pre></div>
+
+<p><a id="X7EF859BD7F67F602" name="X7EF859BD7F67F602"></a></p>
+
+<h4>3.3 <span class="Heading">Searching the database</span></h4>
+
+<p>We now consider a generic Lie <span class="SimpleMath">p</span>-ring <var class="Arg">L</var> from the database and consider the family of ordinary Lie <span class="SimpleMath">p</span>-rings that arise from it.</p>
+
+<p><a id="X7D6972697C643254" name="X7D6972697C643254"></a></p>
+
+<h5>3.3-1 LiePRingsInFamily</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsInFamily</code>( <var class="Arg">L</var>, <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>takes as input a generic Lie <span class="SimpleMath">p</span>-ring <var class="Arg">L</var> from the database and a prime <var class="Arg">P</var> and returns all Lie <span class="SimpleMath">p</span>-rings determined by <var class="Arg">L</var> and <var class="Arg">P</var> up to isomorphism. This function returns <code class="keyw">fail</code> if the generic Lie <span class="SimpleMath">p</span>-ring does not exist for the special prime <var class="Arg">P</var>; this may be due to the conditions on the prime or (if <span class="SimpleMath">P=3</span>) to the <span class="SimpleMath">p</span>-class of the Lie <span class="SimpleMath">p</span>-ring.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7)[118];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LibraryConditions(L);</span>
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsInFamily(L, 7);</span>
+fail
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(LiePRingsInFamily(L,13));</span>
+91
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">13^2;</span>
+169
+</pre></div>
+
+<p>The following example shows how to determine all Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">5</span> and <span class="SimpleMath">p</span>-class <span class="SimpleMath">4</span> over the prime <span class="SimpleMath">29</span> up to isomorphism.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(5);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := Filtered(L, x -&gt; PClassOfLiePRing(x)=4);</span>
+[ &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt;, 
+  &lt;LiePRing of dimension 5 over prime p&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := List(L, x-&gt; LiePRingsInFamily(x, 29));</span>
+[ [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], fail, fail, 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], fail, fail, 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ], 
+  [ &lt;LiePRing of dimension 5 over prime 29&gt; ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := Filtered(Flat(K), x -&gt; x&lt;&gt;fail);</span>
+[ &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt;, 
+  &lt;LiePRing of dimension 5 over prime 29&gt; ]
+</pre></div>
+
+<p><a id="X7D6C6802817480A9" name="X7D6C6802817480A9"></a></p>
+
+<h4>3.4 <span class="Heading">More details</span></h4>
+
+<p>Let <span class="SimpleMath">L</span> be a Lie <span class="SimpleMath">p</span>-ring from the database. Then the following additional attributes are available.</p>
+
+<p><a id="X7B6FA3E87D75D9DE" name="X7B6FA3E87D75D9DE"></a></p>
+
+<h5>3.4-1 LibraryName</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LibraryName</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a string with the name of <span class="SimpleMath">L</span> in the database. See <code class="file">p567.pdf</code> for further background.</p>
+
+<p><a id="X8225E525790FC029" name="X8225E525790FC029"></a></p>
+
+<h5>3.4-2 ShortPresentation</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ShortPresentation</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns a string exhibiting a short presentation of <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X7B28232981E86910" name="X7B28232981E86910"></a></p>
+
+<h5>3.4-3 LibraryConditions</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LibraryConditions</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the conditions on <span class="SimpleMath">L</span>. This is a list of two strings. The first string exhibits the conditions on the parameters of <span class="SimpleMath">L</span>, the second shows the conditions on primes.</p>
+
+<p><a id="X86DF00A67ECA7F48" name="X86DF00A67ECA7F48"></a></p>
+
+<h5>3.4-4 MinimalGeneratorNumberOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MinimalGeneratorNumberOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the minimal generator number of <span class="SimpleMath">L</span>.</p>
+
+<p><a id="X832C76D57E3B128D" name="X832C76D57E3B128D"></a></p>
+
+<h5>3.4-5 PClassOfLiePRing</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PClassOfLiePRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>returns the <span class="SimpleMath">p</span>-class of <span class="SimpleMath">L</span>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7)[118];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LibraryName(L);</span>
+"7.118"
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LibraryConditions(L);</span>
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+</pre></div>
+
+<p>All of the information listed in this section is inherited when <span class="SimpleMath">L</span> is specialised.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7)[118];</span>
+&lt;LiePRing of dimension 7 over prime p with parameters [ x, y ]&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K := SpecialiseLiePRing(L, 13, ParametersOfLiePRing(L), [0,0]);</span>
+&lt;LiePRing of dimension 7 over prime 13&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LibraryName(K);</span>
+"7.118"
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LibraryConditions(K);</span>
+[ "[x,y]~[x,-y]", "p=1 mod 4" ]
+</pre></div>
+
+<p>The following example shows how to find a Lie <span class="SimpleMath">p</span>-ring with a given name in the database.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := LiePRingsByLibrary(7);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Filtered(L, x -&gt; LibraryName(x) = "7.1010")[1];</span>
+&lt;LiePRing of dimension 7 over prime p&gt; 
+</pre></div>
+
+<p><a id="X7F05B1C2830D519B" name="X7F05B1C2830D519B"></a></p>
+
+<h4>3.5 <span class="Heading">Special functions for dimension 7</span></h4>
+
+<p>The database of Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">7</span> is very large and it may be time-consuming (or even impossible due to storage problems) to generate all Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">7</span> for a given prime <span class="SimpleMath">P</span>.</p>
+
+<p>Thus there are some special functions available that can be used to access a particular set of Lie <span class="SimpleMath">p</span>-rings of dimension <span class="SimpleMath">7</span> only. In particular, it is possible to consider the descendants of a single Lie <span class="SimpleMath">p</span>-ring of smaller dimension by itself. The Lie <span class="SimpleMath">p</span>-rings of this type are all stored in one file of the library. Thus, equivalently, it is possible to access the Lie <span class="SimpleMath">p</span>-rings in one single file only.</p>
+
+<p>The table <code class="code">LIE_TABLE</code> contains a list of all possible files together with the number of Lie <span class="SimpleMath">p</span>-rings generated by their corresponding Lie <span class="SimpleMath">p</span>-rings.</p>
+
+<p><a id="X85D6DEDE78570FE0" name="X85D6DEDE78570FE0"></a></p>
+
+<h5>3.5-1 LiePRingsDim7ByFile</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsDim7ByFile</code>( <var class="Arg">nr</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the generic Lie <span class="SimpleMath">p</span>-rings in file number <span class="SimpleMath">nr</span>.</p>
+
+<p><a id="X781021568503B1A2" name="X781021568503B1A2"></a></p>
+
+<h5>3.5-2 LiePRingsDim7ByFile</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsDim7ByFile</code>( <var class="Arg">nr</var>, <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the isomorphism types of Lie <span class="SimpleMath">p</span>-rings in file number <span class="SimpleMath">nr</span> for the prime <var class="Arg">P</var>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LIE_TABLE[100];</span>
+[ "3gen/gapdec6.139", 1/2*p+(p-1,3)+3/2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsDim7ByFile(100);</span>
+[ &lt;LiePRing of dimension 7 over prime p&gt;, 
+  &lt;LiePRing of dimension 7 over prime p&gt;, 
+  &lt;LiePRing of dimension 7 over prime p&gt;,
+  &lt;LiePRing of dimension 7 over prime p&gt;,
+  &lt;LiePRing of dimension 7 over prime p with parameters [ x ]&gt; ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LiePRingsDim7ByFile(100, 7);</span>
+[ &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt;, 
+  &lt;LiePRing of dimension 7 over prime 7&gt; ]
+</pre></div>
+
+<p><a id="X7E261FAB7C023F7B" name="X7E261FAB7C023F7B"></a></p>
+
+<h4>3.6 <span class="Heading">Dimension 8 and maximal class</span></h4>
+
+<p>Recently, Lee and Vaughan-Lee <a href="chapBib.html#biBMC8">[LV22]</a> determined the Lie <span class="SimpleMath">p</span>-rings of dimension 8 with maximal class up to isomorphism. This classification is now also available in the Lie <span class="SimpleMath">p</span>-ring package via the following functions.</p>
+
+<p><a id="X842AAAFC81EB764E" name="X842AAAFC81EB764E"></a></p>
+
+<h5>3.6-1 LiePRingsByLibraryMC8</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsByLibraryMC8</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns a list of <span class="SimpleMath">69</span> generic Lie <span class="SimpleMath">p</span>-rings.</p>
+
+<p><a id="X871724DB78FDC64C" name="X871724DB78FDC64C"></a></p>
+
+<h5>3.6-2 LiePRingsInFamilyMC8</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LiePRingsInFamilyMC8</code>( <var class="Arg">L</var>, <var class="Arg">P</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>returns the isomorphism types of Lie <span class="SimpleMath">p</span>-rings in the family defined by the generic Lie <span class="SimpleMath">p</span>-ring <var class="Arg">L</var> for a fixed prime <var class="Arg">P</var> with <var class="Arg">P</var> <span class="SimpleMath">≥ 5</span>.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

@@ -1,103 +1,112 @@
 #############################################################################
 ##  
-##  Demo PackageInfo.g for the GitHubPagesForGAP
-##
-
 SetPackageInfo( rec(
-
-PackageName := "GitHubPagesForGAP",
-
-Subtitle := "A GitHub Pages generator for GAP packages",
-Version := "0.4",
-Date := "10/04/2025", # dd/mm/yyyy format
-License := "0BSD",
+PackageName := "LiePRing",
+Subtitle := "Database and algorithms for Lie p-rings",
+Version := "2.9.3",
+Date := "18/08/2026",
+License := "GPL-2.0-or-later",
 
 Persons := [
-  rec(
-    LastName      := "Horn",
-    FirstNames    := "Max",
+  rec( 
+    LastName      := "Eick",
+    FirstNames    := "Bettina",
     IsAuthor      := true,
     IsMaintainer  := true,
-    Email         := "mhorn@rptu.de",
-    WWWHome       := "https://www.quendi.de/math",
-    GitHubUsername:= "fingolfin",
-    PostalAddress := Concatenation(
-                       "Fachbereich Mathematik\n",
-                       "RPTU Kaiserslautern-Landau\n",
-                       "Gottlieb-Daimler-Straße 48\n",
-                       "67663 Kaiserslautern\n",
-                       "Germany" ),
-    Place         := "Kaiserslautern, Germany",
-    Institution   := "RPTU Kaiserslautern-Landau"
-  ),
-
-  rec(
-    LastName      := "Thor",
-    FirstNames    := "A. U.",
+    Email         := "beick@tu-bs.de",
+    WWWHome       := "http://www.iaa.tu-bs.de/beick",
+    Place         := "TU Braunschweig" ),
+  rec( 
+    LastName      := "Vaughan-Lee",
+    FirstNames    := "Michael",
     IsAuthor      := true,
-    IsMaintainer  := false,
-    #Email         := "author@example.com",
-  ),
-
-  rec(
-    LastName      := "Itor",
-    FirstNames    := "Jan",
-    IsAuthor      := false,
     IsMaintainer  := true,
-    #Email         := "janitor@example.com",
-  ),
+    Email         := "michael.vaughan-lee@chch.ox.ac.uk",
+    WWWHome       := "http://users.ox.ac.uk/~vlee",
+    Place         := "Oxford"),
 ],
 
-Status := "other",
+Status           := "accepted",
+CommunicatedBy   := "Leonard Soicher (London)",
+AcceptDate       := "09/2014",
 
-# The following are not strictly necessary in your own PackageInfo.g
-# (in the sense that update.g only looks at the usual fields
-# like PackageWWWHome, ArchiveURL etc.). But they are convenient
-# if you use exactly the scheme for your package website that we propose.
-GithubUser := "gap-system",
-GithubRepository := ~.PackageName,
-GithubWWW := Concatenation("https://github.com/", ~.GithubUser, "/", ~.GithubRepository),
+PackageWWWHome  := "https://gap-packages.github.io/liepring/",
+README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+SourceRepository := rec(
+    Type := "git",
+    URL := "https://github.com/gap-packages/liepring",
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/liepring-", ~.Version ),
+ArchiveFormats := ".tar.gz",
 
-PackageWWWHome := Concatenation("https://", ~.GithubUser, ".github.io/", ~.GithubRepository, "/"),
-README_URL     := Concatenation( ~.PackageWWWHome, "README.md" ),
-PackageInfoURL := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
-# The following assumes you are using the Github releases system. If not, adjust
-# it accordingly.
-ArchiveURL     := Concatenation(~.GithubWWW,
-                    "/releases/download/v", ~.Version, "/",
-                    ~.GithubRepository, "-", ~.Version),
-
-ArchiveFormats := ".tar.gz .tar.bz2",
-
-AbstractHTML := 
-  "This is a pseudo package that contains no actual\
-  <span class=\"pkgname\">GAP</span> code. Instead, it is a template for other\
-  GAP packages that allows to quickly setup GitHub Pages.",
+AbstractHTML := "The <span class=\"pkgname\">LiePRing</span> package provides \
+access to a database of nilpotent Lie rings of order p^n for p > 2 and n &lt;= 7, \
+together with algorithms for computing with them.",
 
 PackageDoc := rec(
-  BookName  := "GitHubPagesForGAP",
+  BookName  := "LiePRing",
   ArchiveURLSubset := ["doc"],
-  HTMLStart := "doc/chap0.html",
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "A GitHub Pages generator for GAP packages",
-),
-
-# The following dependencies are fake and for testing / demo purposes
-Dependencies := rec(
-  GAP := ">=4.8.1",
-  NeededOtherPackages := [
-    ["GAPDoc", ">= 1.2"],
-    ["IO", ">= 4.1"],
-  ],
-  SuggestedOtherPackages := [["orb", ">= 4.2"]],
-  ExternalConditions := []
+  LongTitle := "LiePRing Package",
 ),
 
 AvailabilityTest := ReturnTrue,
 
-Keywords := ["GitHub Pages", "GAP"]
+Dependencies := rec(
+  GAP := "4.8",
+  NeededOtherPackages := [["LieRing", ">=2.1"]],
+  SuggestedOtherPackages := [["Singular", ">=10"]],
+  TestPackages := [["SmallGrp", ">=1.0"]],
+  ExternalConditions := []
+),
+
+BannerString := Concatenation( 
+    "----------------------------------------------------------------\n",
+    "Loading  LiePRing ", ~.Version, "\n",
+    "by Bettina Eick and Michael Vaughan-Lee \n",
+    "----------------------------------------------------------------\n" ),
+
+Keywords := ["Lie ring", "Lie p-ring", "p-group", "classification"],
+
+TestFile := "tst/testall.g",
+
+AutoDoc := rec(
+  TitlePage := rec(
+    Abstract := [
+      "&LiePRing; gives access to the database of Lie <M>p</M>-rings of order",
+      "at most <M>p^7</M> as determined by Mike Newman, Eamonn O'Brien and",
+      "Michael Vaughan-Lee, see <Cite Key=\"NOV04\"/> and <Cite Key=\"OVL05\"/>,",
+      "and it provides some functionality to work with these Lie <M>p</M>-rings.",
+      "<P/>",
+      "If you use &LiePRing;, then please cite it as:",
+      "<E>Bettina Eick and Michael Vaughan-Lee</E>, LiePRing -- A GAP Package",
+      "for computing with nilpotent Lie rings of prime-power order (2014), see",
+      "<URL>https://www.gap-system.org/Packages/liepring.html</URL>",
+    ],
+    Copyright := [
+      "&LiePRing; is free software; you can redistribute it under the terms of",
+      "the <URL Text=\"GNU General Public License\">https://www.fsf.org/licenses/gpl.html</URL>",
+      "as published by the Free Software Foundation; either version 2 of the",
+      "License, or (at your option) any later version. &LiePRing; is distributed",
+      "in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even",
+      "the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR",
+      "PURPOSE. See the GNU General Public License for more details.",
+    ],
+    Acknowledgements := [
+      "The Lazard correspondence induces a one-to-one correspondence between the",
+      "Lie <M>p</M>-rings of order <M>p^n</M> and class less than <M>p</M> and",
+      "the <M>p</M>-groups of order <M>p^n</M> and class less than <M>p</M>.",
+      "&LiePRing; provides a function to evaluate this correspondence; this",
+      "function has been implemented and given to us by Willem de Graaf.",
+    ],
+  ),
+),
 
 ));
-
 
