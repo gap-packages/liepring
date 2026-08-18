@@ -1,11 +1,8 @@
 This file describes changes in the LiePRing package.
 
-## unreleased
+## 2.9.3 (2026-08-18)
 
   - Convert the manual from plain TeX to GAPDoc, built via AutoDoc
-  - Document `AutGroupDescription` under its real name; the manual called
-    it `AutGrpDescription`, which does not exist
-  - Turn the preamble chapter into a proper GAPDoc title page
   - Fix numerous typos and markup inconsistencies in the manual
   - Fill in the package abstract and keywords in `PackageInfo.g`
 
